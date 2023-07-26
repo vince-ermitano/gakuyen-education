@@ -1,5 +1,9 @@
 .shop-nav {
     margin: 8rem 0;
+    /* padding: 0 25rem; */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
 }
 
 .shop-nav ul {
@@ -8,6 +12,8 @@
     justify-content: space-around;
     align-items: center;
     padding-inline-start: 0;
+    width: 50%;
+    flex-wrap: wrap;
 }
 
 .shop-nav ul > li {
