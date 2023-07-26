@@ -1,0 +1,15 @@
+.item {
+    padding: 2rem;
+}
+
+.item img {
+    width: 300px;
+}
+
+.item-image {
+    width: 300px;
+}
+
+.item-info {
+    margin: 1rem 0;
+}

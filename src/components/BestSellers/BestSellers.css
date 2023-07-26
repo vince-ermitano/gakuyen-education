@@ -1,0 +1,13 @@
+h2 {
+    display: inline-block;
+    background-color: #FEEB22;
+    padding: 0.25rem 2rem 0.25rem 0.5rem;
+}
+
+.item-container {
+    width: 100%;
+    background-color: #F2F1F2;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

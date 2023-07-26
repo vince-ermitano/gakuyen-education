@@ -1,0 +1,23 @@
+.shop-nav {
+    margin: 8rem 0;
+}
+
+.shop-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-inline-start: 0;
+}
+
+.shop-nav ul > li {
+    width: 9rem;
+    text-align: center;
+    padding: 0.25rem 0;
+    font-size: 1.25rem;
+}
+
+.shop-nav ul > li:hover {
+    cursor: pointer;
+    background-color: #feeb22;
+}

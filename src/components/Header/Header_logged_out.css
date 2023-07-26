@@ -1,0 +1,29 @@
+.header  {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    justify-self: center;
+}
+
+.header span {
+    padding: 0.25rem 0.1rem;
+    font-size: 1.25rem;
+}
+
+.header span:hover {
+    cursor: pointer;
+    background-color: #feeb22;
+}
+
+.user-directory span{
+    margin: 0 0 0 0rem;
+}
+
+.user-directory span:last-child {
+    margin: 0 0 0 3rem;
+}
+
+/* Login mockup */
+button {
+    display: none;
+}
