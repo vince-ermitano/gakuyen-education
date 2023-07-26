@@ -35,13 +35,14 @@ a:hover {
   /* Hamburger */
   .hamburger1 {
     height: 45px;
-    width: 14rem;
+    width: 100%;
     margin-bottom: 0.625rem;
     display: -ms-grid;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     justify-items: center;
     z-index: 120;
+    justify-self: center;
   }
   
   .hamburger1 div {

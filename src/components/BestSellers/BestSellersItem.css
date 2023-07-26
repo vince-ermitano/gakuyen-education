@@ -2,6 +2,12 @@
     padding: 2rem;
 }
 
+.item:hover {
+    cursor: pointer;
+    /* box-shadow: 0 5px 15px rgba(145, 92, 182, .4); */
+    box-shadow: 0 5px 15px #777;
+}
+
 .item img {
     width: 300px;
 }
@@ -13,3 +19,4 @@
 .item-info {
     margin: 1rem 0;
 }
+

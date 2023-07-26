@@ -5,6 +5,18 @@
     justify-self: center;
 }
 
+.header > *{
+    width: 250px;
+} 
+
+.header > div:nth-child(2){
+    text-align: center;
+}
+
+.header .user-directory {
+    text-align: end;
+}
+
 .header span {
     padding: 0.25rem 0.1rem;
     font-size: 1.25rem;
@@ -24,6 +36,6 @@
 }
 
 /* Login mockup */
-button {
+#mock-log {
     display: none;
 }

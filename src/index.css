@@ -19,6 +19,7 @@ code {
 
 h1, h2, h3 {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0 0 1rem 0;
 }
 
 .darkgray-background {
@@ -28,8 +29,19 @@ h1, h2, h3 {
 
 .darkgray-background:hover {
   color: #000;
+  background-color: #feeb22;
 }
 
 .lightgray {
   color: #F2F1F2;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0 0.1rem 0 0.1rem;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }

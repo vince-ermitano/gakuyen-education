@@ -39,7 +39,7 @@ const Header = () => {
     return (
         <div>
             {isLoggedIn ? headerLoggedIn : headerLoggedOut}
-            <button onClick={() => { dispatch(toggleLoggedInStatus()); }}>Toggle Logged In Status</button>
+            <button id='mock-log' onClick={() => { dispatch(toggleLoggedInStatus()); }}>Toggle Logged In Status</button>
             {/* {isLoggedIn ? <span>Logged In</span> : <span>Logged Out</span>} */}
         </div>
     );

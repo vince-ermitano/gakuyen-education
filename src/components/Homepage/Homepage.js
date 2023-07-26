@@ -2,6 +2,7 @@ import React from "react";
 import HeroBanner from "../HeroBanner/HeroBanner";
 import ShopNav from "../ShopNav/ShopNav";
 import BestSellers from "../BestSellers/BestSellers";
+import PresetsHP from "../PresetsHP/PresetsHP";
 
 const Homepage = () => {
     return (
@@ -9,6 +10,7 @@ const Homepage = () => {
             <HeroBanner />
             <ShopNav />
             <BestSellers />
+            <PresetsHP />
         </div>
     )
 }
