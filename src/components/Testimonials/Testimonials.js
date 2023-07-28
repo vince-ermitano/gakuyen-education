@@ -1,35 +1,56 @@
-import React from "react";
+import { useRef, useEffect } from 'react';
+import { register } from 'swiper/element/bundle';
+import Testimonial from './Testimonial';
 import './Testimonials.css';
 
-const Testimonials = () => {
-    return (
-        <div className="testimonials">
-            <div className="slider">
-                <input type="radio" name="slider" title="slide1" checked="checked" className="slider__nav" />
-                <input type="radio" name="slider" title="slide2" className="slider__nav" />
-                <input type="radio" name="slider" title="slide3" className="slider__nav" />
-                <input type="radio" name="slider" title="slide4" className="slider__nav" />
-                <div className="slider__inner">
-                    <div className="slider__contents"><i className="slider__image fa fa-codepen"></i>
-                        <h2 className="slider__caption">codepen</h2>
-                        <p className="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
-                    </div>
-                    <div className="slider__contents"><i className="slider__image fa fa-newspaper-o"></i>
-                        <h2 className="slider__caption">newspaper-o</h2>
-                        <p className="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
-                    </div>
-                    <div className="slider__contents"><i className="slider__image fa fa-television"></i>
-                        <h2 className="slider__caption">television</h2>
-                        <p className="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
-                    </div>
-                    <div className="slider__contents"><i className="slider__image fa fa-diamond"></i>
-                        <h2 className="slider__caption">diamond</h2>
-                        <p className="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+register();
+
+
+const testimonials = [
+    {
+        name: "Vince Ermitano",
+        testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        id: 1
+    },
+    {
+        name: "Vince Ermitano",
+        testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        id: 2
+    },
+    {
+        name: "Vince Ermitano",
+        testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        id: 3
+    },
+]
+
+export const Testimonials = () => {
+  const swiperElRef = useRef(null);
+
+  useEffect(() => {
+    // listen for Swiper events using addEventListener
+    swiperElRef.current.addEventListener('progress', (e) => {
+      const [swiper, progress] = e.detail;
+      console.log(progress);
+    });
+
+    swiperElRef.current.addEventListener('slidechange', (e) => {
+      console.log('slide changed');
+    });
+  }, []);
+
+  return (
+    <div className="testimonials-container">
+      <h2>Testimonials</h2>
+      <swiper-container ref={swiperElRef} slides-per-view="1" navigation="true">
+        {testimonials.map((testimonial) => (
+            <swiper-slide key={testimonial.id}>
+                <Testimonial name={testimonial.name} testimonial={testimonial.testimonial}></Testimonial>
+            </swiper-slide>
+        ))}
+      </swiper-container>
+    </div>
+  );
 };
 
 export default Testimonials;

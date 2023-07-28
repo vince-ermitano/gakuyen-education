@@ -1,0 +1,17 @@
+.footer {
+    font-family: 'Courier New', Courier, monospace ;
+    font-size: 0.75rem;
+}
+
+.footer input {
+    border: none;
+    outline: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.footer .newsletter-form span {
+    margin: 0 1rem 0 0;
+}

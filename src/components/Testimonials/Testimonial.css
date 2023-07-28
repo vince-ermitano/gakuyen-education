@@ -1,0 +1,10 @@
+.testimonial-item {
+    width: 50%;
+    text-align: center;
+    background-color: #F2F1F2;
+    padding: 2rem;
+}
+
+.testimonial-item p:first-child {
+    margin-bottom: 4rem;
+}
