@@ -3,6 +3,8 @@ import HeroBanner from "../HeroBanner/HeroBanner";
 import ShopNav from "../ShopNav/ShopNav";
 import BestSellers from "../BestSellers/BestSellers";
 import PresetsHP from "../PresetsHP/PresetsHP";
+import Testimonials from "../Testimonials/Testimonials";
+import MasterclassHP from "../MasterclassHP/MasterclassHP";
 
 const Homepage = () => {
     return (
@@ -11,6 +13,8 @@ const Homepage = () => {
             <ShopNav />
             <BestSellers />
             <PresetsHP />
+            {/* <MasterclassHP /> */}
+            {/* <Testimonials /> */}
         </div>
     )
 }
