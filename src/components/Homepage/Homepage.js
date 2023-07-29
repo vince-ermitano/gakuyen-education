@@ -17,7 +17,6 @@ const Homepage = () => {
             <PresetsHP />
             <MasterclassHP />
             <Testimonials />
-            <Footer />
         </div>
     )
 }
