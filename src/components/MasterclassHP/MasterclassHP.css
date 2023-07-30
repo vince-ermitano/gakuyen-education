@@ -9,6 +9,14 @@
     object-fit: cover;
 }
 
+.masterclass-hp .img-container {
+    margin-bottom: 4rem; 
+}
+
+.masterclass-hp p {
+    width: 50%;
+}
+
 .masterclass-hp button {
     font-size: 1.25rem;
 }

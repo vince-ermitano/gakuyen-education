@@ -1,5 +1,6 @@
 import React from "react";
 import './Hamburger.css'
+import { Link } from "react-router-dom";
 
 const Hamburger = () => {
     return (
@@ -14,7 +15,8 @@ const Hamburger = () => {
                     </label>
 
                     <nav className="menu1">
-                        <a className="link1" href="/">Home</a>
+                        {/* <a className="link1" href="/">Home</a> */}
+                        <Link className="link1" to="/">Home</Link>
                         <a className="link1" href="/">Presets</a>
                         <a className="link1" href="/">Masterclass</a>
                         <a className="link1" href="/">Contact</a>

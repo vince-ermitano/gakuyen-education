@@ -9,17 +9,17 @@ register();
 const testimonials = [
     {
         name: "Vince Ermitano",
-        testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         id: 1
     },
     {
-        name: "Vince Ermitano",
+        name: "Kai Lange",
         testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         id: 2
     },
     {
-        name: "Vince Ermitano",
-        testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        name: "Peace Gates",
+        testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         id: 3
     },
 ]
@@ -40,7 +40,7 @@ export const Testimonials = () => {
   }, []);
 
   return (
-    <div className="testimonials-container">
+    <div className="testimonials-container page-section">
       <h2>Testimonials</h2>
       <swiper-container ref={swiperElRef} slides-per-view="1" navigation="true">
         {testimonials.map((testimonial) => (

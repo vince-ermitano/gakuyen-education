@@ -13,3 +13,7 @@ swiper-slide {
   display: flex;
   justify-content: center;
 }
+
+.testimonials-container h2 {
+  margin: 0 0 8rem 0;
+}

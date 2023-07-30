@@ -2,7 +2,11 @@
     background-color: #F2F1F2;
     padding: 3rem;
     text-align: center;
-    margin: 4rem 0;
+    margin: 8rem 0 16rem 0;
+}
+
+.shop h1 {
+    margin-top: 4rem;
 }
 
 /* .shop-content {

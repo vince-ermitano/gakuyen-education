@@ -3,6 +3,7 @@ import './Header_logged_out.css';
 import Hamburger from '../Hamburger/Hamburger';
 import { useSelector, useDispatch } from "react-redux";
 import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -12,7 +13,7 @@ const Header = () => {
     const headerLoggedOut = (
         <div className="header">
                 <div className="logo">
-                    <span>GAKUYEN EDUCATION</span>
+                    <Link to="/"><span>GAKUYEN EDUCATION</span></Link>
                 </div>
                 <Hamburger />
                 <div className="user-directory">

@@ -4,7 +4,7 @@ import BestSellersItem from "./BestSellersItem";
 
 const BestSellers = () => {
     return (
-        <div>
+        <div className="best-sellers page-section">
             <h2>Best Sellers</h2>
             <div className="item-container">
                 <BestSellersItem />
