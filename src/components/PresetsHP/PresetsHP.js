@@ -18,16 +18,16 @@ const PresetsHP = () => {
             </div>
           </div>
           <div className="grid-item">
-            <img src="https://source.unsplash.com/random/?film,landscape"></img>
+            <img src="https://source.unsplash.com/random/?film,landscape" alt=""></img>
           </div>
           <div className="grid-item">
-            <img src="https://source.unsplash.com/random/?film"></img>
+            <img src="https://source.unsplash.com/random/?film" alt=""></img>
           </div>
           <div className="grid-item">
-            <img src="https://source.unsplash.com/random/?film"></img>
+            <img src="https://source.unsplash.com/random/?film" alt="" ></img>
           </div>
           <div className="grid-item">
-            <img src="https://source.unsplash.com/random/?film"></img>
+            <img src="https://source.unsplash.com/random/?film" alt=""></img>
           </div>
         </div>
       </div>

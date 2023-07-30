@@ -14,10 +14,10 @@ const Hamburger = () => {
                     </label>
 
                     <nav className="menu1">
-                        <a className="link1" href="">Home</a>
-                        <a className="link1" href="">Presets</a>
-                        <a className="link1" href="">Masterclass</a>
-                        <a className="link1" href="">Contact</a>
+                        <a className="link1" href="/">Home</a>
+                        <a className="link1" href="/">Presets</a>
+                        <a className="link1" href="/">Masterclass</a>
+                        <a className="link1" href="/">Contact</a>
                     </nav>
                 </nav>
             </section>

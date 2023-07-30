@@ -6,7 +6,7 @@ const MasterclassHP = () => {
       <div className="masterclass-hp page-section">
         <h2>Creative Masterclass</h2>
         <div className="img-container">
-            <img src="https://source.unsplash.com/random/?film,landscape"></img>
+            <img src="https://source.unsplash.com/random/?film,landscape" alt=""></img>
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

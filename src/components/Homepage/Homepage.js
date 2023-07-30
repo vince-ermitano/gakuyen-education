@@ -5,7 +5,6 @@ import BestSellers from "../BestSellers/BestSellers";
 import PresetsHP from "../PresetsHP/PresetsHP";
 import Testimonials from "../Testimonials/Testimonials";
 import MasterclassHP from "../MasterclassHP/MasterclassHP";
-import Footer from "../Footer/Footer";
 import './Homepage.css'
 
 const Homepage = () => {

@@ -2,7 +2,6 @@ import React from "react";
 import './Header_logged_out.css';
 import Hamburger from '../Hamburger/Hamburger';
 import { useSelector, useDispatch } from "react-redux";
-import store from "../../store/store";
 import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
 
 const Header = () => {
