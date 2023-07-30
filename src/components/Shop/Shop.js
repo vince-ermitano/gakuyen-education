@@ -9,7 +9,7 @@ const Shop = () => {
       <h1>The Shop</h1>
       <ShopNav />
       <div className="shop-content">
-        <ShopItem />
+        <ShopItem itemType='preset'/>
         <ShopItem />
         <ShopItem />
         <ShopItem />

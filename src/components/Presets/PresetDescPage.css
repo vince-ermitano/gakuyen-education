@@ -1,0 +1,20 @@
+.preset-desc-page-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #f2f1f2;
+}
+
+swiper-container {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+swiper-slide {
+    width: 100%;
+}
+
+.carousel {
+    width: 100%;
+    max-width: 100%;
+}

@@ -1,3 +1,5 @@
-/* .shop-item {
-    width: 30%;
+
+/* To add a glow
+.shop-item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 } */
