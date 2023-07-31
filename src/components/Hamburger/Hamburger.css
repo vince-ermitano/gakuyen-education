@@ -2,15 +2,12 @@
 /* html {
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
-  height: 100%;
+}
+
+body {
+  overflow: auto;
 } */
 
-/* body {
-  margin: 20px 0;
-  overflow: auto;
- 
-  color: #fff;
-} */
 
 a {
     color: #000;
@@ -28,21 +25,23 @@ a:hover {
   
   .hamburger-wrapper {
     position: relative;
-    bottom: 0.75rem;
+    bottom: 6rem;
   }
   
   
   /* Hamburger */
   .hamburger1 {
     height: 45px;
-    width: 100%;
+    width: 50%;
     margin-bottom: 0.625rem;
     display: -ms-grid;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     justify-items: center;
-    z-index: 120;
+    /* z-index: 1; */
+    text-align: center;
     justify-self: center;
+    transform: translateX(50%);
   }
   
   .hamburger1 div {
@@ -98,7 +97,7 @@ a:hover {
     height: 0px;
     overflow: hidden;
     transition: height .4s ease;
-    z-index: 120;
+    /* z-index: 120; */
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     place-items: center;

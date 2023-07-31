@@ -7,12 +7,14 @@ import Homepage from './components/Homepage/Homepage';
 import { Routes, Route } from "react-router-dom"; 
 import Footer from './components/Footer/Footer';
 import PresetDescPage from './components/Presets/PresetDescPage';
+import Hamburger from './components/Hamburger/Hamburger';
 
 function App () {
 
   return (
     <Provider store={store}>
       <Header />
+      <Hamburger />
       <Routes>
         <Route path='/' element={ <Homepage />}></Route>
         <Route path='/store' element={ <Shop />}></Route>

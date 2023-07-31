@@ -15,7 +15,7 @@ const Header = () => {
                 <div className="logo">
                     <Link to="/"><span>GAKUYEN EDUCATION</span></Link>
                 </div>
-                <Hamburger />
+                {/* <Hamburger /> */}
                 <div className="user-directory">
                     <span>LOGIN</span>
                     <span className="darkgray-background">GET STARTED</span>

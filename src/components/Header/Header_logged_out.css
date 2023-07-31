@@ -6,6 +6,10 @@
     margin-bottom: 4rem;
 }
 
+.header .logo, .header .user-directory {
+    z-index: 100;
+}
+
 .header > *{
     width: 250px;
 } 
