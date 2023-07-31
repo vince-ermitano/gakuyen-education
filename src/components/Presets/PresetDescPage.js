@@ -44,16 +44,16 @@ const PresetDescPage = () => {
                     autoplay="true"
                 >
                     <swiper-slide>
-                        <img src="https://via.placeholder.com/400x300" />
+                        <img src="https://via.placeholder.com/400x300" alt="slider content"/>
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="https://via.placeholder.com/400x300" />
+                        <img src="https://via.placeholder.com/400x300" alt="slider content"/>
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="https://via.placeholder.com/400x300" />
+                        <img src="https://via.placeholder.com/400x300" alt="slider content"/>
                     </swiper-slide>
                     <swiper-slide>
-                        <img src="https://via.placeholder.com/400x300" />
+                        <img src="https://via.placeholder.com/400x300" alt="slider content"/>
                     </swiper-slide>
                 </swiper-container>
 
