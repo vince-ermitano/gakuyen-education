@@ -2,19 +2,54 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: #f2f1f2;
+    padding:  8rem 2rem;
+    row-gap: 4rem;
+    column-gap: 2rem;
+    place-items: center;
 }
 
-swiper-container {
+.preset-desc-page button {
+    margin-bottom: 1rem;
+}
+
+.preset-desc-page-content swiper-container {
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
 }
 
-swiper-slide {
+.preset-desc-page-content swiper-slide {
     width: 100%;
 }
 
-.carousel {
+.preset-desc-page-content .second-row-desc {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 75%;
+}
+
+.preset-desc-page-content .carousel {
     width: 100%;
     max-width: 100%;
+}
+
+.preset-desc-page-content .preset-name-price {
+    text-align: center;
+    align-self: center;
+}
+
+.whats-included {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    height: 100%;
+    width: 75%;
+}
+
+.whats-included ul {
+    list-style: none;
+    padding: 0;
 }

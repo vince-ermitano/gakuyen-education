@@ -42,7 +42,7 @@ export const Testimonials = () => {
   return (
     <div className="testimonials-container page-section">
       <h2>Testimonials</h2>
-      <swiper-container ref={swiperElRef} slides-per-view="1" navigation="true">
+      <swiper-container ref={swiperElRef} slides-per-view="1" navigation="true" loop="true">
         {testimonials.map((testimonial) => (
             <swiper-slide key={testimonial.id}>
                 <Testimonial name={testimonial.name} testimonial={testimonial.testimonial}></Testimonial>

@@ -10,7 +10,7 @@ const PresetDescPage = () => {
     const swiperElRef = useRef(null);
 
     return (
-        <div className="preset-desc-page">
+        <div className="preset-desc-page page-section">
             <Link to="/store">
                 <button>&lt; Back to Presets Shop</button>
             </Link>
@@ -21,13 +21,13 @@ const PresetDescPage = () => {
                         alt="preset-desc-page-img"
                     />
                 </div>
-                <div className="preset-desc-page-info">
+                <div className="preset-desc-page-info preset-name-price">
                     <h3>Preset Name</h3>
                     <p>Lorem ipsum dolor sit amet</p>
                     <p>$10</p>
                     <button className="darkgray-background" >Add to Cart</button>
                 </div>
-                <div>
+                <div className="second-row-desc">
                     <h4>Lorem ipsum dolor sit amet</h4>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -40,6 +40,7 @@ const PresetDescPage = () => {
                     ref={swiperElRef}
                     slides-per-view="1"
                     navigation="true"
+                    loop="true"
                 >
                     <swiper-slide>
                         <img src="https://via.placeholder.com/400x300" />
@@ -62,7 +63,7 @@ const PresetDescPage = () => {
                     />
                 </div>
 
-                <div className="preset-desc-page-info">
+                <div className="preset-desc-page-info whats-included">
                     <h4>What's Included</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
