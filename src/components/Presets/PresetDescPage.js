@@ -41,6 +41,7 @@ const PresetDescPage = () => {
                     slides-per-view="1"
                     navigation="true"
                     loop="true"
+                    autoplay="true"
                 >
                     <swiper-slide>
                         <img src="https://via.placeholder.com/400x300" />
