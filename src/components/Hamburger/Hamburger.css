@@ -85,9 +85,10 @@ a:hover {
     width: 100%;
     background-color: #F2F1F2;
     margin: 0;
-    display: -ms-grid;
+    /* display: -ms-grid; */
     display: grid;
-    grid-template-rows: 1fr repeat(4, 0.5fr);
+    /* grid-template-rows: 1fr repeat(4, 0.5fr); */
+    grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 25px;
     padding: 0;
     list-style: none;
@@ -104,13 +105,13 @@ a:hover {
     align-items: center;
   }
   
-  .menu1 a:first-child {
+  /* .menu1 a:first-child {
     margin-top: 40px;
   }
   
   .menu1 a:last-child {
     margin-bottom: 40px;
-  }
+  } */
   
   .link1 {
     width: 75%;
@@ -125,4 +126,17 @@ a:hover {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
   } */
+
+  .shop-by-category-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+  }
+
+  .explore-category-links, .connect-category-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 
