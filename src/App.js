@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import Footer from './components/Footer/Footer';
 import PresetDescPage from './components/Presets/PresetDescPage';
 import Hamburger from './components/Hamburger/Hamburger';
+import MasterclassDesc from './components/Masterclass/MasterclassDesc';
 
 function App () {
 
@@ -19,6 +20,7 @@ function App () {
         <Route path='/' element={ <Homepage />}></Route>
         <Route path='/store' element={ <Shop />}></Route>
         <Route path='/preset-desc' element={ <PresetDescPage />}></Route>
+        <Route path='/the-odyssey-creative-masterclass' element={ <MasterclassDesc />}></Route>
       </Routes>
       <Footer />
       {/* <Header />

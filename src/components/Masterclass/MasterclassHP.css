@@ -20,3 +20,13 @@
 .masterclass-hp button {
     font-size: 1.25rem;
 }
+.masterclass-hp a {
+    background-color: #484848;
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.masterclass-hp a:hover {
+    background-color: #feeb22;
+    color: #000;
+}

@@ -4,7 +4,7 @@ import ShopNav from "../ShopNav/ShopNav";
 import BestSellers from "../BestSellers/BestSellers";
 import PresetsHP from "../Presets/PresetsHP";
 import Testimonials from "../Testimonials/Testimonials";
-import MasterclassHP from "../MasterclassHP/MasterclassHP";
+import MasterclassHP from "../Masterclass/MasterclassHP";
 import './Homepage.css'
 
 const Homepage = () => {
