@@ -3,9 +3,18 @@
     grid-template-columns: 1fr 1fr;
     background-color: #f2f1f2;
     padding:  8rem 2rem;
-    row-gap: 4rem;
+    row-gap: 16rem;
     column-gap: 2rem;
     place-items: center;
+}
+ 
+
+.preset-desc-page-content h3 {
+    font-size: 1.75rem;
+}
+.preset-desc-page-content h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
 }
 
 .preset-desc-page button {
