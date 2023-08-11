@@ -41,7 +41,7 @@
     content: "";
     display: block;
     padding-top: 51%; /* Adjust the padding-top to match the image's aspect ratio */
-    background: url("../../../public/LandingPage2.jpg") center/cover no-repeat; /* Set the image as background */
+    background: url("../../../public/LandingPage2_1728w.jpg") center/cover no-repeat; /* Set the image as background */
   }
 
 .shop-nav-v2 ul {

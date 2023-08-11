@@ -17,7 +17,7 @@ const Header = () => {
                 </div> */}
                 <div className="logo img-container">
                     <Link to="/">
-                        <img src="/theodyssey.png" alt="Gakuyen Education Logo" />
+                        <img src="/theodyssey_s.png" alt="Gakuyen Education Logo" />
                     </Link>
                 </div>
                 {/* <Hamburger /> */}
