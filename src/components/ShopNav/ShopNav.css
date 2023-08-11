@@ -1,6 +1,5 @@
-/* .shop-nav {
+.shop-nav {
     margin: 8rem 0;
-
     display: flex;
     justify-content: center;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -27,4 +26,4 @@
 .shop-nav ul > li:hover {
     cursor: pointer;
     background-color: #feeb22;
-} */
+}

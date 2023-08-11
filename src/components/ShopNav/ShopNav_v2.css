@@ -1,4 +1,4 @@
-.shop-nav {
+.shop-nav-v2 {
     /* margin: 8rem 0; */
     /* padding: 0 25rem; */
     width: 100%;
@@ -8,7 +8,7 @@
     /* align-items: center; */
 }
 
-.shop-nav ul {
+.shop-nav-v2 ul {
     list-style: none;
     display: flex;
     justify-content: space-around;
@@ -18,33 +18,33 @@
     flex-wrap: wrap;
 }
 
-.shop-nav ul > li {
+.shop-nav-v2 ul > li {
     /* width: 9rem; */
     text-align: center;
     padding: 0.25rem 0;
     font-size: 1.25rem;
 }
 
-.shop-nav ul > li:hover {
+.shop-nav-v2 ul > li:hover {
     cursor: pointer;
     color: black;
     background-color: #feeb22;
 }
 
-.shop-nav .img-container {
+.shop-nav-v2 .img-container {
     width: 100%;
     position: relative;
     overflow: hidden;
   }
 
-.shop-nav .img-container::before {
+.shop-nav-v2 .img-container::before {
     content: "";
     display: block;
     padding-top: 51%; /* Adjust the padding-top to match the image's aspect ratio */
     background: url("../../../public/LandingPage2.jpg") center/cover no-repeat; /* Set the image as background */
   }
 
-.shop-nav ul {
+.shop-nav-v2 ul {
     position: absolute;
     bottom: 10%; /* Position the navigation links closer to the bottom */
     left: 50%; /* Position the navigation links horizontally centered */
@@ -52,12 +52,12 @@
     z-index: 1; /* Place the navigation links above the image */
   }
 
-.shop-nav ul li a {
+.shop-nav-v2 ul li a {
     color: white;
     width: 100%;
     height: 100%;
 }
 
-.shop-nav ul li:hover a {
+.shop-nav-v2 ul li:hover a {
     color: black;
 }

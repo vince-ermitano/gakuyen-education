@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const ShopNavV2 = () => {
     return (
-        <div className="shop-nav">
+        <div className="shop-nav-v2">
             <div className="img-container">
                 <ul>
                     {/* <li>SHOP ALL</li> */}
