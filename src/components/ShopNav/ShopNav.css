@@ -1,9 +1,10 @@
-.shop-nav {
+/* .shop-nav {
     margin: 8rem 0;
-    /* padding: 0 25rem; */
+
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
 }
 
 .shop-nav ul {
@@ -26,4 +27,4 @@
 .shop-nav ul > li:hover {
     cursor: pointer;
     background-color: #feeb22;
-}
+} */

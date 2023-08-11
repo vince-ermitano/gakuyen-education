@@ -12,8 +12,13 @@ const Header = () => {
 
     const headerLoggedOut = (
         <div className="header">
-                <div className="logo">
+                {/* <div className="logo">
                     <Link to="/"><span>GAKUYEN EDUCATION</span></Link>
+                </div> */}
+                <div className="logo img-container">
+                    <Link to="/">
+                        <img src="/theodyssey.png" alt="Gakuyen Education Logo" />
+                    </Link>
                 </div>
                 {/* <Hamburger /> */}
                 <div className="user-directory">

@@ -4,14 +4,16 @@ import { NavLink } from "react-router-dom";
 
 const ShopNav = () => {
     return (
-        <div className="shop-nav">
+        <nav className="shop-nav">
             <ul>
                 {/* <li>SHOP ALL</li> */}
                 <li><NavLink to="/store">SHOP ALL</NavLink></li>
-                <li>PRESETS</li>
-                <li>MASTERCLASS</li>
+                <li>BUSINESS</li>
+                <li>WORKFLOW</li>
+                <li>EDITING</li>
+                <li>CONNECTION</li>
             </ul>
-        </div>
+        </nav>
     );
 }
 

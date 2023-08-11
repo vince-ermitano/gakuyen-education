@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import HeroBanner from "../HeroBanner/HeroBanner";
-import ShopNav from "../ShopNav/ShopNav";
+// import HeroBanner from "../HeroBanner/HeroBanner";
+// import ShopNav from "../ShopNav/ShopNav";
+import ShopNavV2 from "../ShopNav/ShopNavV2";
 import BestSellers from "../BestSellers/BestSellers";
 import PresetsHP from "../Presets/PresetsHP";
 import Testimonials from "../Testimonials/Testimonials";
@@ -16,8 +17,9 @@ const Homepage = () => {
 
     return (
         <div className="homepage">
-            <HeroBanner />
-            <ShopNav />
+            {/* <HeroBanner /> */}
+            {/* <ShopNav /> */}
+            <ShopNavV2 />
             <BestSellers />
             <PresetsHP />
             <MasterclassHP />

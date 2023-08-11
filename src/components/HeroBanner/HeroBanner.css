@@ -1,8 +1,18 @@
-.hero-banner {
+/* .hero-banner {
     margin-top: 8rem;
-}
+} */
 
 .hero-banner p{
     font-style: italic;
+}
+
+.hero-banner .img-container {
+    width: 100%;
+    text-align: center;
+}
+
+.hero-banner .img-container img {
+    width: 100%;
+    max-width: 100%;
 }
 
