@@ -1,0 +1,35 @@
+.grid-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center
+}
+
+.masterclass-desc-content {
+    background-color: #f2f1f2;
+}
+
+hr {
+    width: 25%;
+}
+
+.masterclass-break-it-down > h2 {
+    grid-column: span 2;
+}
+
+.masterclass-break-it-down ul {
+    padding: 0;
+}
+
+.masterclass-who-for {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+}
+
+.masterclass-who-for > h2 {
+    grid-column: span 3;
+}
+
+.masterclass-who-for > button {
+    grid-column: span 3;
+}
