@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./PresetDescPage.css";
 import { register } from "swiper/element/bundle";
@@ -8,6 +8,10 @@ register();
 
 const PresetDescPage = () => {
     const swiperElRef = useRef(null);
+
+    useEffect(() => {
+        document.title = 'Preset Description | GAKUYEN EDUCATION';
+      }, []);
 
     return (
         <div className="preset-desc-page page-section">

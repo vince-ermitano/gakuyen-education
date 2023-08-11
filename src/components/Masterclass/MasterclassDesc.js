@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./MasterclassDesc.css";
 
 const MasterclassDesc = () => {
+    useEffect(() => {
+        document.title =
+            "The Odyssey - Creative Masterclass | GAKUYEN EDUCATION";
+    }, []);
     return (
         <div className="masterclass-desc page-section">
             <Link to="/store">
-                <button className="back-to-btn">&lt; Back to Masterclass Shop</button>
+                <button className="back-to-btn">
+                    &lt; Back to Masterclass Shop
+                </button>
             </Link>
 
             <div className="masterclass-desc-content">
