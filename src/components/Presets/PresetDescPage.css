@@ -8,6 +8,25 @@
     place-items: center;
 }
  
+.preset-desc-page-content .img-container {
+    width: 100%;
+    text-align: center;
+}
+
+.preset-desc-page-content .img-container img {
+    width: 80%;
+    max-width: 80%;
+}
+
+.preset-desc-page-content .carousel-img-container {
+    width: 80%;
+    text-align: center;
+}
+
+.preset-desc-page-content .carousel-img-container img {
+    width: 80%;
+    max-width: 80%;
+}
 
 .preset-desc-page-content h1 {
     font-size: 1.75rem;
