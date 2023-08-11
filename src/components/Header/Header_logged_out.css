@@ -17,6 +17,15 @@
 .header .logo img {
     height: 100%;
 }
+
+.header .logo img:hover {
+    background-color: #feeb22;
+}
+
+.header .logo a:hover {
+    background-color: transparent;
+}
+
 .header > *{
     width: 250px;
 } 
