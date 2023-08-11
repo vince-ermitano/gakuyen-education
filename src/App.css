@@ -40,3 +40,12 @@
 .page-section {
   margin-bottom: 16rem;
 }
+
+.item-name-price {
+  text-align: center;
+  align-self: center;
+}
+
+.back-to-btn {
+  margin-bottom: 1rem;
+}

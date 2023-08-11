@@ -9,16 +9,12 @@
 }
  
 
-.preset-desc-page-content h3 {
+.preset-desc-page-content h1 {
     font-size: 1.75rem;
 }
 .preset-desc-page-content h4 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
-}
-
-.preset-desc-page button {
-    margin-bottom: 1rem;
 }
 
 .preset-desc-page-content swiper-container {

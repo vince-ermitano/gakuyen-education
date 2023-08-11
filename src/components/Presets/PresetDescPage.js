@@ -12,17 +12,17 @@ const PresetDescPage = () => {
     return (
         <div className="preset-desc-page page-section">
             <Link to="/store">
-                <button>&lt; Back to Presets Shop</button>
+                <button className="back-to-btn">&lt; Back to Presets Shop</button>
             </Link>
             <div className="preset-desc-page-content">
                 <div className="preset-desc-page-img">
                     <img
-                        src="https://via.placeholder.com/400x300"
+                        src="https://via.placeholder.com/500x400"
                         alt="preset-desc-page-img"
                     />
                 </div>
-                <div className="preset-desc-page-info preset-name-price">
-                    <h3>Preset Name</h3>
+                <div className="preset-desc-page-info preset-name-price item-name-price">
+                    <h1>Preset Name</h1>
                     <p>Lorem ipsum dolor sit amet</p>
                     <p>$10</p>
                     <button className="darkgray-background" >Add to Cart</button>

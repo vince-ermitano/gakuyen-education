@@ -4,9 +4,9 @@ import "./MasterclassDesc.css";
 
 const MasterclassDesc = () => {
     return (
-        <div className="masterclass-desc">
+        <div className="masterclass-desc page-section">
             <Link to="/store">
-                <button>&lt; Back to Presets Shop</button>
+                <button className="back-to-btn">&lt; Back to Masterclass Shop</button>
             </Link>
 
             <div className="masterclass-desc-content">
@@ -17,11 +17,13 @@ const MasterclassDesc = () => {
                             alt="masterclass"
                         />
                     </div>
-                    <div className="masterclass-intro-text-container">
+                    <div className="masterclass-intro-text-container item-name-price">
                         <h1>The Odyssey - Creative Masterclass</h1>
                         <p>Loren ipsum dolor sit amet</p>
                         <p>$10</p>
-                        <button className="darkgray-background">Add to Cart</button>
+                        <button className="darkgray-background">
+                            Add to Cart
+                        </button>
                     </div>
                 </section>
                 <hr />
@@ -29,10 +31,10 @@ const MasterclassDesc = () => {
                     <div className="section-text">
                         <h2>What we offer</h2>
                         <ul>
-                            <li>Item 1</li>
-                            <li>Item 2</li>
-                            <li>Item 3</li>
-                            <li>Item 4</li>
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>consectetur adipiscing elit</li>
+                            <li>sed do eiusmod tempor incididunt</li>
+                            <li>ut labore et dolore magna aliqua</li>
                         </ul>
                     </div>
                     <div className="section-img">
@@ -58,7 +60,7 @@ const MasterclassDesc = () => {
                     <div className="module-listings">
                         <ol>
                             <li>
-                                Mindset for Creative Success
+                                <p>Mindset for Creative Success</p>
                                 <ul>
                                     <li>
                                         Cultivating a Growth Mindset in the
@@ -83,7 +85,7 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                Elevating Your Filmmaking and Photography
+                                <p>Elevating Your Filmmaking and Photography</p>
                                 <ul>
                                     <li>
                                         Advanced Camera Techniques and Equipment
@@ -112,7 +114,7 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                Building Your Personal Brand
+                                <p>Building Your Personal Brand</p>
                                 <ul>
                                     <li>
                                         Crafting Your Personal Brand Story and
@@ -147,7 +149,7 @@ const MasterclassDesc = () => {
                     <div className="module-listings">
                         <ol start={4}>
                             <li>
-                                Content Monetization and Revenue Streams
+                                <p>Content Monetization and Revenue Streams</p>
                                 <ul>
                                     <li>
                                         Diversifying Income Streams in the
@@ -172,8 +174,10 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                The Business of Creative Filmmaking and
-                                Photography
+                                <p>
+                                    The Business of Creative Filmmaking and
+                                    Photography
+                                </p>
                                 <ul>
                                     <li>
                                         Financial Management for Solo Creators:
@@ -198,7 +202,7 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                Influencer Marketing and Brand Collection
+                                <p>Influencer Marketing and Brand Collection</p>
                                 <ul>
                                     <li>
                                         Understanding the Role of Influencers in
@@ -227,7 +231,9 @@ const MasterclassDesc = () => {
                     <div className="module-listings">
                         <ol start={7}>
                             <li>
-                                Editing Efficiency and High-Quality Output
+                                <p>
+                                    Editing Efficiency and High-Quality Output
+                                </p>
                                 <ul>
                                     <li>
                                         Your Editing Process: Start to Finish
@@ -255,7 +261,9 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                Client Relations and Professional Etiquette
+                                <p>
+                                    Client Relations and Professional Etiquette
+                                </p>
                                 <ul>
                                     <li>
                                         Best Practices for Reaching Out to
@@ -290,7 +298,7 @@ const MasterclassDesc = () => {
                     <div className="module-listings">
                         <ol start={9}>
                             <li>
-                                AI in Creative Filmmaking and Photography
+                                <p>AI in Creative Filmmaking and Photography</p>
                                 <ul>
                                     <li>
                                         Understanding the Basics of Artificial
@@ -339,7 +347,7 @@ const MasterclassDesc = () => {
                     <div className="module-listings">
                         <ol start={10}>
                             <li>
-                                Storytelling Beyond the Lens
+                                <p>Storytelling Beyond the Lens</p>
                                 <ul>
                                     <li>
                                         Understanding the Role of Influencers in
@@ -364,7 +372,7 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                Finding Inspiration and Staying Relevant
+                                <p>Finding Inspiration and Staying Relevant</p>
                                 <ul>
                                     <li>
                                         Continuous Learning and Skill
@@ -385,7 +393,7 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                Building a Supportive Creative Community
+                                <p>Building a Supportive Creative Community</p>
                                 <ul>
                                     <li>
                                         Networking and Collaborating with Other
@@ -416,7 +424,7 @@ const MasterclassDesc = () => {
                     <div className="module-listings">
                         <ol start={13}>
                             <li>
-                                Creating Impactful Social Media Content
+                                <p>Creating Impactful Social Media Content</p>
                                 <ul>
                                     <li>
                                         Strategies for Engaging Content on
@@ -437,7 +445,10 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                Balancing Personal Project and Commercial Work
+                                <p>
+                                    Balancing Personal Project and Commercial
+                                    Work
+                                </p>
                                 <ul>
                                     <li>
                                         Nurturing Your Passion Projects and
@@ -468,33 +479,21 @@ const MasterclassDesc = () => {
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Ut enim ad minim veniam, quis nostrud
                         exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        commodo consequat.
                     </p>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Ut enim ad minim veniam, quis nostrud
                         exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        commodo consequat.
                     </p>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Ut enim ad minim veniam, quis nostrud
                         exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        commodo consequat.
                     </p>
                     <button className="get-started-btn darkgray-background">
                         GET STARTED

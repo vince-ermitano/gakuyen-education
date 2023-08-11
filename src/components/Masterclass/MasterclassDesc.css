@@ -1,11 +1,40 @@
 .grid-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    place-items: center
+    place-items: center;
+    row-gap: 8rem;
+    column-gap: 2rem;
+}
+
+.masterclass-desc {
+    line-height: 1.5rem;
+}
+
+.masterclass-desc h1, .masterclass-desc h2 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+.masterclass-desc h2 {
+    background-color: transparent;
+    padding: 0;
+}
+
+.masterclass-what-we-offer {
+    text-align: center;
+}
+
+.masterclass-what-we-offer ul {
+    text-align: left;
 }
 
 .masterclass-desc-content {
     background-color: #f2f1f2;
+    padding: 3rem 2rem;
+}
+
+.masterclass-desc-content section {
+    margin: 8rem 0;
 }
 
 hr {
@@ -16,14 +45,29 @@ hr {
     grid-column: span 2;
 }
 
-.masterclass-break-it-down ul {
+.masterclass-desc-content ul {
     padding: 0;
 }
+
+.module-listings ol > li {
+    margin-bottom: 1rem;
+}
+
+.module-listings ol p {
+    font-weight: bold;
+}
+
 
 .masterclass-who-for {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-items: center;
+    text-align: center;
+    row-gap: 8rem;
+}
+
+.masterclass-who-for > p {
+    width: 75%;
 }
 
 .masterclass-who-for > h2 {
