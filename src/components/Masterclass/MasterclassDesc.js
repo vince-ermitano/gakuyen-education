@@ -7,6 +7,7 @@ const MasterclassDesc = () => {
         document.title =
             "The Odyssey - Creative Masterclass | GAKUYEN EDUCATION";
     }, []);
+
     return (
         <div className="masterclass-desc page-section">
             <Link to="/store">
@@ -17,7 +18,7 @@ const MasterclassDesc = () => {
 
             <div className="masterclass-desc-content">
                 <section className="masterclass-desc-header grid-two-columns">
-                    <div className="first-img container">
+                    <div className="img-container">
                         <img
                             src="https://via.placeholder.com/500x400"
                             alt="masterclass"
@@ -43,10 +44,10 @@ const MasterclassDesc = () => {
                             <li>ut labore et dolore magna aliqua</li>
                         </ul>
                     </div>
-                    <div className="section-img">
+                    <div className="section-img img-container">
                         <img src="https://via.placeholder.com/500x400" alt="" />
                     </div>
-                    <div className="section-img">
+                    <div className="section-img img-container">
                         <img src="https://via.placeholder.com/500x400" alt="" />
                     </div>
                     <div className="section-text">
@@ -146,10 +147,10 @@ const MasterclassDesc = () => {
                             </li>
                         </ol>
                     </div>
-                    <div className="module-img-container">
+                    <div className="module-img-container img-container">
                         <img src="https://via.placeholder.com/500x500" alt="" />
                     </div>
-                    <div className="module-img-container">
+                    <div className="module-img-container img-container">
                         <img src="https://via.placeholder.com/500x500" alt="" />
                     </div>
                     <div className="module-listings">
@@ -295,10 +296,10 @@ const MasterclassDesc = () => {
                             </li>
                         </ol>
                     </div>
-                    <div className="module-img-container">
+                    <div className="module-img-container img-container">
                         <img src="https://via.placeholder.com/500x400" alt="" />
                     </div>
-                    <div className="module-img-container">
+                    <div className="module-img-container img-container">
                         <img src="https://via.placeholder.com/500x400" alt="" />
                     </div>
                     <div className="module-listings">
@@ -421,10 +422,10 @@ const MasterclassDesc = () => {
                             </li>
                         </ol>
                     </div>
-                    <div className="module-img-container">
+                    <div className="module-img-container img-container">
                         <img src="https://via.placeholder.com/500x400" alt="" />
                     </div>
-                    <div className="module-img-container">
+                    <div className="module-img-container img-container">
                         <img src="https://via.placeholder.com/500x400" alt="" />
                     </div>
                     <div className="module-listings">

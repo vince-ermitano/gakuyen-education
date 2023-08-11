@@ -10,6 +10,16 @@
     line-height: 1.5rem;
 }
 
+.masterclass-desc .img-container {
+    width: 100%;
+    text-align: center;
+}
+
+.masterclass-desc .img-container img {
+    width: 80%;
+    max-width: 80%;
+}
+
 .masterclass-desc h1, .masterclass-desc h2 {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
