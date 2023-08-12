@@ -7,7 +7,7 @@
 }
 
 .header .logo, .header .user-directory {
-    z-index: 100;
+    z-index: 2;
 }
 
 .header .logo {

@@ -10,6 +10,7 @@ import PresetDescPage from './components/Presets/PresetDescPage';
 import Hamburger from './components/Hamburger/Hamburger';
 import MasterclassDesc from './components/Masterclass/MasterclassDesc';
 import LoginSidebar from './components/LoginCreateSidebar/LoginSidebar';
+import CreateAccountSidebar from './components/LoginCreateSidebar/CreateAccountSidebar';
 
 function App () {
 
@@ -18,6 +19,7 @@ function App () {
       <Header />
       <Hamburger />
       <LoginSidebar />
+      <CreateAccountSidebar />
       <Routes>
         <Route path='/' element={ <Homepage />}></Route>
         <Route path='/store' element={ <Shop />}></Route>

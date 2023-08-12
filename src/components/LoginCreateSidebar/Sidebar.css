@@ -3,10 +3,10 @@
     top: 0;
     left: -38%;
     width: 33%;
-    height: 100%;
-    background-color: #f0f0f0;
+    height: 100vh;
+    background-color: #f2f1f2;
     transition: left 0.3s ease-in-out;
-    z-index: 2;
+    z-index: 3;
 }
 
 .overlay {
@@ -16,9 +16,10 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    z-index: 2;
     opacity: 0;
     visibility: hidden;
+    overflow: hidden;
     transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
 }
 
@@ -27,6 +28,73 @@
     visibility: visible;
 }
 
+.sidebar h2 {
+    background-color: transparent;
+    margin: 0 0 3rem 0;
+    font-weight: 400;
+}
+
+
 .sidebar.open {
     left: 0; /* Slide the sidebar in */
   }
+
+.sidebar > * {
+    width: 60%;
+}
+
+.sidebar button[type="submit"] {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    padding: 0.25rem 1rem;
+}
+
+.sidebar button[type="submit"]:hover {
+    background-color: #feeb22;
+    color: black;
+}
+
+.sidebar {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.sidebar form > input, .sidebar .button-group {
+    margin: 0 0 2rem 0;
+}
+
+.sidebar form > label {
+    margin: 0 0 0.5rem 0;
+}
+
+
+.sidebar .call-to-action button{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.sidebar .call-to-action {
+    text-align: left;
+}
+
+/* Login sidebar specific */
+/* ---------------------- */
+.login-sidebar .button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-sidebar .create-account {
+    text-align: left;
+}

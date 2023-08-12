@@ -37,6 +37,11 @@ h1, h2, h3 {
   color: #F2F1F2;
 }
 
+button:hover {
+  cursor: pointer;
+  background-color: #feeb22;
+}
+
 button, input[type="submit"], input[type="reset"] {
 	background: none;
 	color: inherit;
