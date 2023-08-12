@@ -15,8 +15,8 @@ const Shop = () => {
             <h1>The Shop</h1>
             <ShopNav />
             <div className="shop-content">
-                <ShopItem itemType="preset" />
-                <ShopItem />
+                <ShopItem itemType="preset" itemImagePath="/ultimate_preset_pack_1_400x400.jpg" itemPrice="$39.95" itemName="ultimate transition pack"/>
+                <ShopItem itemType="preset" itemImagePath="/ultimate_transition_pack_1_400x400.jpg" itemPrice="$19.95" itemName="ultimate preset pack"/>
                 <ShopItem />
                 <ShopItem />
                 <ShopItem />

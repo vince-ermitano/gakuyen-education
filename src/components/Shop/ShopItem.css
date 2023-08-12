@@ -1,5 +1,13 @@
 
-/* To add a glow
+/* To add a glow */
 .shop-item:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-} */
+    /* fade the div */
+    opacity: 0.5;
+    scale: 1.01;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.shop-item .shop-item-info {
+    margin-top: 1rem;
+}
