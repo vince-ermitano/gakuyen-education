@@ -86,6 +86,7 @@
 
 .sidebar .call-to-action {
     text-align: left;
+    line-height: 1.5rem;
 }
 
 /* Login sidebar specific */

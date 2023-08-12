@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { Link } from "react-router-dom";
 import {
-    toggleSidebar,
+    toggleLoginSidebar,
     toggleCreateSidebar,
 } from "../../features/SidebarSlice";
 
@@ -25,7 +25,7 @@ const Header = () => {
             </div>
             {/* <Hamburger /> */}
             <div className="user-directory">
-                <span onClick={() => dispatch(toggleSidebar())}>LOGIN</span>
+                <span onClick={() => dispatch(toggleLoginSidebar())}>LOGIN</span>
                 <span
                     className="darkgray-background"
                     onClick={() => dispatch(toggleCreateSidebar())}

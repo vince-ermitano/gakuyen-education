@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    isOpen: false,
+    loginSidebarIsOpen: false,
     createSidebarIsOpen: false,
 };
 
@@ -9,8 +9,8 @@ const sidebarSlice = createSlice({
     name: 'sidebar',
     initialState: initialState,
     reducers: {
-        toggleSidebar: (state) => {
-            state.isOpen = !state.isOpen;
+        toggleLoginSidebar: (state) => {
+            state.loginSidebarIsOpen = !state.loginSidebarIsOpen;
         },
         toggleCreateSidebar: (state) => {
             state.createSidebarIsOpen = !state.createSidebarIsOpen;
@@ -18,5 +18,5 @@ const sidebarSlice = createSlice({
     }
 });
 
-export const { toggleSidebar, toggleCreateSidebar } = sidebarSlice.actions;
+export const { toggleLoginSidebar, toggleCreateSidebar } = sidebarSlice.actions;
 export default sidebarSlice.reducer;

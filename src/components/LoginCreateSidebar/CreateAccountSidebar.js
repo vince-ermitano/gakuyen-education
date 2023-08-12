@@ -2,13 +2,19 @@ import React from "react";
 import "./Sidebar.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { toggleCreateSidebar } from "../../features/SidebarSlice";
+import { toggleCreateSidebar, toggleLoginSidebar } from "../../features/SidebarSlice";
 
 const CreateAccountSidebar = () => {
     const dispatch = useDispatch();
 
     const isOpen = useSelector((state) => state.sidebar.createSidebarIsOpen);
 
+
+    const switchSidebar = () => {
+        dispatch(toggleCreateSidebar());
+        dispatch(toggleLoginSidebar());
+    };
+    
     return (
         <div className="create-sidebar">
             <div className={`sidebar ${isOpen ? "open" : ""} `}>
@@ -45,7 +51,7 @@ const CreateAccountSidebar = () => {
                 </form>
                 <div className="login-to-account call-to-action">
                     <span>Already have an account? &nbsp;</span>
-                    <button type="button">Login</button>
+                    <button type="button" onClick={() => switchSidebar()}>Login</button>
                 </div>
             </div>
             <div
