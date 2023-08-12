@@ -1,11 +1,15 @@
 .item {
     padding: 2rem;
+    /* border: 0.25rem solid #ccc; */
 }
 
 .item:hover {
     cursor: pointer;
     /* box-shadow: 0 5px 15px rgba(145, 92, 182, .4); */
-    box-shadow: 0 5px 15px #777;
+    /* box-shadow: 0 5px 15px #777; */
+    opacity: 0.5;
+    scale: 1.01;
+    transition: all 0.3s ease-in-out;
 }
 
 .item img {
