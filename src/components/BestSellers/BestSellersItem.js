@@ -1,18 +1,21 @@
 import React from "react";
 import './BestSellersItem.css'
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const BestSellersItem = (props) => {
+const BestSellersItem = ({ product }) => {
 
-    const itemName = props.itemName;
-    const itemImagePath = props.imagePath;
-    const itemType = props.itemType;
+    // const itemName = props.itemName;
+    // const itemImagePath = props.imagePath;
+    // const itemType = props.itemType;
+
+    const itemName = product ? product.name : "The Odyssey - Creative\nMasterclass";
+    const itemImagePath = product ?  product.imagePath : "https://archive.org/download/placeholder-image/placeholder-image.jpg";
+    const itemType = product ? product.type : "";
 
     const navigate = useNavigate();
 
     const redirectToPresetDesc = () => {
         if (itemType === "preset") {
-            console.log("redirecting to preset desc");
             navigate("/preset-desc");
         }
     }

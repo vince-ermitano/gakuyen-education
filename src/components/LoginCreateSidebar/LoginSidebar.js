@@ -20,11 +20,11 @@ const LoginSidebar = () => {
             <div className={`sidebar ${isOpen ? "open" : ""} `}>
                 <h2>Welcome Back</h2>
                 <form>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="login-email">Email</label>
                     <input
                         type="email"
-                        name="email"
-                        id="email"
+                        name="login-email"
+                        id="login-email"
                         placeholder="Email"
                     />
                     <label htmlFor="login-password">Password</label>

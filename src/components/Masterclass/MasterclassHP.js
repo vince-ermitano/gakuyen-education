@@ -7,7 +7,8 @@ const MasterclassHP = () => {
       <div className="masterclass-hp page-section">
         <h2>Creative Masterclass</h2>
         <div className="img-container">
-            <img src="https://source.unsplash.com/random/?film,landscape" alt=""></img>
+            {/* <img src="https://source.unsplash.com/random/?film,landscape" alt=""></img> */}
+            <img src="https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645248051840-X2CFVIPTMA3SADJBHWPW/Night4-A.jpeg?format=750w" alt=""></img>
         </div>
         <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
