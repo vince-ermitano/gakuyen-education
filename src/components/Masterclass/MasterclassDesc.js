@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import "./MasterclassDesc.css";
 
@@ -20,10 +21,27 @@ const MasterclassDesc = () => {
             <div className="masterclass-desc-content">
                 <section className="masterclass-desc-header grid-two-columns">
                     <div className="img-container">
-                        <img
+                        {/* <img
                             src="https://via.placeholder.com/500x400"
                             alt="masterclass"
+                        /> */}
+                        {/* <iframe
+                            src="https://www.youtube.com/embed/fyNns5amxRk?autoplay=1"
+                            width="640" // Set the desired width
+                            height="360" // Set the desired height
+                            frameBorder="0"
+                            allowFullScreen
+                            title="Vimeo Video"
+                        ></iframe> */}
+
+                        <ReactPlayer
+                            className="react-player"
+                            url="https://www.youtube.com/watch?v=fyNns5amxRk"
+                            width="100%"
+                            controls
+                            playing
                         />
+
                     </div>
                     <div className="masterclass-intro-text-container item-name-price">
                         <h1>The Odyssey - Creative Masterclass</h1>
