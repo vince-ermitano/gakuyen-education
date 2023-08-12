@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./Sidebar.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { toggleCreateSidebar, toggleLoginSidebar } from "../../features/SidebarSlice";
-
+import {
+    toggleCreateSidebar,
+    toggleLoginSidebar,
+} from "../../features/SidebarSlice";
 
 const LoginSidebar = () => {
     const dispatch = useDispatch();
+
+    const emailInputRef = useRef(null);
 
     const isOpen = useSelector((state) => state.sidebar.loginSidebarIsOpen);
 
@@ -14,6 +18,12 @@ const LoginSidebar = () => {
         dispatch(toggleCreateSidebar());
         dispatch(toggleLoginSidebar());
     };
+
+    useEffect(() => {
+        if (isOpen) {
+            emailInputRef.current.focus();
+        }
+    }, [isOpen]);
 
     return (
         <div className="login-sidebar">
@@ -26,6 +36,8 @@ const LoginSidebar = () => {
                         name="login-email"
                         id="login-email"
                         placeholder="Email"
+                        ref={emailInputRef}
+                        autoFocus
                     />
                     <label htmlFor="login-password">Password</label>
                     <input
@@ -41,7 +53,9 @@ const LoginSidebar = () => {
                 </form>
                 <div className="create-account call-to-action">
                     <span>Don't have an account? &nbsp;</span>
-                    <button type="button" onClick={() => switchSidebar()}>Create Account</button>
+                    <button type="button" onClick={() => switchSidebar()}>
+                        Create Account
+                    </button>
                 </div>
             </div>
             <div

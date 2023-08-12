@@ -1,29 +1,49 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./Sidebar.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { toggleCreateSidebar, toggleLoginSidebar } from "../../features/SidebarSlice";
+import {
+    toggleCreateSidebar,
+    toggleLoginSidebar,
+} from "../../features/SidebarSlice";
 
 const CreateAccountSidebar = () => {
     const dispatch = useDispatch();
+    const firstNameInputRef = useRef(null);
 
     const isOpen = useSelector((state) => state.sidebar.createSidebarIsOpen);
-
 
     const switchSidebar = () => {
         dispatch(toggleCreateSidebar());
         dispatch(toggleLoginSidebar());
     };
-    
+
+    useEffect(() => {
+        if (isOpen) {
+            firstNameInputRef.current.focus();
+        }
+    }, [isOpen]);
+
     return (
         <div className="create-sidebar">
             <div className={`sidebar ${isOpen ? "open" : ""} `}>
                 <h2>Create Account</h2>
                 <form>
                     <label htmlFor="first-name">First Name</label>
-                    <input type="text" name="first-name" id="first-name" placeholder="First Name" />
+                    <input
+                        type="text"
+                        name="first-name"
+                        id="first-name"
+                        placeholder="First Name"
+                        ref={firstNameInputRef}
+                    />
                     <label htmlFor="last-name">Last Name</label>
-                    <input type="text" name="last-name" id="last-name"  placeholder="Last Name" />
+                    <input
+                        type="text"
+                        name="last-name"
+                        id="last-name"
+                        placeholder="Last Name"
+                    />
                     <label htmlFor="email">Email</label>
                     <input
                         type="email"
@@ -51,7 +71,9 @@ const CreateAccountSidebar = () => {
                 </form>
                 <div className="login-to-account call-to-action">
                     <span>Already have an account? &nbsp;</span>
-                    <button type="button" onClick={() => switchSidebar()}>Login</button>
+                    <button type="button" onClick={() => switchSidebar()}>
+                        Login
+                    </button>
                 </div>
             </div>
             <div
