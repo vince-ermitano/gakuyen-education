@@ -4,6 +4,7 @@ import Hamburger from '../Hamburger/Hamburger';
 import { useSelector, useDispatch } from "react-redux";
 import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { Link } from "react-router-dom";
+import { toggleSidebar } from "../../features/SidebarSlice";
 
 const Header = () => {
 
@@ -22,7 +23,7 @@ const Header = () => {
                 </div>
                 {/* <Hamburger /> */}
                 <div className="user-directory">
-                    <span>LOGIN</span>
+                    <span onClick={() => dispatch(toggleSidebar()) }>LOGIN</span>
                     <span className="darkgray-background">GET STARTED</span>
                 </div>
             </div>

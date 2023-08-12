@@ -10,6 +10,7 @@ const PresetDescPage = () => {
     const swiperElRef = useRef(null);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         document.title = 'Preset Description | GAKUYEN EDUCATION';
       }, []);
 

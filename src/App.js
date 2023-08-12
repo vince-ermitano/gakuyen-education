@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 import PresetDescPage from './components/Presets/PresetDescPage';
 import Hamburger from './components/Hamburger/Hamburger';
 import MasterclassDesc from './components/Masterclass/MasterclassDesc';
+import LoginSidebar from './components/LoginCreateSidebar/LoginSidebar';
 
 function App () {
 
@@ -16,6 +17,7 @@ function App () {
     <Provider store={store}>
       <Header />
       <Hamburger />
+      <LoginSidebar />
       <Routes>
         <Route path='/' element={ <Homepage />}></Route>
         <Route path='/store' element={ <Shop />}></Route>
