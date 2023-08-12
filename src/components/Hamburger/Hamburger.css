@@ -34,7 +34,7 @@ a:hover {
     cursor: pointer;
     height: 25px;
     width: 50%;
-    margin-bottom: 0.625rem;
+    margin-bottom: 1.5rem;
     display: -ms-grid;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
