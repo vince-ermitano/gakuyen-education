@@ -111,8 +111,30 @@
     background-color: #f2f1f2;
     transition: right 0.3s ease-in-out;
     z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right-sidebar > * {
+    margin: 2rem;
 }
 
 .right-sidebar.open {
     right: 0%; /* Slide the sidebar in */
   }
+
+.right-sidebar h2 {
+    background-color: transparent;
+    font-weight: 400;
+    padding: 0;
+}
+
+.right-sidebar .cart-info > * {
+    margin: 2rem 0;
+}
+
+.right-sidebar .bottom-info {
+    margin: 3rem 2rem; 
+}
+

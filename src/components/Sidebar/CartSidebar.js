@@ -1,16 +1,38 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./Sidebar.css";
+import { products } from "../../products/products";
+import CartItem from "./CartItem";
+import { toggleCartSidebar } from "../../features/SidebarSlice";
 
 const CartSidebar = () => {
+
+    const dispatch = useDispatch();
 
     const isOpen = useSelector((state) => state.sidebar.cartSidebarIsOpen);
 
     return (
         <div className="cart-sidebar">
             <div className={`right-sidebar ${isOpen ? "open" : ""} `}>
-                <h2>Cart</h2>
+                <div className="cart-info">
+                    <h2>Cart</h2>
+                    <CartItem item={products.presets.ultimate_preset_pack} />
+                    <CartItem
+                        item={products.presets.ultimate_transition_pack}
+                    />
+                </div>
+
+                <div className="bottom-info">
+                    <hr />
+                    <span>Total USD</span>
+                    <br />
+                    <button className="darkgray-background">Proceed to Checkout</button>
+                </div>
             </div>
+            <div
+                className={`overlay ${isOpen ? "show-overlay" : ""}`}
+                onClick={() => dispatch(toggleCartSidebar())}
+            ></div>
         </div>
     );
 };

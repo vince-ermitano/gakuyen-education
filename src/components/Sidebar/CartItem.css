@@ -1,0 +1,16 @@
+.cart-item {
+    display: flex;
+}
+
+.cart-item .image-wrapper {
+    width: 30%;
+    margin-right: 1rem;
+}
+
+.cart-item .image-wrapper img {
+    width: 100%;
+}
+
+.cart-item .item-details .product-number {
+    color: #999;
+}
