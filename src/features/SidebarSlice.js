@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     loginSidebarIsOpen: false,
     createSidebarIsOpen: false,
+    cartSidebarIsOpen: false,
 };
 
 const sidebarSlice = createSlice({
@@ -14,9 +15,12 @@ const sidebarSlice = createSlice({
         },
         toggleCreateSidebar: (state) => {
             state.createSidebarIsOpen = !state.createSidebarIsOpen;
+        },
+        toggleCartSidebar: (state) => {
+            state.cartSidebarIsOpen = !state.cartSidebarIsOpen;
         }
     }
 });
 
-export const { toggleLoginSidebar, toggleCreateSidebar } = sidebarSlice.actions;
+export const { toggleLoginSidebar, toggleCreateSidebar, toggleCartSidebar } = sidebarSlice.actions;
 export default sidebarSlice.reducer;

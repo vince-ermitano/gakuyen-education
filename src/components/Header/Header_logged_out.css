@@ -6,8 +6,27 @@
     margin-bottom: 4rem;
 }
 
+.header .user-directory {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.header .user-directory svg {
+    font-size: 2rem;
+
+}
+.header .user-directory .icon-wrapper:hover {
+    cursor: pointer;
+    background-color: #feeb22;
+}
+
 .header .logo, .header .user-directory {
     z-index: 2;
+}
+
+.header .user-directory > *:not(:last-child) {
+    margin-right: 2rem;
 }
 
 .header .logo {
@@ -27,12 +46,12 @@
 }
 
 .header > *{
-    width: 250px;
+    width: 25%;
 } 
 
-.header > div:nth-child(2){
+/* .header > div:nth-child(2){
     text-align: center;
-}
+} */
 
 .header .user-directory {
     text-align: end;

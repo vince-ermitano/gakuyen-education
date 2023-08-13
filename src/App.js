@@ -9,8 +9,9 @@ import Footer from './components/Footer/Footer';
 import PresetDescPage from './components/Presets/PresetDescPage';
 import Hamburger from './components/Hamburger/Hamburger';
 import MasterclassDesc from './components/Masterclass/MasterclassDesc';
-import LoginSidebar from './components/LoginCreateSidebar/LoginSidebar';
-import CreateAccountSidebar from './components/LoginCreateSidebar/CreateAccountSidebar';
+import LoginSidebar from './components/Sidebar/LoginSidebar';
+import CreateAccountSidebar from './components/Sidebar/CreateAccountSidebar';
+import CartSidebar from './components/Sidebar/CartSidebar';
 
 function App () {
 
@@ -20,6 +21,7 @@ function App () {
       <Hamburger />
       <LoginSidebar />
       <CreateAccountSidebar />
+      <CartSidebar />
       <Routes>
         <Route path='/' element={ <Homepage />}></Route>
         <Route path='/store' element={ <Shop />}></Route>

@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import {
     toggleLoginSidebar,
     toggleCreateSidebar,
+    toggleCartSidebar,
 } from "../../features/SidebarSlice";
+import { BiCartAlt } from "react-icons/bi";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -25,13 +27,18 @@ const Header = () => {
             </div>
             {/* <Hamburger /> */}
             <div className="user-directory">
-                <span onClick={() => dispatch(toggleLoginSidebar())}>LOGIN</span>
+                <span onClick={() => dispatch(toggleLoginSidebar())}>
+                    LOGIN
+                </span>
                 <span
                     className="darkgray-background"
                     onClick={() => dispatch(toggleCreateSidebar())}
                 >
                     GET STARTED
                 </span>
+                <div className="icon-wrapper" onClick={() => dispatch(toggleCartSidebar())}>
+                    <BiCartAlt />
+                </div>
             </div>
         </div>
     );

@@ -99,3 +99,20 @@
 .login-sidebar .create-account {
     text-align: left;
 }
+
+/* Cart sidebar specific */
+/* --------------------- */
+.right-sidebar {
+    position: fixed;
+    top: 0;
+    right: -33%;
+    width: 33%;
+    height: 100vh;
+    background-color: #f2f1f2;
+    transition: right 0.3s ease-in-out;
+    z-index: 3;
+}
+
+.right-sidebar.open {
+    right: 0%; /* Slide the sidebar in */
+  }
