@@ -17,7 +17,7 @@ body {
 
   @font-face {
     font-family: 'Foundation Sans';
-    src: url(./fonts/Fontspring-DEMO-FoundationSans-Bold.otf) format('opentype');
+    src: url(./fonts/FoundationSans-Bold.otf) format('opentype');
   }
   
   font-size: 16px;
