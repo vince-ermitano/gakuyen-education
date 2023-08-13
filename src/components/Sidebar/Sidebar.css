@@ -138,3 +138,11 @@
     margin: 3rem 2rem; 
 }
 
+.right-sidebar .bottom-info > * {
+    margin: 2rem 0;
+}
+
+.right-sidebar .bottom-info button {
+    padding: 1rem;
+}
+
