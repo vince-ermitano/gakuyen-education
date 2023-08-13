@@ -4,6 +4,7 @@
     align-items: center;
     justify-self: center;
     margin-bottom: 4rem;
+    font-family: 'Foundation Sans';
 }
 
 .header .user-directory {
