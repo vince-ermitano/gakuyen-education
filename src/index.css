@@ -9,8 +9,8 @@ body {
   /* font-family: 'Courier New', Courier, monospace; */
 
   @font-face {
-    font-family: 'Apple Garamond Light'; /* Name of the custom font */
-    src: url(./fonts/applegaramond-light.ttf) format('truetype'); /* URL to font file */
+    font-family: 'Apple Garamond'; /* Name of the custom font */
+    src: url(./fonts/applegaramond.ttf) format('truetype'); /* URL to font file */
     font-weight: normal;
     font-style: normal;
   }
