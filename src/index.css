@@ -1,6 +1,7 @@
 body {
   box-sizing: border-box;
-  margin: 4rem 5% 8rem 5%;
+  /* margin: 4rem 5% 8rem 5%; */
+  margin: 0;
 
 
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -28,6 +29,10 @@ h1, h2, h3 {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   /* font-family: 'Apple Garamond Light'; */
   margin: 0 0 1rem 0;
+}
+
+#root > * {
+  padding: 0 5%;
 }
 
 .darkgray-background {
