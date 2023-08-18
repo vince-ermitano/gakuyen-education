@@ -4,13 +4,19 @@
     padding: 0rem;
     display: grid;
     place-items: center;
+    background-color: #f2f1f2;
+    box-sizing: border-box;
+}
+
+#dashboard .mobile {
+    display: none;
 }
 
 #dashboard-view {
     box-sizing: border-box;
     background-color: #160B03;
-    width: 95%;
-    height: 90%;
+    width: 98%;
+    height: 98%;
     border-radius: 2rem;
     display: grid;
     grid-template-columns: 10rem 1fr;
@@ -18,7 +24,7 @@
 
 #dashboard-content {
     box-sizing: border-box;
-    background-color: white;
+    background-color: #f2f1f2;
     border-radius: 1rem;
     margin: 1rem;
     /* overflow: hidden; */
@@ -80,19 +86,58 @@
     width: 100%;
 }
 
-/* #dashboard-view {
-    background-color: #160B03;
-    width: 100%;
-    height: 100%;
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: 8rem 1fr;
-}
+@media screen and (max-width: 768px) {
+    #dashboard .mobile {
+        display: block;
+    }
 
-#dashboard-content {
-    box-sizing: border-box;
-    background-color: white;
-    border-radius: 1rem;
-    /* margin: 2rem; */
-    /* overflow: hidden; */
-/* } */ 
+    #dashboard .desktop {
+        display: none;
+    }
+
+    #dashboard-view {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+
+    .dashboard-sidebar-menu-item > a.active {
+        border-right: none;
+        border-bottom: white 5px solid;
+    }
+
+    #dashboard-sidebar-logo {
+        display: none;
+    }
+    #dashboard-view {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 20%;
+    }
+    #dashboard-content {
+        margin: 1rem 1rem 1rem 1rem;
+        order: 1;
+    }
+    #dashboard-sidebar {
+        margin: 0 1rem 0 1rem;
+        order: 2;
+    }
+
+    #dashboard-sidebar {
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    #dashboard-sidebar-main ul {
+        display: flex;
+        /* flex-direction: row; */
+    }
+
+    #dashboard-sidebar-main ul p {
+        display: none;
+    }
+
+    #dashboard-sidebar-main svg {
+        margin: 1rem 0;
+    }
+}

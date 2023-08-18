@@ -14,6 +14,8 @@ import CreateAccountSidebar from './components/Sidebar/CreateAccountSidebar';
 import CartSidebar from './components/Sidebar/CartSidebar';
 // import HeaderHerov2 from './components/HeaderHerov2/HeaderHerov2';
 import Dashboard from './components/Dashboard/Dashboard';
+import ModuleView from './components/Dashboard/ModuleView/ModuleView';
+
 function App () {
 
   const location = useLocation();
@@ -22,7 +24,7 @@ function App () {
 
   const dashboardPath = '/dashboard';
 
-  const shouldHideComponents = currentPath === dashboardPath;
+  const shouldHideComponents = currentPath.includes(dashboardPath);
 
   return (
       <Provider store={store}>
@@ -44,7 +46,10 @@ function App () {
                   path="/the-odyssey-creative-masterclass"
                   element={<MasterclassDesc />}
               ></Route>
-              <Route path="/dashboard" element={<Dashboard />}></Route>
+              <Route path="/dashboard" element={<Dashboard />}>
+                    <Route path="main" element={<ModuleView />}></Route>
+                    <Route path="modules" element={<ModuleView />}></Route>
+              </Route>
           </Routes>
 
           {!shouldHideComponents && <Footer />}

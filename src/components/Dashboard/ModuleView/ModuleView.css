@@ -1,0 +1,42 @@
+.module-view {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    height: 100%;
+    max-height: 100%;
+}
+
+.module-view > * {
+    padding: 3rem 3rem 0 3rem;
+}
+
+.module-filters {
+    margin-bottom: 1.5rem;
+}
+
+.module-filters .active {
+    font-weight: bold;
+}
+
+.module-view h1 {
+    margin-bottom: 2rem;
+}
+
+.module-view-left-side ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    max-height: 100vh;
+}
+
+.module-view-left-side li {
+    height: 100%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-right: 2rem;
+    overflow-y: hidden;
+}
+
+.modules-container {
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: scroll;
+}

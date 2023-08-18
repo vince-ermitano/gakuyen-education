@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, Outlet } from "react-router-dom";
 import "./Dashboard.css";
 import { RxDashboard } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
@@ -24,7 +24,7 @@ const Dashboard = () => {
                     <div id="dashboard-sidebar-main">
                         <ul>
                             <li className="dashboard-sidebar-menu-item">
-                                <NavLink to="/dashboard">
+                                <NavLink to="/dashboard/main">
                                     <RxDashboard />
                                     <p>Dashboard</p>
                                 </NavLink>
@@ -54,16 +54,24 @@ const Dashboard = () => {
                                     <p>Settings</p>
                                 </NavLink>
                             </li>
+                            <li className="dashboard-sidebar-menu-item mobile">
+                                <NavLink to="/dashboard/logout">
+                                    <TbLogout2 />
+                                    <p>Logout</p>
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
                     <div id="dashboard-sidebar-logout">
-                        <div className="dashboard-sidebar-menu-item">
+                        <div className="dashboard-sidebar-menu-item desktop">
                             <TbLogout2 />
                             <p>Logout</p>
                         </div>
                     </div>
                 </div>
-                <section id="dashboard-content"></section>
+                <section id="dashboard-content">
+                    <Outlet />
+                </section>
             </div>
         </div>
     );
