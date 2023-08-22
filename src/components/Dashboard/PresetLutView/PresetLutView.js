@@ -1,6 +1,7 @@
 import React from "react";
 import "./PresetLutView.css";
 import PresetLutCard from "./PresetLutCard";
+import { BsDownload } from "react-icons/bs";
 
 const PresetLutView = () => {
     return (
@@ -26,6 +27,28 @@ const PresetLutView = () => {
                         <PresetLutCard />
                     </div>
                 </section>
+            </section>
+            <section id="preset-lut-view-right">
+                <div className="preset-lut-image-container">
+                </div>
+                <h1>Preset Name</h1>
+                <p>preset</p>
+                <h2>Description</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ut aliquip ex ea commodo consequat.</p>
+                <h3>Info</h3>
+                <div id="preset-lut-size-info">
+                    <span>Size</span>
+                    <span>200 MB</span>
+                </div>
+                <div id="preset-lut-type-info">
+                    <span>Type</span>
+                    <span>Preset</span>
+                </div>
+                <button><pre>Download <BsDownload /></pre>
+                </button>
             </section>
         </div>
     );
