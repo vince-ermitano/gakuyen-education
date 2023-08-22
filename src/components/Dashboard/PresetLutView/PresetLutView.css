@@ -1,0 +1,45 @@
+#preset-lut-view {
+    box-sizing: border-box;
+    padding: 3rem;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+
+#preset-lut-view-left {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#user-owned-presets-luts h2, #user-unowned-presets-luts h2 {
+    background-color: transparent;
+    margin-left: 1rem;
+    font-weight: 400;
+}
+
+/* #preset-lut-view-left > section {
+    padding-left: 1rem;
+} */
+
+#user-owned-presets-luts {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.presets-luts-container {
+    overflow-x: scroll;
+    display: flex;
+    height: 350px;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.presets-luts-container > div {
+    margin-right: 3rem;
+    display: inline-flex;
+    flex-shrink: 0;
+}

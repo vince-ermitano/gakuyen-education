@@ -16,6 +16,7 @@ import CartSidebar from './components/Sidebar/CartSidebar';
 import Dashboard from './components/Dashboard/Dashboard';
 import ModuleView from './components/Dashboard/ModuleView/ModuleView';
 import Settings from './components/Dashboard/Settings/Settings';
+import PresetLutView from './components/Dashboard/PresetLutView/PresetLutView';
 
 function App () {
 
@@ -50,6 +51,7 @@ function App () {
               <Route path="/dashboard" element={<Dashboard />}>
                     <Route path="main" element={<ModuleView />}></Route>
                     <Route path="modules" element={<ModuleView />}></Route>
+                    <Route path="presets" element={<PresetLutView />}></Route> 
                     <Route path="settings" element={<Settings />}></Route>  
               </Route>
           </Routes>
