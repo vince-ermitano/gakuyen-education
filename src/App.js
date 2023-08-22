@@ -52,6 +52,7 @@ function App () {
                     <Route path="main" element={<ModuleView />}></Route>
                     <Route path="modules" element={<ModuleView />}></Route>
                     <Route path="presets" element={<PresetLutView />}></Route> 
+                    <Route path="luts" element={<PresetLutView />}></Route> 
                     <Route path="settings" element={<Settings />}></Route>  
               </Route>
           </Routes>
