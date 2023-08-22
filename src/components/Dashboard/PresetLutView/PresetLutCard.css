@@ -24,7 +24,7 @@
     margin: 0;
 }
 
-.preset-lut-card p, .preset-lut-card svg {
+.preset-lut-card p, .preset-lut-card svg, .preset-lut-card button {
     margin-left: 1rem;
 }
 
@@ -39,7 +39,8 @@
 
 .preset-lut-card svg:hover {
     color: white;
-    background-color: #666;
+    background-color: #e0e0e0;
+
 }
 
 .preset-lut-card-image {
@@ -52,4 +53,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.preset-lut-card button {
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.preset-lut-card button:hover {
+    background-color: #e0e0e0;
+    color: white;
 }
