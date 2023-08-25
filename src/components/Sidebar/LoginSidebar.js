@@ -40,6 +40,10 @@ const LoginSidebar = () => {
                     progress: undefined,
                 });
 
+                // clear form fields
+                setEmailAddress("");
+                setPassword("");
+
                 dispatch(toggleLoginSidebar());
                 // dispatch(setLoggedInStatus(true));
 
@@ -49,7 +53,7 @@ const LoginSidebar = () => {
                 const errorMessage = error.message;
                 console.error(errorCode, errorMessage);
 
-                toast.error("Error logging in!", {
+                toast.error("Invalid username/password", {
                     position: "top-center",
                     autoClose: 3000,
                     hideProgressBar: false,

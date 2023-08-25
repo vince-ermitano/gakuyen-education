@@ -21,6 +21,9 @@ import PresetLutView from './components/Dashboard/PresetLutView/PresetLutView';
 import { setLoggedInStatus } from './features/LoggedInStatusSlice';
 import { auth } from './config/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
+import { db } from "./config/firebaseConfig"
+import { collection, getDocs } from "firebase/firestore";
+import { setProducts } from './features/ShopSlice';
 
 function App () {
 
@@ -35,26 +38,29 @@ function App () {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Listen for authentication state changes
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user) {
-        dispatch(setLoggedInStatus(true)); // Dispatch action for logged in
-      } else {
-        dispatch(setLoggedInStatus(false)); // Dispatch action for logged out
-      }
-    });
+      // Listen for authentication state changes
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+              dispatch(setLoggedInStatus(true)); // Dispatch action for logged in
+          } else {
+              dispatch(setLoggedInStatus(false)); // Dispatch action for logged out
+          }
+          console.log(user);
+      });
 
-    return () => {
-      // Unsubscribe when the component unmounts
-      unsubscribe();
-    };
+      // Get products from Firestore
+      const getProducts = async () => {
+          const querySnapshot = await getDocs(collection(db, "products"));
+          dispatch(setProducts(querySnapshot.docs.map((doc) => doc.data())));
+      };
+
+      getProducts();
+
+      return () => {
+          // Unsubscribe when the component unmounts
+          unsubscribe();
+      };
   }, [dispatch]);
-
-    useEffect(() => {
-        onAuthStateChanged(auth, user => {
-            console.log(user);
-        })
-    }, []);
 
   return (
       <Provider store={store}>

@@ -219,6 +219,7 @@ const CreateAccountSidebar = () => {
                         value={emailAddress}
                         onChange={(e) => setEmailAddress(e.target.value)}
                         required
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                     />
                     <label htmlFor="password">Password</label>
                     <input

@@ -4,13 +4,9 @@ import "./ShopItem.css";
 
 const ShopItem = ({ product }) => {
     const customClass = product ? `shop-item ${product.type}` : "shop-item";
-    const itemImagePath = product ? product.imagePath : "https://via.placeholder.com/400x400";
+    const itemImagePath = product.image1 !== "" ? product.image1 : "https://via.placeholder.com/400x400";
     const itemName = product ? product.name : "Item Name";
     const itemPrice = product ? product.price : "Item Price";
-    // const customClass = `shop-item ${props.itemType}`;
-    // const itemImagePath = props.itemImagePath;
-    // const itemName = props.itemName;
-    // const itemPrice = props.itemPrice;
 
     return (
         <div className="shop-item">
