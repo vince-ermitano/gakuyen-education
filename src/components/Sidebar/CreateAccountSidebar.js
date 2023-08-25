@@ -108,8 +108,13 @@ const CreateAccountSidebar = () => {
                 alertMessage('createSuccess');
                 // Signed in
                 dispatch(toggleLoggedInStatus());
-                const user = userCredential.user;
-                console.log(user);
+                
+                // Clear form
+                setFirstName("");
+                setLastName("");
+                setEmailAddress("");
+                setPassword("");
+                setConfirmPassword("");
 
                 // Add user's first and last name to their profile
                 updateProfile(auth.currentUser, {
