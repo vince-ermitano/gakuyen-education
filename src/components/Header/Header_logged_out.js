@@ -3,7 +3,7 @@ import "./Header_logged_out.css";
 import Hamburger from "../Hamburger/Hamburger";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import {
     toggleLoginSidebar,
     toggleCreateSidebar,
@@ -43,15 +43,43 @@ const Header = () => {
         </div>
     );
 
+    // const headerLoggedIn = (
+    //     <div className="header">
+    //         <div className="logo">
+    //             <span>GAKUYEN EDUCATION</span>
+    //         </div>
+    //         <Hamburger />
+    //         <div className="user-directory">
+    //             <span>MY ACCOUNT</span>
+    //             <span>CART</span>
+    //         </div>
+    //     </div>
+    // );
+
     const headerLoggedIn = (
         <div className="header">
-            <div className="logo">
-                <span>GAKUYEN EDUCATION</span>
+            {/* <div className="logo">
+                    <Link to="/"><span>GAKUYEN EDUCATION</span></Link>
+                </div> */}
+            <div className="logo img-container">
+                <Link to="/">
+                    <img src="/theodyssey_s.png" alt="Gakuyen Education Logo" />
+                </Link>
             </div>
-            <Hamburger />
+            {/* <Hamburger /> */}
             <div className="user-directory">
-                <span>MY ACCOUNT</span>
-                <span>CART</span>
+                <span>
+                    <NavLink to="/dashboard">MY ACCOUNT</NavLink>
+                </span>
+                <span
+                    className="darkgray-background"
+                    onClick={() => dispatch(toggleCreateSidebar())}
+                >
+                    LOGOUT
+                </span>
+                <div className="icon-wrapper" onClick={() => dispatch(toggleCartSidebar())}>
+                    <BiCartAlt />
+                </div>
             </div>
         </div>
     );
