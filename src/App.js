@@ -1,8 +1,9 @@
 import './App.css';
+import { useEffect } from 'react';
 import Header from './components/Header/Header_logged_out';
 import Shop from './components/Shop/Shop';
 import store from './store/store';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import Homepage from './components/Homepage/Homepage';
 import { Routes, Route, useLocation } from "react-router-dom"; 
 import Footer from './components/Footer/Footer';
@@ -17,6 +18,9 @@ import Dashboard from './components/Dashboard/Dashboard';
 import ModuleView from './components/Dashboard/ModuleView/ModuleView';
 import Settings from './components/Dashboard/Settings/Settings';
 import PresetLutView from './components/Dashboard/PresetLutView/PresetLutView';
+import { setLoggedInStatus } from './features/LoggedInStatusSlice';
+import { auth } from './config/firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function App () {
 
@@ -27,6 +31,30 @@ function App () {
   const dashboardPath = '/dashboard';
 
   const shouldHideComponents = currentPath.includes(dashboardPath);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Listen for authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user) {
+        dispatch(setLoggedInStatus(true)); // Dispatch action for logged in
+      } else {
+        dispatch(setLoggedInStatus(false)); // Dispatch action for logged out
+      }
+    });
+
+    return () => {
+      // Unsubscribe when the component unmounts
+      unsubscribe();
+    };
+  }, [dispatch]);
+
+    useEffect(() => {
+        onAuthStateChanged(auth, user => {
+            console.log(user);
+        })
+    }, []);
 
   return (
       <Provider store={store}>

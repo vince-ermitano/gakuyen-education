@@ -9,7 +9,7 @@ import {
 import { auth, db } from "../../config/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
+// import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -107,7 +107,7 @@ const CreateAccountSidebar = () => {
             .then((userCredential) => {
                 alertMessage('createSuccess');
                 // Signed in
-                dispatch(toggleLoggedInStatus());
+                // dispatch(setLoggedInStatus(true));
                 
                 // Clear form
                 setFirstName("");

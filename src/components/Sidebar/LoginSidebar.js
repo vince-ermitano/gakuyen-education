@@ -6,8 +6,10 @@ import {
     toggleCreateSidebar,
     toggleLoginSidebar,
 } from "../../features/SidebarSlice";
-// import { auth } from "../../config/firebaseConfig";
-// import { signInWithEmailAndPassword } from "firebase/auth";
+// import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
+import { auth } from "../../config/firebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
 
 const LoginSidebar = () => {
     const dispatch = useDispatch();
@@ -22,6 +24,40 @@ const LoginSidebar = () => {
     // functions
     const handleLogin = (e) => {
         e.preventDefault();
+
+        signInWithEmailAndPassword(auth, emailAddress, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                console.log(user);
+
+                toast.success("Logged in successfully!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+
+                dispatch(toggleLoginSidebar());
+                // dispatch(setLoggedInStatus(true));
+
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+
+                toast.error("Error logging in!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+            });
     }
 
     const switchSidebar = () => {
@@ -76,6 +112,7 @@ const LoginSidebar = () => {
                 className={`overlay ${isOpen ? "show-overlay" : ""}`}
                 onClick={() => dispatch(toggleLoginSidebar())}
             ></div>
+            <ToastContainer />
         </div>
     );
 };

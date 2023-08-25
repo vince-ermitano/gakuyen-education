@@ -2,7 +2,7 @@ import React from "react";
 import "./Header_logged_out.css";
 // import Hamburger from "../Hamburger/Hamburger";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
+// import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { NavLink, Link } from "react-router-dom";
 import {
     toggleLoginSidebar,
@@ -25,7 +25,7 @@ const Header = () => {
         signOut(auth)
             .then(() => {
                 // Sign-out successful.
-                dispatch(toggleLoggedInStatus());
+                // dispatch(setLoggedInStatus(false));
                 toast.success("Logged out successfully!", {
                     position: "top-center",
                     autoClose: 3000,
@@ -123,14 +123,14 @@ const Header = () => {
             {isLoggedIn ? headerLoggedIn : headerLoggedOut}
 
             <ToastContainer />
-            <button
+            {/* <button
                 id="mock-log"
                 onClick={() => {
-                    dispatch(toggleLoggedInStatus());
+                    dispatch(setLoggedInStatus());
                 }}
             >
                 Toggle Logged In Status
-            </button>
+            </button> */}
             {/* {isLoggedIn ? <span>Logged In</span> : <span>Logged Out</span>} */}
         </div>
     );

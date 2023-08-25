@@ -8,11 +8,14 @@ const loggedInStatusSlice = createSlice({
     name: 'loggedIn',
     initialState: initialState,
     reducers: {
-        toggleLoggedInStatus: (state) => {
-            state.isLoggedIn= !state.isLoggedIn;
+        // toggleLoggedInStatus: (state) => {
+        //     state.isLoggedIn= !state.isLoggedIn;
+        // },
+        setLoggedInStatus: (state, action) => {
+            state.isLoggedIn = action.payload;
         }
     }
 });
 
-export const { toggleLoggedInStatus } = loggedInStatusSlice.actions;
+export const { setLoggedInStatus } = loggedInStatusSlice.actions;
 export default loggedInStatusSlice.reducer;
