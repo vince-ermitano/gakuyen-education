@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header_logged_out.css";
-import Hamburger from "../Hamburger/Hamburger";
+// import Hamburger from "../Hamburger/Hamburger";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { NavLink, Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./Sidebar.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -6,13 +6,23 @@ import {
     toggleCreateSidebar,
     toggleLoginSidebar,
 } from "../../features/SidebarSlice";
+// import { auth } from "../../config/firebaseConfig";
+// import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginSidebar = () => {
     const dispatch = useDispatch();
 
     const emailInputRef = useRef(null);
 
+    // states
     const isOpen = useSelector((state) => state.sidebar.loginSidebarIsOpen);
+    const [emailAddress, setEmailAddress] = useState("");
+    const [password, setPassword] = useState("");
+
+    // functions
+    const handleLogin = (e) => {
+        e.preventDefault();
+    }
 
     const switchSidebar = () => {
         dispatch(toggleCreateSidebar());
@@ -29,14 +39,16 @@ const LoginSidebar = () => {
         <div className="login-sidebar">
             <div className={`sidebar ${isOpen ? "open" : ""} `}>
                 <h2>Welcome Back</h2>
-                <form>
+                <form onSubmit={handleLogin}>
                     <label htmlFor="login-email">Email</label>
                     <input
                         type="email"
+                        value={emailAddress}
                         name="login-email"
                         id="login-email"
                         placeholder="Email"
                         ref={emailInputRef}
+                        onChange={(e) => setEmailAddress(e.target.value)}
                         autoFocus
                     />
                     <label htmlFor="login-password">Password</label>
@@ -45,6 +57,8 @@ const LoginSidebar = () => {
                         name="login-password"
                         id="login-password"
                         placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <div className="button-group">
                         <button type="submit">Login</button>
