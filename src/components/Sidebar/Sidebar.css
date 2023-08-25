@@ -146,3 +146,13 @@
     padding: 1rem;
 }
 
+/* Input error checking */
+/* -------------------- */
+
+.error-input {
+    border: 2px solid red;
+}
+
+#email-error-message {
+    color: red;
+}

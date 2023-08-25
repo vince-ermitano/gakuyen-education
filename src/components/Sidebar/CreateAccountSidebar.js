@@ -10,6 +10,8 @@ import { auth, db } from "../../config/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { toggleLoggedInStatus } from "../../features/LoggedInStatusSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateAccountSidebar = () => {
     const dispatch = useDispatch();
@@ -23,9 +25,70 @@ const CreateAccountSidebar = () => {
     const [emailAddress, setEmailAddress] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const isOpen = useSelector((state) => state.sidebar.createSidebarIsOpen);
 
+    // functions
+    const alertMessage = (type) => {
+        // if (type === 'createSuccess') {
+        //     toast.success('Account created successfully!', {
+        //         position: "top-center",
+        //         autoClose: 3000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true, 
+        //         progress: undefined,
+        //     });
+        // }
+        switch (type) {
+            case "createSuccess":
+                toast.success("Account created successfully!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+                break;
+            
+            case "userAddedToDatabase":
+                toast.success("Info added to database successfully!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+                break;
+
+            case "userFailedToAddToDatabase":
+                toast.error("Failed to add info to database :(", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+                break;
+
+            case "emailAlreadyExists":
+                toast.error("Email already exists!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+                break;
+
+        }
+
+    }
     const switchSidebar = () => {
         dispatch(toggleCreateSidebar());
         dispatch(toggleLoginSidebar());
@@ -41,6 +104,7 @@ const CreateAccountSidebar = () => {
         }
         createUserWithEmailAndPassword(auth, emailAddress, password)
             .then((userCredential) => {
+                alertMessage('createSuccess');
                 // Signed in
                 dispatch(toggleLoggedInStatus());
                 const user = userCredential.user;
@@ -58,17 +122,27 @@ const CreateAccountSidebar = () => {
                     email: emailAddress,
                 })
                     .then((docRef) => {
+                        alertMessage('userAddedToDatabase');
                         console.log("Document written with ID: ", docRef.id);
-                    }
-                    )
-                    .catch((error) => {
-                        console.error("Error adding document: ", error);
-                    }
-                    );
 
-                
+                    })
+                    .catch((error) => {
+                        alertMessage('userFailedToAddToDatabase');
+                        console.error("Error adding document: ", error);
+                    });
             })
             .catch((error) => {
+                if (error.code === "auth/email-already-in-use") {
+                    const emailInput = document.getElementById("email");
+
+                    setErrorMessage("Email already in use");
+                    emailInput.classList.add("error-input");
+
+                    alertMessage('emailAlreadyExists');
+                    setEmailAddress("");
+                    return;
+                }
+
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage);
@@ -82,6 +156,27 @@ const CreateAccountSidebar = () => {
             firstNameInputRef.current.focus();
         }
     }, [isOpen]);
+
+    useEffect(() => {
+        // DOM elements
+        const emailInput = document.getElementById("email");
+        const emailErrorMessage = document.getElementById(
+            "email-error-message"
+        );
+
+        const inputChangeListener = () => {
+            //   setEmail(emailInput.value);
+            setErrorMessage("");
+            emailInput.classList.remove("error-input");
+        };
+
+        emailInput.addEventListener("input", inputChangeListener);
+
+        return () => {
+            // Clean up the event listener when the component unmounts
+            emailInput.removeEventListener("input", inputChangeListener);
+        };
+    }, []);
 
     return (
         <div className="create-sidebar">
@@ -97,6 +192,8 @@ const CreateAccountSidebar = () => {
                         ref={firstNameInputRef}
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
+                        required
+                        maxLength={50}
                     />
                     <label htmlFor="last-name">Last Name</label>
                     <input
@@ -106,8 +203,11 @@ const CreateAccountSidebar = () => {
                         placeholder="Last Name"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
+                        required
+                        maxLength={50}
                     />
                     <label htmlFor="email">Email</label>
+                    <div id="email-error-message">{errorMessage}</div>
                     <input
                         type="email"
                         name="email"
@@ -115,6 +215,7 @@ const CreateAccountSidebar = () => {
                         placeholder="Email"
                         value={emailAddress}
                         onChange={(e) => setEmailAddress(e.target.value)}
+                        required
                     />
                     <label htmlFor="password">Password</label>
                     <input
@@ -124,6 +225,8 @@ const CreateAccountSidebar = () => {
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
+                        minLength={6}
                     />
                     <label htmlFor="confirm-password"> Confirm Password</label>
                     <input
@@ -133,6 +236,8 @@ const CreateAccountSidebar = () => {
                         placeholder="Confirm Password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                        minLength={6}
                     />
                     <div className="button-group">
                         <button type="submit">Sign Up</button>
@@ -149,6 +254,10 @@ const CreateAccountSidebar = () => {
                 className={`overlay ${isOpen ? "show-overlay" : ""}`}
                 onClick={() => dispatch(toggleCreateSidebar())}
             ></div>
+            <ToastContainer
+                theme="dark"
+                style={{ width: "500px" }}
+            />
         </div>
     );
 };
