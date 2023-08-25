@@ -10,10 +10,44 @@ import {
     toggleCartSidebar,
 } from "../../features/SidebarSlice";
 import { BiCartAlt } from "react-icons/bi";
+import { getAuth, signOut } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
 
 const Header = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
+
+    // Firebase
+    const auth = getAuth();
+
+    // functions
+    const handleLogout = () => {
+        signOut(auth)
+            .then(() => {
+                // Sign-out successful.
+                dispatch(toggleLoggedInStatus());
+                toast.success("Logged out successfully!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+            })
+            .catch((error) => {
+                // An error happened.
+                console.error(error);
+                toast.error("Error logging out!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+            });
+    };
 
     const headerLoggedOut = (
         <div className="header">
@@ -73,7 +107,7 @@ const Header = () => {
                 </span>
                 <span
                     className="darkgray-background"
-                    onClick={() => dispatch(toggleCreateSidebar())}
+                    onClick={() => handleLogout()}
                 >
                     LOGOUT
                 </span>
@@ -87,6 +121,8 @@ const Header = () => {
     return (
         <div>
             {isLoggedIn ? headerLoggedIn : headerLoggedOut}
+
+            <ToastContainer />
             <button
                 id="mock-log"
                 onClick={() => {
