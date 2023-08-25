@@ -85,7 +85,8 @@ const CreateAccountSidebar = () => {
                     progress: undefined,
                 });
                 break;
-
+            default:
+                break;
         }
 
     }
@@ -160,9 +161,6 @@ const CreateAccountSidebar = () => {
     useEffect(() => {
         // DOM elements
         const emailInput = document.getElementById("email");
-        const emailErrorMessage = document.getElementById(
-            "email-error-message"
-        );
 
         const inputChangeListener = () => {
             //   setEmail(emailInput.value);
