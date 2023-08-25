@@ -9,7 +9,7 @@ const BestSellersItem = ({ product }) => {
     // const itemType = props.itemType;
 
     const itemName = product ? product.name : "The Odyssey - Creative\nMasterclass";
-    const itemImagePath = product ?  product.imagePath : "https://archive.org/download/placeholder-image/placeholder-image.jpg";
+    const itemImagePath = "https://archive.org/download/placeholder-image/placeholder-image.jpg";
     const itemType = product ? product.type : "";
 
     const navigate = useNavigate();

@@ -19,7 +19,10 @@ const Shop = () => {
             <h1>The Shop</h1>
             <ShopNav />
             <div className="shop-content">
-                {products && products.map((product) => <ShopItem key={product.id} product={product} />)}
+            {Object.values(products).map((product) => (
+                <ShopItem key={product.id} product={product} />
+            ))}
+
             </div>
         </div>
     );

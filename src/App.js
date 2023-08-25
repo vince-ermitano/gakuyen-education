@@ -51,7 +51,13 @@ function App () {
       // Get products from Firestore
       const getProducts = async () => {
           const querySnapshot = await getDocs(collection(db, "products"));
-          dispatch(setProducts(querySnapshot.docs.map((doc) => doc.data())));
+          
+          const productsObject = {};
+          querySnapshot.forEach((doc) => {
+              productsObject[doc.id] = doc.data();
+          });
+
+          dispatch(setProducts(productsObject));
       };
 
       getProducts();
