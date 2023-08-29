@@ -21,13 +21,6 @@ const Shop = () => {
             <ShopNav />
             <div className="shop-content">
                 {productsAreLoading && <div>Loading...</div>}
-                {/* {Object.values(products).map((product) => (
-                    <ShopItem
-                        key={product.id}
-                        product={product}
-                        productId={product.id}
-                    />
-                ))} */}
 
                 {Object.keys(products).map((productId) => (
                     <ShopItem
