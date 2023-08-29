@@ -23,83 +23,101 @@ import { auth } from './config/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db } from "./config/firebaseConfig"
 import { collection, getDocs } from "firebase/firestore";
-import { setProducts } from './features/ShopSlice';
+import { setProducts, setLoading } from './features/ShopSlice';
+import { ToastContainer, toast } from "react-toastify";
 
 function App () {
+    const location = useLocation();
 
-  const location = useLocation();
+    const currentPath = location.pathname;
 
-  const currentPath = location.pathname;
+    const dashboardPath = "/dashboard";
 
-  const dashboardPath = '/dashboard';
+    const shouldHideComponents = currentPath.includes(dashboardPath);
 
-  const shouldHideComponents = currentPath.includes(dashboardPath);
+    const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
+    useEffect(() => {
+        // Listen for authentication state changes
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                dispatch(setLoggedInStatus(true)); // Dispatch action for logged in
+            } else {
+                dispatch(setLoggedInStatus(false)); // Dispatch action for logged out
+            }
+            console.log(user);
+        });
 
-  useEffect(() => {
-      // Listen for authentication state changes
-      const unsubscribe = onAuthStateChanged(auth, (user) => {
-          if (user) {
-              dispatch(setLoggedInStatus(true)); // Dispatch action for logged in
-          } else {
-              dispatch(setLoggedInStatus(false)); // Dispatch action for logged out
-          }
-          console.log(user);
-      });
+        // Get products from Firestore
+        const getProducts = async () => {
+            dispatch(setLoading(true));
 
-      // Get products from Firestore
-      const getProducts = async () => {
-          const querySnapshot = await getDocs(collection(db, "products"));
-          
-          const productsObject = {};
-          querySnapshot.forEach((doc) => {
-              productsObject[doc.id] = doc.data();
-          });
+            try {
+                const querySnapshot = await getDocs(collection(db, "products"));
 
-          dispatch(setProducts(productsObject));
-      };
+                const productsObject = {};
+                querySnapshot.forEach((doc) => {
+                    productsObject[doc.id] = doc.data();
+                });
 
-      getProducts();
+                dispatch(setProducts(productsObject));
+                dispatch(setLoading(false));
 
-      return () => {
-          // Unsubscribe when the component unmounts
-          unsubscribe();
-      };
-  }, [dispatch]);
+            } catch (error) {
+                console.log(error);
+                toast.error("Error getting products", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+            }
+            // dispatch(setLoading(false));
+        };
 
-  return (
-      <Provider store={store}>
-          {!shouldHideComponents && (
-              <>
-                  <Header />
-                  <Hamburger />
-                  <LoginSidebar />
-                  <CreateAccountSidebar />
-                  <CartSidebar />
-              </>
-          )}
+        getProducts();
 
-          <Routes>
-              <Route path="/" element={<Homepage />}></Route>
-              <Route path="/store" element={<Shop />}></Route>
-              <Route path="/preset-desc" element={<PresetDescPage />}></Route>
-              <Route
-                  path="/the-odyssey-creative-masterclass"
-                  element={<MasterclassDesc />}
-              ></Route>
-              <Route path="/dashboard" element={<Dashboard />}>
+        return () => {
+            // Unsubscribe when the component unmounts
+            unsubscribe();
+        };
+    }, [dispatch]);
+
+    return (
+        <Provider store={store}>
+            {!shouldHideComponents && (
+                <>
+                    <Header />
+                    <Hamburger />
+                    <LoginSidebar />
+                    <CreateAccountSidebar />
+                    <CartSidebar />
+                </>
+            )}
+
+            <Routes>
+                <Route path="/" element={<Homepage />}></Route>
+                <Route path="/store" element={<Shop />}></Route>
+                <Route path="/preset-desc" element={<PresetDescPage />}></Route>
+                <Route
+                    path="/the-odyssey-creative-masterclass"
+                    element={<MasterclassDesc />}
+                ></Route>
+                <Route path="/dashboard" element={<Dashboard />}>
                     <Route path="main" element={<ModuleView />}></Route>
                     <Route path="modules" element={<ModuleView />}></Route>
-                    <Route path="presets" element={<PresetLutView />}></Route> 
-                    <Route path="luts" element={<PresetLutView />}></Route> 
-                    <Route path="settings" element={<Settings />}></Route>  
-              </Route>
-          </Routes>
+                    <Route path="presets" element={<PresetLutView />}></Route>
+                    <Route path="luts" element={<PresetLutView />}></Route>
+                    <Route path="settings" element={<Settings />}></Route>
+                </Route>
+            </Routes>
 
-          {!shouldHideComponents && <Footer />}
-      </Provider>
-  );
+            <ToastContainer />
+            {!shouldHideComponents && <Footer />}
+        </Provider>
+    );
 }
 
 export default App;
