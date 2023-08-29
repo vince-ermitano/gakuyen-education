@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 const Shop = () => {
 
     const products = useSelector((state) => state.shop.products);
+    const productsAreLoading = useSelector((state) => state.shop.isLoading);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -19,6 +20,8 @@ const Shop = () => {
             <h1>The Shop</h1>
             <ShopNav />
             <div className="shop-content">
+
+            { productsAreLoading && <div>Loading...</div>}
             {Object.values(products).map((product) => (
                 <ShopItem key={product.id} product={product} />
             ))}

@@ -9,16 +9,11 @@ const BestSellers = () => {
 
     const productsAreLoading = useSelector((state) => state.shop.isLoading);
 
-    if (productsAreLoading) {
-        return (
-            <div>Loading...</div>
-        )
-    }
-
     return (
         <div className="best-sellers page-section">
             <h2>Best Sellers</h2>
             <div className="item-container">
+                { productsAreLoading && <div>Loading...</div>}
                 {Object.values(products).map((product) => (
                     <BestSellersItem key={product.id} product={product} />
                 ))}
