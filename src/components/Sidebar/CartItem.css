@@ -1,5 +1,6 @@
 .cart-item {
     display: flex;
+    justify-content: space-between;
 }
 
 .cart-item .image-wrapper {
@@ -12,5 +13,18 @@
 }
 
 .cart-item .item-details .product-number {
+    color: #999;
+}
+
+.cart-item .image-and-details {
+    display: flex;
+}
+
+.cart-item .remove-button svg {
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.cart-item .remove-button svg:hover {
     color: #999;
 }
