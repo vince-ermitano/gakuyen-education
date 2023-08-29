@@ -27,6 +27,11 @@ import { setProducts, setLoading } from './features/ShopSlice';
 import { ToastContainer, toast } from "react-toastify";
 
 function App () {
+
+    /**
+     * TODO: 
+     * - update '/store' path to '/store/:filter' path
+     */
     const location = useLocation();
 
     const currentPath = location.pathname;
@@ -78,7 +83,6 @@ function App () {
         };
 
         getProducts();
-
         return () => {
             // Unsubscribe when the component unmounts
             unsubscribe();
@@ -99,7 +103,11 @@ function App () {
 
             <Routes>
                 <Route path="/" element={<Homepage />}></Route>
-                <Route path="/store" element={<Shop />}></Route>
+                <Route path="/store/presets/:presetName" element={<PresetDescPage />}></Route>
+                <Route path="store/luts/:lutName" element={<PresetDescPage />}></Route>
+                <Route path="/store/masterclass/:masterclassName" element={<MasterclassDesc />}></Route>
+                <Route path="/store/:filter" element={<Shop />}></Route>
+                <Route path="/store/" element={<Shop />}></Route>
                 <Route path="/preset-desc" element={<PresetDescPage />}></Route>
                 <Route
                     path="/the-odyssey-creative-masterclass"

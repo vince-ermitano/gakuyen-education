@@ -32,7 +32,7 @@ const PresetDescPage = () => {
                     <h1>Preset Name</h1>
                     <p>Lorem ipsum dolor sit amet</p>
                     <p>$10</p>
-                    <button className="darkgray-background" data-itemID="">Add to Cart</button>
+                    <button className="darkgray-background" data-item-id="">Add to Cart</button>
                 </div>
                 <div className="second-row-desc">
                     <h4>Lorem ipsum dolor sit amet</h4>
