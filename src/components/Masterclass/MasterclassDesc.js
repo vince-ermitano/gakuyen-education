@@ -47,7 +47,7 @@ const MasterclassDesc = () => {
                         <h1>The Odyssey - Creative Masterclass</h1>
                         <p>Loren ipsum dolor sit amet</p>
                         <p>$10</p>
-                        <button className="darkgray-background">
+                        <button className="darkgray-background" data-item-id="MC-01"> 
                             Add to Cart
                         </button>
                     </div>
