@@ -14,8 +14,15 @@ const BestSellers = () => {
             <h2>Best Sellers</h2>
             <div className="item-container">
                 { productsAreLoading && <div>Loading...</div>}
-                {Object.values(products).map((product) => (
+                {/* {Object.values(products).map((product) => (
                     <BestSellersItem key={product.id} product={product} />
+                ))} */}
+                {Object.keys(products).map((productId) => (
+                    <BestSellersItem
+                        key={productId}
+                        product={products[productId]}
+                        productId={productId}
+                    />
                 ))}
             </div>
         </div>

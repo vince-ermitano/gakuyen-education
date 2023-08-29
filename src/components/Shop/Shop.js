@@ -20,12 +20,22 @@ const Shop = () => {
             <h1>The Shop</h1>
             <ShopNav />
             <div className="shop-content">
+                {productsAreLoading && <div>Loading...</div>}
+                {/* {Object.values(products).map((product) => (
+                    <ShopItem
+                        key={product.id}
+                        product={product}
+                        productId={product.id}
+                    />
+                ))} */}
 
-            { productsAreLoading && <div>Loading...</div>}
-            {Object.values(products).map((product) => (
-                <ShopItem key={product.id} product={product} />
-            ))}
-
+                {Object.keys(products).map((productId) => (
+                    <ShopItem
+                        key={productId}
+                        product={products[productId]}
+                        productId={productId}
+                    />
+                ))}
             </div>
         </div>
     );

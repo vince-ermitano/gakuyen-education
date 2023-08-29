@@ -1,13 +1,26 @@
 import React from "react";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./PresetDescPage.css";
 import { register } from "swiper/element/bundle";
 
 register();
 
+
+/**
+ * TODO:
+ * - Create JS file to store all product description content
+ *     - Use to populate this page
+ */
+
 const PresetDescPage = () => {
     const swiperElRef = useRef(null);
+
+    // redux
+    const currentProductId = useSelector((state) => state.shop.currentProduct);
+    const products = useSelector((state) => state.shop.products);
+    const currentProduct = products[currentProductId];
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -29,7 +42,7 @@ const PresetDescPage = () => {
                     />
                 </div>
                 <div className="preset-desc-page-info preset-name-price item-name-price">
-                    <h1>Preset Name</h1>
+                    <h1>{currentProduct.name}</h1>
                     <p>Lorem ipsum dolor sit amet</p>
                     <p>$10</p>
                     <button className="darkgray-background" data-item-id="">Add to Cart</button>
