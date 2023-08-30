@@ -23,7 +23,7 @@ import { auth } from './config/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db } from "./config/firebaseConfig"
 import { collection, getDocs } from "firebase/firestore";
-import { setProducts, setLoading } from './features/ShopSlice';
+import { setProducts, setLoading, setInitialTotalPrice } from './features/ShopSlice';
 import { ToastContainer, toast } from "react-toastify";
 
 function App () {
@@ -66,6 +66,7 @@ function App () {
                 });
 
                 dispatch(setProducts(productsObject));
+                dispatch(setInitialTotalPrice());
                 dispatch(setLoading(false));
 
             } catch (error) {
@@ -122,7 +123,10 @@ function App () {
                 </Route>
             </Routes>
 
-            <ToastContainer />
+            <ToastContainer
+                theme="dark"
+                style={{ width: "500px" }}
+            />
             {!shouldHideComponents && <Footer />}
         </Provider>
     );

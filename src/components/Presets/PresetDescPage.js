@@ -1,9 +1,11 @@
 import React from "react";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./PresetDescPage.css";
 import { register } from "swiper/element/bundle";
+import { handleAddToCart } from "../../helpers";
+// import { addProductToCart } from "../../features/ShopSlice";
 
 register();
 
@@ -12,12 +14,15 @@ register();
  * TODO:
  * - Create JS file to store all product description content
  *     - Use to populate this page
+ * - Add switch statement to set current product to account for when users directly navigate to this page
  */
 
+// TODO: Either gray out or remove add to cart button if item is already in cart or notify user that item is already in cart when users click add to cart button
 const PresetDescPage = () => {
     const swiperElRef = useRef(null);
 
     // redux
+    const dispatch = useDispatch();
     const currentProductId = useSelector((state) => state.shop.currentProduct);
     const products = useSelector((state) => state.shop.products);
     const currentProduct = products[currentProductId];
@@ -45,7 +50,15 @@ const PresetDescPage = () => {
                     <h1>{currentProduct.name}</h1>
                     <p>Lorem ipsum dolor sit amet</p>
                     <p>$10</p>
-                    <button className="darkgray-background" data-item-id={currentProductId}>Add to Cart</button>
+                    <button
+                        className="darkgray-background"
+                        data-item-id={currentProductId}
+                        onClick={(e) => {
+                            handleAddToCart(e, dispatch);
+                        }}
+                    >
+                        Add to Cart
+                    </button>
                 </div>
                 <div className="second-row-desc">
                     <h4>Lorem ipsum dolor sit amet</h4>

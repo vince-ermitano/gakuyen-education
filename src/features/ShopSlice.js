@@ -4,6 +4,58 @@ const initialState = {
     isLoading: false,
     products: {},
     currentProduct: null,
+    cart: JSON.parse(localStorage.cart),
+    totalPrice: 0,
+};
+
+const calculateTotalPrice = () => {
+    return (dispatch, getState) => {
+
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || {};
+        const products = getState().shop.products;
+
+        let totalPrice = 0;
+
+        console.log(cartItems);
+        console.log(products);
+
+        for (const itemId in cartItems) {
+            if (cartItems.hasOwnProperty(itemId) && products.hasOwnProperty(itemId)) {
+                totalPrice += cartItems[itemId] * products[itemId].price;
+            }
+        }
+
+        console.log(totalPrice);
+
+        dispatch({
+            type: 'shop/setTotalPrice',
+            payload: totalPrice
+        });
+    };
+};
+
+
+const addToCart = (product) => {
+    return (dispatch, getState) => {
+        const updatedCart = { ...getState().shop.cart, [product]: 1 };
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        dispatch({
+            type: 'shop/addProductToCart',
+            payload: updatedCart
+        });
+    };
+};
+
+const removeFromCart = (product) => {
+    return (dispatch, getState) => {
+        const updatedCart = { ...getState().shop.cart };
+        delete updatedCart[product];
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        dispatch({
+            type: 'shop/removeProductFromCart',
+            payload: updatedCart
+        });
+    };
 };
 
 const shopSlice = createSlice({
@@ -18,9 +70,32 @@ const shopSlice = createSlice({
         },
         setCurrentProduct: (state, action) => {
             state.currentProduct = action.payload;
+        },
+        addProductToCart: (state, action) => {
+            state.cart = action.payload;
+        },
+        removeProductFromCart: (state, action) => {
+            state.cart = action.payload;
+        },
+        setInitialTotalPrice: (state) => {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || {};
+            const products = state.products;
+            let totalPrice = 0;
+
+            for (const itemId in cartItems) {
+                if (cartItems.hasOwnProperty(itemId) && products.hasOwnProperty(itemId)) {
+                    totalPrice += cartItems[itemId] * products[itemId].price;
+                }
+            }
+
+            state.totalPrice = totalPrice;
+        },
+        setTotalPrice: (state, action) => {
+            state.totalPrice = action.payload;
         }
     }
 });
 
-export const { setProducts, setLoading, setCurrentProduct } = shopSlice.actions;
+export const { setProducts, setLoading, setCurrentProduct, addProductToCart, removeProductFromCart, setInitialTotalPrice, setTotalPrice } = shopSlice.actions;
+export { addToCart, removeFromCart, calculateTotalPrice };
 export default shopSlice.reducer;

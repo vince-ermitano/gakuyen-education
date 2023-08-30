@@ -130,6 +130,11 @@
     padding: 0;
 }
 
+.right-sidebar .total {
+    display: flex;
+    justify-content: space-between;
+}
+
 .right-sidebar .cart-info > * {
     margin: 2rem 0;
 }

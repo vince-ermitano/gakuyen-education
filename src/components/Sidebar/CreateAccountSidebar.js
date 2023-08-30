@@ -10,7 +10,7 @@ import { auth, db } from "../../config/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 // import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateAccountSidebar = () => {
@@ -258,10 +258,6 @@ const CreateAccountSidebar = () => {
                 className={`overlay ${isOpen ? "show-overlay" : ""}`}
                 onClick={() => dispatch(toggleCreateSidebar())}
             ></div>
-            <ToastContainer
-                theme="dark"
-                style={{ width: "500px" }}
-            />
         </div>
     );
 };

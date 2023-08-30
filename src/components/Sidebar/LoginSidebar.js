@@ -9,7 +9,7 @@ import {
 // import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { auth } from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const LoginSidebar = () => {
     const dispatch = useDispatch();
@@ -116,7 +116,6 @@ const LoginSidebar = () => {
                 className={`overlay ${isOpen ? "show-overlay" : ""}`}
                 onClick={() => dispatch(toggleLoginSidebar())}
             ></div>
-            <ToastContainer />
         </div>
     );
 };

@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "./MasterclassDesc.css";
+import { handleAddToCart } from "../../helpers";
 
 const MasterclassDesc = () => {
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
         window.scrollTo(0, 0); // Scroll to the top of the page
         document.title =
@@ -21,18 +26,6 @@ const MasterclassDesc = () => {
             <div className="masterclass-desc-content">
                 <section className="masterclass-desc-header grid-two-columns">
                     <div className="img-container">
-                        {/* <img
-                            src="https://via.placeholder.com/500x400"
-                            alt="masterclass"
-                        /> */}
-                        {/* <iframe
-                            src="https://www.youtube.com/embed/fyNns5amxRk?autoplay=1"
-                            width="640" // Set the desired width
-                            height="360" // Set the desired height
-                            frameBorder="0"
-                            allowFullScreen
-                            title="Vimeo Video"
-                        ></iframe> */}
 
                         <ReactPlayer
                             className="react-player"
@@ -47,7 +40,9 @@ const MasterclassDesc = () => {
                         <h1>The Odyssey - Creative Masterclass</h1>
                         <p>Loren ipsum dolor sit amet</p>
                         <p>$10</p>
-                        <button className="darkgray-background" data-item-id="MC-01"> 
+                        <button className="darkgray-background" data-item-id="MC-01" onClick={(e) => {
+                            handleAddToCart(e, dispatch);
+                        }}> 
                             Add to Cart
                         </button>
                     </div>
