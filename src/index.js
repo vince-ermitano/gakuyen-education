@@ -7,6 +7,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store/store';
 
+// Set initial cart in localStorage
+if (!localStorage.getItem('cart')) {
+    localStorage.setItem('cart', JSON.stringify([]));
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
