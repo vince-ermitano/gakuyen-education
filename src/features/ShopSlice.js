@@ -4,7 +4,6 @@ const initialState = {
     isLoading: false,
     products: {},
     currentProduct: null,
-    cart: JSON.parse(localStorage.cart),
     totalPrice: 0,
 };
 
