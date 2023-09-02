@@ -13,6 +13,8 @@ app.use(
     })
   );
 
+console.log(process.env.CLIENT_URL);
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
