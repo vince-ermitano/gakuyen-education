@@ -33,6 +33,13 @@ const storeItems = new Map([
   ]);
 
 app.post("/create-checkout-session", async (req, res) => {
+    res.setHeader(
+        "Access-Control-Allow-Origin",
+        `${process.env.CLIENT_URL}`
+    );
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
     try {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
