@@ -6,6 +6,11 @@ const path = require('path');
 
 app.use(express.json());
 app.use(express.static('public'));
+app.use(
+    cors({
+      origin: `${process.env.CLIENT_URL}`,
+    })
+  )
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
