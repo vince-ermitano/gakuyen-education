@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
+const cors = require("cors");
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -10,7 +11,7 @@ app.use(
     cors({
       origin: `${process.env.CLIENT_URL}`,
     })
-  )
+  );
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
