@@ -19,7 +19,7 @@ const CartSidebar = () => {
 
     // handle functions
     const handleProceedToCheckout = () => {
-        fetch('/create-checkout-session', {
+        fetch('https://gakuyen-education-backend-fba8bc6850cf.herokuapp.com/create-checkout-session', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
