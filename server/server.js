@@ -1,4 +1,57 @@
 require('dotenv').config();
+const { initializeApp } = require('firebase/app');
+const { getDocs, collection, getFirestore } = require('firebase/firestore');
+
+
+// firebase --------------------------------------------------
+const firebaseAPIKey = process.env.FIREBASE_API_KEY;
+const firebaseAuthDomain = process.env.FIREBASE_AUTH_DOMAIN;
+const firebaseProjectId = process.env.FIREBASE_PROJECT_ID;
+const firebaseStorageBucket = process.env.FIREBASE_STORAGE_BUCKET;
+const firebaseMessagingSenderId = process.env.FIREBASE_MESSAGING_SENDER_ID;
+const firebaseAppId = process.env.FIREBASE_APP_ID;
+const firebaseMeasurementId = process.env.FIREBASE_MEASUREMENT_ID;
+
+const firebaseConfig = {
+    apiKey: firebaseAPIKey,
+    authDomain: firebaseAuthDomain,
+    projectId: firebaseProjectId,
+    storageBucket: firebaseStorageBucket,
+    messagingSenderId: firebaseMessagingSenderId,
+    appId: firebaseAppId,
+    measurementId: firebaseMeasurementId
+}
+
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
+// Get products from Firestore
+const getProducts = async () => {
+    const productsObject = {};
+
+    try {
+        const querySnapshot = await getDocs(collection(db, "products"));
+
+        querySnapshot.forEach((doc) => {
+            productsObject[doc.id] = doc.data();
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+
+    return productsObject;
+};
+
+let productsObject = {};
+
+getProducts().then((products) => {
+    productsObject = products;
+    console.log(productsObject);
+});
+
+
+// -------------------------------------------------- firebase
 
 const express = require('express');
 const app = express();
