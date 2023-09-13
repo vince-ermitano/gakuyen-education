@@ -25,6 +25,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
+// functions ==================================================
 // Get products from Firestore
 const getProducts = async () => {
     const productsObject = {};
@@ -42,6 +43,12 @@ const getProducts = async () => {
 
     return productsObject;
 };
+
+const computeTotalPrice = (cart) => {
+
+};
+
+// ================================================== functions
 
 let productsObject = {};
 
@@ -93,23 +100,38 @@ app.post("/create-checkout-session", async (req, res) => {
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     res.setHeader("Access-Control-Allow-Credentials", true);
+
+    console.log(req.body);
+
+    let totalPrice = 0;
+
+    for (const item in req.body) {
+        totalPrice += productsObject[item].price * 100 * req.body[item];
+    }
+
+    console.log(totalPrice);
+
     try {
+        const cartItems = Object.keys(req.body);
+
+        const line_items = cartItems.map((item) => {
+            return {
+                price_data: {
+                    currency: "usd",
+                    product_data: {
+                        name: productsObject[item].name,
+                    },
+                    unit_amount: productsObject[item].price * 100,
+                },
+                quantity: 1,
+            };
+        }
+        );
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             mode: "payment",
-            line_items: req.body.items.map((item) => {
-                const storeItem = storeItems.get(item.id);
-                return {
-                    price_data: {
-                        currency: "usd",
-                        product_data: {
-                            name: storeItem.name,
-                        },
-                        unit_amount: storeItem.priceInCents,
-                    },
-                    quantity: item.quantity,
-                };
-            }),
+            line_items: line_items,
             success_url: `${process.env.CLIENT_URL}`,
             cancel_url: `${process.env.CLIENT_URL}`,
         });

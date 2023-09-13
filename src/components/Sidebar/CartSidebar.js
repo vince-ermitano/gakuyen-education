@@ -19,17 +19,14 @@ const CartSidebar = () => {
 
     // handle functions
     const handleProceedToCheckout = () => {
-        fetch('https://gakuyen-education-backend-fba8bc6850cf.herokuapp.com/create-checkout-session', {
+
+        console.log(process.env.REACT_APP_SERVER_URL);
+        fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                items: [
-                    { id: 1, quantity: 3},
-                    { id: 2, quantity: 1}
-                ]
-            })
+            body: localStorage.getItem('cart')
         }).then(res => {
             if (res.ok) return res.json()
             return res.json().then(json => Promise.reject(json))
