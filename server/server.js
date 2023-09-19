@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { initializeApp } = require('firebase/app');
-const { getDocs, setDoc, collection, getFirestore, doc } = require('firebase/firestore');
+const { getDocs, setDoc, collection, getFirestore, doc, getDoc } = require('firebase/firestore');
+const { v4: uuidv4 } = require('uuid');
 
 
 // firebase --------------------------------------------------
@@ -121,17 +122,19 @@ app.post("/create-checkout-session", async (req, res) => {
         }
         );
 
+        const SESSION_ID = uuidv4();
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             mode: "payment",
             line_items: line_items,
-            success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+            success_url: `${process.env.CLIENT_URL}/success?session_id=${SESSION_ID}`,
             cancel_url: `${process.env.CLIENT_URL}`,
         });
 
         // store items in the database so that when user successfully pays, we can update the database
 
-        await setDoc(doc(db, "checkoutSessions", session.id), {
+        await setDoc(doc(db, "checkoutSessions", SESSION_ID), {
             items: req.body,
             complete: false
         });
@@ -145,18 +148,27 @@ app.post("/create-checkout-session", async (req, res) => {
 app.get("/success", async (req, res) => {
     const session_id = req.query.session_id; // Retrieve the session ID from the query parameters
 
-    console.log(session_id);
     try {
-        // Retrieve the Stripe session data
-        const session = await stripe.checkout.sessions.retrieve(session_id);
+        const docRef = doc(db, "checkoutSessions", session_id);
 
-        console.log(session);
+        const docSnap = await getDoc(docRef);
 
+        if (docSnap.exists()) {
+            const items = docSnap.data().items;
 
-        res.send(
-            "Purchase successful! Items added to your dashboard." +
-                JSON.stringify(purchasedItems)
-        );
+            // TODO: Update the database to reflect the purchase
+
+            await setDoc(doc(db, "checkoutSessions", session_id), {
+                complete: true
+            }, { merge: true });
+
+            res.send(
+                "Purchase successful! Items added to your dashboard." +
+                    JSON.stringify(items)
+            );
+        } else {
+            throw new Error("Successful purchase was not found.");
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send("Error processing the purchase.");

@@ -104,6 +104,7 @@ function App () {
 
             <Routes>
                 <Route path="/" element={<Homepage />}></Route>
+                <Route path="/success" element={<Homepage />}></Route>
                 <Route path="/store/presets/:presetName" element={<PresetDescPage />}></Route>
                 <Route path="store/luts/:lutName" element={<PresetDescPage />}></Route>
                 <Route path="/store/masterclass/:masterclassName" element={<MasterclassDesc />}></Route>
