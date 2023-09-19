@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { initializeApp } = require('firebase/app');
-const { getDocs, collection, getFirestore } = require('firebase/firestore');
+const { getDocs, setDoc, collection, getFirestore, doc } = require('firebase/firestore');
 
 
 // firebase --------------------------------------------------
@@ -50,6 +50,7 @@ const computeTotalPrice = (cart) => {
 
 // ================================================== functions
 
+// store products on the server side
 let productsObject = {};
 
 getProducts().then((products) => {
@@ -77,21 +78,13 @@ console.log(process.env.CLIENT_URL);
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static(path.join(__dirname, "client/build")));
-
-//     // Handle any requests that don't match API routes by serving the React app
-//     app.get("*", (req, res) => {
-//         res.sendFile(path.join(__dirname, "client/build", "index.html"));
-//     });
-// }
-
+// TEST ITEMS
 const storeItems = new Map([
     [1, { priceInCents: 10000, name: "Learn React Today" }],
     [2, { priceInCents: 20000, name: "Learn CSS Today" }],
   ]);
 
+// EXPRESS ROUTES --------------------------------------------------
 app.post("/create-checkout-session", async (req, res) => {
     res.setHeader(
         "Access-Control-Allow-Origin",
@@ -132,14 +125,46 @@ app.post("/create-checkout-session", async (req, res) => {
             payment_method_types: ["card"],
             mode: "payment",
             line_items: line_items,
-            success_url: `${process.env.CLIENT_URL}`,
+            success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.CLIENT_URL}`,
         });
+
+        // store items in the database so that when user successfully pays, we can update the database
+
+        await setDoc(doc(db, "checkoutSessions", session.id), {
+            items: req.body,
+            complete: false
+        });
+
         res.json({ url: session.url });
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
 });
+
+app.get("/success", async (req, res) => {
+    const session_id = req.query.session_id; // Retrieve the session ID from the query parameters
+
+    console.log(session_id);
+    try {
+        // Retrieve the Stripe session data
+        const session = await stripe.checkout.sessions.retrieve(session_id);
+
+        console.log(session);
+
+
+        res.send(
+            "Purchase successful! Items added to your dashboard." +
+                JSON.stringify(purchasedItems)
+        );
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error processing the purchase.");
+    }
+});
+
+// -------------------------------------------------- EXPRESS ROUTES
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
