@@ -22,10 +22,13 @@ const Homepage = () => {
                 `${process.env.REACT_APP_SERVER_URL}/success?session_id=${session_id}`
             )
                 .then((res) => {
-                    if (res.ok)
+                    if (res.ok) {
+                        localStorage.setItem("cart", JSON.stringify([]));
                         return toast.success(
                             "Payment successful! Check your email for your receipt."
                         );
+                        
+                    }
                     return res.json().then((json) => Promise.reject(json));
                 })
                 .catch((e) => {
