@@ -6,7 +6,6 @@ import {
     toggleCreateSidebar,
     toggleLoginSidebar,
 } from "../../features/SidebarSlice";
-// import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { auth } from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
 // import HeroBanner from "../HeroBanner/HeroBanner";
 // import ShopNav from "../ShopNav/ShopNav";
 import ShopNavV2 from "../ShopNav/ShopNavV2";
@@ -9,6 +10,7 @@ import Testimonials from "../Testimonials/Testimonials";
 import MasterclassHP from "../Masterclass/MasterclassHP";
 import './Homepage.css'
 import { toast } from "react-toastify";
+import { auth } from "../../config/firebaseConfig";
 
 
 const Homepage = () => {
@@ -17,9 +19,29 @@ const Homepage = () => {
     const session_id = searchParams.get("session_id");
     
     useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user && session_id) {
+                console.log(user);
+                console.log(auth.currentUser.email);
+                verifyPurchase();
+            } else {
+                return;
+            }
+        });
+
         const verifyPurchase = async () => {
+
             await fetch(
-                `${process.env.REACT_APP_SERVER_URL}/success?session_id=${session_id}`
+                `${process.env.REACT_APP_SERVER_URL}/success?session_id=${session_id}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: auth.currentUser.email,
+                    }),
+                }
             )
                 .then((res) => {
                     if (res.ok) {
@@ -39,10 +61,10 @@ const Homepage = () => {
 
         document.title = "Home | GAKUYEN EDUCATION";
 
+        return () => {
+            unsubscribe();
+        };
 
-        if (session_id) {
-            verifyPurchase();
-        }
     }, [session_id]);
 
 

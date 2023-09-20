@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { initializeApp } = require('firebase/app');
-const { getDocs, setDoc, collection, getFirestore, doc, getDoc } = require('firebase/firestore');
+const { getDocs, setDoc, collection, getFirestore, doc, getDoc, query, where, updateDoc } = require('firebase/firestore');
 const { v4: uuidv4 } = require('uuid');
 
 
@@ -145,22 +145,67 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-app.get("/success", async (req, res) => {
+app.post("/success", async (req, res) => {
+    res.setHeader(
+        "Access-Control-Allow-Origin",
+        `${process.env.CLIENT_URL}`
+    );
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
     const session_id = req.query.session_id; // Retrieve the session ID from the query parameters
 
     try {
-        const docRef = doc(db, "checkoutSessions", session_id);
+        const checkoutSessionDocRef = doc(db, "checkoutSessions", session_id);
 
-        const docSnap = await getDoc(docRef);
+        const checkoutSessionDocSnap = await getDoc(checkoutSessionDocRef);
 
-        if (docSnap.exists()) {
-            const items = docSnap.data().items;
+        if (checkoutSessionDocSnap.exists()) {
+            const items = checkoutSessionDocSnap.data().items;
+            const hasBeenCompleted = checkoutSessionDocSnap.data().complete;
 
-            // TODO: Update the database to reflect the purchase
+            if (hasBeenCompleted) {
+                throw new Error("Purchase has already been completed.");
+            }
 
-            await setDoc(doc(db, "checkoutSessions", session_id), {
-                complete: true
-            }, { merge: true });
+            // Update the database to reflect the purchase
+            const usersCollectionRef = collection(db, 'users');
+
+            const q = query(usersCollectionRef, where("email", "==", req.body.email));
+
+            const querySnapshot = await getDocs(q);
+
+            querySnapshot.forEach(async (document) => {
+                const docId = document.id;
+
+                const userDocRef = doc(db, "users", docId);
+                
+                const userDoc = await getDoc(userDocRef);
+
+                try {
+                    await updateDoc(userDocRef, {
+                        purchasedItems: {
+                            ...userDoc.data().purchasedItems,
+                            ...items
+                        }
+                    });
+                } catch(error) {
+                    console.log(error);
+                    res.status(500).send(error.message)
+                }
+            });
+
+            // Update the database to reflect that the purchase has been completed
+            try {
+                await setDoc(checkoutSessionDocRef, {
+                    complete: true,
+                    userEmail: req.body.email
+                }, { merge: true });
+            } catch (error) {
+                console.log(error);
+                res.status(500).send(error.message)
+            }
 
             res.send(
                 "Purchase successful! Items added to your dashboard." +
@@ -171,7 +216,7 @@ app.get("/success", async (req, res) => {
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error processing the purchase.");
+        res.status(500).send(error.message);
     }
 });
 

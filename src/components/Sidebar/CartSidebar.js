@@ -5,6 +5,8 @@ import "./Sidebar.css";
 import CartItem from "./CartItem";
 import { toggleCartSidebar } from "../../features/SidebarSlice";
 import { calculateTotalPrice } from "../../features/ShopSlice";
+import { auth } from "../../config/firebaseConfig";
+import { toast } from "react-toastify";
 
 // TODO: Add ability to add items to cart that are not Presets/Masterclasses
 
@@ -20,7 +22,14 @@ const CartSidebar = () => {
     // handle functions
     const handleProceedToCheckout = () => {
 
-        console.log(process.env.REACT_APP_SERVER_URL);
+        console.log(auth.currentUser.email);
+
+        if (localStorage.getItem('cart') === '{}') {
+            toast.error("Your cart is empty")
+            return;
+        }
+
+
         fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session`, {
             method: 'POST',
             headers: {
