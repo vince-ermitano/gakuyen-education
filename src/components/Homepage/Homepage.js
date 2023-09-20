@@ -46,16 +46,17 @@ const Homepage = () => {
                 .then((res) => {
                     if (res.ok) {
                         localStorage.setItem("cart", JSON.stringify([]));
-                        return toast.success(
+                        toast.success(
                             "Payment successful! Check your email for your receipt."
-                        );
-                        
-                    }
-                    return res.json().then((json) => Promise.reject(json));
+                        );   
+                    } else return res.text();
+                })
+                .then((errorMessage) => {
+                    return Promise.reject(errorMessage)
                 })
                 .catch((e) => {
-                    console.error(e.error);
-                    toast.error("Payment failed. Please try again.");
+                    console.error(e);
+                    toast.error(e);
                 });
         };
 
