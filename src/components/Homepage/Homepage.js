@@ -51,7 +51,14 @@ const Homepage = () => {
                     if (res.ok) {
                         localStorage.setItem("cart", JSON.stringify([]));
                         toast.success(
-                            "Payment successful! Check your email for your receipt."
+                            "Payment successful! Check your email for your receipt.", {
+                                position: "top-center",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                progress: undefined,
+                            }
                         );
                         dispatch(setTotalPrice(0));
                     } else return res.text();
@@ -61,7 +68,14 @@ const Homepage = () => {
                 })
                 .catch((e) => {
                     console.error(e);
-                    toast.error(e);
+                    toast.error(e, {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        progress: undefined,
+                    });
                 });
         };
 
