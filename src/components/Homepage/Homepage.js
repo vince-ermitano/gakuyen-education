@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from "react-redux";
 // import HeroBanner from "../HeroBanner/HeroBanner";
 // import ShopNav from "../ShopNav/ShopNav";
 import ShopNavV2 from "../ShopNav/ShopNavV2";
@@ -11,9 +12,12 @@ import MasterclassHP from "../Masterclass/MasterclassHP";
 import './Homepage.css'
 import { toast } from "react-toastify";
 import { auth } from "../../config/firebaseConfig";
+import { setTotalPrice } from "../../features/ShopSlice";
 
 
 const Homepage = () => {
+    const dispatch = useDispatch();
+
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const session_id = searchParams.get("session_id");
@@ -48,7 +52,8 @@ const Homepage = () => {
                         localStorage.setItem("cart", JSON.stringify([]));
                         toast.success(
                             "Payment successful! Check your email for your receipt."
-                        );   
+                        );
+                        dispatch(setTotalPrice(0));
                     } else return res.text();
                 })
                 .then((errorMessage) => {
@@ -66,7 +71,7 @@ const Homepage = () => {
             unsubscribe();
         };
 
-    }, [session_id]);
+    }, [session_id, dispatch]);
 
 
     return (
