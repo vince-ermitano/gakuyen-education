@@ -151,6 +151,19 @@
     padding: 1rem;
 }
 
+#login_dialog {
+    box-sizing: border-box;
+    text-align: center;
+    padding: 1rem 1rem;
+    border: none;
+    z-index: 11;
+  }
+  
+  #login_dialog .selection-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+
 /* Input error checking */
 /* -------------------- */
 

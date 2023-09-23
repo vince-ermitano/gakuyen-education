@@ -5,6 +5,7 @@ const initialState = {
     products: {},
     currentProduct: null,
     totalPrice: 0,
+    loginDialogVisibility: false,
 };
 
 const calculateTotalPrice = () => {
@@ -91,10 +92,13 @@ const shopSlice = createSlice({
         },
         setTotalPrice: (state, action) => {
             state.totalPrice = action.payload;
+        },
+        setLoginDialogVisibility: (state, action) => {
+            state.loginDialogVisibility = action.payload;
         }
     }
 });
 
-export const { setProducts, setLoading, setCurrentProduct, addProductToCart, removeProductFromCart, setInitialTotalPrice, setTotalPrice } = shopSlice.actions;
+export const { setProducts, setLoading, setCurrentProduct, addProductToCart, removeProductFromCart, setInitialTotalPrice, setTotalPrice, setLoginDialogVisibility } = shopSlice.actions;
 export { addToCart, removeFromCart, calculateTotalPrice };
 export default shopSlice.reducer;

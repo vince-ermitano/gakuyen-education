@@ -23,7 +23,7 @@ import { auth } from './config/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db } from "./config/firebaseConfig"
 import { collection, getDocs } from "firebase/firestore";
-import { setProducts, setLoading, setInitialTotalPrice } from './features/ShopSlice';
+import { setProducts, setLoading, setInitialTotalPrice} from './features/ShopSlice';
 import { ToastContainer, toast } from "react-toastify";
 
 function App () {
@@ -105,9 +105,18 @@ function App () {
             <Routes>
                 <Route path="/" element={<Homepage />}></Route>
                 <Route path="/success" element={<Homepage />}></Route>
-                <Route path="/store/presets/:presetName" element={<PresetDescPage />}></Route>
-                <Route path="store/luts/:lutName" element={<PresetDescPage />}></Route>
-                <Route path="/store/masterclass/:masterclassName" element={<MasterclassDesc />}></Route>
+                <Route
+                    path="/store/presets/:presetName"
+                    element={<PresetDescPage />}
+                ></Route>
+                <Route
+                    path="store/luts/:lutName"
+                    element={<PresetDescPage />}
+                ></Route>
+                <Route
+                    path="/store/masterclass/:masterclassName"
+                    element={<MasterclassDesc />}
+                ></Route>
                 <Route path="/store/:filter" element={<Shop />}></Route>
                 <Route path="/store" element={<Shop />}></Route>
                 <Route path="/preset-desc" element={<PresetDescPage />}></Route>
@@ -124,10 +133,7 @@ function App () {
                 </Route>
             </Routes>
 
-            <ToastContainer
-                theme="dark"
-                style={{ width: "500px" }}
-            />
+            <ToastContainer theme="dark" style={{ width: "500px" }} />
             {!shouldHideComponents && <Footer />}
         </Provider>
     );
