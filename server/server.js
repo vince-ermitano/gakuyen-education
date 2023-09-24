@@ -1,8 +1,17 @@
-require('dotenv').config();
-const { initializeApp } = require('firebase/app');
-const { getDocs, setDoc, collection, getFirestore, doc, getDoc, query, where, updateDoc } = require('firebase/firestore');
-const { v4: uuidv4 } = require('uuid');
-
+require("dotenv").config();
+const { initializeApp } = require("firebase/app");
+const {
+    getDocs,
+    setDoc,
+    collection,
+    getFirestore,
+    doc,
+    getDoc,
+    query,
+    where,
+    updateDoc,
+} = require("firebase/firestore");
+const { v4: uuidv4 } = require("uuid");
 
 // firebase --------------------------------------------------
 const firebaseAPIKey = process.env.FIREBASE_API_KEY;
@@ -20,8 +29,8 @@ const firebaseConfig = {
     storageBucket: firebaseStorageBucket,
     messagingSenderId: firebaseMessagingSenderId,
     appId: firebaseAppId,
-    measurementId: firebaseMeasurementId
-}
+    measurementId: firebaseMeasurementId,
+};
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
@@ -37,7 +46,6 @@ const getProducts = async () => {
         querySnapshot.forEach((doc) => {
             productsObject[doc.id] = doc.data();
         });
-
     } catch (error) {
         console.log(error);
     }
@@ -45,9 +53,7 @@ const getProducts = async () => {
     return productsObject;
 };
 
-const computeTotalPrice = (cart) => {
-
-};
+const computeTotalPrice = (cart) => {};
 
 // ================================================== functions
 
@@ -59,38 +65,143 @@ getProducts().then((products) => {
     console.log(productsObject);
 });
 
-
 // -------------------------------------------------- firebase
 
-const express = require('express');
+const express = require("express");
 const app = express();
-const path = require('path');
+const path = require("path");
 const cors = require("cors");
 
-app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(
     cors({
-      origin: `${process.env.CLIENT_URL}`,
+        origin: `${process.env.CLIENT_URL}`,
     })
-  );
+);
 
 console.log(process.env.CLIENT_URL);
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
+console.log(endpointSecret);
 
 // TEST ITEMS
 const storeItems = new Map([
     [1, { priceInCents: 10000, name: "Learn React Today" }],
     [2, { priceInCents: 20000, name: "Learn CSS Today" }],
-  ]);
+]);
 
 // EXPRESS ROUTES --------------------------------------------------
+app.post("/webhook", express.raw({ type: "application/json" }), (req, res) => {
+    console.log("Made it to webhook");
+    const sig = req.headers["stripe-signature"];
+
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+        console.log("try");
+    } catch (err) {
+        console.error("Error constructing webhook event:", err);
+        res.status(400).send(`Webhook Error: ${err.message}`);
+        console.log("catch");
+        return;
+    }
+
+    // Handle the specific event you're interested in (checkout.session.completed)
+    if (event.type === "checkout.session.completed") {
+        const email = event.data.object.customer_details.email;
+        console.log("Payment was successful. Email:", email);
+        // You now have the email address captured from the checkout session.
+        // You can use it as needed, such as storing it in your database or sending a confirmation email.
+    }
+
+    res.status(200).end();
+});
+
+
+app.use(express.json());
+app.post("/success", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
+    const session_id = req.query.session_id; // Retrieve the session ID from the query parameters
+
+    try {
+        const checkoutSessionDocRef = doc(db, "checkoutSessions", session_id);
+
+        const checkoutSessionDocSnap = await getDoc(checkoutSessionDocRef);
+
+        if (checkoutSessionDocSnap.exists()) {
+            const items = checkoutSessionDocSnap.data().items;
+            const hasBeenCompleted = checkoutSessionDocSnap.data().complete;
+
+            if (hasBeenCompleted) {
+                throw new Error("Purchase has already been completed.");
+            }
+
+            // Update the database to reflect the purchase
+            const usersCollectionRef = collection(db, "users");
+
+            const q = query(
+                usersCollectionRef,
+                where("email", "==", req.body.email)
+            );
+
+            const querySnapshot = await getDocs(q);
+
+            querySnapshot.forEach(async (document) => {
+                const docId = document.id;
+
+                const userDocRef = doc(db, "users", docId);
+
+                const userDoc = await getDoc(userDocRef);
+
+                try {
+                    await updateDoc(userDocRef, {
+                        purchasedItems: {
+                            ...userDoc.data().purchasedItems,
+                            ...items,
+                        },
+                    });
+                } catch (error) {
+                    console.log(error);
+                    res.status(500).send(error.message);
+                }
+            });
+
+            // Update the database to reflect that the purchase has been completed
+            try {
+                await setDoc(
+                    checkoutSessionDocRef,
+                    {
+                        complete: true,
+                        userEmail: req.body.email,
+                    },
+                    { merge: true }
+                );
+            } catch (error) {
+                console.log(error);
+                res.status(500).send(error.message);
+            }
+
+            res.send(
+                "Purchase successful! Items added to your dashboard." +
+                    JSON.stringify(items)
+            );
+        } else {
+            throw new Error("Successful purchase was not found.");
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
+
 app.post("/create-checkout-session", async (req, res) => {
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        `${process.env.CLIENT_URL}`
-    );
+    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     res.setHeader("Access-Control-Allow-Credentials", true);
@@ -119,8 +230,7 @@ app.post("/create-checkout-session", async (req, res) => {
                 },
                 quantity: 1,
             };
-        }
-        );
+        });
 
         const SESSION_ID = uuidv4();
 
@@ -136,7 +246,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
         await setDoc(doc(db, "checkoutSessions", SESSION_ID), {
             items: req.body,
-            complete: false
+            complete: false,
         });
 
         res.json({ url: session.url });
@@ -145,83 +255,7 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-app.post("/success", async (req, res) => {
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        `${process.env.CLIENT_URL}`
-    );
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
-
-    const session_id = req.query.session_id; // Retrieve the session ID from the query parameters
-
-    try {
-        const checkoutSessionDocRef = doc(db, "checkoutSessions", session_id);
-
-        const checkoutSessionDocSnap = await getDoc(checkoutSessionDocRef);
-
-        if (checkoutSessionDocSnap.exists()) {
-            const items = checkoutSessionDocSnap.data().items;
-            const hasBeenCompleted = checkoutSessionDocSnap.data().complete;
-
-            if (hasBeenCompleted) {
-                throw new Error("Purchase has already been completed.");
-            }
-
-            // Update the database to reflect the purchase
-            const usersCollectionRef = collection(db, 'users');
-
-            const q = query(usersCollectionRef, where("email", "==", req.body.email));
-
-            const querySnapshot = await getDocs(q);
-
-            querySnapshot.forEach(async (document) => {
-                const docId = document.id;
-
-                const userDocRef = doc(db, "users", docId);
-                
-                const userDoc = await getDoc(userDocRef);
-
-                try {
-                    await updateDoc(userDocRef, {
-                        purchasedItems: {
-                            ...userDoc.data().purchasedItems,
-                            ...items
-                        }
-                    });
-                } catch(error) {
-                    console.log(error);
-                    res.status(500).send(error.message)
-                }
-            });
-
-            // Update the database to reflect that the purchase has been completed
-            try {
-                await setDoc(checkoutSessionDocRef, {
-                    complete: true,
-                    userEmail: req.body.email
-                }, { merge: true });
-            } catch (error) {
-                console.log(error);
-                res.status(500).send(error.message)
-            }
-
-            res.send(
-                "Purchase successful! Items added to your dashboard." +
-                    JSON.stringify(items)
-            );
-        } else {
-            throw new Error("Successful purchase was not found.");
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
-});
-
 // -------------------------------------------------- EXPRESS ROUTES
-
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
