@@ -142,35 +142,38 @@ app.post("/success", async (req, res) => {
                 throw new Error("Purchase has already been completed.");
             }
 
-            // Update the database to reflect the purchase
-            const usersCollectionRef = collection(db, "users");
-
-            const q = query(
-                usersCollectionRef,
-                where("email", "==", req.body.email)
-            );
-
-            const querySnapshot = await getDocs(q);
-
-            querySnapshot.forEach(async (document) => {
-                const docId = document.id;
-
-                const userDocRef = doc(db, "users", docId);
-
-                const userDoc = await getDoc(userDocRef);
-
-                try {
-                    await updateDoc(userDocRef, {
-                        purchasedItems: {
-                            ...userDoc.data().purchasedItems,
-                            ...items,
-                        },
-                    });
-                } catch (error) {
-                    console.log(error);
-                    res.status(500).send(error.message);
-                }
-            });
+            console.log(req.body.email);
+            if (req.body.email) {
+                // Update the database to reflect the purchase
+                const usersCollectionRef = collection(db, "users");
+    
+                const q = query(
+                    usersCollectionRef,
+                    where("email", "==", req.body.email)
+                );
+    
+                const querySnapshot = await getDocs(q);
+    
+                querySnapshot.forEach(async (document) => {
+                    const docId = document.id;
+    
+                    const userDocRef = doc(db, "users", docId);
+    
+                    const userDoc = await getDoc(userDocRef);
+    
+                    try {
+                        await updateDoc(userDocRef, {
+                            purchasedItems: {
+                                ...userDoc.data().purchasedItems,
+                                ...items,
+                            },
+                        });
+                    } catch (error) {
+                        console.log(error);
+                        res.status(500).send(error.message);
+                    }
+                });
+            }
 
             // Update the database to reflect that the purchase has been completed
             try {
@@ -178,7 +181,7 @@ app.post("/success", async (req, res) => {
                     checkoutSessionDocRef,
                     {
                         complete: true,
-                        userEmail: req.body.email,
+                        userEmail: req.body.email ? req.body.email : null,
                     },
                     { merge: true }
                 );
@@ -188,7 +191,7 @@ app.post("/success", async (req, res) => {
             }
 
             res.send(
-                "Purchase successful! Items added to your dashboard." +
+                "Purchase successful! Items purchased." +
                     JSON.stringify(items)
             );
         } else {

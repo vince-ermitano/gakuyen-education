@@ -28,6 +28,9 @@ const Homepage = () => {
                 console.log(user);
                 console.log(auth.currentUser.email);
                 verifyPurchase();
+            } else if (session_id) {
+                verifyPurchase();
+                return;
             } else {
                 return;
             }
@@ -43,7 +46,7 @@ const Homepage = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        email: auth.currentUser.email,
+                        email: auth.currentUser?.email,
                     }),
                 }
             )
