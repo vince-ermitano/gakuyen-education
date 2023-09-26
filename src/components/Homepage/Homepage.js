@@ -70,6 +70,7 @@ const Homepage = () => {
                     return Promise.reject(errorMessage)
                 })
                 .catch((e) => {
+                    if (!e) return;
                     console.error(e);
                     toast.error(e, {
                         position: "top-center",

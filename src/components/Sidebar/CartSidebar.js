@@ -7,6 +7,7 @@ import { toggleCartSidebar, toggleLoginSidebar } from "../../features/SidebarSli
 import { calculateTotalPrice } from "../../features/ShopSlice";
 import { auth } from "../../config/firebaseConfig";
 import { toast } from "react-toastify";
+import { TOAST_POSITION, updateCartAfterRemovalOfDupes } from "../../helpers";
 
 // TODO: Add ability to add items to cart that are not Presets/Masterclasses
 
@@ -26,6 +27,83 @@ const CartSidebar = () => {
     const loginDialog = document.getElementById("login_dialog");
 
     // handle functions
+    const createCheckoutSession = useCallback(() => {
+        
+        if (!auth.currentUser) {
+            fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session?`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: localStorage.getItem('cart')
+            }).then(res => {
+                if (res.ok) return res.json()
+                return res.json().then(json => Promise.reject(json))
+            }).then(({ url }) => {
+                window.location = url
+            }).catch(e => {
+                console.error(e.error)
+                toast.error(e.error, TOAST_POSITION);
+            })
+
+            return;
+        }
+
+        // fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session?`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: localStorage.getItem('cart')
+        // }).then(res => {
+        //     if (res.ok) return res.json()
+        //     return res.json().then(json => Promise.reject(json))
+        // }).then(({ url }) => {
+        //     window.location = url
+        // }).catch(e => {
+        //     console.error(e.error)
+        // })
+
+        auth.currentUser
+            .getIdToken(true)
+            .then((idToken) => {
+                fetch(
+                    `${process.env.REACT_APP_SERVER_URL}/create-checkout-session?`,
+                    {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${idToken}`,
+                            "Content-Type": "application/json",
+                        },
+                        body: localStorage.getItem("cart"),
+                    }
+                )
+                    .then((res) => {
+                        if (res.ok) return res.json();
+                        return res.json().then((json) => Promise.reject(json));
+                    })
+                    .then(({ url }) => {
+                        window.location = url;
+                    })
+                    .catch((e) => {
+                        console.error(e.error);
+                        toast.error(e.error, TOAST_POSITION);
+
+                        if (e.type === "someOwned") {
+                            // run function to filter cart
+                            console.log("run function to filter cart");
+                            updateCartAfterRemovalOfDupes(e.newCart);
+                            dispatch(toggleCartSidebar());
+                            dispatch(calculateTotalPrice());
+                            dispatch(toggleCartSidebar());
+                        }
+                    });
+            })
+            .catch((e) => {
+                console.error(e.error);
+            });
+    }, [dispatch]);
+
     const handleProceedToCheckout = useCallback(() => {
 
         if (localStorage.getItem('cart') === '{}') {
@@ -40,24 +118,8 @@ const CartSidebar = () => {
 
         createCheckoutSession();
         
-    }, [loginDialog]);
+    }, [loginDialog, createCheckoutSession]);
 
-    const createCheckoutSession = () => {
-        fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: localStorage.getItem('cart')
-        }).then(res => {
-            if (res.ok) return res.json()
-            return res.json().then(json => Promise.reject(json))
-        }).then(({ url }) => {
-            window.location = url
-        }).catch(e => {
-            console.error(e.error)
-        })
-    }
 
     const handleProceedWithoutLogin = () => {
         loginDialog.close();

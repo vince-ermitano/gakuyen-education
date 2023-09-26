@@ -12,11 +12,6 @@ if (!localStorage.getItem('cart')) {
     localStorage.setItem('cart', JSON.stringify([]));
 }
 
-// Set user in localStorage
-if (!localStorage.getItem('user')) {
-    localStorage.setItem('user', JSON.stringify({}));
-}
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>

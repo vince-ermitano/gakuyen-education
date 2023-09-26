@@ -40,6 +40,14 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
+// Initialize Firebase Admin SDK (for server-side and administrative tasks)
+const admin = require('firebase-admin');
+const serviceAccount = require('../secret/serviceAccountKey.json'); // Your service account key
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
 // functions ==================================================
 // Get products from Firestore
 const getProducts = async () => {
@@ -192,10 +200,6 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
 
 app.use(express.json());
 
-// app.get("/check-if-user-owns-item", async (req, res) => {
-//     try {
-//     }
-// });
 
 app.post("/success", async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
@@ -279,13 +283,77 @@ app.post("/success", async (req, res) => {
     }
 });
 
+app.use("/create-checkout-session", async (req, res, next) => {
+
+    const authorizationHeader = req.headers.authorization;
+
+    // console.log(authorizationHeader);
+
+    if (!authorizationHeader) {
+        return next();
+    }
+
+    let uid = null;
+    const token = authorizationHeader.substring(7);
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    uid = decodedToken.uid;
+
+    // remove duplicates
+    const cart = req.body;
+    const cartItems = Object.keys(cart);
+
+    console.log(`Cart items before removing: ${cartItems}`);
+
+    console.log(uid);
+
+    let removedAnItem = false;
+
+    try {
+        const docSnap = await getDoc(doc(db, "users", uid));
+        const purchasedItems = docSnap.data().purchasedItems;
+        const purchasedItemsKeys = Object.keys(purchasedItems);
+
+        const newCart = {};
+
+        cartItems.forEach((item) => {
+            if (!purchasedItemsKeys.includes(item)) {
+                newCart[item] = cart[item];
+            } else {
+                removedAnItem = true;
+            }
+        });
+
+        req.body = newCart;
+    } catch (error) {
+        console.log(error);
+    }
+
+    console.log(req.body);
+    if (Object.keys(req.body).length === 0) {
+        res.status(500).json({
+            error: "You already own all of these items.",
+            type: "allOwned",
+        });
+        return;
+    }
+
+    if (removedAnItem) {
+        res.status(500).json({
+            error: "You already own some of these items, so we removed them from your cart for you. Verify your cart and try again.",
+            type: "someOwned",
+            newCart: req.body,
+        });
+        return;
+    }
+
+    next();
+});
+
 app.post("/create-checkout-session", async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     res.setHeader("Access-Control-Allow-Credentials", true);
-
-    console.log(req.body);
 
     let totalPrice = 0;
 

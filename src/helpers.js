@@ -1,5 +1,15 @@
 import { toast } from "react-toastify";
 import { calculateTotalPrice } from "./features/ShopSlice";
+// import { auth } from "./config/firebaseConfig";
+
+export const TOAST_POSITION = {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    progress: undefined,
+};
 
 export function convertToSlug(input) {
     return input
@@ -9,8 +19,6 @@ export function convertToSlug(input) {
         .replace(/-+/g, '-')             // Replace consecutive hyphens with a single hyphen
         .trim();                         // Trim any leading/trailing spaces
 }
-
-const checkIfUserAlreadyOwnsItem = async (email, itemId) => {};
 
 export const handleAddToCart = (e, dispatch) => {
 
@@ -45,4 +53,8 @@ export const handleAddToCart = (e, dispatch) => {
         });
     }
 
+};
+
+export const updateCartAfterRemovalOfDupes = (newCart) => {
+    localStorage.setItem("cart", JSON.stringify(newCart));
 };

@@ -16,8 +16,8 @@ const calculateTotalPrice = () => {
 
         let totalPrice = 0;
 
-        console.log(cartItems);
-        console.log(products);
+        // console.log(cartItems);
+        // console.log(products);
 
         for (const itemId in cartItems) {
             if (cartItems.hasOwnProperty(itemId) && products.hasOwnProperty(itemId)) {
@@ -25,8 +25,8 @@ const calculateTotalPrice = () => {
             }
         }
 
-        console.log(totalPrice);
-
+        // console.log(totalPrice);
+        
         dispatch({
             type: 'shop/setTotalPrice',
             payload: totalPrice
