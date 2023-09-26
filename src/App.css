@@ -50,17 +50,3 @@
   margin-bottom: 1rem;
 }
 
-#login_dialog {
-  text-align: center;
-  padding: 1rem 1rem;
-  border: none;
-}
-
-#login_dialog .selection-buttons {
-  display: flex;
-  justify-content: space-around;
-}
-
-#login_dialog .dialog__overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-}

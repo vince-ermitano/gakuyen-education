@@ -58,6 +58,31 @@ const getProducts = async () => {
     return productsObject;
 };
 
+const sendConfirmationEmail = (email, dynamic_data) => {
+    return new Promise((resolve, reject) => {
+        const msg = {
+            to: email,
+            from: {
+                email: process.env.SENDGRID_SENDER_EMAIL,
+                name: "The Odyssey",
+            },
+            dynamic_template_data: dynamic_data,
+            templateId: "d-458280e880e14f3985e5fbc65a603d70",
+        };
+
+        sgMail
+            .send(msg)
+            .then(() => {
+                console.log("Email sent");
+                resolve("Email sent");
+            })
+            .catch((error) => {
+                console.error(error);
+                reject(error);
+            });
+    });
+};
+
 const computeTotalPrice = (cart) => {};
 
 // ================================================== functions
@@ -67,7 +92,7 @@ let productsObject = {};
 
 getProducts().then((products) => {
     productsObject = products;
-    console.log(productsObject);
+    // console.log(productsObject);
 });
 
 // -------------------------------------------------- firebase
@@ -97,7 +122,7 @@ const storeItems = new Map([
 ]);
 
 // EXPRESS ROUTES --------------------------------------------------
-app.post("/webhook", express.raw({ type: "application/json" }), (req, res) => {
+app.post("/webhook", express.raw({ type: "application/json" }), async (req, res) => {
     console.log("Made it to webhook");
     const sig = req.headers["stripe-signature"];
 
@@ -117,11 +142,51 @@ app.post("/webhook", express.raw({ type: "application/json" }), (req, res) => {
     if (event.type === "checkout.session.completed") {
         const email = event.data.object.customer_details.email;
         console.log("Payment was successful. Email:", email);
-        // You now have the email address captured from the checkout session.
-        // You can use it as needed, such as storing it in your database or sending a confirmation email.
-    }
 
-    res.status(200).end();
+        const success_url = event.data.object.success_url;
+        const session_id = success_url.split("=")[1];
+
+        
+        const session = event.data.object;
+        
+        const { line_items } = await stripe.checkout.sessions.retrieve(
+            session.id,
+            {
+                expand: ["line_items"],
+            }
+        );
+
+        const totalPrice = line_items.data.reduce((acc, item) => {
+            return acc + item.amount_total / 100;
+        }, 0);
+
+        const formattedItems = line_items.data.map((item) => ({
+            name: item.description,
+            price: item.amount_total / 100,
+            quantity: 1,
+          }));
+
+        const dynamic_data = {
+            subject: "Your dynamic subject",
+            name: event.data.object.customer_details.name,
+            confirmationNum: session_id,
+            items: formattedItems,
+            total: `${totalPrice} USD`
+        };
+
+
+        sendConfirmationEmail(email, dynamic_data)
+        .then((message) => {
+            console.log(message);
+            return res.status(200).end();
+        })
+        .catch((error) => {
+            console.log(error);
+            return res.status(500).end();
+        });
+    } else {
+        res.status(200).end();
+    }
 });
 
 
@@ -263,7 +328,7 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-app.post("/send-email", async (req, res) => {
+app.post("/send-email-test", async (req, res) => {
     const msg = {
         to: 'vinceermitano@yahoo.com', // Change to your recipient
         from: {
