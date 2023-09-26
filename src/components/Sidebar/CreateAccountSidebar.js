@@ -7,7 +7,7 @@ import {
     toggleLoginSidebar,
 } from "../../features/SidebarSlice";
 import { auth, db } from "../../config/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 // import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { toast } from 'react-toastify';
@@ -104,11 +104,11 @@ const CreateAccountSidebar = () => {
             return;
         }
         createUserWithEmailAndPassword(auth, emailAddress, password)
-            .then((userCredential) => {
-                alertMessage('createSuccess');
+            .then(async (userCredential) => {
+                alertMessage("createSuccess");
                 // Signed in
                 // dispatch(setLoggedInStatus(true));
-                
+
                 // Clear form
                 setFirstName("");
                 setLastName("");
@@ -121,21 +121,38 @@ const CreateAccountSidebar = () => {
                     displayName: `${firstName} ${lastName}`,
                 });
 
-                // Add user's first and last name to the database
-                addDoc(usersCollectionRef, {
+                // log user id
+                console.log(userCredential.user.uid);
+
+                await setDoc(doc(db, "users", userCredential.user.uid), {
                     firstName: firstName,
                     lastName: lastName,
                     email: emailAddress,
+                    purchasedItems: [],
                 })
                     .then((docRef) => {
-                        alertMessage('userAddedToDatabase');
-                        console.log("Document written with ID: ", docRef.id);
-
+                        alertMessage("userAddedToDatabase");
                     })
                     .catch((error) => {
-                        alertMessage('userFailedToAddToDatabase');
+                        alertMessage("userFailedToAddToDatabase");
                         console.error("Error adding document: ", error);
                     });
+
+                // //Add user's first and last name to the database
+                // addDoc(usersCollectionRef, {
+                //     firstName: firstName,
+                //     lastName: lastName,
+                //     email: emailAddress,
+                //     purchasedItems: [],
+                // })
+                //     .then((docRef) => {
+                //         alertMessage("userAddedToDatabase");
+                //         console.log("Document written with ID: ", docRef.id);
+                //     })
+                //     .catch((error) => {
+                //         alertMessage("userFailedToAddToDatabase");
+                //         console.error("Error adding document: ", error);
+                //     });
             })
             .catch((error) => {
                 if (error.code === "auth/email-already-in-use") {

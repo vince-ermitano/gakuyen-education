@@ -191,6 +191,12 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
 
 
 app.use(express.json());
+
+// app.get("/check-if-user-owns-item", async (req, res) => {
+//     try {
+//     }
+// });
+
 app.post("/success", async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");

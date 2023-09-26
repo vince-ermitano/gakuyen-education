@@ -47,8 +47,10 @@ function App () {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 dispatch(setLoggedInStatus(true)); // Dispatch action for logged in
+                localStorage.setItem("user", user.email);
             } else {
                 dispatch(setLoggedInStatus(false)); // Dispatch action for logged out
+                localStorage.setItem("user", "");
             }
             console.log(user);
         });

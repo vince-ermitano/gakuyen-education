@@ -10,8 +10,9 @@ export function convertToSlug(input) {
         .trim();                         // Trim any leading/trailing spaces
 }
 
+const checkIfUserAlreadyOwnsItem = async (email, itemId) => {};
+
 export const handleAddToCart = (e, dispatch) => {
-    console.log('running handleAddToCart');
 
     // notify user that item has been added to cart if item is already in cart
     if (JSON.parse(localStorage.getItem("cart"))[e.target.dataset.itemId]) {
