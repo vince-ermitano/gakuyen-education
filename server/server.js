@@ -13,6 +13,11 @@ const {
 } = require("firebase/firestore");
 const { v4: uuidv4 } = require("uuid");
 
+// sendgrid --------------------------------------------------
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+// -------------------------------------------------- sendgrid
+
 // firebase --------------------------------------------------
 const firebaseAPIKey = process.env.FIREBASE_API_KEY;
 const firebaseAuthDomain = process.env.FIREBASE_AUTH_DOMAIN;
@@ -256,6 +261,30 @@ app.post("/create-checkout-session", async (req, res) => {
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
+});
+
+app.post("/send-email", async (req, res) => {
+    const msg = {
+        to: 'vinceermitano@yahoo.com', // Change to your recipient
+        from: {
+            email: 'vinceistestinghiscode@gmail.com',
+            name: 'The Odyssey'
+        }, // Change to your verified sender
+        "dynamic_template_data": {
+            "subject": "Your dynamic subject"
+          },
+        templateId: 'd-458280e880e14f3985e5fbc65a603d70',
+      }
+      sgMail
+        .send(msg)
+        .then(() => {
+          console.log('Email sent')
+          res.send('Email sent');
+        })
+        .catch((error) => {
+          console.error(error)
+          res.status(500).send(error.message);
+        })
 });
 
 // -------------------------------------------------- EXPRESS ROUTES
