@@ -7,7 +7,7 @@ import {
     toggleLoginSidebar,
 } from "../../features/SidebarSlice";
 import { auth, db } from "../../config/firebaseConfig";
-import { collection, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 // import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { toast } from 'react-toastify';
@@ -16,9 +16,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const CreateAccountSidebar = () => {
     const dispatch = useDispatch();
     const firstNameInputRef = useRef(null);
-
-    // Firebase
-    const usersCollectionRef = collection(db, "users");
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
