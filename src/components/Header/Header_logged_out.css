@@ -1,4 +1,4 @@
-.header  {
+/* .header  {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,6 +6,22 @@
     margin-top: 4rem;
     margin-bottom: 4rem;
     font-family: 'Foundation Sans';
+} */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-self: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    font-family: 'Foundation Sans';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 90%;
+    transform: translateX(-50%);
+    z-index: 100;
+    /* margin: auto; */
 }
 
 .header .user-directory {

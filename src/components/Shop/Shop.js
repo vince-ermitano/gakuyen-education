@@ -13,6 +13,9 @@ const Shop = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         document.title = "The Shop | GAKUYEN EDUCATION";
+
+        // const gradientCanvas = document.getElementById("gradient-canvas");
+        // gradientCanvas.style.display = "none";
     }, []);
 
     return (

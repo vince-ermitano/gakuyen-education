@@ -9,11 +9,10 @@ import BestSellers from "../BestSellers/BestSellers";
 import PresetsHP from "../Presets/PresetsHP";
 import Testimonials from "../Testimonials/Testimonials";
 import MasterclassHP from "../Masterclass/MasterclassHP";
-import './Homepage.css'
+import "./Homepage.css";
 import { toast } from "react-toastify";
 import { auth } from "../../config/firebaseConfig";
 import { setTotalPrice } from "../../features/ShopSlice";
-
 
 const Homepage = () => {
     const dispatch = useDispatch();
@@ -21,7 +20,7 @@ const Homepage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const session_id = searchParams.get("session_id");
-    
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user && session_id) {
@@ -37,7 +36,6 @@ const Homepage = () => {
         });
 
         const verifyPurchase = async () => {
-
             await fetch(
                 `${process.env.REACT_APP_SERVER_URL}/success?session_id=${session_id}`,
                 {
@@ -54,7 +52,8 @@ const Homepage = () => {
                     if (res.ok) {
                         localStorage.setItem("cart", JSON.stringify([]));
                         toast.success(
-                            "Payment successful! Check your email for your receipt.", {
+                            "Payment successful! Check your email for your receipt.",
+                            {
                                 position: "top-center",
                                 autoClose: 3000,
                                 hideProgressBar: false,
@@ -67,7 +66,7 @@ const Homepage = () => {
                     } else return res.text();
                 })
                 .then((errorMessage) => {
-                    return Promise.reject(errorMessage)
+                    return Promise.reject(errorMessage);
                 })
                 .catch((e) => {
                     if (!e) return;
@@ -88,9 +87,7 @@ const Homepage = () => {
         return () => {
             unsubscribe();
         };
-
     }, [session_id, dispatch]);
-
 
     return (
         <div className="homepage">
@@ -102,7 +99,7 @@ const Homepage = () => {
             <MasterclassHP />
             <Testimonials />
         </div>
-    )
-}
+    );
+};
 
 export default Homepage;

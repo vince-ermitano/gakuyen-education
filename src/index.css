@@ -63,3 +63,40 @@ button, input[type="submit"], input[type="reset"] {
 	cursor: pointer;
 	outline: inherit;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+.hero {
+  position: relative;
+  padding: 6rem;
+
+}
+
+.hero h1 {
+  font-size: 5rem;
+  max-width: 13ch;
+  line-height: 1.1;
+  color: #555;
+  mix-blend-mode: color-burn;
+}
+
+.hero .container {
+  --max-width: 50rem;
+  width: min(100% - 2rem, var(--max-width));
+  margin-left: 15%;
+}
+
+#gradient-canvas {
+  --gradient-color-1: #6ec3f4;
+  --gradient-color-2: #3a3aff;
+  --gradient-color-3: #ff61ab;
+  --gradient-color-4: #E63946;
+  clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 100%);
+  width: 100vw;
+  height: 60vh;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}

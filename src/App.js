@@ -26,6 +26,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { setProducts, setLoading, setInitialTotalPrice} from './features/ShopSlice';
 import { ToastContainer, toast } from "react-toastify";
 
+
 function App () {
 
     /**
@@ -41,6 +42,20 @@ function App () {
     const shouldHideComponents = currentPath.includes(dashboardPath);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const gradientCanvas = document.getElementById("gradient-canvas");
+        const header = document.querySelector(".hero");
+        
+        // if the current path is not the homepage, hide the gradient canvas
+        if (currentPath !== "/") {
+            gradientCanvas.style.display = "none";
+            header.style.display = "none";
+        } else {
+            gradientCanvas.style.display = "block";
+            header.style.display = "block";
+        }
+    })
 
     useEffect(() => {
         // Listen for authentication state changes

@@ -1,0 +1,31 @@
+/* * {
+    box-sizing: border-box;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    max-width: 13ch;
+    line-height: 1.1;
+}
+
+.hero .container {
+    --max-width: 50rem;
+    width: min(100% - 2rem, var(--max-width));
+    margin-inline: auto;
+}
+
+#gradient-canvas {
+    --gradient-color-1: #6ec3f4;
+    --gradient-color-2: #3a3aff;
+    --gradient-color-3: #ff61ab;
+    --gradient-color-4: #E63946;
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 100%);
+    width: 100vw;
+    height: 60vh;
+} */
+
+/* .gradient-container {
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 100%);
+    width: 100vw;
+    height: 60vh;
+} */

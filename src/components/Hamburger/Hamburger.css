@@ -23,10 +23,18 @@ a:hover {
      height: 100%;
   }
   
-  .hamburger-wrapper {
+  /* .hamburger-wrapper {
     position: relative;
     bottom: 6.5rem;
-  }
+  } */
+
+  .hamburger-wrapper {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
   
   
   /* Hamburger */
