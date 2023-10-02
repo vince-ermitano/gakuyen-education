@@ -70,7 +70,7 @@ button, input[type="submit"], input[type="reset"] {
 
 .hero {
   position: relative;
-  padding: 18rem;
+  padding: 18rem 18rem 2rem 18rem;
 }
 
 .hero-title {
