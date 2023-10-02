@@ -71,15 +71,44 @@ button, input[type="submit"], input[type="reset"] {
 .hero {
   position: relative;
   padding: 18rem;
-
 }
 
-.hero h1 {
+.hero-title {
   font-size: 5rem;
   max-width: 13ch;
   line-height: 1.1;
   color: #555;
   mix-blend-mode: color-burn;
+  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /* position: relative; */
+}
+
+.hero-title-container {
+  position: relative;
+}
+
+.hero-title__overlay {
+  position: absolute;
+  font-size: 5rem;
+  max-width: 13ch;
+  line-height: 1.1;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  top: 0;
+}
+
+.hero-title[data-overlay] {
+  color: #000;
+  position: absolute;
+  top: 0;
+  font-size: 5rem;
+  max-width: 13ch;
+  line-height: 1.1;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  z-index: -2;
+  mix-blend-mode: revert;
 }
 
 .hero .container {

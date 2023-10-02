@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 // import HeroBanner from "../HeroBanner/HeroBanner";
 // import ShopNav from "../ShopNav/ShopNav";
-import ShopNavV2 from "../ShopNav/ShopNavV2";
+// import ShopNavV2 from "../ShopNav/ShopNavV2";
 import BestSellers from "../BestSellers/BestSellers";
 import PresetsHP from "../Presets/PresetsHP";
 import Testimonials from "../Testimonials/Testimonials";
@@ -93,7 +93,7 @@ const Homepage = () => {
         <div className="homepage">
             {/* <HeroBanner /> */}
             {/* <ShopNav /> */}
-            <ShopNavV2 />
+            {/* <ShopNavV2 /> */}
             <BestSellers />
             <PresetsHP />
             <MasterclassHP />
