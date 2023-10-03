@@ -25,6 +25,7 @@ import { db } from "./config/firebaseConfig"
 import { collection, getDocs } from "firebase/firestore";
 import { setProducts, setLoading, setInitialTotalPrice} from './features/ShopSlice';
 import { ToastContainer, toast } from "react-toastify";
+import DashboardHome from './components/Dashboard/DashboardHome/DashboardHome';
 
 
 function App () {
@@ -140,7 +141,7 @@ function App () {
                     element={<MasterclassDesc />}
                 ></Route>
                 <Route path="/dashboard" element={<Dashboard />}>
-                    <Route path="main" element={<ModuleView />}></Route>
+                    <Route path="main" element={<DashboardHome />}></Route>
                     <Route path="modules" element={<ModuleView />}></Route>
                     <Route path="presets" element={<PresetLutView />}></Route>
                     <Route path="luts" element={<PresetLutView />}></Route>

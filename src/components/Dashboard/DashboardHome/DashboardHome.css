@@ -1,0 +1,176 @@
+#dashboard-home-container {
+    padding: 10%;
+}
+
+#dashboard-home-container svg {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+#dashboard-home-container h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 4rem;
+}
+
+#dashboard-home-container h1 span {
+    color: #999;
+}
+
+#dashboard-home-container h1,
+#dashboard-home-container h2,
+#dashboard-home-container button,
+#dashboard-home-container span {
+    font-family: 'Poppins', sans-serif;
+}
+
+#dashboard-home-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.dashboard-home-card {
+    padding: 4rem 2rem;
+    -webkit-box-shadow: 3px 4px 27px 3px rgba(0, 0, 0, 0.41);
+    -moz-box-shadow: 3px 4px 27px 3px rgba(0, 0, 0, 0.41);
+    box-shadow: 3px 4px 27px 3px rgba(0, 0, 0, 0.41);
+    border-radius: 10px;
+    position: relative;
+}
+
+.dashboard-home-card .image-container {
+    overflow: hidden;
+}
+
+#continue-learning-card {
+    height: 550px;
+}
+
+#continue-learning-card .image-container {
+    width: 100%;
+    height: 60%;
+    border-radius: 10px;
+}
+
+#continue-learning-card .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#continue-learning-card button, #my-items-card button {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 4rem;
+    padding: 0.75rem 2rem;
+    background-color: #feeb22;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    border: #feeb22 1px solid;
+}
+
+#continue-learning-card button:hover, #my-items-card button:hover {
+    background-color: #f6f6f6;
+    opacity: 0.8;
+    border: #dddddd 1px solid;
+}
+
+#my-items-card {
+    height: 550px;
+}
+
+#my-items-card .go-to-items-btn {
+    width: 100%;
+    background-color: #f6f6f6;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    transition: ease-in-out 0.3s;
+    border: #f6f6f6 1px solid;
+    background-position: 50% 60%; 
+    margin-bottom: 1rem;
+}
+
+#my-items-card .go-to-items-btn:hover {
+    background-image: url('https://media.giphy.com/media/l41lGnxllmN3YqOyI/giphy.gif');
+    /* background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTJlam1vMWdvZjF4aWQyc2RocnhrZ21mNzZoMzdmMm0xOHNlZTI1dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26gYFsgwLZogksCPK/giphy-downsized-large.gif'); */
+    background-color: transparent;
+    border: #999 1px solid;
+    opacity: 0.8;
+    color: #fff;
+}
+
+.go-to-items-btn span {
+    font-size: 1.25rem;
+}
+
+#my-items-card .icon_w_text {
+    display: flex;
+    align-items: center;
+}
+
+#my-items-card .icon_w_text svg {
+    margin-right: 1rem;
+}
+
+#my-items-card .go-to-items-btn .image-container {
+    width: 50px;
+    height: 50px;
+}
+
+#my-items-card .go-to-items-btn .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+}
+
+.right-most-card {
+    display: grid;
+    height: 550px;
+    gap: 2rem 1rem;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 5fr;
+}
+
+#account-settings-card {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: ease-in-out 0.3s;
+}
+
+#account-settings-card:hover {
+    /* background-image: url('https://media.giphy.com/media/l41lGnxllmN3YqOyI/giphy.gif'); */
+    background-color: #160B03;
+    color: white;
+}
+
+#account-settings-card h2 {
+    margin-bottom: 0;
+    margin-right: 1rem;
+}
+
+#contact-us-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transition: ease-in-out 0.3s;
+}
+
+#contact-us-card:hover {
+    background-color: #4169E1;
+    color: white;
+}
+
+#order-history-card {
+    grid-column: span 2;
+}
+
+
+
+
