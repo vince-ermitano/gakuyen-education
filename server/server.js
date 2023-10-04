@@ -111,6 +111,10 @@ const path = require("path");
 const cors = require("cors");
 
 app.use(express.static("public"));
+
+// app.use(express.static(path.join(__dirname, 'public')));
+
+  
 app.use(
     cors({
         origin: `${process.env.CLIENT_URL}`,
@@ -130,6 +134,11 @@ const storeItems = new Map([
 ]);
 
 // EXPRESS ROUTES --------------------------------------------------
+// // Catch-all route: Serve the index.html file for all routes
+// app.get('/*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+//   });
+
 app.post("/webhook", express.raw({ type: "application/json" }), async (req, res) => {
     console.log("Made it to webhook");
     const sig = req.headers["stripe-signature"];

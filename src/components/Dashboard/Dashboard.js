@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, Link, Outlet } from "react-router-dom";
 import "./Dashboard.css";
 import { RxDashboard } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
 import { BiBook, BiSlider, BiPalette } from "react-icons/bi";
 import { BsGear } from "react-icons/bs";
+import { auth } from "../../config/firebaseConfig";
 
 
 
 const Dashboard = () => {
+
+
+    useEffect(() => {
+        document.title = "Dashboard | Gakuyen Education";
+
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = "/login";
+            }
+        }
+        );
+    });
+
     return (
         <div id="dashboard">
             <div id="dashboard-view">

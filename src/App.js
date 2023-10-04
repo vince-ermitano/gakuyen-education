@@ -56,7 +56,7 @@ function App () {
             gradientCanvas.style.display = "block";
             header.style.display = "block";
         }
-    })
+    }, [currentPath]);
 
     useEffect(() => {
         // Listen for authentication state changes
