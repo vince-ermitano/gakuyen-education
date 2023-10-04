@@ -13,7 +13,7 @@ const PresetLutCard = (props) => {
                 />
             </div>
             <p>Preset Name</p>
-                {props.isOwned === "true" ? <BsDownload /> : <button>Check it out</button>}
+            {props.isOwned === "true" ? <BsDownload /> : <button>Check it out</button>}
         </div>
     );
 };
