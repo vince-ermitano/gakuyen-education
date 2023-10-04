@@ -49,6 +49,12 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li className="dashboard-sidebar-menu-item">
+                                <NavLink to="/dashboard/transitions">
+                                    <BiPalette />
+                                    <p>Transitions</p>
+                                </NavLink>
+                            </li>
+                            <li className="dashboard-sidebar-menu-item">
                                 <NavLink to="/dashboard/settings">
                                     <BsGear />
                                     <p>Settings</p>

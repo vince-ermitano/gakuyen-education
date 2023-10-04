@@ -145,6 +145,7 @@ function App () {
                     <Route path="modules" element={<ModuleView />}></Route>
                     <Route path="presets" element={<PresetLutView />}></Route>
                     <Route path="luts" element={<PresetLutView />}></Route>
+                    <Route path="transitions" element={<PresetLutView />}></Route>
                     <Route path="settings" element={<Settings />}></Route>
                 </Route>
             </Routes>

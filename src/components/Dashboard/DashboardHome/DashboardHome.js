@@ -4,9 +4,36 @@ import { BiSlider, BiPalette, BiSupport } from "react-icons/bi";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaFilm } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 
 
 const DashboardHome = () => {
+
+    const navigate = useNavigate();
+
+    const goToPresets = () => {
+        navigate("/dashboard/presets");
+    }
+
+    const goToLuts = () => {
+        navigate("/dashboard/luts");
+    }
+
+    const goToTransitions = () => {
+        navigate("/dashboard/transitions");
+    }
+
+    const goToShop = () => {
+        navigate("/store");
+    }
+
+    const handleContinueLearning = () => {
+        navigate("/dashboard/modules");
+    }
+
+    const goToAccountSettings = () => {
+        navigate("/dashboard/settings");
+    }
 
     return (
         <div id="dashboard-home-container">
@@ -26,18 +53,18 @@ const DashboardHome = () => {
                             alt="The Odyssey Thumbnail"
                         />
                     </div>
-                    <button>Continue Learning</button>
+                    <button onClick={handleContinueLearning}>Continue Learning</button>
                 </div>
                 <div className="dashboard-home-card" id="my-items-card">
                     <h2>My Items</h2>
-                    <div className="go-to-items-btn">
+                    <div className="go-to-items-btn" onClick={goToPresets}>
                         <div className="icon_w_text">
                             <BiSlider />
                             <span>Presets</span>
                         </div>
                         <BsArrowRightShort />
                     </div>
-                    <div className="go-to-items-btn">
+                    <div className="go-to-items-btn" onClick={goToLuts}>
                         <div className="icon_w_text">
                             <BiPalette />
 
@@ -45,19 +72,20 @@ const DashboardHome = () => {
                         </div>
                         <BsArrowRightShort />
                     </div>
-                    <div className="go-to-items-btn">
+                    <div className="go-to-items-btn" onClick={goToTransitions}>
                         <div className="icon_w_text">
                             <FaFilm />
                             <span>Transitions</span>
                         </div>
                         <BsArrowRightShort />
                     </div>
-                    <button>Visit Shop</button>
+                    <button onClick={goToShop}>Visit Shop</button>
                 </div>
                 <div className="right-most-card">
                     <div
                         className="dashboard-home-card"
                         id="account-settings-card"
+                        onClick={goToAccountSettings}
                     >
                         <h2>Account Settings</h2>
                         <VscAccount />
@@ -71,7 +99,9 @@ const DashboardHome = () => {
                     <div
                         className="dashboard-home-card"
                         id="order-history-card"
-                    ></div>
+                    >
+                        <h2>Order History</h2>
+                    </div>
                 </div>
             </div>
         </div>

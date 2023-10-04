@@ -103,7 +103,7 @@ const Header = () => {
             {/* <Hamburger /> */}
             <div className="user-directory">
                 <span>
-                    <NavLink to="/dashboard">MY ACCOUNT</NavLink>
+                    <NavLink to="/dashboard/main">MY ACCOUNT</NavLink>
                 </span>
                 <span
                     className="darkgray-background"
