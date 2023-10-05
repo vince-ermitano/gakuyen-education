@@ -19,12 +19,32 @@ const PresetLutView = () => {
     const AES = CryptoJS.AES;
 
     // const userOwnedItems = JSON.parse(AES.decrypt(useSelector((state) => state.user.purchasedItems), process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8));
-    const userOwnedItems = JSON.parse(
-        AES.decrypt(
-            localStorage.getItem("purchasedItems"),
-            process.env.REACT_APP_SECRET_KEY
-        ).toString(CryptoJS.enc.Utf8)
-    );
+
+    // TODO: if user tampers with localStorage, throw an error
+
+    let userOwnedItems;
+
+    try {
+        userOwnedItems = JSON.parse(
+            AES.decrypt(
+                localStorage.getItem("purchasedItems"),
+                process.env.REACT_APP_SECRET_KEY
+            ).toString(CryptoJS.enc.Utf8)
+        );
+    } catch(err) {
+        console.log(err);
+        toast.error("Error fetching your owned items. Attempting to refetch...", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+        });
+
+        setTimeout(() => {
+            window.location.href = "/dashboard";
+        }, 3000);
+    }
 
     // Get products from Firestore
     const getProducts = async () => {
