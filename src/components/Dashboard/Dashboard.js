@@ -10,34 +10,36 @@ import { db } from "../../config/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 // import { useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
-import { useDispatch } from "react-redux";
-import { setPurchasedItems } from "../../features/UserSlice";
+// import { useDispatch } from "react-redux";
+// import { setPurchasedItems } from "../../features/UserSlice";
 import { toast } from "react-toastify";
 
 
 
 const Dashboard = () => {
 
+    // if (!auth.currentUser) {
+    //     window.location.href = "/";
+    // }
+
     const AES = CryptoJS.AES;
     
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     // const products = useSelector((state) => state.shop.products);
 
 
+    
+    // fetchUserOwnedItems();
+    
+    
+    
+    
     useEffect(() => {
         document.title = "Dashboard | Gakuyen Education";
-
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (!user) {
-                window.location.href = "/login";
-            }
-        });
-
-
-        // fetch user owned items from firestore
+        
         const fetchUserOwnedItems = async () => {
             const docRef = doc(db, "users", auth.currentUser.uid);
-
+    
             try {
                 const docSnap = await getDoc(docRef);
     
@@ -45,7 +47,9 @@ const Dashboard = () => {
                 const ownedItemsJson = JSON.stringify(userOwnedItems);
                 const encryptedOwnedItems = AES.encrypt(ownedItemsJson, process.env.REACT_APP_SECRET_KEY).toString();
     
-                dispatch(setPurchasedItems(encryptedOwnedItems));
+                // dispatch(setPurchasedItems(encryptedOwnedItems));
+    
+                localStorage.setItem("purchasedItems", encryptedOwnedItems);
             } catch(err) {
                 console.log(err);
                 toast.error("Error fetching your owned items", {
@@ -58,14 +62,55 @@ const Dashboard = () => {
                 });
             }
         };
+    
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = "/";
+            } else {
+                fetchUserOwnedItems();
+            }
+        });
+        // const unsubscribe = auth.onAuthStateChanged((user) => {
+        //     if (!user) {
+        //         window.location.href = "/";
+        //     }
+        // });
 
-        fetchUserOwnedItems();
+
+        // fetch user owned items from firestore
+        // const fetchUserOwnedItems = async () => {
+        //     const docRef = doc(db, "users", auth.currentUser.uid);
+
+        //     try {
+        //         const docSnap = await getDoc(docRef);
+    
+        //         const userOwnedItems = docSnap.data().purchasedItems;
+        //         const ownedItemsJson = JSON.stringify(userOwnedItems);
+        //         const encryptedOwnedItems = AES.encrypt(ownedItemsJson, process.env.REACT_APP_SECRET_KEY).toString();
+    
+        //         // dispatch(setPurchasedItems(encryptedOwnedItems));
+
+        //         localStorage.setItem("purchasedItems", encryptedOwnedItems);
+        //     } catch(err) {
+        //         console.log(err);
+        //         toast.error("Error fetching your owned items", {
+        //             position: "top-center",
+        //             autoClose: 3000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             progress: undefined,
+        //         });
+        //     }
+        // };
+
+        // fetchUserOwnedItems();
 
 
         return () => {
             unsubscribe();
         };
-    });
+    }, [AES]);
 
     return (
         <div id="dashboard">

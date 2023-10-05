@@ -1,22 +1,70 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import "./PresetLutView.css";
 import PresetLutCard from "./PresetLutCard";
 import { BsDownload } from "react-icons/bs";
 import { filterProducts, filterProductsNotOwned } from "../../../helpers";
 import CryptoJS from "crypto-js";
+import { db } from "../../../config/firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../../features/ShopSlice";
+import { toast } from "react-toastify";
+
 
 const PresetLutView = () => {
-
+    const dispatch = useDispatch();
     const location = useLocation();
     const currentPath = location.pathname;
     const AES = CryptoJS.AES;
 
+    // const userOwnedItems = JSON.parse(AES.decrypt(useSelector((state) => state.user.purchasedItems), process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8));
+    const userOwnedItems = JSON.parse(
+        AES.decrypt(
+            localStorage.getItem("purchasedItems"),
+            process.env.REACT_APP_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8)
+    );
 
-    const products = useSelector((state) => state.shop.products);
-    const userOwnedItems = JSON.parse(AES.decrypt(useSelector((state) => state.user.purchasedItems), process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8));
+    // Get products from Firestore
+    const getProducts = async () => {
+        dispatch(setLoading(true));
 
+        try {
+            const querySnapshot = await getDocs(collection(db, "products"));
+
+            const productsObject = {};
+            querySnapshot.forEach((doc) => {
+                [productsObject[doc.id]] = doc.data();
+            });
+
+            console.log(productsObject);
+            localStorage.setItem("products", productsObject);
+
+            dispatch(setLoading(false));
+        } catch (error) {
+            console.log(error);
+            toast.error("Error getting products", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                progress: undefined,
+            });
+        }
+    };
+
+    if (localStorage.getItem("products") === null) {
+        console.log("products is empty")
+        getProducts();
+    }
+
+    const products = JSON.parse(localStorage.getItem("products"));
+
+    console.log(products);
+
+    // TODO: FIX THIS
     let ownedItemsForCurrentPage;
     let unownedItemsForCurrentPage;
 
@@ -24,13 +72,21 @@ const PresetLutView = () => {
         const ownedPresets = filterProducts(userOwnedItems, "Preset", products);
         ownedItemsForCurrentPage = ownedPresets;
 
-        const unownedPresets = filterProductsNotOwned(userOwnedItems, "Preset", products);
+        const unownedPresets = filterProductsNotOwned(
+            userOwnedItems,
+            "Preset",
+            products
+        );
         unownedItemsForCurrentPage = unownedPresets;
     } else if (currentPath.includes("/dashboard/luts")) {
         const ownedLuts = filterProducts(userOwnedItems, "Lut", products);
         ownedItemsForCurrentPage = ownedLuts;
 
-        const unownedLuts = filterProductsNotOwned(userOwnedItems, "Lut", products);
+        const unownedLuts = filterProductsNotOwned(
+            userOwnedItems,
+            "Lut",
+            products
+        );
         unownedItemsForCurrentPage = unownedLuts;
     } else if (currentPath.includes("/dashboard/transitions")) {
         const ownedTransitions = filterProducts(
@@ -51,12 +107,10 @@ const PresetLutView = () => {
     console.log(ownedItemsForCurrentPage);
     console.log(unownedItemsForCurrentPage);
 
-
-
     useEffect(() => {
         // TODO: change document title to reflect current category
         document.title = "My Items | Gakuyen Education";
-    }, [currentPath, products]);
+    }, [currentPath]);
     return (
         <div id="preset-lut-view">
             <section id="preset-lut-view-left">
@@ -66,11 +120,13 @@ const PresetLutView = () => {
                         id="user-owned-presets-luts-container"
                         className="presets-luts-container"
                     >
-
-                        { Object.keys(ownedItemsForCurrentPage).length === 0 ? <p>You don't own any presets yet!</p> : Object.keys(ownedItemsForCurrentPage).map((key) => {
-                            return <PresetLutCard isOwned="true" />;
-                        })}
-
+                        {Object.keys(ownedItemsForCurrentPage).length === 0 ? (
+                            <p>You don't own any presets yet!</p>
+                        ) : (
+                            Object.keys(ownedItemsForCurrentPage).map((key) => {
+                                return <PresetLutCard isOwned="true" />;
+                            })
+                        )}
                     </div>
                 </section>
                 <section id="user-unowned-presets-luts">
@@ -79,9 +135,16 @@ const PresetLutView = () => {
                         id="user-unowned-presets-luts-container"
                         className="presets-luts-container"
                     >
-                        { Object.keys(unownedItemsForCurrentPage).length === 0 ? <p>Coming soon!</p> : Object.keys(unownedItemsForCurrentPage).map((key) => {
-                            return <PresetLutCard isOwned="false" />;
-                        })}
+                        {Object.keys(unownedItemsForCurrentPage).length ===
+                        0 ? (
+                            <p>Coming soon!</p>
+                        ) : (
+                            Object.keys(unownedItemsForCurrentPage).map(
+                                (key) => {
+                                    return <PresetLutCard isOwned="false" />;
+                                }
+                            )
+                        )}
                     </div>
                 </section>
             </section>

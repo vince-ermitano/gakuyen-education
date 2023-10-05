@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import { calculateTotalPrice } from "./features/ShopSlice";
 // import { auth } from "./config/firebaseConfig";
 
+
 export const TOAST_POSITION = {
     position: "top-center",
     autoClose: 3000,

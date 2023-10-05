@@ -13,6 +13,7 @@ import "./Homepage.css";
 import { toast } from "react-toastify";
 import { auth } from "../../config/firebaseConfig";
 import { setTotalPrice } from "../../features/ShopSlice";
+import { toggleLoginSidebar } from "../../features/SidebarSlice";
 
 const Homepage = () => {
     const dispatch = useDispatch();
@@ -20,8 +21,15 @@ const Homepage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const session_id = searchParams.get("session_id");
+    const showLogin = searchParams.get("show_login");
 
+    
     useEffect(() => {
+
+        if (showLogin === "true") {
+            dispatch(toggleLoginSidebar());
+        }
+
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user && session_id) {
                 console.log(user);
@@ -87,7 +95,7 @@ const Homepage = () => {
         return () => {
             unsubscribe();
         };
-    }, [session_id, dispatch]);
+    }, [session_id, dispatch, showLogin]);
 
     return (
         <div className="homepage">
