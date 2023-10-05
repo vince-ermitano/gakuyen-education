@@ -49,6 +49,7 @@ function App () {
         const header = document.querySelector(".hero");
         
         // if the current path is not the homepage, hide the gradient canvas
+        // TODO: account for success page from stripe
         if (currentPath !== "/") {
             gradientCanvas.style.display = "none";
             header.style.display = "none";

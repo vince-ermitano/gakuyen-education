@@ -12,6 +12,7 @@ import { doc, getDoc } from "firebase/firestore";
 import CryptoJS from "crypto-js";
 import { useDispatch } from "react-redux";
 import { setPurchasedItems } from "../../features/UserSlice";
+import { toast } from "react-toastify";
 
 
 
@@ -36,13 +37,26 @@ const Dashboard = () => {
         // fetch user owned items from firestore
         const fetchUserOwnedItems = async () => {
             const docRef = doc(db, "users", auth.currentUser.uid);
-            const docSnap = await getDoc(docRef);
 
-            const userOwnedItems = docSnap.data().purchasedItems;
-            const ownedItemsJson = JSON.stringify(userOwnedItems);
-            const encryptedOwnedItems = AES.encrypt(ownedItemsJson, process.env.REACT_APP_SECRET_KEY).toString();
-
-            dispatch(setPurchasedItems(encryptedOwnedItems));
+            try {
+                const docSnap = await getDoc(docRef);
+    
+                const userOwnedItems = docSnap.data().purchasedItems;
+                const ownedItemsJson = JSON.stringify(userOwnedItems);
+                const encryptedOwnedItems = AES.encrypt(ownedItemsJson, process.env.REACT_APP_SECRET_KEY).toString();
+    
+                dispatch(setPurchasedItems(encryptedOwnedItems));
+            } catch(err) {
+                console.log(err);
+                toast.error("Error fetching your owned items", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    progress: undefined,
+                });
+            }
         };
 
         fetchUserOwnedItems();

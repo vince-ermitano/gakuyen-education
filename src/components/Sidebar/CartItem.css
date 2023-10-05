@@ -27,6 +27,7 @@
 .cart-item .remove-button svg {
     padding: 1rem;
     cursor: pointer;
+    box-sizing: content-box;
 }
 
 .cart-item .remove-button svg:hover {

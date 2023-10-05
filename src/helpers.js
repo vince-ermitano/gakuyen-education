@@ -55,6 +55,30 @@ export const handleAddToCart = (e, dispatch) => {
 
 };
 
+export const filterProducts = (ownedProducts, filter, products) => {
+    let filteredProducts = {};
+
+    for (const product in ownedProducts) {
+        if (products[product].type === filter) {
+            filteredProducts[product] = ownedProducts[product];
+        }
+    }
+
+    return filteredProducts;
+}
+
+export const filterProductsNotOwned = (ownedProducts, filter, products) => {
+    let filteredProducts = {};
+
+    for (const product in products) {
+        if (products[product].type === filter && !ownedProducts[product]) {
+            filteredProducts[product] = 1;
+        }
+    }
+
+    return filteredProducts;
+}
+
 export const updateCartAfterRemovalOfDupes = (newCart) => {
     localStorage.setItem("cart", JSON.stringify(newCart));
 };
