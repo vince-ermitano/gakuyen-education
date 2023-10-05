@@ -143,7 +143,7 @@ const PresetLutView = () => {
                             <p>You don't own any presets yet!</p>
                         ) : (
                             Object.keys(ownedItemsForCurrentPage).map((key) => {
-                                return <PresetLutCard isOwned="true" />;
+                                return <PresetLutCard isOwned="true" key={key} item={products[key]}/>;
                             })
                         )}
                     </div>
@@ -160,7 +160,7 @@ const PresetLutView = () => {
                         ) : (
                             Object.keys(unownedItemsForCurrentPage).map(
                                 (key) => {
-                                    return <PresetLutCard isOwned="false" />;
+                                    return <PresetLutCard isOwned="false" key={key} item={products[key]}/>;
                                 }
                             )
                         )}

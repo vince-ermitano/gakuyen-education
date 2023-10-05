@@ -4,6 +4,8 @@ import { BsDownload } from "react-icons/bs";
 
 const PresetLutCard = (props) => {
 
+    // TODO: replace images once we have them
+
     return (
         <div className='preset-lut-card'>
             <div className="preset-lut-card-image">
@@ -12,7 +14,7 @@ const PresetLutCard = (props) => {
                     alt="preset"
                 />
             </div>
-            <p>Preset Name</p>
+            <p>{props.item.name}</p>
             {props.isOwned === "true" ? <BsDownload /> : <button>Check it out</button>}
         </div>
     );
