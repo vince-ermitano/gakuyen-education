@@ -64,7 +64,6 @@ const PresetLutView = () => {
 
     console.log(products);
 
-    // TODO: FIX THIS
     let ownedItemsForCurrentPage;
     let unownedItemsForCurrentPage;
 

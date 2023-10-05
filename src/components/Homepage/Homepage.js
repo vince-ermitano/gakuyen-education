@@ -13,7 +13,7 @@ import "./Homepage.css";
 import { toast } from "react-toastify";
 import { auth } from "../../config/firebaseConfig";
 import { setTotalPrice } from "../../features/ShopSlice";
-import { toggleLoginSidebar } from "../../features/SidebarSlice";
+import { setLoginSidebar } from "../../features/SidebarSlice";
 
 const Homepage = () => {
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Homepage = () => {
     useEffect(() => {
 
         if (showLogin === "true") {
-            dispatch(toggleLoginSidebar());
+            dispatch(setLoginSidebar(true));
         }
 
         const unsubscribe = onAuthStateChanged(auth, (user) => {

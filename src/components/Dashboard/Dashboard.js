@@ -65,7 +65,7 @@ const Dashboard = () => {
     
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (!user) {
-                window.location.href = "/";
+                window.location.href = "/#/?show_login=true";
             } else {
                 fetchUserOwnedItems();
             }
