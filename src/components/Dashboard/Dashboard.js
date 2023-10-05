@@ -6,21 +6,51 @@ import { TbLogout2 } from "react-icons/tb";
 import { BiBook, BiSlider, BiPalette } from "react-icons/bi";
 import { BsGear } from "react-icons/bs";
 import { auth } from "../../config/firebaseConfig";
+import { db } from "../../config/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+// import { useSelector } from "react-redux";
+import CryptoJS from "crypto-js";
+import { useDispatch } from "react-redux";
+import { setPurchasedItems } from "../../features/UserSlice";
 
 
 
 const Dashboard = () => {
 
+    const AES = CryptoJS.AES;
+    
+    const dispatch = useDispatch();
+    // const products = useSelector((state) => state.shop.products);
+
 
     useEffect(() => {
         document.title = "Dashboard | Gakuyen Education";
 
-        auth.onAuthStateChanged((user) => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             if (!user) {
                 window.location.href = "/login";
             }
-        }
-        );
+        });
+
+
+        // fetch user owned items from firestore
+        const fetchUserOwnedItems = async () => {
+            const docRef = doc(db, "users", auth.currentUser.uid);
+            const docSnap = await getDoc(docRef);
+
+            const userOwnedItems = docSnap.data().purchasedItems;
+            const ownedItemsJson = JSON.stringify(userOwnedItems);
+            const encryptedOwnedItems = AES.encrypt(ownedItemsJson, process.env.REACT_APP_SECRET_KEY).toString();
+
+            dispatch(setPurchasedItems(encryptedOwnedItems));
+        };
+
+        fetchUserOwnedItems();
+
+
+        return () => {
+            unsubscribe();
+        };
     });
 
     return (
