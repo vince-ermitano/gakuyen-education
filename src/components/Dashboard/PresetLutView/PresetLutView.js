@@ -129,6 +129,7 @@ const PresetLutView = () => {
     useEffect(() => {
         // TODO: change document title to reflect current category
         document.title = "My Items | Gakuyen Education";
+
     }, [currentPath]);
     return (
         <div id="preset-lut-view">

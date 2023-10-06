@@ -35,6 +35,7 @@ const DashboardHome = () => {
         navigate("/dashboard/settings");
     }
 
+
     return (
         <div id="dashboard-home-container">
             {/* TODO: Replace Name with user's name */}

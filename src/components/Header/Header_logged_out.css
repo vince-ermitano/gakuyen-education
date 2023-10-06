@@ -20,7 +20,7 @@
     left: 50%;
     width: 90%;
     transform: translateX(-50%);
-    z-index: 100;
+    z-index: 1;
     /* margin: auto; */
 }
 

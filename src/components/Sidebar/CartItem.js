@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./CartItem.css"
 import { VscClose } from "react-icons/vsc";
@@ -12,11 +12,11 @@ const CartItem = ({ itemId }) => {
     const dispatch = useDispatch();
 
     const [remove, setRemove] = useState(false);
+    const [isRehydrated, setIsRehydrated] = useState(false);
 
     const products = useSelector((state) => state.shop.products);
 
-    const itemName = products[itemId].name;
-    const itemPrice = products[itemId].price;
+    console.log(products);
 
     const handleOnRemove = () => {
         const currentCart = JSON.parse(localStorage.getItem('cart'));
@@ -30,22 +30,45 @@ const CartItem = ({ itemId }) => {
         dispatch(calculateTotalPrice());
     }
 
+    let itemName;
+    let itemPrice;
+
+    if (!isRehydrated) {
+        itemName = "Loading...";
+        itemPrice = "Loading...";
+    } else {
+        itemName = products[itemId].name;
+        itemPrice = products[itemId].price;
+    }
+
+    useEffect(() => {
+        if (Object.keys(products).length > 0) {
+            setIsRehydrated(true);
+        }
+    }, [products]);
+
+
     return (
-        <div className={`cart-item ${remove ? "remove" : ""}`}>
-            <div className="image-and-details">
-                <div className="image-wrapper">
-                    <img src={'/ultimate_preset_pack_1_400x400.jpg'} alt={itemName} />
+
+        isRehydrated ? (
+            <div className={`cart-item ${remove ? "remove" : ""}`}>
+                <div className="image-and-details">
+                    <div className="image-wrapper">
+                        <img src={'/ultimate_preset_pack_1_400x400.jpg'} alt={itemName} />
+                    </div>
+                    <div className="item-details">
+                        <p className="name">{itemName}</p>
+                        <p className="product-number">{itemId}</p>
+                        <p className="price">${itemPrice}</p>
+                    </div>
                 </div>
-                <div className="item-details">
-                    <p className="name">{itemName}</p>
-                    <p className="product-number">{itemId}</p>
-                    <p className="price">${itemPrice}</p>
+                <div className="remove-button" onClick={handleOnRemove}>
+                    <VscClose />
                 </div>
             </div>
-            <div className="remove-button" onClick={handleOnRemove}>
-                <VscClose />
-            </div>
-        </div>
+        ) : (
+            <p>Loading...</p>
+        )
     );
 };
 

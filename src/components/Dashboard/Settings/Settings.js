@@ -4,6 +4,7 @@ import { VscAccount } from "react-icons/vsc";
 import { AiOutlineEdit } from "react-icons/ai";
 
 const Settings = () => {
+
     return (
         <div className="my-profile-view">
             <h1>My Profile</h1>

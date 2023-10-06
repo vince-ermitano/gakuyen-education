@@ -150,19 +150,39 @@
 .right-sidebar .bottom-info button {
     padding: 1rem;
 }
-
 #login_dialog {
     box-sizing: border-box;
     text-align: center;
-    padding: 1rem 1rem;
+    padding: 2rem;
     border: none;
     z-index: 11;
-  }
-  
-  #login_dialog .selection-buttons {
+    border-radius: 0.5rem;
+}
+
+#login_dialog h2 {
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;
+}
+
+#login_dialog p {
+    margin-bottom: 4rem;
+}
+
+#login_dialog button {
+    padding: 0.5rem 1rem;
+}
+
+
+
+#login_dialog .selection-buttons {
     display: flex;
     justify-content: space-around;
-  }
+    flex-direction: column;
+}
+
+#login_dialog .selection-buttons button {
+    margin: 0.5rem 0;
+}
 
 /* Input error checking */
 /* -------------------- */
