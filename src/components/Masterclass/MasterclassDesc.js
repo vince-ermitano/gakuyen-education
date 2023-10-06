@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -8,12 +9,30 @@ import { handleAddToCart } from "../../helpers";
 const MasterclassDesc = () => {
 
     const dispatch = useDispatch();
+    const [isRehydrated, setIsRehydrated] = useState(false);
 
+    const products = useSelector((state) => state.shop.products);
+
+    let price;
+
+    if (!isRehydrated) {
+        price = "Loading...";
+    } else {
+        price = products["MC-01"].price;
+    }
+    
     useEffect(() => {
         window.scrollTo(0, 0); // Scroll to the top of the page
         document.title =
-            "The Odyssey - Creative Masterclass | GAKUYEN EDUCATION";
-    }, []);
+        "The Odyssey - Creative Masterclass | GAKUYEN EDUCATION";
+
+        if (Object.keys(products).length > 0) {
+            setIsRehydrated(true);
+        }
+    }, [products]);
+
+
+
 
     return (
         <div className="masterclass-desc page-section">
@@ -39,7 +58,7 @@ const MasterclassDesc = () => {
                     <div className="masterclass-intro-text-container item-name-price">
                         <h1>The Odyssey - Creative Masterclass</h1>
                         <p>Loren ipsum dolor sit amet</p>
-                        <p>$10</p>
+                        <p>${price}</p>
                         <button className="darkgray-background" data-item-id="MC-01" onClick={(e) => {
                             handleAddToCart(e, dispatch);
                         }}> 

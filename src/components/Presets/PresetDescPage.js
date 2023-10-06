@@ -73,7 +73,7 @@ const PresetDescPage = () => {
                 <div className="preset-desc-page-info preset-name-price item-name-price">
                     <h1>{currentProduct.name}</h1>
                     <p>Lorem ipsum dolor sit amet</p>
-                    <p>$10</p>
+                    <p>${currentProduct.price}</p>
                     <button
                         className="darkgray-background"
                         data-item-id={currentProductId}
