@@ -21,6 +21,20 @@ export function convertToSlug(input) {
         .trim();                         // Trim any leading/trailing spaces
 }
 
+export function convertFromSlug(slug) {
+  return slug
+    .replace(/-/g, ' ')             // Replace hyphens with spaces
+    .toLowerCase();                 // Convert to lowercase
+}
+
+export const getProductIdFromProductName = (productName, products) => {
+    for (const productId in products) {
+        if (products[productId].name.toLowerCase() === productName) {
+            return productId;
+        }
+    }
+};
+
 export const handleAddToCart = (e, dispatch) => {
 
     // notify user that item has been added to cart if item is already in cart

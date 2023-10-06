@@ -122,11 +122,11 @@ function App () {
                 <Route path="/" element={<Homepage />}></Route>
                 <Route path="/success" element={<Homepage />}></Route>
                 <Route
-                    path="/store/presets/:presetName"
+                    path="/store/presets/:name"
                     element={<PresetDescPage />}
                 ></Route>
                 <Route
-                    path="store/luts/:lutName"
+                    path="store/luts/:name"
                     element={<PresetDescPage />}
                 ></Route>
                 <Route

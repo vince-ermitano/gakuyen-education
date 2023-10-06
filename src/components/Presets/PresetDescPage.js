@@ -1,10 +1,10 @@
 import React from "react";
-import { useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./PresetDescPage.css";
 import { register } from "swiper/element/bundle";
-import { handleAddToCart } from "../../helpers";
+import { handleAddToCart, convertFromSlug, getProductIdFromProductName } from "../../helpers";
 // import { addProductToCart } from "../../features/ShopSlice";
 
 register();
@@ -20,17 +20,41 @@ register();
 // TODO: Either gray out or remove add to cart button if item is already in cart or notify user that item is already in cart when users click add to cart button
 const PresetDescPage = () => {
     const swiperElRef = useRef(null);
+    const [isRehydrated, setIsRehydrated] = useState(false);
+
+    const products = useSelector((state) => state.shop.products);
 
     // redux
     const dispatch = useDispatch();
-    const currentProductId = useSelector((state) => state.shop.currentProduct); // PROBABLY DISCARD THIS
-    const products = useSelector((state) => state.shop.products);
-    const currentProduct = products[currentProductId];
+    // const currentProductId = useSelector((state) => state.shop.currentProduct); // PROBABLY DISCARD THIS
+
+    let { name } = useParams();
+
+    name = convertFromSlug(name);
+    
+    
+
+    let currentProductId;
+    let currentProduct;
+    
+    if (!isRehydrated) {
+        currentProduct = {};
+        currentProductId = "";
+    } else {
+        currentProductId = getProductIdFromProductName(name, products);
+        currentProduct = products[currentProductId];
+    }
+        
 
     useEffect(() => {
         window.scrollTo(0, 0);
         document.title = 'Preset Description | GAKUYEN EDUCATION';
-      }, []);
+
+        if (Object.keys(products).length > 0) {
+            setIsRehydrated(true);
+        }
+
+      }, [products]);
 
     return (
         <div className="preset-desc-page page-section">

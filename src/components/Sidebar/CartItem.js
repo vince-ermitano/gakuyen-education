@@ -16,8 +16,6 @@ const CartItem = ({ itemId }) => {
 
     const products = useSelector((state) => state.shop.products);
 
-    console.log(products);
-
     const handleOnRemove = () => {
         const currentCart = JSON.parse(localStorage.getItem('cart'));
         delete currentCart[itemId];
