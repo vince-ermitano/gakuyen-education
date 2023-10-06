@@ -23,7 +23,7 @@ const PresetDescPage = () => {
 
     // redux
     const dispatch = useDispatch();
-    const currentProductId = useSelector((state) => state.shop.currentProduct);
+    const currentProductId = useSelector((state) => state.shop.currentProduct); // PROBABLY DISCARD THIS
     const products = useSelector((state) => state.shop.products);
     const currentProduct = products[currentProductId];
 

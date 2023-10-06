@@ -44,20 +44,19 @@ function App () {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const gradientCanvas = document.getElementById("gradient-canvas");
-        const header = document.querySelector(".hero");
-        
-        // if the current path is not the homepage, hide the gradient canvas
-        // TODO: account for success page from stripe
-        if (currentPath !== "/") {
-            gradientCanvas.style.display = "none";
-            header.style.display = "none";
-        } else {
-            gradientCanvas.style.display = "block";
-            header.style.display = "block";
-        }
-    }, [currentPath]);
+    const gradientCanvas = document.getElementById("gradient-canvas");
+    const header = document.querySelector(".hero");
+    
+    // if the current path is not the homepage, hide the gradient canvas
+    if (currentPath !== "/") {
+        gradientCanvas.style.display = "none";
+        header.style.display = "none";
+    } else {
+        gradientCanvas.style.display = "block";
+        header.style.display = "block";
+    }
+    // useEffect(() => {
+    // }, [currentPath]);
 
     useEffect(() => {
         // Listen for authentication state changes

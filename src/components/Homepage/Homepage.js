@@ -19,16 +19,25 @@ const Homepage = () => {
     const dispatch = useDispatch();
 
     const location = useLocation();
+    const currentPath = location.pathname;
     const searchParams = new URLSearchParams(location.search);
     const session_id = searchParams.get("session_id");
     const showLogin = searchParams.get("show_login");
 
+    const gradientCanvas = document.getElementById("gradient-canvas");
+    const header = document.querySelector(".hero");
+
+    if (currentPath.includes('/success')) {
+        gradientCanvas.style.display = "block";
+        header.style.display = "block";
+    }
     
     useEffect(() => {
 
         if (showLogin === "true") {
             dispatch(setLoginSidebar(true));
         }
+
 
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user && session_id) {
