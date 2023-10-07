@@ -1,4 +1,5 @@
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { calculateTotalPrice } from "./features/ShopSlice";
 // import { auth } from "./config/firebaseConfig";
 
@@ -39,14 +40,7 @@ export const handleAddToCart = (e, dispatch) => {
 
     // notify user that item has been added to cart if item is already in cart
     if (JSON.parse(localStorage.getItem("cart"))[e.target.dataset.itemId]) {
-        toast.error("Item has already been added to cart", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            progress: undefined,
-        });
+        toast.error("Item has already been added to cart");
     } else {
         localStorage.setItem(
             "cart",
@@ -58,14 +52,7 @@ export const handleAddToCart = (e, dispatch) => {
 
         dispatch(calculateTotalPrice());
 
-        toast.success("Item has been added to cart", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            progress: undefined,
-        });
+        toast.success("Item has been added to cart");
     }
 
 };

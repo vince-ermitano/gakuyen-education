@@ -10,8 +10,9 @@ import { auth, db } from "../../config/firebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 // import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { toast } from 'react-toastify';
+import { toast } from "sonner";
+// import 'react-toastify/dist/ReactToastify.css';
 
 const CreateAccountSidebar = () => {
     const dispatch = useDispatch();
@@ -40,47 +41,19 @@ const CreateAccountSidebar = () => {
         // }
         switch (type) {
             case "createSuccess":
-                toast.success("Account created successfully!", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                toast.success("Account created successfully!");
                 break;
             
             case "userAddedToDatabase":
-                toast.success("Info added to database successfully!", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                toast.success("Info added to account successfully!")
                 break;
 
             case "userFailedToAddToDatabase":
-                toast.error("Failed to add info to database :(", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                toast.error("Failed to add info to database :(");
                 break;
 
             case "emailAlreadyExists":
-                toast.error("Email already exists!", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                toast.error("Email already exists!");
                 break;
             default:
                 break;

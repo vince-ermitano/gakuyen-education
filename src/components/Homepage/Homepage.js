@@ -10,7 +10,8 @@ import PresetsHP from "../Presets/PresetsHP";
 import Testimonials from "../Testimonials/Testimonials";
 import MasterclassHP from "../Masterclass/MasterclassHP";
 import "./Homepage.css";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
 import { setTotalPrice } from "../../features/ShopSlice";
 import { setLoginSidebar } from "../../features/SidebarSlice";
@@ -70,15 +71,7 @@ const Homepage = () => {
                     if (res.ok) {
                         localStorage.setItem("cart", JSON.stringify([]));
                         toast.success(
-                            "Payment successful! Check your email for your receipt.",
-                            {
-                                position: "top-center",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                progress: undefined,
-                            }
+                            "Payment successful! Check your email for your receipt."
                         );
                         dispatch(setTotalPrice(0));
                     } else return res.text();
@@ -89,14 +82,7 @@ const Homepage = () => {
                 .catch((e) => {
                     if (!e) return;
                     console.error(e);
-                    toast.error(e, {
-                        position: "top-center",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        progress: undefined,
-                    });
+                    toast.error(e);
                 });
         };
 

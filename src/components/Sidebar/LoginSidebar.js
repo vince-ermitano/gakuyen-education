@@ -8,7 +8,8 @@ import {
 } from "../../features/SidebarSlice";
 import { auth } from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 const LoginSidebar = () => {
     const dispatch = useDispatch();
@@ -30,14 +31,16 @@ const LoginSidebar = () => {
                 const user = userCredential.user;
                 console.log(user);
 
-                toast.success("Logged in successfully!", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                // toast.success("Logged in successfully!", {
+                //     position: "top-center",
+                //     autoClose: 3000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     progress: undefined,
+                // });
+
+                toast.success("Logged in successfully!");
 
                 // clear form fields
                 setEmailAddress("");
@@ -52,14 +55,16 @@ const LoginSidebar = () => {
                 const errorMessage = error.message;
                 console.error(errorCode, errorMessage);
 
-                toast.error("Invalid username/password", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                // toast.error("Invalid username/password", {
+                //     position: "top-center",
+                //     autoClose: 3000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     progress: undefined,
+                // });
+
+                toast.error("Invalid username/password");
             });
     }
 

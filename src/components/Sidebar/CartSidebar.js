@@ -6,8 +6,10 @@ import CartItem from "./CartItem";
 import { toggleCartSidebar, toggleLoginSidebar } from "../../features/SidebarSlice";
 import { calculateTotalPrice } from "../../features/ShopSlice";
 import { auth } from "../../config/firebaseConfig";
-import { toast } from "react-toastify";
-import { TOAST_POSITION, updateCartAfterRemovalOfDupes } from "../../helpers";
+// import { toast } from "react-toastify";
+import { toast } from "sonner";
+// import { TOAST_POSITION } from "../../helpers";
+import { updateCartAfterRemovalOfDupes } from "../../helpers";
 
 // TODO: Add ability to add items to cart that are not Presets/Masterclasses
 
@@ -40,10 +42,11 @@ const CartSidebar = () => {
                 if (res.ok) return res.json()
                 return res.json().then(json => Promise.reject(json))
             }).then(({ url }) => {
-                window.location = url
+                window.location = url;
             }).catch(e => {
-                console.error(e.error)
-                toast.error(e.error, TOAST_POSITION);
+                console.error(e.error);
+                toast.error(e.error);
+
             })
 
             return;
@@ -87,7 +90,7 @@ const CartSidebar = () => {
                     })
                     .catch((e) => {
                         console.error(e.error);
-                        toast.error(e.error, TOAST_POSITION);
+                        toast.error(e.error);
 
                         if (e.type === "someOwned") {
                             // run function to filter cart

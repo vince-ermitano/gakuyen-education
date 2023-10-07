@@ -24,8 +24,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { db } from "./config/firebaseConfig"
 import { collection, getDocs } from "firebase/firestore";
 import { setProducts, setLoading, setInitialTotalPrice} from './features/ShopSlice';
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from './components/Dashboard/DashboardHome/DashboardHome';
+import { Toaster, toast } from "sonner";
 
 
 function App () {
@@ -87,14 +88,16 @@ function App () {
 
             } catch (error) {
                 console.log(error);
-                toast.error("Error getting products", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                // toast.error("Error getting products", {
+                //     position: "top-center",
+                //     autoClose: 3000,
+                //     hideProgressBar: false,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     progress: undefined,
+                // });
+
+                toast.error("Error getting products");
             }
             // dispatch(setLoading(false));
         };
@@ -154,7 +157,8 @@ function App () {
                 </Route>
             </Routes>
 
-            <ToastContainer theme="dark" style={{ width: "500px" }} />
+            <Toaster position='top-center' richColors />
+            {/* <ToastContainer theme="dark" style={{ width: "500px" }} /> */}
             {!shouldHideComponents && <Footer />}
         </Provider>
     );

@@ -9,7 +9,8 @@ import { db } from "../../../config/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { setLoading } from "../../../features/ShopSlice";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 
 const PresetLutView = () => {
@@ -33,13 +34,7 @@ const PresetLutView = () => {
         );
     } catch(err) {
         console.log(err);
-        toast.error("Error fetching your owned items. Attempting to refetch...", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-        });
+        toast.error("Error fetching your owned items. Attempting to refetch...");
 
         setTimeout(() => {
             window.location.href = "/dashboard";
@@ -64,14 +59,7 @@ const PresetLutView = () => {
             dispatch(setLoading(false));
         } catch (error) {
             console.log(error);
-            toast.error("Error getting products", {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                progress: undefined,
-            });
+            toast.error("Error getting products");
         }
     };
 

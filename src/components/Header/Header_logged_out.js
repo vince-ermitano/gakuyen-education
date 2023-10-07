@@ -11,7 +11,8 @@ import {
 } from "../../features/SidebarSlice";
 import { BiCartAlt } from "react-icons/bi";
 import { getAuth, signOut } from "firebase/auth";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
+import { toast } from "sonner";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -26,26 +27,12 @@ const Header = () => {
             .then(() => {
                 // Sign-out successful.
                 // dispatch(setLoggedInStatus(false));
-                toast.success("Logged out successfully!", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                toast.success("Logged out successfully!");
             })
             .catch((error) => {
                 // An error happened.
                 console.error(error);
-                toast.error("Error logging out!", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                toast.error("Error logging out!");
             });
     };
 
@@ -122,7 +109,7 @@ const Header = () => {
         <div>
             {isLoggedIn ? headerLoggedIn : headerLoggedOut}
 
-            <ToastContainer />
+            {/* <ToastContainer /> */}
             {/* <button
                 id="mock-log"
                 onClick={() => {

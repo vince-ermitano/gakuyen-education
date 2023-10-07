@@ -12,7 +12,8 @@ import { doc, getDoc } from "firebase/firestore";
 import CryptoJS from "crypto-js";
 // import { useDispatch } from "react-redux";
 // import { setPurchasedItems } from "../../features/UserSlice";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 
 
@@ -52,14 +53,7 @@ const Dashboard = () => {
                 localStorage.setItem("purchasedItems", encryptedOwnedItems);
             } catch(err) {
                 console.log(err);
-                toast.error("Error fetching your owned items", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    progress: undefined,
-                });
+                toast.error("Error fetching your owned items");
             }
         };
     
