@@ -233,23 +233,35 @@ app.post("/success", async (req, res) => {
 
             console.log(req.body.email);
             if (req.body.email) {
+                // for each key in items, set value to purchase date
+                const currentDate = new Date();
+                const dateFormatted = currentDate.toLocaleString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                });
+
+                for (const item in items) {
+                    items[item] = dateFormatted;
+                }
+
                 // Update the database to reflect the purchase
                 const usersCollectionRef = collection(db, "users");
-    
+
                 const q = query(
                     usersCollectionRef,
                     where("email", "==", req.body.email)
                 );
-    
+
                 const querySnapshot = await getDocs(q);
-    
+
                 querySnapshot.forEach(async (document) => {
                     const docId = document.id;
-    
+
                     const userDocRef = doc(db, "users", docId);
-    
+
                     const userDoc = await getDoc(userDocRef);
-    
+
                     try {
                         await updateDoc(userDocRef, {
                             purchasedItems: {
