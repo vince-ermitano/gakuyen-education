@@ -23,11 +23,12 @@ const Homepage = () => {
     const searchParams = new URLSearchParams(location.search);
     const session_id = searchParams.get("session_id");
     const showLogin = searchParams.get("show_login");
+    const isRoot = currentPath === "/";
 
-    const gradientCanvas = document.getElementById("gradient-canvas");
-    const header = document.querySelector(".hero");
+    const gradientCanvas = document.querySelector(".gradient-container");
+    const header = document.querySelector(".hero-title-container");
 
-    if (currentPath.includes('/success')) {
+    if (isRoot || currentPath.includes('/success')) {
         gradientCanvas.style.display = "block";
         header.style.display = "block";
     }

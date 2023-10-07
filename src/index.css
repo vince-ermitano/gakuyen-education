@@ -85,6 +85,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .hero-title-container {
+  display: none;
   position: relative;
 }
 
@@ -115,6 +116,10 @@ button, input[type="submit"], input[type="reset"] {
   --max-width: 50rem;
   width: min(100% - 2rem, var(--max-width));
   margin-left: 15%;
+}
+
+.gradient-container {
+  display: none;
 }
 
 #gradient-canvas {
