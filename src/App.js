@@ -130,6 +130,10 @@ function App () {
                     element={<PresetDescPage />}
                 ></Route>
                 <Route
+                    path="store/transitions/:name"
+                    element={<PresetDescPage />}
+                ></Route>
+                <Route
                     path="/store/masterclass/:masterclassName"
                     element={<MasterclassDesc />}
                 ></Route>

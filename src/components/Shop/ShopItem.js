@@ -27,6 +27,9 @@ const ShopItem = ({ product, productId }) => {
             case "Preset":
                 navigate(`presets/${itemSlug}`);
                 break;
+            case "Transition":
+                navigate(`transitions/${itemSlug}`);
+                break;
             case "Masterclass":
                 navigate(`masterclass/${itemSlug}`);
                 break;
