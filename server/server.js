@@ -447,6 +447,34 @@ app.post("/send-email-test", async (req, res) => {
         })
 });
 
+app.post("/newsletter-signup", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
+    const email = req.body.email;
+
+    const docRef = doc(db, "newsletter_list", email);
+
+    const currentDate = new Date();
+    const dateFormatted = currentDate.toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+    });
+
+    try {
+        await setDoc(docRef, {
+            dateAdded: dateFormatted,
+        });
+
+        res.send("Email added to newsletter list.");
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 // -------------------------------------------------- EXPRESS ROUTES
 
 const PORT = process.env.PORT || 3001;
