@@ -29,6 +29,9 @@ const BestSellersItem = ({ product, productId }) => {
             case "Masterclass":
                 navigate(`/store/masterclass/${itemSlug}`);
                 break;
+            case "Transition":
+                navigate(`/store/transitions/${itemSlug}`);
+                break;
             default:
                 break;
         }
