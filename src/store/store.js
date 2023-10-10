@@ -3,13 +3,14 @@ import loggedInStatusReducer from "../features/LoggedInStatusSlice";
 import sidebarReducer from "../features/SidebarSlice";
 import shopReducer from "../features/ShopSlice";
 import userReducer from "../features/UserSlice";
+import coursesReducer from "../features/CoursesSlice";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
 const persistConfiguration = {
     key: "root",
     version: 1,
-    whitelist: ["shop", "sidebar", "user"],   
+    whitelist: ["shop", "sidebar", "user", "courses"],   
     storage,
 };
 
@@ -18,6 +19,7 @@ const reducer = combineReducers({
     sidebar: sidebarReducer,
     shop: shopReducer,
     user: userReducer,
+    courses: coursesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfiguration, reducer);

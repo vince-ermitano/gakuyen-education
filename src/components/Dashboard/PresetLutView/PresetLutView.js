@@ -70,7 +70,6 @@ const PresetLutView = () => {
 
     const products = JSON.parse(localStorage.getItem("products"));
 
-    console.log(products);
 
     let ownedItemsForCurrentPage;
     let unownedItemsForCurrentPage;
@@ -110,9 +109,6 @@ const PresetLutView = () => {
         );
         unownedItemsForCurrentPage = unownedTransitions;
     }
-
-    console.log(ownedItemsForCurrentPage);
-    console.log(unownedItemsForCurrentPage);
 
     useEffect(() => {
         // TODO: change document title to reflect current category

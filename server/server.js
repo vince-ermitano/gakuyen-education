@@ -18,6 +18,12 @@ const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 // -------------------------------------------------- sendgrid
 
+// crypto js
+// const CryptoJS = require("crypto-js");
+
+// const AES = CryptoJS.AES;
+// -------------------------------------------------- crypto js
+
 // firebase --------------------------------------------------
 const firebaseAPIKey = process.env.FIREBASE_API_KEY;
 const firebaseAuthDomain = process.env.FIREBASE_AUTH_DOMAIN;
@@ -472,6 +478,29 @@ app.post("/newsletter-signup", async (req, res) => {
         res.send("Email added to newsletter list.");
     } catch (error) {
         res.status(500).send(error.message);
+    }
+});
+
+app.get("/the-odyssey", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
+    try {
+        const docRef = collection(db, "the-odyssey-modules");
+
+        const querySnapshot = await getDocs(docRef);
+
+        const modules = {};
+
+        querySnapshot.forEach((doc) => {
+            modules[doc.id] = doc.data();
+        });
+
+        res.send(modules);
+    } catch (error) {
+        res.status(500).send('Error getting modules');
     }
 });
 

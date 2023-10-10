@@ -1,9 +1,37 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setTheOdyssey } from "../../../features/CoursesSlice";
 import ReactPlayer from "react-player";
 import "./ModuleView.css";
 import ModulePreview from "./ModulePreview";
 
 const ModuleView = () => {
+
+    const dispatch = useDispatch();
+
+    const theOdyssey = useSelector((state) => state.courses.theOdyssey);
+
+    if (Object.keys(theOdyssey).length === 0) {
+        // fetch theOdyssey from server
+        fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return res.text().then((text) => {
+                throw new Error(text);
+            });
+        })
+        .then((data) => {
+            console.log(data);
+            dispatch(setTheOdyssey(data));
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
+
+
     return (
         <div className="module-view">
             <div className="module-view-left-side">
@@ -24,6 +52,17 @@ const ModuleView = () => {
                     </div>
                 </div>
                 <div className="modules-container">
+                    { Object.keys(theOdyssey).length !== 0 && Object.keys(theOdyssey).map((moduleId) => {
+                        return (
+                            <ModulePreview
+                                key={moduleId}
+                                id={moduleId}
+                                title={theOdyssey[moduleId].title}
+                                description={theOdyssey[moduleId].description}
+                            />
+                        );
+                    })}
+                    {/* <ModulePreview />
                     <ModulePreview />
                     <ModulePreview />
                     <ModulePreview />
@@ -32,8 +71,7 @@ const ModuleView = () => {
                     <ModulePreview />
                     <ModulePreview />
                     <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
+                    <ModulePreview /> */}
                 </div>
             </div>
             <div className="module-content">
