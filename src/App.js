@@ -16,6 +16,7 @@ import CartSidebar from './components/Sidebar/CartSidebar';
 // import HeaderHerov2 from './components/HeaderHerov2/HeaderHerov2';
 import Dashboard from './components/Dashboard/Dashboard';
 import ModuleView from './components/Dashboard/ModuleView/ModuleView';
+import VideoView from './components/Dashboard/ModuleView/VideoView';
 import Settings from './components/Dashboard/Settings/Settings';
 import PresetLutView from './components/Dashboard/PresetLutView/PresetLutView';
 import { setLoggedInStatus } from './features/LoggedInStatusSlice';
@@ -149,6 +150,7 @@ function App () {
                 ></Route>
                 <Route path="/dashboard" element={<Dashboard />}>
                     <Route path="main" element={<DashboardHome />}></Route>
+                    <Route path="modules/:moduleId/videos" element={<VideoView />}></Route>
                     <Route path="modules" element={<ModuleView />}></Route>
                     <Route path="presets" element={<PresetLutView />}></Route>
                     <Route path="luts" element={<PresetLutView />}></Route>

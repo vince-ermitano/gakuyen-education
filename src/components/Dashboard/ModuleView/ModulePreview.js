@@ -1,9 +1,20 @@
 import React from "react";
 import './ModulePreview.css';
+import { useNavigate } from "react-router-dom";
 
 const ModulePreview = (props) => {
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        if (props.type === 'module') {
+            navigate(`/dashboard/modules/${props.id}/videos`);
+        } else {
+            console.log('clicked on video');
+        }
+    }
     return (
-        <div className='module-preview'>
+        <div className='module-preview' onClick={handleClick}>
             <div className='module-preview-img-container'>
 
             </div>

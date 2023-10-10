@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import { setTheOdyssey } from "../../../features/CoursesSlice";
 import ReactPlayer from "react-player";
 import "./ModuleView.css";
+import "./VideoView.css";
 import ModulePreview from "./ModulePreview";
 
-const ModuleView = () => {
+const VideoView = () => {
 
-    // const dispatch = useDispatch();
-
+    const navigate = useNavigate();
+    const { moduleId } = useParams();
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
     const [ isRehydrated, setIsRehydrated ] = useState(false);
+
+    if (Object.keys(theOdyssey).length > 0) {
+        console.log(theOdyssey[moduleId]);
+    }
 
 
     useEffect(() => {
@@ -21,35 +27,20 @@ const ModuleView = () => {
             setIsRehydrated(true);
         }
     }, [theOdyssey]);
-        
 
-    // if (Object.keys(theOdyssey).length === 0) {
-    //     // fetch theOdyssey from server
-    //     fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
-    //     .then((res) => {
-    //         if (res.ok) {
-    //             return res.json();
-    //         }
-    //         return res.text().then((text) => {
-    //             throw new Error(text);
-    //         });
-    //     })
-    //     .then((data) => {
-    //         console.log(data);
-    //         dispatch(setTheOdyssey(data));
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
-    // }
+
+    const handleGoBack = () => {
+        navigate(`/dashboard/modules`);
+    }
 
 
     return (
         <div className="module-view">
             <div className="module-view-left-side">
                 <div className="headers">
-                    <h1>Modules</h1>
-                    <div className="module-filters">
+                    <h1>Videos</h1>
+                    <button onClick={handleGoBack}> Back to Modules</button>
+                    {/* <div className="module-filters">
                         <ul>
                             <li>
                                 <button>All</button>
@@ -61,31 +52,36 @@ const ModuleView = () => {
                                 <button>Completed</button>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="modules-container">
-                    { !isRehydrated && <p>Loading...</p> }
-                    { Object.keys(theOdyssey).length !== 0 && Object.keys(theOdyssey).map((moduleId) => {
+                    {/* { Object.keys(theOdyssey).length !== 0 && Object.keys(theOdyssey).map((moduleId) => {
                         return (
                             <ModulePreview
                                 key={moduleId}
                                 id={moduleId}
                                 title={theOdyssey[moduleId].title}
                                 description={theOdyssey[moduleId].description}
-                                type='module'
+                                type='video'
                             />
                         );
-                    })}
-                    {/* <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview /> */}
+                    })} */}
+
+                    { Object.keys(theOdyssey).length > 0 && (
+                        Object.keys(theOdyssey[moduleId].videos).map((videoId) => {
+                            return (
+                                <ModulePreview
+                                    key={videoId}
+                                    id={videoId}
+                                    title={theOdyssey[moduleId].videos[videoId].title}
+                                    description={theOdyssey[moduleId].videos[videoId].description}
+                                    type='video'
+                                />
+                            );
+                        })
+                    )
+                    }
+                    { !isRehydrated && <p>Loading...</p> }
                 </div>
             </div>
             <div className="module-content">
@@ -99,7 +95,7 @@ const ModuleView = () => {
                         playing
                     />
                 </div>
-                <h1>Module Title</h1>
+                <h1>Video Title</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
@@ -126,4 +122,4 @@ const ModuleView = () => {
     );
 };
 
-export default ModuleView;
+export default VideoView;
