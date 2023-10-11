@@ -10,7 +10,7 @@ import { persistReducer } from 'redux-persist';
 const persistConfiguration = {
     key: "root",
     version: 1,
-    whitelist: ["shop", "sidebar", "user", "courses"],   
+    whitelist: ["shop", "sidebar", "courses"],   
     storage,
 };
 

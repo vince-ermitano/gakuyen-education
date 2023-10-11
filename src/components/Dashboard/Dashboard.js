@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTheOdyssey } from "../../features/CoursesSlice";
+import { setIsPurchasedItemsLoaded } from "../../features/UserSlice";
 import { NavLink, Link, Outlet } from "react-router-dom";
 import "./Dashboard.css";
 import { RxDashboard } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
 import { BiBook, BiSlider, BiPalette } from "react-icons/bi";
+import { FaFilm } from "react-icons/fa";
 import { BsGear } from "react-icons/bs";
 import { auth } from "../../config/firebaseConfig";
 import { db } from "../../config/firebaseConfig";
@@ -76,6 +78,7 @@ const Dashboard = () => {
                 // dispatch(setPurchasedItems(encryptedOwnedItems));
     
                 localStorage.setItem("purchasedItems", encryptedOwnedItems);
+                dispatch(setIsPurchasedItemsLoaded(true));
             } catch(err) {
                 console.log(err);
                 toast.error("Error fetching your owned items");
@@ -129,7 +132,7 @@ const Dashboard = () => {
         return () => {
             unsubscribe();
         };
-    }, [AES]);
+    }, [AES, dispatch]);
 
     return (
         <div id="dashboard">
@@ -172,7 +175,7 @@ const Dashboard = () => {
                             </li>
                             <li className="dashboard-sidebar-menu-item">
                                 <NavLink to="/dashboard/transitions">
-                                    <BiPalette />
+                                    <FaFilm />
                                     <p>Transitions</p>
                                 </NavLink>
                             </li>

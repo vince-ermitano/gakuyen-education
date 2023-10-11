@@ -170,8 +170,38 @@
 
 #order-history-card {
     grid-column: span 2;
+    overflow-y: scroll;
 }
 
+#order-history-card p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#order-history-card p.purchase-date {
+    white-space: pre-wrap;
+    text-align: end;
+}
+
+.order-history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: #ddd 1px solid;
+    gap: 1rem;
+    text-overflow: ellipsis;
+}
+
+#order-history-card .order-history-item svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+#order-history-card p.product-name {
+    width: 70%;
+}
 
 
 

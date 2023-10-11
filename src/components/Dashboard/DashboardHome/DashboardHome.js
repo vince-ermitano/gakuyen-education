@@ -1,15 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./DashboardHome.css";
-import { BiSlider, BiPalette, BiSupport } from "react-icons/bi";
+import { BiSlider, BiPalette, BiSupport, BiBook } from "react-icons/bi";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaFilm } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
 
 
 const DashboardHome = () => {
 
     const navigate = useNavigate();
+    const AES = CryptoJS.AES;
 
     const goToPresets = () => {
         navigate("/dashboard/presets");
@@ -34,6 +37,27 @@ const DashboardHome = () => {
     const goToAccountSettings = () => {
         navigate("/dashboard/settings");
     }
+
+    const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
+    const isProductsLoading = useSelector((state) => state.shop.isLoading);
+    const products = useSelector((state) => state.shop.products);
+    const loaded = isPurchasedItemsLoaded && !isProductsLoading;
+
+
+    let purchasedItems;
+
+
+    if (loaded) {
+        purchasedItems = JSON.parse(
+            AES.decrypt(
+                localStorage.getItem("purchasedItems"),
+                process.env.REACT_APP_SECRET_KEY
+            ).toString(CryptoJS.enc.Utf8)
+        );
+    } else {
+        purchasedItems = {};
+    }
+
 
 
     return (
@@ -102,6 +126,22 @@ const DashboardHome = () => {
                         id="order-history-card"
                     >
                         <h2>Order History</h2>
+
+                        { !loaded && <p>Loading...</p>}
+                        { loaded && Object.keys(purchasedItems).length === 0 && <p>You haven't purchased anything yet!</p>}
+                        { loaded && Object.keys(purchasedItems).length > 0 && Object.keys(purchasedItems).map((key) => {
+                            return (
+                                <div className="order-history-item" key={key}>
+                                    {products[key].type === "Masterclass" && <BiBook />}
+                                    {products[key].type === "Preset" && <BiSlider />}
+                                    {products[key].type === "Lut" && <BiPalette />}
+                                    {products[key].type === "Transition" && <FaFilm />}
+                                    <p className="product-name">{products[key].name}</p>
+                                    <p className="purchase-date">{purchasedItems[key]}</p>
+                                </div>
+                            );
+                        })
+                        }
                     </div>
                 </div>
             </div>

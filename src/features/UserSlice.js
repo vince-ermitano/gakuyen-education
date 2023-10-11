@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     purchasedItems: {},
+    isPurchasedItemsLoaded: false,
 }
 
 const userSlice = createSlice({
@@ -10,9 +11,12 @@ const userSlice = createSlice({
     reducers: {
         setPurchasedItems: (state, action) => {
             state.purchasedItems = action.payload;
+        },
+        setIsPurchasedItemsLoaded: (state, action) => {
+            state.isPurchasedItemsLoaded = action.payload;
         }
     }
 });
 
-export const { setPurchasedItems } = userSlice.actions;
+export const { setPurchasedItems, setIsPurchasedItemsLoaded } = userSlice.actions;
 export default userSlice.reducer;
