@@ -111,16 +111,6 @@ const ModuleView = () => {
                     deserunt mollit anim id est laborum.
                 </p>
                 <h2>Attached Files</h2>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
             </div>
         </div>
     );

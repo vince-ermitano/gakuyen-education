@@ -1,0 +1,12 @@
+.file-link-button {
+    padding: 1rem;
+    border: 2px solid #160B03;
+    border-radius: 10px;
+    width: 175px;
+    display: flex;
+    align-items: center;
+}
+
+.file-link-button svg {
+    margin-right: 1rem;
+}

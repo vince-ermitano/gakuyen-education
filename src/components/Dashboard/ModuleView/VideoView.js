@@ -6,6 +6,7 @@ import ReactPlayer from "react-player";
 import "./ModuleView.css";
 import "./VideoView.css";
 import ModulePreview from "./ModulePreview";
+import FileButton from "./FileButton";
 
 const VideoView = () => {
 
@@ -67,21 +68,27 @@ const VideoView = () => {
                         );
                     })} */}
 
-                    { Object.keys(theOdyssey).length > 0 && (
-                        Object.keys(theOdyssey[moduleId].videos).map((videoId) => {
-                            return (
-                                <ModulePreview
-                                    key={videoId}
-                                    id={videoId}
-                                    title={theOdyssey[moduleId].videos[videoId].title}
-                                    description={theOdyssey[moduleId].videos[videoId].description}
-                                    type='video'
-                                />
-                            );
-                        })
-                    )
-                    }
-                    { !isRehydrated && <p>Loading...</p> }
+                    {Object.keys(theOdyssey).length > 0 &&
+                        Object.keys(theOdyssey[moduleId].videos).map(
+                            (videoId) => {
+                                return (
+                                    <ModulePreview
+                                        key={videoId}
+                                        id={videoId}
+                                        title={
+                                            theOdyssey[moduleId].videos[videoId]
+                                                .title
+                                        }
+                                        description={
+                                            theOdyssey[moduleId].videos[videoId]
+                                                .description
+                                        }
+                                        type="video"
+                                    />
+                                );
+                            }
+                        )}
+                    {!isRehydrated && <p>Loading...</p>}
                 </div>
             </div>
             <div className="module-content">
@@ -107,16 +114,17 @@ const VideoView = () => {
                     deserunt mollit anim id est laborum.
                 </p>
                 <h2>Attached Files</h2>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
-                <p>text</p>
+                <div className="file-links">
+                    <FileButton />
+                    <FileButton />
+                    <FileButton />
+                    <FileButton />
+                    <FileButton />
+                    <FileButton />
+                    <FileButton />
+                    <FileButton />
+                    <FileButton />
+                </div>
             </div>
         </div>
     );

@@ -1,3 +1,14 @@
 .module-view .headers button {
     margin-bottom: 1rem;
 }
+
+.module-view h2 {
+    display: block;
+    margin-top: 2rem;
+}
+
+.module-content .file-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
