@@ -41,6 +41,7 @@ const DashboardHome = () => {
     const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
     const isProductsLoading = useSelector((state) => state.shop.isLoading);
     const products = useSelector((state) => state.shop.products);
+    const userInfo = useSelector((state) => state.user.userInfo);
     const loaded = isPurchasedItemsLoaded && !isProductsLoading;
 
 
@@ -64,7 +65,7 @@ const DashboardHome = () => {
         <div id="dashboard-home-container">
             {/* TODO: Replace Name with user's name */}
             <h1>
-                <span>Welcome,</span> Kai
+                <span>Welcome,</span> {userInfo.firstName}
             </h1>
             <div id="dashboard-home-cards-container">
                 <div

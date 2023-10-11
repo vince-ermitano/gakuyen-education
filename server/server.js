@@ -504,6 +504,43 @@ app.get("/the-odyssey", async (req, res) => {
     }
 });
 
+app.get("/user-info", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
+    const authorizationHeader = req.headers.authorization;
+
+    if (!authorizationHeader) {
+        res.status(500).send('No authorization header');
+        return;
+    }
+
+    const token = authorizationHeader.substring(7);
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    const uid = decodedToken.uid;
+
+    try {
+        const docRef = doc(db, "users", uid);
+
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const info = {
+                firstName: docSnap.data().firstName,
+                lastName: docSnap.data().lastName,
+            }
+            res.send(JSON.stringify(info));
+        } else {
+            res.status(500).send('User does not exist');
+        }
+    } catch (error) {
+        res.status(500).send('Problem fetching user info');
+    }
+}
+);
+
 // -------------------------------------------------- EXPRESS ROUTES
 
 const PORT = process.env.PORT || 3001;

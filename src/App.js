@@ -25,6 +25,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { db } from "./config/firebaseConfig"
 import { collection, getDocs } from "firebase/firestore";
 import { setProducts, setLoading, setInitialTotalPrice} from './features/ShopSlice';
+import { setUserInfo } from './features/UserSlice';
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from './components/Dashboard/DashboardHome/DashboardHome';
 import { Toaster, toast } from "sonner";
@@ -64,12 +65,43 @@ function App () {
         // Listen for authentication state changes
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
+                getUserInfo();
                 dispatch(setLoggedInStatus(true)); // Dispatch action for logged in
-                console.log('Logged In');
             } else {
                 dispatch(setLoggedInStatus(false)); // Dispatch action for logged out
             }
         });
+
+        const getUserInfo = async () => {
+            auth.currentUser
+            .getIdToken(true)
+            .then((idToken) => {
+                fetch(
+                    `${process.env.REACT_APP_SERVER_URL}/user-info`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${idToken}`,
+                            "Content-Type": "application/json",
+                        },
+                    }
+                )
+                    .then((res) => {
+                        if (res.ok) return res.json();
+                        return res.text().then((error) => Promise.reject(error));
+                    })
+                    .then((res) => {
+                        dispatch(setUserInfo(res));
+                    })
+                    .catch((e) => {
+                        console.error(e.error);
+                        toast.error(e.error);
+                    });
+            })
+            .catch((e) => {
+                console.error(e.error);
+            });
+        }
 
         // Get products from Firestore
         const getProducts = async () => {

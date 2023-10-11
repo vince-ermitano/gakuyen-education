@@ -86,6 +86,7 @@ const Homepage = () => {
                 });
         };
 
+
         document.title = "Home | GAKUYEN EDUCATION";
 
         return () => {
