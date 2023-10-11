@@ -57,6 +57,22 @@ export const handleAddToCart = (e, dispatch) => {
 
 };
 
+export const filterProductsOnShop = (products, filter) => {
+    if (filter === "all") {
+        return products;
+    }
+    
+    let filteredProducts = {};
+
+    for (const product in products) {
+        if (products[product].type.toLowerCase() === filter) {
+            filteredProducts[product] = products[product];
+        }
+    }
+
+    return filteredProducts;
+}
+
 export const filterProducts = (ownedProducts, filter, products) => {
     let filteredProducts = {};
 

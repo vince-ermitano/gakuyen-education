@@ -1,18 +1,24 @@
 import React from "react";
 import './ShopNav.css';
+
 // import { NavLink } from "react-router-dom";
 
-const ShopNav = () => {
+const ShopNav = ({setSearchParams}) => {
+
     return (
         <nav className="shop-nav">
             <ul>
                 {/* <li>SHOP ALL</li> */}
                 {/* <li><NavLink to="/store">SHOP ALL</NavLink></li> */}
-                <li>SHOP ALL</li>
-                <li>BUSINESS</li>
+                <li onClick={() => setSearchParams( { filter: 'all' })}>SHOP ALL</li>
+                <li onClick={() => setSearchParams( { filter: 'masterclass' })}>MASTERCLASS</li>
+                <li onClick={() => setSearchParams( { filter: 'lut' })}>LUTS</li>
+                <li onClick={() => setSearchParams( { filter: 'preset' })}>PRESETS</li>
+                <li onClick={() => setSearchParams( { filter: 'transition' })}>TRANSITIONS</li>
+                {/* <li>BUSINESS</li>
                 <li>WORKFLOW</li>
                 <li>EDITING</li>
-                <li>CONNECTION</li>
+                <li>CONNECTION</li> */}
             </ul>
         </nav>
     );
