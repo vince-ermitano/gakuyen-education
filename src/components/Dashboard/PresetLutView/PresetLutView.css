@@ -5,7 +5,7 @@
     width: 100%;
     display: grid;
     /* grid-template-columns: 3fr 2fr; */
-    grid-template-columns: 1fr 35rem;
+    /* grid-template-columns: 1fr 35rem; */
 }
 
 #preset-lut-view h3 {
@@ -60,8 +60,17 @@
     box-sizing: border-box;
     background-color: white;
     height: 100%;
-    width: auto;
-    padding: 10%;
+    /* width: auto; */
+    padding: 4rem;
+    /* right: -35rem; */
+    right: -35rem;
+    width: 35rem;
+    position: absolute;
+    transition: right 0.3s ease-in-out;
+}
+
+#preset-lut-view-right.open {
+    right: 0;
 }
 
 #preset-lut-view-right h1 {

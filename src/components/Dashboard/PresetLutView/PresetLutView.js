@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./PresetLutView.css";
 import PresetLutCard from "./PresetLutCard";
 import { BsDownload } from "react-icons/bs";
@@ -16,8 +16,19 @@ import { toast } from "sonner";
 const PresetLutView = () => {
     const dispatch = useDispatch();
     const location = useLocation();
+    const navigate = useNavigate();
     const currentPath = location.pathname;
     const AES = CryptoJS.AES;
+
+    const [detailsSidebarIsOpen, setDetailsSidebarIsOpen] = useState(false);
+    const [currentItem, setCurrentItem] = useState({});
+    const [currentItemIsOwned, setCurrentItemIsOwned] = useState(false);
+
+    const handleCheckItOut = () => {
+        if (!currentItemIsOwned) {
+            navigate("/store");
+        }
+    }
 
     // const userOwnedItems = JSON.parse(AES.decrypt(useSelector((state) => state.user.purchasedItems), process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8));
 
@@ -128,7 +139,19 @@ const PresetLutView = () => {
                             <p>You don't own any presets yet!</p>
                         ) : (
                             Object.keys(ownedItemsForCurrentPage).map((key) => {
-                                return <PresetLutCard isOwned="true" key={key} item={products[key]}/>;
+                                return (
+                                    <PresetLutCard
+                                        isOwned="true"
+                                        key={key}
+                                        item={products[key]}
+                                        setDetails={setDetailsSidebarIsOpen}
+                                        detailsIsOpen={detailsSidebarIsOpen}
+                                        setCurrentItem={setCurrentItem}
+                                        setCurrentItemIsOwned={
+                                            setCurrentItemIsOwned
+                                        }
+                                    />
+                                );
                             })
                         )}
                     </div>
@@ -145,16 +168,31 @@ const PresetLutView = () => {
                         ) : (
                             Object.keys(unownedItemsForCurrentPage).map(
                                 (key) => {
-                                    return <PresetLutCard isOwned="false" key={key} item={products[key]}/>;
+                                    return (
+                                        <PresetLutCard
+                                            isOwned="false"
+                                            key={key}
+                                            item={products[key]}
+                                            setDetails={setDetailsSidebarIsOpen}
+                                            detailsIsOpen={detailsSidebarIsOpen}
+                                            setCurrentItem={setCurrentItem}
+                                            setCurrentItemIsOwned={
+                                                setCurrentItemIsOwned
+                                            }
+                                        />
+                                    );
                                 }
                             )
                         )}
                     </div>
                 </section>
             </section>
-            <section id="preset-lut-view-right">
+            <section
+                id="preset-lut-view-right"
+                className={detailsSidebarIsOpen ? "open" : ""}
+            >
                 <div className="preset-lut-image-container"></div>
-                <h1>Preset Name</h1>
+                <h1>{currentItem.name}</h1>
                 <p>preset</p>
                 <h2>Description</h2>
                 <p>
@@ -171,13 +209,17 @@ const PresetLutView = () => {
                     </div>
                     <div id="preset-lut-type-info">
                         <span>Type</span>
-                        <span>Preset</span>
+                        <span>{currentItem.type}</span>
                     </div>
                 </div>
-                <button>
-                    <pre>
-                        Download <BsDownload />
-                    </pre>
+                <button onClick={handleCheckItOut}>
+                    {currentItemIsOwned ? (
+                        <pre>
+                            Download <BsDownload />
+                        </pre>
+                    ) : (
+                        <pre>Check It Out</pre>
+                    )}
                 </button>
             </section>
         </div>

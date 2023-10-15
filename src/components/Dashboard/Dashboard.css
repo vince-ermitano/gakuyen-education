@@ -36,6 +36,7 @@
     height: 95vh;
     background-color: #fff;
     overflow: hidden;
+    position: relative;
 }
 
 #dashboard-sidebar {

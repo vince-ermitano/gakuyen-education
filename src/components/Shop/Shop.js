@@ -15,15 +15,18 @@ const Shop = () => {
 
     // filter based on the search params
     const filter = searchParams.get("filter");
-
+    
     const filteredProducts = filterProductsOnShop(products, filter);
-
-
+    
+    
     useEffect(() => {
         window.scrollTo(0, 0);
         document.title = "The Shop | GAKUYEN EDUCATION";
-
-    }, [searchParams]);
+        
+        if (!filter) {
+            setSearchParams({ filter: "all" });
+        }
+    }, [searchParams, setSearchParams, filter]);
 
     return (
         <div className="shop">
