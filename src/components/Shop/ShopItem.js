@@ -7,7 +7,7 @@ import { setCurrentProduct } from "../../features/ShopSlice";
 
 const ShopItem = ({ product, productId }) => {
     const customClass = product ? `shop-item ${product.type}` : "shop-item";
-    const itemImagePath = product.image1 !== "" ? product.image1 : "https://via.placeholder.com/400x400";
+    const itemImagePath = "https://via.placeholder.com/200x200";
     const itemName = product ? product.name : "Item Name";
     const itemSlug = product ? convertToSlug(product.name) : "item-name";
     const itemPrice = product ? product.price : "Item Price";

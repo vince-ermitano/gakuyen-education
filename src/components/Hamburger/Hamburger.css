@@ -155,7 +155,7 @@ a:hover {
   /* mobile viewport */
 @media screen and (max-width: 768px) {
   .hamburger-wrapper {
-    top: 2rem;
+    top: 3rem;
   }
 
   #toggle1:checked ~ .menu1 {
