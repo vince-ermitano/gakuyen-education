@@ -152,4 +152,21 @@ a:hover {
     align-items: center;
   }
 
+  /* mobile viewport */
+@media screen and (max-width: 768px) {
+  .hamburger-wrapper {
+    top: 2rem;
+  }
+
+  #toggle1:checked ~ .menu1 {
+    height: 80vh;
+    width: 75vw;
+    padding: 1.5rem;
+  }
+
+  .menu1 {
+    grid-template-columns: 1fr;
+  }
+}
+
 

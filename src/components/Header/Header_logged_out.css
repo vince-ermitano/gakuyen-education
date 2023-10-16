@@ -97,3 +97,15 @@
 #mock-log {
     display: none;
 }
+
+
+/* mobile viewport */
+@media screen and (max-width: 768px) {
+    .header {
+        display: none;
+    }
+
+    .hamburger-wrapper {
+        top: 2rem;
+    }
+}

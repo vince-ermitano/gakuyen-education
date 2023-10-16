@@ -10,3 +10,25 @@
 .homepage {
     font-family: 'Courier New', Courier, monospace;
 }
+
+.homepage .testimonials-container {
+    display: none;
+}
+
+/* mobile viewport */
+@media screen and (max-width: 768px) {
+
+    #root > * {
+        padding: 0 1rem;
+    }
+
+    .homepage {
+        position: relative;
+        top: 30vh;
+        margin-bottom: 30vh;
+    }
+
+    .homepage .page-section {
+        margin: 0;
+    }
+}

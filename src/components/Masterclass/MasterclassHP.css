@@ -30,3 +30,13 @@
     background-color: #feeb22;
     color: #000;
 }
+
+@media screen and (max-width: 768px) {
+    .masterclass-hp p {
+        width: 80%;
+    }
+
+    .masterclass-hp .img-container {
+        height: 500px;
+    }
+}

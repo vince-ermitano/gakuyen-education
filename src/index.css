@@ -135,3 +135,35 @@ button, input[type="submit"], input[type="reset"] {
   inset: 0;
   z-index: -1;
 }
+
+/* mobile viewport */
+@media screen and (max-width: 768px) {
+
+  #root>* {
+    padding: 0;
+  }
+
+  .hero {
+    padding: 0;
+  }
+
+  .hero-title-container {
+    top: 8rem;
+    text-align: center;
+  }
+
+  .hero .hero-title {
+    font-size: 3rem;
+    width: 100%;
+    display: inline-block;
+  }
+
+  #gradient-canvas {
+    height: 45vh;
+    clip-path: polygon(0 0, 100% 0, 100% 40%, 0% 100%);
+  }
+
+  .hero-title[data-overlay] {
+    right: 13ch;
+  }
+}

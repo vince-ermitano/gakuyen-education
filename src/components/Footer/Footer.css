@@ -15,3 +15,16 @@
 .footer .newsletter-form span {
     margin: 0 1rem 0 0;
 }
+
+/* mobile viewport */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0 0 4rem 0;
+    }
+    .footer {
+        position: relative;
+        top: 4rem;
+        margin-bottom: 4rem;
+        padding: 4rem 1rem 0 1rem;
+    }
+}

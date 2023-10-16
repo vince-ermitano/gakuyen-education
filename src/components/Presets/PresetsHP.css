@@ -33,3 +33,20 @@
     /* padding: 1rem; */
 }
 
+@media screen and (max-width: 768px) {
+
+    .presets-hp {
+        margin: 4rem 0 8rem 0;
+    }
+
+    .presets-hp .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem 1rem;
+    }
+
+    .presets-hp .grid-item {
+        height: 300px;
+    }
+    
+}
+
