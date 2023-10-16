@@ -47,7 +47,6 @@ const DashboardHome = () => {
 
     let purchasedItems;
 
-
     if (loaded) {
         purchasedItems = JSON.parse(
             AES.decrypt(

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./PresetLutView.css";
 import PresetLutCard from "./PresetLutCard";
 import { BsDownload } from "react-icons/bs";
@@ -23,6 +24,8 @@ const PresetLutView = () => {
     const [detailsSidebarIsOpen, setDetailsSidebarIsOpen] = useState(false);
     const [currentItem, setCurrentItem] = useState({});
     const [currentItemIsOwned, setCurrentItemIsOwned] = useState(false);
+    const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
+
 
     const handleCheckItOut = () => {
         if (!currentItemIsOwned) {
@@ -37,12 +40,16 @@ const PresetLutView = () => {
     let userOwnedItems;
 
     try {
-        userOwnedItems = JSON.parse(
-            AES.decrypt(
-                localStorage.getItem("purchasedItems"),
-                process.env.REACT_APP_SECRET_KEY
-            ).toString(CryptoJS.enc.Utf8)
-        );
+        if (isPurchasedItemsLoaded) {
+            userOwnedItems = JSON.parse(
+                AES.decrypt(
+                    localStorage.getItem("purchasedItems"),
+                    process.env.REACT_APP_SECRET_KEY
+                ).toString(CryptoJS.enc.Utf8)
+            );
+        } else {
+            userOwnedItems = {};
+        }
     } catch(err) {
         console.log(err);
         toast.error("Error fetching your owned items. Attempting to refetch...");

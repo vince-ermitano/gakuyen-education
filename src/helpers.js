@@ -1,7 +1,10 @@
 // import { toast } from "react-toastify";
 import { toast } from "sonner";
 import { calculateTotalPrice } from "./features/ShopSlice";
+import CryptoJS from "crypto-js";
 // import { auth } from "./config/firebaseConfig";
+
+const AES = CryptoJS.AES;
 
 
 export const TOAST_POSITION = {
@@ -100,3 +103,11 @@ export const filterProductsNotOwned = (ownedProducts, filter, products) => {
 export const updateCartAfterRemovalOfDupes = (newCart) => {
     localStorage.setItem("cart", JSON.stringify(newCart));
 };
+
+export const setUserOwnedItemsIfNull = () => {
+
+    if (localStorage.getItem("purchasedItems") === null) {
+        const encrypted = AES.encrypt(JSON.stringify({}), process.env.REACT_APP_SECRET_KEY).toString();
+        localStorage.setItem("purchasedItems", encrypted);
+    }
+}
