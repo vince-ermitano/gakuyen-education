@@ -77,3 +77,51 @@
     list-style: none;
     padding: 0;
 }
+
+
+
+@media screen and (max-width: 768px) {
+    .preset-desc-page-content {
+        grid-template-columns: 1fr;
+        gap: 8rem;
+        padding: 16rem 0rem 4rem 0;
+        background-color: transparent;
+    }
+
+    .preset-desc-page.page-section {
+        margin-bottom: 0rem;
+        text-align: center;
+    }
+
+    .preset-desc-page .back-to-btn {
+        display: none;
+    }
+
+    .preset-desc-page-content .preset-desc-page-img:nth-child(1) {
+        order: 2;
+    }
+
+    .preset-desc-page-info.preset-name-price {
+        order: 1;
+    }
+    .second-row-desc {
+        order: 3;
+    }
+
+    swiper-container {
+        order: 4;
+    }
+
+    .whats-included {
+        order: 5;
+    }
+
+    .grid-last-item {
+        order: 6;
+    }
+
+    .preset-desc-page-content .carousel-img-container {
+        width: 90%;
+        text-align: center;
+    }
+}

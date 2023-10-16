@@ -134,7 +134,7 @@ const PresetDescPage = () => {
                     </swiper-slide>
                 </swiper-container>
 
-                <div className="preset-desc-page-img img-container">
+                <div className="preset-desc-page-img img-container grid-last-item">
                     <img
                         src="https://via.placeholder.com/400x300"
                         alt="preset-desc-page-img"
