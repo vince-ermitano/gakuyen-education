@@ -180,7 +180,7 @@ const MasterclassDesc = () => {
                             </li>
                         </ol>
                     </div>
-                    <div className="module-img-container img-container">
+                    <div className="module-img-container img-container" id="first-masterclass-break-img">
                         <img src="https://via.placeholder.com/500x500" alt="" />
                     </div>
                     <div className="module-img-container img-container">

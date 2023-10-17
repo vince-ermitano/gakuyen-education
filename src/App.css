@@ -51,3 +51,9 @@
   margin-bottom: 1rem;
 }
 
+@media screen and (max-width: 768px) {
+  .page-section {
+    margin-bottom: 0;
+  }
+}
+

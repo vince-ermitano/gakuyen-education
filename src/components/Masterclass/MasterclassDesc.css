@@ -106,3 +106,101 @@ hr {
 .masterclass-who-for > button {
     grid-column: span 3;
 }
+@media screen and (max-width: 768px) {
+    .masterclass-desc-content {
+        padding: 2rem 0;
+        background-color: transparent;
+    }
+
+    .back-to-btn {
+        display: none;
+    }
+
+    .grid-two-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .masterclass-desc .masterclass-desc-header .img-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .masterclass-desc .react-player {
+        height: 250px !important;
+    }
+
+    .masterclass-what-we-offer .section-text:nth-child(2) {
+        order: 1;
+    }
+
+    .masterclass-what-we-offer .section-img:nth-child(2) {
+        order: 2;
+    }
+
+    .masterclass-break-it-down>h2 {
+        grid-column: span 1;
+        order: 1;
+    }
+
+    .masterclass-break-it-down .module-listings:first-of-type {
+        order: 2;
+    }
+
+    section.masterclass-break-it-down .module-img-container:nth-child(3) {
+        order: 3;
+    }
+
+    .masterclass-break-it-down .module-listings:nth-child(5) {
+        order: 4;
+    }
+
+    section.masterclass-break-it-down .module-img-container:nth-child(4) {
+        order: 5;
+    }
+
+    .masterclass-break-it-down .module-listings:nth-child(6) {
+        order: 6;
+    }
+
+    section.masterclass-break-it-down .module-img-container:nth-child(7) {
+        order: 7;
+    }
+
+    .masterclass-break-it-down .module-listings:nth-child(9) {
+        order: 8;
+    }
+
+    section.masterclass-break-it-down .module-img-container:nth-child(8) {
+        order: 9;
+    }
+
+    .masterclass-break-it-down .module-listings:nth-child(10) {
+        order: 10;
+    }
+
+    section.masterclass-break-it-down .module-img-container:nth-child(11) {
+        order: 11;
+    }
+
+    .masterclass-break-it-down .module-listings:nth-child(13) {
+        order: 12;
+    }
+
+    section.masterclass-break-it-down .module-img-container:nth-child(12) {
+        order: 13;
+    }
+
+    .masterclass-who-for {
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+    }
+
+    .masterclass-who-for > h2 {
+        grid-column: span 1;
+    }
+
+    .masterclass-who-for > button {
+        grid-column: span 1;
+        margin-top: 4rem;
+    }
+}
