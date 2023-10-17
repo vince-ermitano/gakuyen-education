@@ -110,13 +110,13 @@ a:hover {
     width: auto;
     text-align: center;
     height: 0px;
-    overflow: hidden;
     transition: height .4s ease;
     /* z-index: 120; */
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     place-items: center;
     align-items: center;
+    overflow-y: scroll;
   }
   
   /* .menu1 a:first-child {

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import "./Sidebar.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -27,6 +28,7 @@ const CreateAccountSidebar = () => {
     const [errorMessage, setErrorMessage] = useState("");
 
     const isOpen = useSelector((state) => state.sidebar.createSidebarIsOpen);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     // functions
     const alertMessage = (type) => {
@@ -146,10 +148,10 @@ const CreateAccountSidebar = () => {
 
 
     useEffect(() => {
-        if (isOpen) {
+        if (isOpen && !isMobile) {
             firstNameInputRef.current.focus();
         }
-    }, [isOpen]);
+    }, [isOpen, isMobile]);
 
     useEffect(() => {
         // DOM elements
