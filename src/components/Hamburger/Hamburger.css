@@ -95,6 +95,7 @@ a:hover {
   
   /* Menu */
   .menu1 {
+    border-radius: 20px;
     width: 100%;
     background-color: #F2F1F2;
     margin: 0;
@@ -152,10 +153,15 @@ a:hover {
     align-items: center;
   }
 
+  .connect-category-links button {
+    display: none;
+  }
+
   /* mobile viewport */
 @media screen and (max-width: 768px) {
   .hamburger-wrapper {
     top: 3rem;
+    padding: 0;
   }
 
   #toggle1:checked ~ .menu1 {
@@ -166,6 +172,10 @@ a:hover {
 
   .menu1 {
     grid-template-columns: 1fr;
+  }
+
+  .connect-category-links button {
+    display: block;
   }
 }
 

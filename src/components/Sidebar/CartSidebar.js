@@ -10,6 +10,7 @@ import { auth } from "../../config/firebaseConfig";
 import { toast } from "sonner";
 // import { TOAST_POSITION } from "../../helpers";
 import { updateCartAfterRemovalOfDupes } from "../../helpers";
+import { BiArrowBack } from "react-icons/bi";
 
 // TODO: Add ability to add items to cart that are not Presets/Masterclasses
 
@@ -141,6 +142,10 @@ const CartSidebar = () => {
         }
     }
 
+    const handleBackOnCart = () => {
+        dispatch(toggleCartSidebar());
+    }
+
     useEffect(() => {
         dispatch(calculateTotalPrice());
 
@@ -165,6 +170,7 @@ const CartSidebar = () => {
                 className={`right-sidebar ${cartSidebarIsOpen ? "open" : ""} `}
             >
                 <div className="cart-info">
+                    <button onClick={handleBackOnCart}><BiArrowBack />Back</button>
                     <h2>Cart</h2>
                     {Object.keys(cartItems).length > 0 ? (
                         Object.keys(cartItems).map((itemId) => (

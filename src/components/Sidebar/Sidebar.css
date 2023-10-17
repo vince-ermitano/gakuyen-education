@@ -6,7 +6,7 @@
     height: 100vh;
     background-color: #f2f1f2;
     transition: left 0.3s ease-in-out;
-    z-index: 3;
+    z-index: 100;
 }
 
 .overlay {
@@ -198,7 +198,39 @@
 
 
 @media screen and (max-width: 768px) {
+
     .sidebar {
-        display: none;
+        width: 100%;
+        left: -100%;
+    }
+
+    .sidebar > button:last-child {
+        display: flex;
+        text-align: end;
+        justify-content: flex-end;
+        margin-top: 4rem;
+        justify-self: end;
+    }
+
+    .sidebar > button:last-child:hover {
+        background-color: transparent;
+    }
+
+    .sidebar > button:last-child svg {
+        rotate: 180deg;
+        margin-left: 1rem;
+    }
+
+    .cart-info button:first-child {
+        display: flex;
+    }
+
+    .cart-info button:first-child svg {
+        margin-right: 1rem;
+    }
+
+    .right-sidebar {
+        right: -100%;
+        width: 100%;
     }
 }

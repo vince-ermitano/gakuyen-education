@@ -101,8 +101,21 @@
 
 /* mobile viewport */
 @media screen and (max-width: 768px) {
-    .header {
+
+    .user-directory span:first-child, .user-directory span:nth-child(2) {
         display: none;
+    }
+
+    .header {
+        margin-top: 3rem;
+    }
+
+    .header .logo {
+        height: 2rem;
+    }
+
+    .header .user-directory {
+        justify-content: center;
     }
 
     .hamburger-wrapper {

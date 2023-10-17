@@ -1,8 +1,33 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import './Hamburger.css'
 import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../config/firebaseConfig";
+import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
+import { toggleLoginSidebar } from "../../features/SidebarSlice";
+import { toast } from "sonner";
+
 
 const Hamburger = () => {
+
+    const loggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        signOut(auth)
+            .then(() => {
+                // Sign-out successful.
+                dispatch(setLoggedInStatus(false));
+                toast.success("Logged out successfully!");
+            })
+            .catch((error) => {
+                // An error happened.
+                console.error(error);
+                toast.error("Error logging out!");
+            });
+    };
+
     return (
         <div className="hamburger-wrapper">
             <section className="p-menu1">
@@ -49,6 +74,13 @@ const Hamburger = () => {
                                 <Link className="link1" to="/">Get in Touch</Link>
                                 <Link className="link1" to="/">Frequent Questions</Link>
                                 <Link className="link1" to="/">My Account</Link>
+                                {loggedIn ? (
+                                    <button className="link1" onClick={handleLogout}>Logout</button>
+                                ) : (
+                                    <button className="link1" onClick={() => {
+                                        dispatch(toggleLoginSidebar());
+                                    }}>Login</button>
+                                )}
                             </div>
                         </div>
                     </nav>

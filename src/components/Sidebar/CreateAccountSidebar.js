@@ -7,6 +7,7 @@ import {
     toggleLoginSidebar,
 } from "../../features/SidebarSlice";
 import { auth, db } from "../../config/firebaseConfig";
+import { BiArrowBack } from "react-icons/bi";
 import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 // import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
@@ -240,6 +241,7 @@ const CreateAccountSidebar = () => {
                         Login
                     </button>
                 </div>
+                <button className="mobile" onClick={() => dispatch(toggleCreateSidebar())}>Back<BiArrowBack /></button>
             </div>
             <div
                 className={`overlay ${isOpen ? "show-overlay" : ""}`}

@@ -2,7 +2,7 @@ import React from "react";
 import "./Header_logged_out.css";
 // import Hamburger from "../Hamburger/Hamburger";
 import { useSelector, useDispatch } from "react-redux";
-// import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
+import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { NavLink, Link } from "react-router-dom";
 import {
     toggleLoginSidebar,
@@ -26,7 +26,7 @@ const Header = () => {
         signOut(auth)
             .then(() => {
                 // Sign-out successful.
-                // dispatch(setLoggedInStatus(false));
+                dispatch(setLoggedInStatus(false));
                 toast.success("Logged out successfully!");
             })
             .catch((error) => {

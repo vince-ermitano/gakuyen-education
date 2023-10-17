@@ -10,6 +10,8 @@ import { auth } from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 // import { toast } from "react-toastify";
 import { toast } from "sonner";
+import { BiArrowBack } from "react-icons/bi";
+
 
 const LoginSidebar = () => {
     const dispatch = useDispatch();
@@ -73,6 +75,10 @@ const LoginSidebar = () => {
         dispatch(toggleLoginSidebar());
     };
 
+    const handleBack = () => {
+        dispatch(toggleLoginSidebar());
+    }
+
     useEffect(() => {
         if (isOpen) {
             emailInputRef.current.focus();
@@ -115,6 +121,7 @@ const LoginSidebar = () => {
                         Create Account
                     </button>
                 </div>
+                <button className="mobile" onClick={handleBack}>Back<BiArrowBack /></button>
             </div>
             <div
                 className={`overlay ${isOpen ? "show-overlay" : ""}`}
