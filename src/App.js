@@ -119,6 +119,8 @@ function App () {
                 dispatch(setInitialTotalPrice());
                 dispatch(setLoading(false));
 
+                console.log('received products from firestore');
+
             } catch (error) {
                 console.log(error);
                 // toast.error("Error getting products", {

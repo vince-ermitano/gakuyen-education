@@ -6,16 +6,16 @@ import PresetLutCard from "./PresetLutCard";
 import { BsDownload } from "react-icons/bs";
 import { filterProducts, filterProductsNotOwned } from "../../../helpers";
 import CryptoJS from "crypto-js";
-import { db } from "../../../config/firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
-import { useDispatch } from "react-redux";
-import { setLoading } from "../../../features/ShopSlice";
+// import { db } from "../../../config/firebaseConfig";
+// import { collection, getDocs } from "firebase/firestore";
+// import { useDispatch } from "react-redux";
+// import { setLoading } from "../../../features/ShopSlice";
 // import { toast } from "react-toastify";
 import { toast } from "sonner";
 
 
 const PresetLutView = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
     const currentPath = location.pathname;
@@ -25,6 +25,15 @@ const PresetLutView = () => {
     const [currentItem, setCurrentItem] = useState({});
     const [currentItemIsOwned, setCurrentItemIsOwned] = useState(false);
     const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
+    const isProductsLoading = useSelector((state) => state.shop.isLoading);
+    const products = useSelector((state) => state.shop.products);
+    let loadingOrComingSoonMessage;
+
+    if (isProductsLoading) {
+        loadingOrComingSoonMessage = "Loading...";
+    } else {
+        loadingOrComingSoonMessage = "Coming soon!";
+    }
 
 
     const handleCheckItOut = () => {
@@ -59,34 +68,34 @@ const PresetLutView = () => {
         }, 3000);
     }
 
-    // Get products from Firestore
-    const getProducts = async () => {
-        dispatch(setLoading(true));
+    // // Get products from Firestore
+    // const getProducts = async () => {
+    //     dispatch(setLoading(true));
 
-        try {
-            const querySnapshot = await getDocs(collection(db, "products"));
+    //     try {
+    //         const querySnapshot = await getDocs(collection(db, "products"));
 
-            const productsObject = {};
-            querySnapshot.forEach((doc) => {
-                [productsObject[doc.id]] = doc.data();
-            });
+    //         const productsObject = {};
+    //         querySnapshot.forEach((doc) => {
+    //             [productsObject[doc.id]] = doc.data();
+    //         });
 
-            console.log(productsObject);
-            localStorage.setItem("products", productsObject);
+    //         console.log(productsObject);
+    //         localStorage.setItem("products", productsObject);
 
-            dispatch(setLoading(false));
-        } catch (error) {
-            console.log(error);
-            toast.error("Error getting products");
-        }
-    };
+    //         dispatch(setLoading(false));
+    //     } catch (error) {
+    //         console.log(error);
+    //         toast.error("Error getting products");
+    //     }
+    // };
 
-    if (localStorage.getItem("products") === null) {
-        console.log("products is empty")
-        getProducts();
-    }
+    // if (localStorage.getItem("products") === null) {
+    //     console.log("products is empty")
+    //     getProducts();
+    // }
 
-    const products = JSON.parse(localStorage.getItem("products"));
+    // const products = JSON.parse(localStorage.getItem("products"));
 
 
     let ownedItemsForCurrentPage;
@@ -171,7 +180,7 @@ const PresetLutView = () => {
                     >
                         {Object.keys(unownedItemsForCurrentPage).length ===
                         0 ? (
-                            <p>Coming soon!</p>
+                            <p>{loadingOrComingSoonMessage}</p>
                         ) : (
                             Object.keys(unownedItemsForCurrentPage).map(
                                 (key) => {

@@ -73,7 +73,7 @@ const Hamburger = () => {
                             <div className="connect-category-links">
                                 <Link className="link1" to="/">Get in Touch</Link>
                                 <Link className="link1" to="/">Frequent Questions</Link>
-                                <Link className="link1" to="/">My Account</Link>
+                                <Link className="link1" to="/dashboard/main">My Account</Link>
                                 {loggedIn ? (
                                     <button className="link1" onClick={handleLogout}>Logout</button>
                                 ) : (
