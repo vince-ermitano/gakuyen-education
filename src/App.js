@@ -94,8 +94,8 @@ function App () {
                         dispatch(setUserInfo(res));
                     })
                     .catch((e) => {
-                        console.error(e.error);
-                        toast.error(e.error);
+                        console.error(e);
+                        toast.error(e);
                     });
             })
             .catch((e) => {

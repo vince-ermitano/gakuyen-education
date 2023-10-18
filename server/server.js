@@ -48,7 +48,8 @@ const db = getFirestore(firebaseApp);
 
 // Initialize Firebase Admin SDK (for server-side and administrative tasks)
 const admin = require('firebase-admin');
-const serviceAccount = require('../secret/serviceAccountKey.json'); // Your service account key
+// const serviceAccount = require('../secret/serviceAccountKey.json'); // Your service account key
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
