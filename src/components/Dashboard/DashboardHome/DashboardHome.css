@@ -203,5 +203,45 @@
     width: 70%;
 }
 
+@media screen and (max-width:768px) {
+
+    #dashboard-home-cards-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    #dashboard-home-container h1 {
+        font-size: 2.5rem;
+        width: 8ch;
+    }
+
+    #continue-learning-card {
+        height: 350px;
+    }
+
+    .dashboard-home-card {
+        padding: 2rem;
+    }
+
+    #continue-learning-card button, #my-items-card button {
+        margin-bottom: 2rem;
+    }
+    
+    #my-items-card {
+        height: 450px;
+    }
+
+    .order-history-item {
+        flex-direction: column;
+        padding: 1rem 0;
+        text-align: center;
+    }
+
+    #order-history-card p.product-name {
+        width: 100%;
+    }
+}
+
 
 

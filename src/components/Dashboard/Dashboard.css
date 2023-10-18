@@ -127,8 +127,9 @@
     #dashboard-content {
         margin: 0;
         order: 1;
-        height: 85vh;
+        height: 89vh;
         border-radius: 0;
+        overflow: scroll;
     }
     #dashboard-sidebar {
         margin: 0;
@@ -142,6 +143,7 @@
     #dashboard-sidebar {
         flex-direction: column;
         justify-content: flex-end;
+        padding: 0;
     }
 
     #dashboard-sidebar-main ul {
