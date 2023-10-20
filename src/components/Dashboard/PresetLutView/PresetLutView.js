@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import "./PresetLutView.css";
 import PresetLutCard from "./PresetLutCard";
 import { BsDownload } from "react-icons/bs";
+import { BiArrowBack } from "react-icons/bi";
 import { filterProducts, filterProductsNotOwned } from "../../../helpers";
 import CryptoJS from "crypto-js";
 // import { db } from "../../../config/firebaseConfig";
@@ -40,7 +41,7 @@ const PresetLutView = () => {
         if (!currentItemIsOwned) {
             navigate("/store");
         }
-    }
+    };
 
     // const userOwnedItems = JSON.parse(AES.decrypt(useSelector((state) => state.user.purchasedItems), process.env.REACT_APP_SECRET_KEY).toString(CryptoJS.enc.Utf8));
 
@@ -207,6 +208,7 @@ const PresetLutView = () => {
                 id="preset-lut-view-right"
                 className={detailsSidebarIsOpen ? "open" : ""}
             >
+                <button onClick={() => setDetailsSidebarIsOpen(false)}><BiArrowBack />Back</button>
                 <div className="preset-lut-image-container"></div>
                 <h1>{currentItem.name}</h1>
                 <p>preset</p>

@@ -129,7 +129,7 @@
         order: 1;
         height: 89vh;
         border-radius: 0;
-        overflow: scroll;
+        overflow-y: scroll;
     }
     #dashboard-sidebar {
         margin: 0;

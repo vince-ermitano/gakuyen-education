@@ -33,7 +33,7 @@
 
 #user-owned-presets-luts {
     width: 100%;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     white-space: nowrap;
 }
 
@@ -126,4 +126,37 @@
     align-items: center;
     justify-content: center;
     margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    #preset-lut-view-left {
+        height: 100%;
+        padding: 3rem 0 3rem 1rem;
+        margin: 0;
+        display: block;
+    }
+
+    #user-owned-presets-luts {
+        margin-bottom: 3rem;
+    }
+
+    .presets-luts-container {
+        height: auto;
+    }
+
+    #preset-lut-view-right {
+        height: auto;
+        width: 100vw;
+        padding: 2rem;
+    }
+
+    #preset-lut-view-right button:first-child {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    #preset-lut-view-right button:first-child svg {
+        margin-right: 1rem;
+    }
 }
