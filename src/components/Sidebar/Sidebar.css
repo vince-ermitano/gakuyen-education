@@ -136,6 +136,10 @@
     justify-content: space-between;
 }
 
+.right-sidebar .cart-info button {
+    display: none;
+}
+
 .right-sidebar .cart-info > * {
     margin: 2rem 0;
 }
