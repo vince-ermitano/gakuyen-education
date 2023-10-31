@@ -542,6 +542,40 @@ app.get("/user-info", async (req, res) => {
 }
 );
 
+app.put("/user-info", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
+    const authorizationHeader = req.headers.authorization;
+
+    if (!authorizationHeader) {
+        res.status(500).send('No authorization header');
+        return;
+    }
+
+    const token = authorizationHeader.substring(7);
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    const uid = decodedToken.uid;
+
+    try {
+        const docRef = doc(db, "users", uid);
+
+        await updateDoc(docRef, {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+        });
+        
+        res.send('User info updated successfully!');
+    } catch (error) {
+        res.status(500).send('Problem updating user info');
+    }
+});
+
+
+
+
 // -------------------------------------------------- EXPRESS ROUTES
 
 const PORT = process.env.PORT || 3001;
