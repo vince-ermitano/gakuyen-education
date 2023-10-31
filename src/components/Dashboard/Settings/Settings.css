@@ -116,6 +116,10 @@
         margin-bottom: 1rem;
     }
 
+    #name-and-email-text {
+        width: 100%;
+    }
+
     .my-profile-view .edit-button, .my-profile-view .save-button {
         position: relative;
         margin: 0;
