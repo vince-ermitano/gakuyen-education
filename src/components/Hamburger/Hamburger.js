@@ -26,7 +26,13 @@ const Hamburger = () => {
                 console.error(error);
                 toast.error("Error logging out!");
             });
+
+        hideHamburger();
     };
+
+    const hideHamburger = () => {
+        document.getElementById("toggle1").checked = false;
+    }
 
     return (
         <div className="hamburger-wrapper">
@@ -50,34 +56,35 @@ const Hamburger = () => {
                             <h3>Shop By</h3>
                             <hr />
                             <div className="shop-by-category-links">
-                                <Link className="link1" to="/store">Presets</Link>
-                                <Link className="link1" to="/store">Masterclass</Link>
-                                <Link className="link1" to="/">Editing</Link>
-                                <Link className="link1" to="/">Workflow</Link>
-                                <Link className="link1" to="/">Connection</Link>
-                                <Link className="link1" to="/">Gaku's Favorites</Link>
+                                <Link className="link1" to="/store" onClick={hideHamburger}>Presets</Link>
+                                <Link className="link1" to="/store" onClick={hideHamburger}>Masterclass</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>Editing</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>Workflow</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>Connection</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>Gaku's Favorites</Link>
                             </div>
                         </div>
                         <div className="explore-category">
                             <h3>Explore</h3>
                             <hr />
                             <div className="explore-category-links">
-                                <Link className="link1" to="/">Home</Link>
-                                <Link className="link1" to="/">Free Resources</Link>
-                                <Link className="link1" to="/">About Gaku</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>Home</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>Free Resources</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>About Gaku</Link>
                             </div>
                         </div>
                         <div className="connect-category">
                             <h3>Connect</h3>
                             <hr />
                             <div className="connect-category-links">
-                                <Link className="link1" to="/">Get in Touch</Link>
-                                <Link className="link1" to="/">Frequent Questions</Link>
-                                <Link className="link1" to="/dashboard/main">My Account</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>Get in Touch</Link>
+                                <Link className="link1" to="/" onClick={hideHamburger}>Frequent Questions</Link>
+                                <Link className="link1" to="/dashboard/main" onClick={hideHamburger}>My Account</Link>
                                 {loggedIn ? (
                                     <button className="link1" onClick={handleLogout}>Logout</button>
                                 ) : (
                                     <button className="link1" onClick={() => {
+                                        hideHamburger();
                                         dispatch(toggleLoginSidebar());
                                     }}>Login</button>
                                 )}
