@@ -4,6 +4,7 @@
     height: 100%;
     padding: 3rem;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    overflow-y: scroll;
 }
 
 .my-profile-view > * {
@@ -104,4 +105,25 @@
     .first-and-last-name, .email-and-phone {
         flex-direction: column;
     }
+}
+
+@media screen and (max-width: 768px) {
+
+    .my-profile-view {
+        padding: 3rem 2rem;
+    }
+    .name-and-email svg {
+        margin-bottom: 1rem;
+    }
+
+    .my-profile-view .edit-button, .my-profile-view .save-button {
+        position: relative;
+        margin: 0;
+        margin-top: 2rem;
+        width: fit-content;
+    }
+
+    /* .name-and-email, .personal-info {
+        width: 100%;
+    }  */
 }
