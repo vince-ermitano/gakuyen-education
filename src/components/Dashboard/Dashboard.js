@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setTheOdyssey } from "../../features/CoursesSlice";
 import { setIsPurchasedItemsLoaded } from "../../features/UserSlice";
+import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { NavLink, Link, Outlet } from "react-router-dom";
 import "./Dashboard.css";
 import { RxDashboard } from "react-icons/rx";
@@ -9,9 +11,10 @@ import { TbLogout2 } from "react-icons/tb";
 import { BiBook, BiSlider, BiPalette } from "react-icons/bi";
 import { FaFilm } from "react-icons/fa";
 import { BsGear } from "react-icons/bs";
-import { auth } from "../../config/firebaseConfig";
+import { signOut } from "firebase/auth";
 import { db } from "../../config/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
+import { auth } from "../../config/firebaseConfig";
 // import { useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
 // import { useDispatch } from "react-redux";
@@ -23,18 +26,26 @@ import { toast } from "sonner";
 
 const Dashboard = () => {
 
-    // if (!auth.currentUser) {
-    //     window.location.href = "/";
-    // }
+    const navigate = useNavigate();
+
+    // functions
+    const handleLogout = () => {
+        signOut(auth)
+            .then(() => {
+                // Sign-out successful.
+                navigate("/");
+                dispatch(setLoggedInStatus(false));
+                toast.success("Logged out successfully!");
+
+            })
+            .catch((error) => {
+                // An error happened.
+                console.error(error);
+                toast.error("Error logging out!");
+            });
+    };
 
     const AES = CryptoJS.AES;
-    
-    // const dispatch = useDispatch();
-    // const products = useSelector((state) => state.shop.products);
-
-
-    
-    // fetchUserOwnedItems();
     
     const dispatch = useDispatch();
 
@@ -186,14 +197,14 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li className="dashboard-sidebar-menu-item mobile">
-                                <NavLink to="/dashboard/logout">
+                                <NavLink to="/" onClick={handleLogout}>
                                     <TbLogout2 />
                                     <p>Logout</p>
                                 </NavLink>
                             </li>
                         </ul>
                     </div>
-                    <div id="dashboard-sidebar-logout">
+                    <div id="dashboard-sidebar-logout" onClick={handleLogout}>
                         <div className="dashboard-sidebar-menu-item desktop">
                             <TbLogout2 />
                             <p>Logout</p>
