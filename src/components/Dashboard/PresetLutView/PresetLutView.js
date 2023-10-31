@@ -30,6 +30,12 @@ const PresetLutView = () => {
     const products = useSelector((state) => state.shop.products);
     let loadingOrComingSoonMessage;
 
+    const loadingOrComingSoonStyle = {
+        height: '300px',
+        display: 'flex',
+        alignItems: 'center',
+    }
+
     if (isProductsLoading) {
         loadingOrComingSoonMessage = "Loading...";
     } else {
@@ -143,6 +149,7 @@ const PresetLutView = () => {
         document.title = "My Items | Gakuyen Education";
 
     }, [currentPath]);
+
     return (
         <div id="preset-lut-view">
             <section id="preset-lut-view-left">
@@ -153,7 +160,7 @@ const PresetLutView = () => {
                         className="presets-luts-container"
                     >
                         {Object.keys(ownedItemsForCurrentPage).length === 0 ? (
-                            <p>You don't own any presets yet!</p>
+                            <p style={loadingOrComingSoonStyle}>You don't own any presets yet!</p>
                         ) : (
                             Object.keys(ownedItemsForCurrentPage).map((key) => {
                                 return (
@@ -181,7 +188,7 @@ const PresetLutView = () => {
                     >
                         {Object.keys(unownedItemsForCurrentPage).length ===
                         0 ? (
-                            <p>{loadingOrComingSoonMessage}</p>
+                            <p style={loadingOrComingSoonStyle}>{loadingOrComingSoonMessage}</p>
                         ) : (
                             Object.keys(unownedItemsForCurrentPage).map(
                                 (key) => {
