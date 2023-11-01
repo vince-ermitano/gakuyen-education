@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import { setTheOdyssey } from "../../../features/CoursesSlice";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 import "./ModuleView.css";
 import "./VideoView.css";
 import ModulePreview from "./ModulePreview";
@@ -13,9 +13,11 @@ import { BiArrowBack } from "react-icons/bi";
 const VideoView = () => {
 
     const navigate = useNavigate();
+    const playerRef = React.createRef();
     const { moduleId } = useParams();
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
     const [ isRehydrated, setIsRehydrated ] = useState(false);
+    const [ playing, setPlaying ] = useState(true);
 
     if (Object.keys(theOdyssey).length > 0) {
         console.log(theOdyssey[moduleId]);
@@ -37,6 +39,9 @@ const VideoView = () => {
     }
 
     const goBackToVideos = () => {
+
+        setPlaying(false);
+
         const videoView = document.querySelector(".module-content");
         videoView.classList.remove("active");
     }
@@ -101,12 +106,13 @@ const VideoView = () => {
                 <button className="back-button mobile" onClick={goBackToVideos}><BiArrowBack />Back to Videos</button>
                 <div className="video-player-wrapper">
                     <ReactPlayer
+                        ref={playerRef}
                         className="react-player"
                         url="https://www.youtube.com/watch?v=fyNns5amxRk"
                         width="100%"
                         height="100%"
                         controls
-                        playing
+                        playing={playing}
                     />
                 </div>
                 <h1>Video Title</h1>

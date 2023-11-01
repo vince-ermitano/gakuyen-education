@@ -96,7 +96,7 @@ const ModuleView = () => {
                         width="100%"
                         height="100%"
                         controls
-                        playing
+                        playing={false}
                     />
                 </div>
                 <h1>Module Title</h1>
