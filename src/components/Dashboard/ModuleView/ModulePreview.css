@@ -22,3 +22,20 @@
     background-color: #f2f1f2;
     border-radius: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .module-preview {
+        align-items: center;
+        min-height: 140px;
+        height: fit-content;
+    }
+
+    .module-preview h3 {
+        margin: 0;
+    }
+
+    .module-preview-info p {
+        display: none;
+    }
+    
+}

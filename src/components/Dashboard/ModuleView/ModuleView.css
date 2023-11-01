@@ -66,3 +66,50 @@
     padding: 0;
     margin: 1rem 0;
 }
+
+#dashboard .module-view .headers button {
+    display: flex;
+}
+
+#dashboard .module-content button.back-button, #dashboard .module-view .headers button {
+    margin-bottom: 2rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .module-view {
+        display: block;
+    }
+
+    .module-view > *{
+        padding: 3rem 1.5rem;
+    }
+
+    .modules-container {
+        overflow-y: visible;
+        max-height: fit-content;
+    }
+
+    #dashboard .module-content button.back-button, #dashboard .module-view .headers button {
+        display: flex;
+    }
+
+    .module-content {
+        position: fixed;
+        width: 100vw;
+        top: 0;
+        right: -100%;
+        background-color: white;
+        height: 89vh;
+        transition: right 0.3s ease-in-out;
+    }
+
+    .module-content.desktop {
+        display: none;
+    }
+
+    .module-content.active {
+        right: 0;
+    }
+}

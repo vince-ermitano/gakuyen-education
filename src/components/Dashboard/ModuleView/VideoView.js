@@ -7,6 +7,8 @@ import "./ModuleView.css";
 import "./VideoView.css";
 import ModulePreview from "./ModulePreview";
 import FileButton from "./FileButton";
+import { BiArrowBack } from "react-icons/bi";
+
 
 const VideoView = () => {
 
@@ -34,13 +36,17 @@ const VideoView = () => {
         navigate(`/dashboard/modules`);
     }
 
+    const goBackToVideos = () => {
+        const videoView = document.querySelector(".module-content");
+        videoView.classList.remove("active");
+    }
 
     return (
         <div className="module-view">
             <div className="module-view-left-side">
                 <div className="headers">
                     <h1>Videos</h1>
-                    <button onClick={handleGoBack}> Back to Modules</button>
+                    <button onClick={handleGoBack}><BiArrowBack />Back to Modules</button>
                     {/* <div className="module-filters">
                         <ul>
                             <li>
@@ -92,6 +98,7 @@ const VideoView = () => {
                 </div>
             </div>
             <div className="module-content">
+                <button className="back-button mobile" onClick={goBackToVideos}><BiArrowBack />Back to Videos</button>
                 <div className="video-player-wrapper">
                     <ReactPlayer
                         className="react-player"

@@ -88,7 +88,7 @@ const ModuleView = () => {
                     <ModulePreview /> */}
                 </div>
             </div>
-            <div className="module-content">
+            <div className="module-content desktop">
                 <div className="video-player-wrapper">
                     <ReactPlayer
                         className="react-player"
