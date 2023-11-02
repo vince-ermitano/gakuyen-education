@@ -14,7 +14,8 @@
     justify-self: center;
     margin-top: 4rem;
     margin-bottom: 4rem;
-    font-family: 'Foundation Sans';
+    /* font-family: 'Foundation Sans'; */
+    font-family: 'Helvetica-W01-Light', sans-serif;
     position: absolute;
     top: 0;
     left: 50%;
@@ -32,8 +33,14 @@
 
 .header .user-directory svg {
     font-size: 2rem;
-
 }
+
+.header .user-directory .icon-wrapper {
+    transition: all 0.3s ease-in-out;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+}
+
 .header .user-directory .icon-wrapper:hover {
     cursor: pointer;
     background-color: #feeb22;
@@ -59,9 +66,9 @@
     background-color: #feeb22;
 }
 
-.header .logo a:hover {
+/* .header .logo a:hover {
     background-color: transparent;
-}
+} */
 
 .header > *{
     width: 25%;
@@ -78,6 +85,12 @@
 .header span {
     padding: 0.25rem 0.1rem;
     font-size: 1.25rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.user-directory a {
+    color: white;
+    transition: all 0.3s ease-in-out;
 }
 
 .header span:hover {
@@ -85,8 +98,15 @@
     background-color: #feeb22;
 }
 
+.header span:hover a {
+    color: black;
+}
+
 .user-directory span{
     margin: 0 0 0 0rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    background-color: rgba(202, 202, 202, 0.4);
 }
 
 .user-directory span:last-child {

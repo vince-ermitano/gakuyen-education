@@ -20,6 +20,16 @@ body {
   font-family: 'Foundation Sans';
   src: url(./fonts/FoundationSans-Bold.otf) format('opentype');
 }
+
+@font-face {
+  font-family: 'Apple Garamond Light';
+  src: url(./fonts/applegaramond-light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Helvetica-W01-Light';
+  src: url(./fonts/Helvetica\ W01\ Light.ttf) format('truetype');
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
