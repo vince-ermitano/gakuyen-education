@@ -16,6 +16,7 @@ const VideoView = () => {
     const playerRef = React.createRef();
     const { moduleId } = useParams();
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
+    const currentVideo = useSelector((state) => state.courses.currentVideo);
     const [ isRehydrated, setIsRehydrated ] = useState(false);
     const [ playing, setPlaying ] = useState(true);
 
@@ -95,6 +96,7 @@ const VideoView = () => {
                                                 .description
                                         }
                                         type="video"
+                                        url={theOdyssey[moduleId].videos[videoId].url}
                                     />
                                 );
                             }
@@ -108,7 +110,7 @@ const VideoView = () => {
                     <ReactPlayer
                         ref={playerRef}
                         className="react-player"
-                        url="https://www.youtube.com/watch?v=fyNns5amxRk"
+                        url={currentVideo}
                         width="100%"
                         height="100%"
                         controls

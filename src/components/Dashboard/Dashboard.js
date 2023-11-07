@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setTheOdyssey } from "../../features/CoursesSlice";
 import { setIsPurchasedItemsLoaded } from "../../features/UserSlice";
@@ -28,6 +28,9 @@ const Dashboard = () => {
 
     const navigate = useNavigate();
 
+    // DEV VARIABLES
+    // const LOAD_THE_ODYSSEY = true;
+
     // functions
     const handleLogout = () => {
         signOut(auth)
@@ -49,10 +52,29 @@ const Dashboard = () => {
     
     const dispatch = useDispatch();
 
-    const theOdyssey = useSelector((state) => state.courses.theOdyssey);
+    // const theOdyssey = useSelector((state) => state.courses.theOdyssey);
 
-    if (Object.keys(theOdyssey).length === 0) {
-        // fetch theOdyssey from server
+    // if (Object.keys(theOdyssey).length === 0 || false) {
+    //     // fetch theOdyssey from server
+    //     fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
+    //     .then((res) => {
+    //         if (res.ok) {
+    //             return res.json();
+    //         }
+    //         return res.text().then((text) => {
+    //             throw new Error(text);
+    //         });
+    //     })
+    //     .then((data) => {
+    //         console.log(data);
+    //         dispatch(setTheOdyssey(data));
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
+    // }
+    
+    useEffect(() => {
         fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
         .then((res) => {
             if (res.ok) {
@@ -69,8 +91,7 @@ const Dashboard = () => {
         .catch((err) => {
             console.log(err);
         });
-    }
-    
+    }, [dispatch])
     
     
     useEffect(() => {

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     theOdyssey: {},
+    currentVideo: null,
 }
 
 const coursesSlice = createSlice({
@@ -10,9 +11,12 @@ const coursesSlice = createSlice({
     reducers: {
         setTheOdyssey: (state, action) => {
             state.theOdyssey = action.payload;
+        },
+        setCurrentVideo: (state, action) => {
+            state.currentVideo = action.payload;
         }
     }
 });
 
-export const { setTheOdyssey } = coursesSlice.actions;
+export const { setTheOdyssey, setCurrentVideo } = coursesSlice.actions;
 export default coursesSlice.reducer;

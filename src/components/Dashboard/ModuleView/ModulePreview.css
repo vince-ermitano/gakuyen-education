@@ -12,6 +12,10 @@
     margin-bottom: 1.5rem;
 }
 
+.module-preview.active {
+    background-color: #f2f1f2;
+}
+
 .module-preview-info {
     width: 100%;
 }
