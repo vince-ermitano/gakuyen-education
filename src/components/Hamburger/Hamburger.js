@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import './Hamburger.css'
 import { Link } from "react-router-dom";
@@ -33,6 +33,25 @@ const Hamburger = () => {
     const hideHamburger = () => {
         document.getElementById("toggle1").checked = false;
     }
+
+    useEffect(() => {
+        const checkbox = document.getElementById("toggle1");
+        const hamburger = document.querySelector(".hamburger-wrapper");
+
+        const checkboxEventHandler = () => {
+            if (checkbox.checked) {
+                hamburger.classList.add("is-active");
+            } else {
+                hamburger.classList.remove("is-active");
+            }
+        }
+
+        checkbox.addEventListener("change", checkboxEventHandler);
+
+        return () => {
+            checkbox.removeEventListener("change", checkboxEventHandler);
+        }
+    })
 
     return (
         <div className="hamburger-wrapper">

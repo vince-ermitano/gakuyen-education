@@ -34,8 +34,13 @@ a:hover {
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
-    width: 100%;
+    width: 50%;
+    transition: width .4s ease-in-out;
 }
+
+  .hamburger-wrapper.is-active {
+    width: 100%
+  }
   
   
   /* Hamburger */
@@ -67,6 +72,7 @@ a:hover {
   #toggle1 {
     display: none;
   }
+
   
   #toggle1:checked + .hamburger1 .top {
     width: 25px;
@@ -167,7 +173,6 @@ a:hover {
 
   #toggle1:checked ~ .menu1 {
     height: 80vh;
-    /* width: 75vw; */
     padding: 1.5rem;
   }
 
