@@ -11,7 +11,7 @@
 
 .header span:hover {
     cursor: pointer;
-    background-color: #feeb22;
+    /* background-color: #feeb22; */
 }
 
 .user-directory span{

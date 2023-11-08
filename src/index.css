@@ -52,7 +52,7 @@ h1, h2, h3 {
 
 .darkgray-background:hover {
   color: #000;
-  background-color: #feeb22;
+  /* background-color: #feeb22; */
 }
 
 .lightgray {

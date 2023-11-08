@@ -62,6 +62,33 @@ function App () {
     // }, [currentPath]);
 
     useEffect(() => {
+        const userDirectoryLinks = document.querySelectorAll(".user-directory span");
+        const logo = document.querySelector(".header .logo img");
+        const cartSvg = document.querySelector(".header .user-directory svg");
+        const dashboardText = document.querySelector(".user-directory a");
+
+        if (currentPath.includes(dashboardPath)) {
+            return;
+        }
+
+        if (currentPath !== "/") {
+            userDirectoryLinks.forEach(link => {
+                link.style.color = "black";
+            });
+            logo.src = "/theodyssey_s.png";
+            cartSvg.style.color = "black";
+            dashboardText.style.color = "black";
+        } else {
+            userDirectoryLinks.forEach(link => {
+                link.style.color = "white";
+            });
+            logo.src = "/theodysseywhite_s.png";
+            cartSvg.style.color = "white";
+            dashboardText.style.color = "white";
+        }
+    }, [currentPath])
+
+    useEffect(() => {
         // Listen for authentication state changes
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {

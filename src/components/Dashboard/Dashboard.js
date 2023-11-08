@@ -175,7 +175,7 @@ const Dashboard = () => {
                         className="dashboard-sidebar-menu-item"
                     >
                         <Link to="/">
-                            <img src="/theodysseywhite.png" alt="logo" />
+                            <img src="/theodysseywhite_s.png" alt="logo" />
                         </Link>
                     </div>
                     <div id="dashboard-sidebar-main">

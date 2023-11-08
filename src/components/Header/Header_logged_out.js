@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header_logged_out.css";
+import { useNavigate } from "react-router-dom";
 // import Hamburger from "../Hamburger/Hamburger";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
@@ -17,6 +18,7 @@ import { toast } from "sonner";
 const Header = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
+    const navigate = useNavigate();
 
     // Firebase
     const auth = getAuth();
@@ -42,9 +44,9 @@ const Header = () => {
                     <Link to="/"><span>GAKUYEN EDUCATION</span></Link>
                 </div> */}
             <div className="logo img-container">
-                <Link to="/">
-                    <img src="/theodyssey_s.png" alt="Gakuyen Education Logo" />
-                </Link>
+                {/* <Link to="/"> */}
+                    <img src="/theodysseywhite_s.png" alt="Gakuyen Education Logo" onClick={() => navigate('/')} />
+                {/* </Link> */}
             </div>
             {/* <Hamburger /> */}
             <div className="user-directory">
@@ -52,7 +54,6 @@ const Header = () => {
                     LOGIN
                 </span>
                 <span
-                    className="darkgray-background"
                     onClick={() => dispatch(toggleCreateSidebar())}
                 >
                     GET STARTED
@@ -84,7 +85,7 @@ const Header = () => {
                 </div> */}
             <div className="logo img-container">
                 <Link to="/">
-                    <img src="/theodyssey_s.png" alt="Gakuyen Education Logo" />
+                    <img src="/theodysseywhite_s.png" alt="Gakuyen Education Logo" />
                 </Link>
             </div>
             {/* <Hamburger /> */}
@@ -93,7 +94,6 @@ const Header = () => {
                     <NavLink to="/dashboard/main">DASHBOARD</NavLink>
                 </span>
                 <span
-                    className="darkgray-background"
                     onClick={() => handleLogout()}
                 >
                     LOGOUT
