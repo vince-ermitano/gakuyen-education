@@ -34,6 +34,7 @@ a:hover {
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
+    width: 100%;
 }
   
   
@@ -166,7 +167,7 @@ a:hover {
 
   #toggle1:checked ~ .menu1 {
     height: 80vh;
-    width: 75vw;
+    /* width: 75vw; */
     padding: 1.5rem;
   }
 
