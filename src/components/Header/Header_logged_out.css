@@ -21,7 +21,7 @@
     left: 50%;
     width: 90%;
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 10;
     /* margin: auto; */
 }
 
@@ -146,5 +146,9 @@
 
     .hamburger-wrapper {
         top: 2rem;
+    }
+
+    #hamburger-menu.is-active {
+        height: 100vh;
     }
 }

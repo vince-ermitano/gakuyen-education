@@ -2,6 +2,8 @@ import React from "react";
 import "./Header_logged_out.css";
 import { useNavigate } from "react-router-dom";
 // import Hamburger from "../Hamburger/Hamburger";
+import Hamburger from "../Hamburger/Hamburger_v2";
+// import HamburgerMenu from "../Hamburger/HamburgerMenu";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { NavLink, Link } from "react-router-dom";
@@ -36,7 +38,13 @@ const Header = () => {
                 console.error(error);
                 toast.error("Error logging out!");
             });
+
+        hideHamburger();
     };
+
+    const hideHamburger = () => {
+        document.getElementById("toggle1").checked = false;
+    }
 
     const headerLoggedOut = (
         <div className="header">
@@ -45,23 +53,35 @@ const Header = () => {
                 </div> */}
             <div className="logo img-container">
                 {/* <Link to="/"> */}
-                    <img src="/theodysseywhite_s.png" alt="Gakuyen Education Logo" onClick={() => navigate('/')} />
+                <img
+                    src="/theodysseywhite_s.png"
+                    alt="Gakuyen Education Logo"
+                    onClick={() => navigate("/")}
+                />
                 {/* </Link> */}
             </div>
-            {/* <Hamburger /> */}
+            <Hamburger />
             <div className="user-directory">
-                <span onClick={() => dispatch(toggleLoginSidebar())}>
+                <span
+                    className="header-text"
+                    onClick={() => dispatch(toggleLoginSidebar())}
+                >
                     LOGIN
                 </span>
                 <span
+                    className="header-text"
                     onClick={() => dispatch(toggleCreateSidebar())}
                 >
                     GET STARTED
                 </span>
-                <div className="icon-wrapper" onClick={() => dispatch(toggleCartSidebar())}>
-                    <BiCartAlt />
+                <div
+                    className="icon-wrapper"
+                    onClick={() => dispatch(toggleCartSidebar())}
+                >
+                    <BiCartAlt className="header-text" />
                 </div>
             </div>
+            {/* <HamburgerMenu /> */}
         </div>
     );
 
@@ -88,20 +108,22 @@ const Header = () => {
                     <img src="/theodysseywhite_s.png" alt="Gakuyen Education Logo" />
                 </Link>
             </div>
-            {/* <Hamburger /> */}
+            <Hamburger />
             <div className="user-directory">
-                <span>
+                <span className="header-text">
                     <NavLink to="/dashboard/main">DASHBOARD</NavLink>
                 </span>
                 <span
+                    className="header-text"
                     onClick={() => handleLogout()}
                 >
                     LOGOUT
                 </span>
                 <div className="icon-wrapper" onClick={() => dispatch(toggleCartSidebar())}>
-                    <BiCartAlt />
+                    <BiCartAlt className="header-text"/>
                 </div>
             </div>
+            {/* <HamburgerMenu /> */}
         </div>
     );
 

@@ -5,10 +5,11 @@ import Shop from './components/Shop/Shop';
 import store from './store/store';
 import { Provider, useDispatch } from 'react-redux';
 import Homepage from './components/Homepage/Homepage';
+import HamburgerMenu from './components/Hamburger/HamburgerMenu';
 import { Routes, Route, useLocation } from "react-router-dom"; 
 import Footer from './components/Footer/Footer';
 import PresetDescPage from './components/Presets/PresetDescPage';
-import Hamburger from './components/Hamburger/Hamburger';
+// import Hamburger from './components/Hamburger/Hamburger_v2';
 import MasterclassDesc from './components/Masterclass/MasterclassDesc';
 import LoginSidebar from './components/Sidebar/LoginSidebar';
 import CreateAccountSidebar from './components/Sidebar/CreateAccountSidebar';
@@ -198,7 +199,8 @@ function App () {
             {!shouldHideComponents && (
                 <>
                     <Header />
-                    <Hamburger />
+                    <HamburgerMenu />
+                    {/* <Hamburger /> */}
                     <LoginSidebar />
                     <CreateAccountSidebar />
                     <CartSidebar />

@@ -6,6 +6,14 @@ import CryptoJS from "crypto-js";
 
 const AES = CryptoJS.AES;
 
+const disableScroll = () => {
+    document.body.style.overflow = "hidden";
+};
+
+const enableScroll = () => {
+    document.body.style.overflow = "auto";
+};
+
 
 export const TOAST_POSITION = {
     position: "top-center",
@@ -110,4 +118,39 @@ export const setUserOwnedItemsIfNull = () => {
         const encrypted = AES.encrypt(JSON.stringify({}), process.env.REACT_APP_SECRET_KEY).toString();
         localStorage.setItem("purchasedItems", encrypted);
     }
+}
+
+export const toggleHamburger = () => {
+    const hamburger = document.querySelector(".hamburger");
+    const hamburgerMenu = document.getElementById("hamburger-menu");
+    hamburger.classList.toggle("is-active");
+
+    if (hamburger.classList.contains("is-active")) {
+        hamburgerMenu.classList.add("is-active");
+        changeHeaderTextAndLogoToColor("black");
+        disableScroll();
+
+    } else {
+        hamburgerMenu.classList.remove("is-active");
+        changeHeaderTextAndLogoToColor("white");
+        enableScroll();
+    }
+};
+
+export const changeHeaderTextAndLogoToColor = (color) => {
+    const headerText = document.querySelectorAll(".header-text");
+
+    headerText.forEach((text) => {
+        text.style.color = color;
+    });
+
+    const logo = document.querySelector(".header .logo img");
+
+    if (color === "black") {
+        logo.src = "/theodyssey_s.png";
+    } else {
+        logo.src = "/theodysseywhite_s.png";
+    }
+
+
 }
