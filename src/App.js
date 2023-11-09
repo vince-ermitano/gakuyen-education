@@ -86,6 +86,10 @@ function App () {
         }
     }, [currentPath])
 
+    // useEffect(() => {
+
+    // })
+
     useEffect(() => {
         const dashboardText = document.querySelector(".user-directory a");
 

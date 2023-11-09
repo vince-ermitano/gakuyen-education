@@ -6,11 +6,11 @@ import CryptoJS from "crypto-js";
 
 const AES = CryptoJS.AES;
 
-const disableScroll = () => {
+export const disableScroll = () => {
     document.body.style.overflow = "hidden";
 };
 
-const enableScroll = () => {
+export const enableScroll = () => {
     document.body.style.overflow = "auto";
 };
 

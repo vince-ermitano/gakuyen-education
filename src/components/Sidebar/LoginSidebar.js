@@ -6,6 +6,7 @@ import {
     toggleCreateSidebar,
     toggleLoginSidebar,
 } from "../../features/SidebarSlice";
+import { disableScroll, enableScroll } from "../../helpers";
 import { auth } from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 // import { toast } from "react-toastify";
@@ -20,6 +21,7 @@ const LoginSidebar = () => {
 
     // states
     const isOpen = useSelector((state) => state.sidebar.loginSidebarIsOpen);
+    const createSidebarIsOpen = useSelector((state) => state.sidebar.createSidebarIsOpen);
     const [emailAddress, setEmailAddress] = useState("");
     const [password, setPassword] = useState("");
 
@@ -84,6 +86,14 @@ const LoginSidebar = () => {
             emailInputRef.current.focus();
         }
     }, [isOpen]);
+
+    useEffect(() => {
+        if (isOpen || createSidebarIsOpen) {
+            disableScroll();
+        } else {
+            enableScroll();
+        }
+    }, [isOpen, createSidebarIsOpen]);
 
     return (
         <div className="login-sidebar">

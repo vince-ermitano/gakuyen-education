@@ -64,8 +64,8 @@ const CreateAccountSidebar = () => {
 
     }
     const switchSidebar = () => {
-        dispatch(toggleCreateSidebar());
         dispatch(toggleLoginSidebar());
+        dispatch(toggleCreateSidebar());
     };
 
     const createAccount = async (e) => {
@@ -145,7 +145,13 @@ const CreateAccountSidebar = () => {
             });
     };
 
-
+    // useEffect(() => {
+    //     if (isOpen) {
+    //         disableScroll();
+    //     } else {
+    //         enableScroll();
+    //     }
+    // }, [isOpen]);
 
     useEffect(() => {
         if (isOpen && !isMobile) {
