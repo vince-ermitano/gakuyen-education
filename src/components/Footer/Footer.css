@@ -3,6 +3,10 @@
     font-size: 0.75rem;
 }
 
+.footer-logo img {
+    height: 4rem;
+}
+
 .footer input {
     border: none;
     outline: none;
