@@ -76,7 +76,7 @@ const HamburgerMenu = () => {
                 <h3>Connect</h3>
                 <hr />
                 <div className="connect-category-links ham-menu-links">
-                    <Link className="link1" to="/" onClick={toggleHamburger}>
+                    <Link className="link1" to="/contact" onClick={toggleHamburger}>
                         Get in Touch
                     </Link>
                     <Link className="link1" to="/" onClick={toggleHamburger}>

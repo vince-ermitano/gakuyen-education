@@ -213,6 +213,7 @@ const CreateAccountSidebar = () => {
                         id="email"
                         placeholder="Email"
                         value={emailAddress}
+                        maxLength={320}
                         onChange={(e) => setEmailAddress(e.target.value)}
                         required
                         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"

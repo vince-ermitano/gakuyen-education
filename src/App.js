@@ -20,6 +20,7 @@ import ModuleView from './components/Dashboard/ModuleView/ModuleView';
 import VideoView from './components/Dashboard/ModuleView/VideoView';
 import Settings from './components/Dashboard/Settings/Settings';
 import PresetLutView from './components/Dashboard/PresetLutView/PresetLutView';
+import Contact from './components/Contact/Contact';
 import { setLoggedInStatus } from './features/LoggedInStatusSlice';
 import { auth } from './config/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -246,6 +247,7 @@ function App () {
                     <Route path="transitions" element={<PresetLutView />}></Route>
                     <Route path="settings" element={<Settings />}></Route>
                 </Route>
+                <Route path="/contact" element={<Contact />}></Route>
             </Routes>
 
             <Toaster position='top-center' richColors />
