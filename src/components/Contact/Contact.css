@@ -62,3 +62,15 @@
     padding: 0.5rem 0;
     font-size: 1rem;
 }
+
+@media screen and (max-width:1440px) {
+    #root .contact {
+        margin: 15rem 15% 15rem 15%;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    #root .contact {
+        margin: 15rem 0 15rem 0;
+    }
+}
