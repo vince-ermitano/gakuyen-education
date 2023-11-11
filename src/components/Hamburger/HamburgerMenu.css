@@ -2,14 +2,15 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding-top: 10rem;
+    padding-bottom: 2rem;
     position: absolute;
     background-color: white;
     left: 0;
-    height: 50vh;
-    top: -50vh;
+    height: fit-content;
+    top: -100vh;
     width: 100vw;
     z-index: 5;
-    transition: top 0.3s ease-in-out;
+    transition: top 0.75s ease-in-out;
     justify-items: center;
 }
 
