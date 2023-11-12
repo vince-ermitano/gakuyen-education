@@ -120,10 +120,13 @@ export const setUserOwnedItemsIfNull = () => {
     }
 }
 
-export const toggleHamburger = () => {
+export const toggleHamburger = (path) => {
+
     const hamburger = document.querySelector(".hamburger");
     const hamburgerMenu = document.getElementById("hamburger-menu");
     hamburger.classList.toggle("is-active");
+
+    console.log(path);
 
     if (hamburger.classList.contains("is-active")) {
         hamburgerMenu.classList.add("is-active");
@@ -132,7 +135,12 @@ export const toggleHamburger = () => {
 
     } else {
         hamburgerMenu.classList.remove("is-active");
-        changeHeaderTextAndLogoToColor("white");
+
+        if (path === "/") {
+            changeHeaderTextAndLogoToColor("white");
+        } else {
+            changeHeaderTextAndLogoToColor("black");
+        }
         enableScroll();
     }
 };

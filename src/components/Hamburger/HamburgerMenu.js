@@ -1,6 +1,7 @@
 import React from "react";
 import "./HamburgerMenu.css";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { toggleHamburger } from "../../helpers";
 import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
@@ -13,7 +14,12 @@ import { toast } from "sonner";
 const HamburgerMenu = () => {
 
     const loggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
+    const location = useLocation();
+    const pathname = location.pathname;
     const dispatch = useDispatch();
+
+    console.log("pathname: ", pathname);
+    
 
     const handleLogout = () => {
         signOut(auth)
@@ -28,7 +34,7 @@ const HamburgerMenu = () => {
                 toast.error("Error logging out!");
             });
 
-        toggleHamburger();
+        toggleHamburger(pathname);
     };
     
     return (
@@ -61,7 +67,7 @@ const HamburgerMenu = () => {
                 <h3>Explore</h3>
                 <hr />
                 <div className="explore-category-links ham-menu-links">
-                    <Link className="link1" to="/" onClick={toggleHamburger}>
+                    <Link className="link1" to="/" onClick={() => toggleHamburger('/')}>
                         Home
                     </Link>
                     <Link className="link1" to="/" onClick={toggleHamburger}>

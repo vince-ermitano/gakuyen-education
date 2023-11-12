@@ -19,7 +19,7 @@ const Contact = () => {
                 <br></br>
                 <div className="name-inputs">
                     <div className="first-name-input">
-                        <label for="contact_fname">First Name</label>
+                        <label htmlFor="contact_fname">First Name</label>
                         <br></br>
                         <input
                             type="text"
@@ -33,7 +33,7 @@ const Contact = () => {
                         <br></br>
                     </div>
                     <div className="last-name-input">
-                        <label for="contact_lname">Last Name</label>
+                        <label htmlFor="contact_lname">Last Name</label>
                         <br></br>
                         <input
                             type="text"
@@ -47,7 +47,7 @@ const Contact = () => {
                         <br></br>
                     </div>
                 </div>
-                <label for="contact_email">
+                <label htmlFor="contact_email">
                     Email・メールアドレス&nbsp;<span>(required)</span>
                 </label>
                 <br></br>
@@ -62,7 +62,7 @@ const Contact = () => {
                     required
                 />
                 <br></br>
-                <label for="email_subject">
+                <label htmlFor="email_subject">
                     Subject・件名&nbsp;<span>(required)</span>
                 </label>
                 <br></br>
@@ -76,7 +76,7 @@ const Contact = () => {
                     required
                 />
                 <br></br>
-                <label for="email_message">
+                <label htmlFor="email_message">
                     Message・メッセージ&nbsp;<span>(required)</span>
                 </label>
                 <br></br>
