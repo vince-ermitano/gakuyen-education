@@ -1,0 +1,8 @@
+#faq {
+    display: flex;
+    gap: 2rem;
+}
+
+.faq-group {
+    width: 50%;
+}

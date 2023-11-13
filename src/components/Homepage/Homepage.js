@@ -9,6 +9,7 @@ import BestSellers from "../BestSellers/BestSellers";
 import PresetsHP from "../Presets/PresetsHP";
 import Testimonials from "../Testimonials/Testimonials";
 import MasterclassHP from "../Masterclass/MasterclassHP";
+import FAQ from "./FAQ/FAQ.js";
 import "./Homepage.css";
 // import { toast } from "react-toastify";
 import { toast } from "sonner";
@@ -103,6 +104,7 @@ const Homepage = () => {
             <PresetsHP />
             <MasterclassHP />
             <Testimonials />
+            <FAQ />
         </div>
     );
 };

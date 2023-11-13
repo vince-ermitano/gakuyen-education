@@ -1,0 +1,29 @@
+.faq-item {
+    margin: 1rem 0;
+}
+
+.faq-item p {
+    margin: 0;
+}
+
+.faq-item .faq-item-question {
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+    background-color: var(--faq-item-bg-color);
+    padding: 1rem;
+}
+
+.faq-item .faq-item-answer {
+    max-height: 0;
+    padding: 0 1rem;
+    overflow: hidden;
+    background-color: var(--faq-item-bg-color);
+
+    transition: all 0.5s ease-in-out;
+}
+
+.faq-item.active .faq-item-answer {
+    padding: 1rem;
+    max-height: 1000px;
+}
