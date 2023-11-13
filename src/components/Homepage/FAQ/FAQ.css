@@ -1,4 +1,11 @@
-#faq {
+#faq h2 {
+    font-family: 'Inconsolata', monospace;
+    background-color: transparent;
+    display: block;
+    text-align: center;
+}
+
+.faq-questions-container {
     display: flex;
     gap: 2rem;
 }
