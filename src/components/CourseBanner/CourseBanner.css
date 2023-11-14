@@ -3,10 +3,11 @@
     background-image: url('../../../public/course_banner_img.png');
     height: 90vh;
     background-size: cover;
-    border-radius: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    transform: translateX(-5%);
 }
 
 #course-banner-content {
