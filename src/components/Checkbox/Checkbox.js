@@ -1,10 +1,13 @@
 import React from "react";
 import "./Checkbox.css";
 
-const Checkbox = () => {
+const Checkbox = (props) => {
+
     return (
         <label className="container">
-            <input type="checkbox" />
+            <input type="checkbox" onChange={() => {
+                props.onClickHandler();
+            }} />
             <div className="checkmark"></div>
         </label>
     );

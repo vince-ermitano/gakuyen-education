@@ -1,0 +1,61 @@
+#target-audience {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#target-audience .left-side {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#target-audience .right-side {
+    background-image: url("https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645248046833-OM3EL5XT9ZNDQ3EW2RZE/Night3-A.jpeg?format=750w");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.checklist-container .checklist {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+#target-audience h2 {
+    display: block;
+    background-color: transparent;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#target-audience p {
+    font-size: 1.25rem;
+}
+
+#target-audience button {
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    margin-top: 2rem;
+    transition: all 0.2s ease-out;
+}
+
+#target-audience button:disabled {
+    box-shadow: none;
+    background-color: gray;
+    top: 0;
+    filter: blur(1px);
+    cursor: not-allowed;
+}
+
+#target-audience button:not(:disabled) {
+    position: relative;
+    background-color: #feeb22;
+    color: black;
+    top: -3px;
+    box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, .12);
+}
