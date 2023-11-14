@@ -9,6 +9,7 @@ import BestSellers from "../BestSellers/BestSellers";
 import PresetsHP from "../Presets/PresetsHP";
 import Testimonials from "../Testimonials/Testimonials";
 import MasterclassHP from "../Masterclass/MasterclassHP";
+import CourseBanner from "../CourseBanner/CourseBanner";
 import FAQ from "./FAQ/FAQ.js";
 import "./Homepage.css";
 // import { toast } from "react-toastify";
@@ -100,6 +101,7 @@ const Homepage = () => {
             {/* <HeroBanner /> */}
             {/* <ShopNav /> */}
             {/* <ShopNavV2 /> */}
+            <CourseBanner />
             <BestSellers />
             <PresetsHP />
             <MasterclassHP />

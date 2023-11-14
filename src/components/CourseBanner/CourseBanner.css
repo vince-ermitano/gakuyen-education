@@ -1,0 +1,72 @@
+#course-banner {
+    padding: 2rem;
+    background-image: url('../../../public/course_banner_img.png');
+    height: 90vh;
+    background-size: cover;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#course-banner-content {
+    width: 90%;
+}
+
+#course-banner-content h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#course-banner-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+#course-banner-content p {
+    width: 50%;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+#course-banner h2, #course-banner h3, #course-banner p {
+    color: white;
+    background-color: transparent;
+    font-family: 'Inconsolata', monospace;
+    padding: 0;
+}
+
+#course-banner hr {
+    display: inline-block;
+    width: 13ch;
+    border: 2px solid white;
+}
+
+#select-financing-group {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin: 2rem 0;
+    margin-bottom: 4rem;
+}
+
+#course-banner-content button {
+    border-radius: 0.5rem;
+    height: 50px;
+    background-color: white;
+    font-size: 1rem;
+    padding: 0 1rem;
+    transition: all 0.2s ease-out;
+}
+
+#course-banner-content button:hover {
+    background-color: #f0f0f0;
+}
+
+#course-banner-content .claim-btn {
+    height: auto;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+}
