@@ -12,6 +12,7 @@ import MasterclassHP from "../Masterclass/MasterclassHP";
 import CourseBanner from "../CourseBanner/CourseBanner";
 import TargetAudience from "./TargetAudience/TargetAudience";
 import WhatWeOffer from "./WhatWeOffer/WhatWeOffer";
+import MoneyBackGuarantee from "./MoneyBackGuarantee/MoneyBackGuarantee";
 import FAQ from "./FAQ/FAQ.js";
 import "./Homepage.css";
 // import { toast } from "react-toastify";
@@ -106,6 +107,7 @@ const Homepage = () => {
             <CourseBanner />
             <TargetAudience />
             <WhatWeOffer />
+            <MoneyBackGuarantee />
             <BestSellers />
             <PresetsHP />
             <MasterclassHP />
