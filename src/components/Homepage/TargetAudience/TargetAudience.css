@@ -42,18 +42,21 @@
     padding: 0.5rem 1rem;
     margin-top: 2rem;
     transition: all 0.2s ease-out;
+    box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0);
+    /* top: 0; */
 }
 
 #target-audience button:disabled {
-    box-shadow: none;
     background-color: gray;
-    top: 0;
     filter: blur(1px);
     cursor: not-allowed;
+    transform: translateY(0);
+    /* top: 0; */
 }
 
 #target-audience button:not(:disabled) {
-    position: relative;
+    /* position: relative; */
+    transform: translateY(-3px);
     background-color: #feeb22;
     color: black;
     top: -3px;
