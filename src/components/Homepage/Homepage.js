@@ -11,6 +11,7 @@ import Testimonials from "../Testimonials/Testimonials";
 import MasterclassHP from "../Masterclass/MasterclassHP";
 import CourseBanner from "../CourseBanner/CourseBanner";
 import TargetAudience from "./TargetAudience/TargetAudience";
+import WhatWeOffer from "./WhatWeOffer/WhatWeOffer";
 import FAQ from "./FAQ/FAQ.js";
 import "./Homepage.css";
 // import { toast } from "react-toastify";
@@ -104,6 +105,7 @@ const Homepage = () => {
             {/* <ShopNavV2 /> */}
             <CourseBanner />
             <TargetAudience />
+            <WhatWeOffer />
             <BestSellers />
             <PresetsHP />
             <MasterclassHP />

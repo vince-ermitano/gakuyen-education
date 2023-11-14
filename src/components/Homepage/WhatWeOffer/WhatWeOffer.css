@@ -1,0 +1,94 @@
+#what-we-offer {
+    background-color: var(--faq-item-bg-color);
+    padding: 4rem 2rem;
+    border-radius: 2rem;
+}
+
+#what-we-offer .offer-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#what-we-offer h2 {
+    font-size: 2.5rem;
+    display: block;
+    background-color: transparent;
+    text-align: center;
+}
+
+#what-we-offer .offer {
+    height: 60vh;
+    width: 25vw;
+    transition: all 1s ease-out;
+    position: relative;
+}
+
+#what-we-offer .image-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+#what-we-offer .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px) brightness(0.6);
+    transition: all 1s ease-out;
+}
+
+#what-we-offer .offer:hover img {
+    filter: blur(0) brightness(0.6);
+    transform: scale(1.1);
+}
+
+#what-we-offer .text-container{
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+    padding: 4rem 2rem;
+    height: 100%;
+}
+
+#what-we-offer .text-container h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#what-we-offer .text-container p {
+    line-height: 1.5;
+}
+
+#what-we-offer .text-container p, #what-we-offer .text-container svg {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+#what-we-offer .text-container svg {
+    font-size: 2.5rem;
+}
+
+/* #what-we-offer .offer-1:hover, #what-we-offer .offer-2:hover, #what-we-offer .offer-3:hover  {
+    background-image: url("https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247526671-F8QXSKJO9WXL86EJ8CC6/DSC07768-1-1.jpeg?format=750w");
+    background-size: cover;
+    scale: 1.1;
+} */
+
+/* #what-we-offer .offer-2 {
+    background-image: url("https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247526671-F8QXSKJO9WXL86EJ8CC6/DSC07768-1-1.jpeg?format=750w");
+}
+#what-we-offer .offer-3 {
+    background-image: url("https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247526671-F8QXSKJO9WXL86EJ8CC6/DSC07768-1-1.jpeg?format=750w");
+} */
+
