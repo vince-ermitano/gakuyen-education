@@ -20,7 +20,7 @@
     overflow: hidden;
     background-color: var(--faq-item-bg-color);
 
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-out;
 }
 
 .faq-item.active .faq-item-answer {

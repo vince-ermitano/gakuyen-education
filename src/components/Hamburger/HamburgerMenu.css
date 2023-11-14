@@ -12,6 +12,7 @@
     z-index: 5;
     transition: top 0.75s ease-in-out;
     justify-items: center;
+    font-family: 'Inconsolata', monospace;
 }
 
 #hamburger-menu.is-active {
@@ -20,6 +21,7 @@
 
 #hamburger-menu h3 {
     font-size: 2rem;
+    font-family: 'Inconsolata', monospace;
 }
 
 #hamburger-menu hr {
