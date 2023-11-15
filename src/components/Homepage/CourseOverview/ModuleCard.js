@@ -19,7 +19,7 @@ const ModuleCard = () => {
                     Architecto, hic? Magnam eum error saepe doloribus corrupti
                     repellat quisquam alias doloremque!
                 </p>
-                <Link to="/" className="btn">
+                <Link to="/store/masterclass/the-odyssey-creative-masterclass?module=module_1" className="btn">
                     Learn More
                 </Link>
             </div>

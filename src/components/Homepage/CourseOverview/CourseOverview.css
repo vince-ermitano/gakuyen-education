@@ -34,7 +34,8 @@
 }
 
 .course-overview-content .card:hover {
-    height: 400px;
+    height: 500px;
+    /* max-height: 500px; */
 }
 
 .course-overview-content .card .img-box {
@@ -76,13 +77,12 @@
 
 .course-overview-content .card:hover .content {
     top: 130px;
-    height: 250px;
+    height: 350px;
 }
 
 .course-overview-content .card .content h2 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--clr);
 }
 
 .course-overview-content .card .content p {
@@ -95,8 +95,8 @@
     display: inline-block;
     padding: 12px 25px;
     text-decoration: none;
-    background: var(--clr);
-    color: #FFF;
+    background: #feeb22;
+    color: black;
     font-weight: 500;
 }
 

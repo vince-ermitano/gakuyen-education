@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ReactPlayer from "react-player";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./MasterclassDesc.css";
 import { handleAddToCart } from "../../helpers";
@@ -9,9 +9,18 @@ import { handleAddToCart } from "../../helpers";
 const MasterclassDesc = () => {
 
     const dispatch = useDispatch();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const module = queryParams.get("module");
     const [isRehydrated, setIsRehydrated] = useState(false);
 
     const products = useSelector((state) => state.shop.products);
+
+    const jumpToReleventSection = (id) => {
+        const releventDiv = document.getElementById(id);
+        // behavior: "smooth" parameter for smooth movement
+        releventDiv.scrollIntoView({behavior: "smooth"});
+    }
 
     let price;
 
@@ -30,6 +39,12 @@ const MasterclassDesc = () => {
             setIsRehydrated(true);
         }
     }, [products]);
+
+    useEffect(() => {
+        if (module) {
+            jumpToReleventSection(module);
+        }
+    }, [module]);
 
 
 
@@ -97,7 +112,7 @@ const MasterclassDesc = () => {
                 <hr />
                 <section className="masterclass-break-it-down grid-two-columns">
                     <h2>Let's break it down</h2>
-                    <div className="module-listings">
+                    <div className="module-listings" id="module_1">
                         <ol>
                             <li>
                                 <p>Mindset for Creative Success</p>
