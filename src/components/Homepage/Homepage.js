@@ -13,6 +13,7 @@ import CourseBanner from "../CourseBanner/CourseBanner";
 import TargetAudience from "./TargetAudience/TargetAudience";
 import WhatWeOffer from "./WhatWeOffer/WhatWeOffer";
 import MoneyBackGuarantee from "./MoneyBackGuarantee/MoneyBackGuarantee";
+import CourseOverview from "./CourseOverview/CourseOverview";
 import FAQ from "./FAQ/FAQ.js";
 import "./Homepage.css";
 // import { toast } from "react-toastify";
@@ -108,6 +109,7 @@ const Homepage = () => {
             <TargetAudience />
             <WhatWeOffer />
             <MoneyBackGuarantee />
+            <CourseOverview />
             <BestSellers />
             <PresetsHP />
             <MasterclassHP />

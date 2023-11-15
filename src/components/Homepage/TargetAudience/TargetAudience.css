@@ -28,8 +28,9 @@
 #target-audience h2 {
     display: block;
     background-color: transparent;
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
+    font-family: 'Inconsolata', monospace;
 }
 
 #target-audience p {
