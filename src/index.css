@@ -157,6 +157,12 @@ button, input[type="submit"], input[type="reset"] {
   display: none;
 }
 
+@media screen and (max-width: 1440px) {
+  .hero {
+    padding-left: 8rem;
+  }
+}
+
 /* mobile viewport */
 @media screen and (max-width: 768px) {
 
