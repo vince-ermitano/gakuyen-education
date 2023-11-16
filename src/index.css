@@ -141,10 +141,14 @@ button, input[type="submit"], input[type="reset"] {
 
 #gradient-canvas {
 
-  --gradient-color-1: #6ec3f4;
+  /* --gradient-color-1: #6ec3f4;
   --gradient-color-2: #3a3aff;
   --gradient-color-3: #ff61ab;
-  --gradient-color-4: #E63946;
+  --gradient-color-4: #E63946; */
+  --gradient-color-1: #faaf08;
+  --gradient-color-2: #fa812f;
+  --gradient-color-3: #fa4032;
+  --gradient-color-4: #fdd475;
   clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 100%);
   width: 100vw;
   height: 60vh;

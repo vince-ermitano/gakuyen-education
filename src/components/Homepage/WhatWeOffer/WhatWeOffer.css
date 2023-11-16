@@ -136,8 +136,6 @@
     #what-we-offer .offer {
         height: 300px;
         width: 100%;
-        /* transition: all 1s ease-out; */
-        /* position: relative; */
     }
 
     #what-we-offer .offer-container {
