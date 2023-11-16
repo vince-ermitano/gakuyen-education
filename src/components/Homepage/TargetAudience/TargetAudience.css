@@ -1,6 +1,8 @@
 #target-audience {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin-top: 0;
+    padding-top: 16rem;
 }
 
 #target-audience .left-side {

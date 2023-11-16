@@ -14,7 +14,6 @@ export const enableScroll = () => {
     document.body.style.overflow = "auto";
 };
 
-
 export const TOAST_POSITION = {
     position: "top-center",
     autoClose: 3000,
@@ -26,17 +25,17 @@ export const TOAST_POSITION = {
 
 export function convertToSlug(input) {
     return input
-        .toLowerCase()                   // Convert to lowercase
-        .replace(/[^\w\s-]/g, '')         // Remove special characters
-        .replace(/\s+/g, '-')            // Replace spaces with hyphens
-        .replace(/-+/g, '-')             // Replace consecutive hyphens with a single hyphen
-        .trim();                         // Trim any leading/trailing spaces
+        .toLowerCase() // Convert to lowercase
+        .replace(/[^\w\s-]/g, "") // Remove special characters
+        .replace(/\s+/g, "-") // Replace spaces with hyphens
+        .replace(/-+/g, "-") // Replace consecutive hyphens with a single hyphen
+        .trim(); // Trim any leading/trailing spaces
 }
 
 export function convertFromSlug(slug) {
-  return slug
-    .replace(/-/g, ' ')             // Replace hyphens with spaces
-    .toLowerCase();                 // Convert to lowercase
+    return slug
+        .replace(/-/g, " ") // Replace hyphens with spaces
+        .toLowerCase(); // Convert to lowercase
 }
 
 export const getProductIdFromProductName = (productName, products) => {
@@ -48,7 +47,6 @@ export const getProductIdFromProductName = (productName, products) => {
 };
 
 export const handleAddToCart = (e, dispatch) => {
-
     // notify user that item has been added to cart if item is already in cart
     if (JSON.parse(localStorage.getItem("cart"))[e.target.dataset.itemId]) {
         toast.error("Item has already been added to cart");
@@ -65,14 +63,13 @@ export const handleAddToCart = (e, dispatch) => {
 
         toast.success("Item has been added to cart");
     }
-
 };
 
 export const filterProductsOnShop = (products, filter) => {
     if (filter === "all") {
         return products;
     }
-    
+
     let filteredProducts = {};
 
     for (const product in products) {
@@ -82,7 +79,7 @@ export const filterProductsOnShop = (products, filter) => {
     }
 
     return filteredProducts;
-}
+};
 
 export const filterProducts = (ownedProducts, filter, products) => {
     let filteredProducts = {};
@@ -94,7 +91,7 @@ export const filterProducts = (ownedProducts, filter, products) => {
     }
 
     return filteredProducts;
-}
+};
 
 export const filterProductsNotOwned = (ownedProducts, filter, products) => {
     let filteredProducts = {};
@@ -106,22 +103,23 @@ export const filterProductsNotOwned = (ownedProducts, filter, products) => {
     }
 
     return filteredProducts;
-}
+};
 
 export const updateCartAfterRemovalOfDupes = (newCart) => {
     localStorage.setItem("cart", JSON.stringify(newCart));
 };
 
 export const setUserOwnedItemsIfNull = () => {
-
     if (localStorage.getItem("purchasedItems") === null) {
-        const encrypted = AES.encrypt(JSON.stringify({}), process.env.REACT_APP_SECRET_KEY).toString();
+        const encrypted = AES.encrypt(
+            JSON.stringify({}),
+            process.env.REACT_APP_SECRET_KEY
+        ).toString();
         localStorage.setItem("purchasedItems", encrypted);
     }
-}
+};
 
 export const toggleHamburger = (path) => {
-
     const hamburger = document.querySelector(".hamburger");
     const hamburgerMenu = document.getElementById("hamburger-menu");
     hamburger.classList.toggle("is-active");
@@ -132,7 +130,6 @@ export const toggleHamburger = (path) => {
         hamburgerMenu.classList.add("is-active");
         changeHeaderTextAndLogoToColor("black");
         disableScroll();
-
     } else {
         hamburgerMenu.classList.remove("is-active");
 
@@ -159,6 +156,12 @@ export const changeHeaderTextAndLogoToColor = (color) => {
     } else {
         logo.src = "/theodysseywhite_s.png";
     }
+};
 
+export const scrollIntoView = (id) => {
+    const element = document.getElementById(id);
 
-}
+    if (element) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+};

@@ -8,6 +8,7 @@
     align-items: center;
     width: 100vw;
     transform: translateX(-5%);
+    margin-bottom: 0;
 }
 
 #course-banner-content {

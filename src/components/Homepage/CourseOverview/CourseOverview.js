@@ -4,7 +4,7 @@ import ModuleCard from './ModuleCard';
 
 const CourseOverview = () => {
     return (
-        <section className='course-overview'>
+        <section id='course-overview' className='course-overview'>
             <h2>What You Will Learn</h2>
             <div className='course-overview-content'>
                 <ModuleCard />

@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
 import { setTotalPrice } from "../../features/ShopSlice";
 import { setLoginSidebar } from "../../features/SidebarSlice";
+import { scrollIntoView } from "../../helpers";
 
 const Homepage = () => {
     const dispatch = useDispatch();
@@ -106,6 +107,15 @@ const Homepage = () => {
             {/* <ShopNav /> */}
             {/* <ShopNavV2 /> */}
             <CourseBanner />
+            <nav id="homepage-nav">
+                <ul>
+                    <li onClick={() => scrollIntoView('target-audience')}>Who Is This For</li>
+                    <li onClick={() => scrollIntoView('what-we-offer')}>What We Offer</li>
+                    <li onClick={() => scrollIntoView('money-back-guarantee')}>Money-Back Guarantee</li>
+                    <li onClick={() => scrollIntoView('course-overview')}>Course Overview</li>
+                    <li onClick={() => scrollIntoView('faq')}>FAQ</li>
+                </ul>
+            </nav>
             <TargetAudience />
             <WhatWeOffer />
             <MoneyBackGuarantee />
