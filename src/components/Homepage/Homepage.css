@@ -9,6 +9,7 @@
 .homepage h2 {
     margin-bottom: 4rem;
     font-family: 'Inconsolata', monospace;
+    padding: 0;
 }
 
 #homepage-nav {
@@ -87,5 +88,20 @@
 
     .homepage .page-section {
         margin: 0;
+    }
+
+    #homepage-nav {
+        display: none;
+    }
+    #homepage-nav ul {
+        flex-direction: column;
+    }
+
+    #homepage-nav ul li:not(:first-child) {
+        border-left: 1px solid black;
+    }
+
+    #homepage-nav ul li {
+        height: 50px;
     }
 }

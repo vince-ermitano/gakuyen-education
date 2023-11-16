@@ -44,3 +44,30 @@
     width: 13ch;
     border: 2px solid white;
 }
+
+@media screen and (max-width: 1366px) {
+    #money-back-guarantee {
+        padding: 2rem;
+        height: fit-content;
+    }
+
+    .money-back-guarantee-container {
+        height: fit-content;
+        width: 60%;
+        padding: 2rem;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+
+    #money-back-guarantee {
+        transform: translateX(-1rem);
+    }
+
+    .money-back-guarantee-container {
+        width: 100%;
+        padding: 1rem;
+    }
+    
+}

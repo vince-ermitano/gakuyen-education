@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 1fr;
     margin-top: 0;
     padding-top: 16rem;
+    gap: 2rem;
 }
 
 #target-audience .left-side {
@@ -33,6 +34,7 @@
     font-size: 3rem;
     text-align: center;
     font-family: 'Inconsolata', monospace;
+    padding: 0;
 }
 
 #target-audience p {
@@ -64,4 +66,20 @@
     color: black;
     top: -3px;
     box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, .12);
+}
+
+@media screen and (max-width: 768px) {
+    #target-audience {
+        grid-template-columns: 1fr;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    #target-audience h2 {
+        font-size: 2.5rem;
+    }
+
+    #target-audience .right-side {
+        display: none;
+    }
 }

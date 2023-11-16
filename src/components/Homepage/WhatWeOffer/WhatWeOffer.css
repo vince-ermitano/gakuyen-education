@@ -72,7 +72,7 @@
     transform: translateY(0);
 }
 
-#what-we-offer .text-container{
+#what-we-offer .text-container {
     color: white;
     position: relative;
     display: flex;
@@ -95,7 +95,8 @@
     line-height: 1.5;
 }
 
-#what-we-offer .text-container p, #what-we-offer .text-container svg {
+#what-we-offer .text-container p,
+#what-we-offer .text-container svg {
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 1rem;
@@ -118,3 +119,38 @@
     background-image: url("https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247526671-F8QXSKJO9WXL86EJ8CC6/DSC07768-1-1.jpeg?format=750w");
 } */
 
+@media screen and (max-width: 1366px) {
+    #what-we-offer .offer .text-container p {
+        font-size: 1.25rem;
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #what-we-offer {
+        padding: 4rem 1rem;
+        width: 100vw;
+        transform: translateX(-1rem);
+    }
+
+    #what-we-offer .offer {
+        height: 300px;
+        width: 100%;
+        /* transition: all 1s ease-out; */
+        /* position: relative; */
+    }
+
+    #what-we-offer .offer-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    #what-we-offer .offer .text-container .title-icon-container {
+        opacity: 1;
+    }
+
+    #what-we-offer .offer:hover .text-container .title-icon-container {
+        opacity: 0;
+    }
+
+}

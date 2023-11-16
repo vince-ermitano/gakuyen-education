@@ -89,3 +89,9 @@
     color: white;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .select-container {
+        width: 100%;
+    }
+}
