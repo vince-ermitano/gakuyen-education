@@ -115,14 +115,25 @@ const CartSidebar = () => {
             return;
         }
 
+        // console.log(typeof localStorage.getItem('cart'));
+
+        console.log(Object.keys(JSON.parse(localStorage.getItem('cart'))));
+        if (!auth.currentUser && (Object.keys(JSON.parse(localStorage.getItem('cart'))).includes('MC-01'))) {
+            toast.error("You must be logged in to purchase the Masterclass. Please login.")
+            dispatch(toggleCartSidebar());
+            dispatch(toggleLoginSidebar());
+            return;
+        }
+
         if (!auth.currentUser) {
             loginDialog.showModal();
             return;
         }
 
+
         createCheckoutSession();
         
-    }, [loginDialog, createCheckoutSession]);
+    }, [loginDialog, createCheckoutSession, dispatch]);
 
 
     const handleProceedWithoutLogin = () => {
