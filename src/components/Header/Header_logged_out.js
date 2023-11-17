@@ -39,12 +39,12 @@ const Header = () => {
                 toast.error("Error logging out!");
             });
 
-        hideHamburger();
+        // hideHamburger();
     };
 
-    const hideHamburger = () => {
-        document.getElementById("toggle1").checked = false;
-    }
+    // const hideHamburger = () => {
+    //     document.getElementById("toggle1").checked = false;
+    // }
 
     const headerLoggedOut = (
         <div className="header">
