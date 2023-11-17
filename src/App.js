@@ -131,7 +131,7 @@ function App() {
                     );
 
                     if (!docSnapshot.exists()) {
-                        // TODO: handle this case
+                        return;
                     }
 
                     const storedSessionId = docSnapshot.data().sessionToken;
