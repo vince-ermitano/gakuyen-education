@@ -7,11 +7,13 @@ import {
     toggleLoginSidebar,
 } from "../../features/SidebarSlice";
 import { disableScroll, enableScroll } from "../../helpers";
-import { auth } from "../../config/firebaseConfig";
+import { auth, db } from "../../config/firebaseConfig";
+import { setDoc, doc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 // import { toast } from "react-toastify";
 import { toast } from "sonner";
 import { BiArrowBack } from "react-icons/bi";
+import { v4 as uuidv4 } from "uuid";
 
 
 const LoginSidebar = () => {
@@ -26,6 +28,19 @@ const LoginSidebar = () => {
     const [password, setPassword] = useState("");
 
     // functions
+    const createSession = async (uid) => {
+        const randomId = uuidv4();
+
+        try {
+            await setDoc(doc(db, "userSessions", uid), {
+                sessionToken: randomId,
+            });
+
+            localStorage.setItem("sessionToken", randomId);
+        } catch (e) {
+            console.error(e);
+        }
+    }
     const handleLogin = (e) => {
         e.preventDefault();
 
@@ -35,14 +50,8 @@ const LoginSidebar = () => {
                 const user = userCredential.user;
                 console.log(user);
 
-                // toast.success("Logged in successfully!", {
-                //     position: "top-center",
-                //     autoClose: 3000,
-                //     hideProgressBar: false,
-                //     closeOnClick: true,
-                //     pauseOnHover: true,
-                //     progress: undefined,
-                // });
+                // create session
+                createSession(user.uid);
 
                 toast.success("Logged in successfully!");
 

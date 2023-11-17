@@ -24,9 +24,9 @@ import PresetLutView from "./components/Dashboard/PresetLutView/PresetLutView";
 import Contact from "./components/Contact/Contact";
 import { setLoggedInStatus } from "./features/LoggedInStatusSlice";
 import { auth } from "./config/firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { db } from "./config/firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import {
     setProducts,
     setLoading,
@@ -54,8 +54,8 @@ function App() {
     const [authenticated, setAuthenticated] = useState(false);
 
     // useEffect(() => {
-        // }, [currentPath]);
-        
+    // }, [currentPath]);
+
     useEffect(() => {
         // TODO: might need to move this into a useEffect hook
         const gradientCanvas = document.getElementById("gradient-canvas");
@@ -72,7 +72,6 @@ function App() {
     }, [authenticated, currentPath]);
 
     useEffect(() => {
-
         if (!authenticated) return;
 
         const userDirectoryLinks = document.querySelectorAll(
@@ -100,9 +99,78 @@ function App() {
         }
     }, [authenticated, currentPath]);
 
-    // useEffect(() => {
+    useEffect(() => {
+        if (!authenticated) return;
 
-    // })
+        const checkSession = async () => {
+            const user = auth.currentUser;
+
+            if (user) {
+
+                if (localStorage.getItem("sessionToken") === null || localStorage.getItem("sessionToken") === "") {
+                    console.log("No session token found. Logging out.")
+                    signOut(auth)
+                            .then(() => {
+                                // Sign-out successful.
+                                dispatch(setLoggedInStatus(false));
+                                toast.success(
+                                    "Please log back in to refresh your session."
+                                );
+                            })
+                            .catch((error) => {
+                                // An error happened.
+                                console.error(error);
+                                toast.error("Error logging out!");
+                            });
+                    
+                    return;
+                }
+                try {
+                    const docSnapshot = await getDoc(
+                        doc(db, "userSessions", user.uid)
+                    );
+
+                    if (!docSnapshot.exists()) {
+                        // TODO: handle this case
+                    }
+
+                    const storedSessionId = docSnapshot.data().sessionToken;
+
+                    console.log("storedSessionId:", storedSessionId);
+
+                    // Compare stored session ID with locally stored session ID
+                    const localSessionId = localStorage.getItem("sessionToken");
+
+                    if (storedSessionId !== localSessionId) {
+                        // Session ID mismatch, log out the user
+                        console.log("Session ID mismatch. Logging out.");
+                        signOut(auth)
+                            .then(() => {
+                                // Sign-out successful.
+                                localStorage.removeItem("sessionToken");
+
+                                dispatch(setLoggedInStatus(false));
+                                toast.success(
+                                    "You have been logged out due to being logged in on another device."
+                                );
+                            })
+                            .catch((error) => {
+                                // An error happened.
+                                console.error(error);
+                                toast.error("Error logging out!");
+                            });
+                    } else {
+                        // Valid session
+                        console.log("Valid session.");
+                    }
+                } catch (error) {
+                    console.error("Error checking session ID:", error.message);
+                }
+            }
+        };
+
+        checkSession();
+    }, [authenticated, dispatch, currentPath]);
 
     useEffect(() => {
         if (!authenticated) return;
@@ -132,7 +200,6 @@ function App() {
     useEffect(() => {
         // Listen for authentication state changes
         if (!authenticated) return;
-
 
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {

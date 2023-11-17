@@ -30,6 +30,7 @@ const Header = () => {
         signOut(auth)
             .then(() => {
                 // Sign-out successful.
+                localStorage.removeItem("sessionToken");
                 dispatch(setLoggedInStatus(false));
                 toast.success("Logged out successfully!");
             })
