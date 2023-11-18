@@ -67,6 +67,7 @@
     width: 35rem;
     position: absolute;
     transition: right 0.3s ease-in-out;
+    overflow-y: scroll;
 }
 
 #preset-lut-view-right.open {
@@ -128,6 +129,16 @@
     margin: 0;
 }
 
+#preset-lut-view-right button:first-child {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#preset-lut-view-right button:first-child svg {
+    margin-right: 1rem;
+}
+
 @media screen and (max-width: 768px) {
     #preset-lut-view-left {
         height: 100%;
@@ -150,13 +161,4 @@
         padding: 2rem;
     }
 
-    #preset-lut-view-right button:first-child {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-
-    #preset-lut-view-right button:first-child svg {
-        margin-right: 1rem;
-    }
 }

@@ -53,6 +53,9 @@ function App() {
     const dispatch = useDispatch();
     const [authenticated, setAuthenticated] = useState(false);
 
+    // * Enable/disable session check for development
+    const enableSessionCheck = false;
+
     // useEffect(() => {
     // }, [currentPath]);
 
@@ -169,8 +172,10 @@ function App() {
             }
         };
 
-        checkSession();
-    }, [authenticated, dispatch, currentPath]);
+        if (enableSessionCheck) {
+            checkSession();
+        }
+    }, [authenticated, dispatch, currentPath, enableSessionCheck]);
 
     useEffect(() => {
         if (!authenticated) return;
