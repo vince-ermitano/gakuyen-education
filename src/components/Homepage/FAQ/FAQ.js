@@ -4,7 +4,7 @@ import FaqItem from "./FAQ_item";
 
 const FAQ = () => {
     return (
-        <section id="faq" className="page-section">
+        <section id="faq" className="page-section" data-aos="fade-up">
             <h2>Frequently Asked Questions</h2>
             <div className="faq-questions-container">
                 <section className="faq-group">

@@ -29,46 +29,54 @@ const TargetAudience = () => {
     }
 
     return (
-        <section id="target-audience" className="page-section">
-            <div className="left-side">
-                <h2>
-                    This Course Is<br></br> For You If
-                </h2>
-                <div className="checklist-container">
-                    <div className="checklist">
-                        <Checkbox onClickHandler={onClickHandler} />
-                        <p>
-                            You want to learn how to create a successful
-                            business
-                        </p>
+        <section
+            id="target-audience"
+            className="page-section"
+        >
+            <div className="content-wrapper" data-aos="fade-up">
+                <div className="left-side">
+                    <h2>
+                        This Course Is<br></br> For You If
+                    </h2>
+                    <div className="checklist-container">
+                        <div className="checklist">
+                            <Checkbox onClickHandler={onClickHandler} />
+                            <p>
+                                You want to learn how to create a successful
+                                business
+                            </p>
+                        </div>
+                        <div className="checklist">
+                            <Checkbox onClickHandler={onClickHandler} />
+                            <p>
+                                You want to learn how to create a successful
+                                business
+                            </p>
+                        </div>
+                        <div className="checklist">
+                            <Checkbox onClickHandler={onClickHandler} />
+                            <p>
+                                You want to learn how to create a successful
+                                business
+                            </p>
+                        </div>
+                        <div className="checklist">
+                            <Checkbox onClickHandler={onClickHandler} />
+                            <p>
+                                You want to learn how to create a successful
+                                business
+                            </p>
+                        </div>
                     </div>
-                    <div className="checklist">
-                        <Checkbox onClickHandler={onClickHandler} />
-                        <p>
-                            You want to learn how to create a successful
-                            business
-                        </p>
-                    </div>
-                    <div className="checklist">
-                        <Checkbox onClickHandler={onClickHandler} />
-                        <p>
-                            You want to learn how to create a successful
-                            business
-                        </p>
-                    </div>
-                    <div className="checklist">
-                        <Checkbox onClickHandler={onClickHandler} />
-                        <p>
-                            You want to learn how to create a successful
-                            business
-                        </p>
-                    </div>
+                    <button
+                        disabled={!oneChecked}
+                        onClick={scrollToCourseBanner}
+                    >
+                        Enroll Now
+                    </button>
                 </div>
-                <button disabled={!oneChecked} onClick={scrollToCourseBanner}>
-                    Enroll Now
-                </button>
+                <div className="right-side"></div>
             </div>
-            <div className="right-side"></div>
         </section>
     );
 };

@@ -6,7 +6,7 @@
     display: none;
 }
 
-.course-overview > h2 {
+.course-overview .content-wrapper > h2 {
     font-size: 3rem;
 }
 

@@ -36,6 +36,8 @@ import { setUserInfo } from "./features/UserSlice";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
 import { Toaster, toast } from "sonner";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import AOS styles
 
 function App() {
     /**
@@ -52,6 +54,14 @@ function App() {
 
     const dispatch = useDispatch();
     const [authenticated, setAuthenticated] = useState(false);
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            easing: "ease-out",
+            anchorPlacement: 'bottom-bottom',
+        });
+    }, []);
 
     // * Enable/disable session check for development
     const enableSessionCheck = false;
@@ -109,23 +119,25 @@ function App() {
             const user = auth.currentUser;
 
             if (user) {
-
-                if (localStorage.getItem("sessionToken") === null || localStorage.getItem("sessionToken") === "") {
-                    console.log("No session token found. Logging out.")
+                if (
+                    localStorage.getItem("sessionToken") === null ||
+                    localStorage.getItem("sessionToken") === ""
+                ) {
+                    console.log("No session token found. Logging out.");
                     signOut(auth)
-                            .then(() => {
-                                // Sign-out successful.
-                                dispatch(setLoggedInStatus(false));
-                                toast.success(
-                                    "Please log back in to refresh your session."
-                                );
-                            })
-                            .catch((error) => {
-                                // An error happened.
-                                console.error(error);
-                                toast.error("Error logging out!");
-                            });
-                    
+                        .then(() => {
+                            // Sign-out successful.
+                            dispatch(setLoggedInStatus(false));
+                            toast.success(
+                                "Please log back in to refresh your session."
+                            );
+                        })
+                        .catch((error) => {
+                            // An error happened.
+                            console.error(error);
+                            toast.error("Error logging out!");
+                        });
+
                     return;
                 }
                 try {

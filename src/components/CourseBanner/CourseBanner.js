@@ -6,8 +6,8 @@ const CourseBanner = () => {
 
 
     return (
-        <section id="course-banner" className="page-section">
-            <div id="course-banner-content">
+        <section id="course-banner" className="page-section" data-aos="fade-up">
+            <div id="course-banner-content" data-aos="fade-up">
                 <h2>The Odyssey</h2>
                 <h3>Creative Masterclass</h3>
                 <hr></hr>

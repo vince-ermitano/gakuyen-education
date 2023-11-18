@@ -4,9 +4,9 @@ import { BsCamera } from "react-icons/bs";
 
 const WhatWeOffer = () => {
     return (
-        <section id="what-we-offer">
+        <section id="what-we-offer" data-aos="fade-up">
             <h2>What We Offer</h2>
-            <div className="offer-container">
+            <div className="offer-container" data-aos="fade-up">
                 <div className="offer offer-1">
                     <div className="image-container">
                         <img

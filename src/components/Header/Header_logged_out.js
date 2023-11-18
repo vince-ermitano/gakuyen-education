@@ -48,7 +48,7 @@ const Header = () => {
     // }
 
     const headerLoggedOut = (
-        <div className="header">
+        <div className="header" >
             {/* <div className="logo">
                     <Link to="/"><span>GAKUYEN EDUCATION</span></Link>
                 </div> */}
@@ -100,7 +100,7 @@ const Header = () => {
     // );
 
     const headerLoggedIn = (
-        <div className="header">
+        <div className="header" >
             {/* <div className="logo">
                     <Link to="/"><span>GAKUYEN EDUCATION</span></Link>
                 </div> */}

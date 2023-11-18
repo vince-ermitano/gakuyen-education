@@ -1,8 +1,12 @@
 #target-audience {
+    padding-top: 16rem;
+    margin-top: 0;
+
+}
+
+#target-audience .content-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 0;
-    padding-top: 16rem;
     gap: 2rem;
 }
 

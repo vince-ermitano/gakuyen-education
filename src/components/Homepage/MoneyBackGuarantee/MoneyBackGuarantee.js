@@ -3,8 +3,8 @@ import "./MoneyBackGuarantee.css";
 
 const MoneyBackGuarantee = () => {
     return (
-        <section id="money-back-guarantee" className="page-section">
-            <div className="money-back-guarantee-container">
+        <section id="money-back-guarantee" className="page-section" >
+            <div className="money-back-guarantee-container" data-aos="fade-up">
                 <h2>Our 100% Satisfaction Guarantee & Money Back Promise</h2>
                 <h3>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
