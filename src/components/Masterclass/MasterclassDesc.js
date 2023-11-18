@@ -33,7 +33,7 @@ const MasterclassDesc = () => {
     useEffect(() => {
         window.scrollTo(0, 0); // Scroll to the top of the page
         document.title =
-        "The Odyssey - Creative Masterclass | GAKUYEN EDUCATION";
+        "The Odyssey | Creative Masterclass";
 
         if (Object.keys(products).length > 0) {
             setIsRehydrated(true);

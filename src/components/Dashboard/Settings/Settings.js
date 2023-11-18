@@ -9,6 +9,8 @@ import { toast } from "sonner";
 
 const Settings = () => {
 
+    document.title = "The Odyssey Dashboard | Settings";
+
     const dispatch = useDispatch();
     const user = auth.currentUser;
     const userInfo = useSelector((state) => state.user.userInfo);

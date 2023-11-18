@@ -28,6 +28,8 @@ const Dashboard = () => {
 
     const navigate = useNavigate();
 
+    document.title = "The Odyssey | Dashboard";
+
     // DEV VARIABLES
     // const LOAD_THE_ODYSSEY = true;
 
@@ -95,8 +97,6 @@ const Dashboard = () => {
     
     
     useEffect(() => {
-        document.title = "Dashboard | Gakuyen Education";
-        
         const fetchUserOwnedItems = async () => {
             const docRef = doc(db, "users", auth.currentUser.uid);
     

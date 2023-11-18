@@ -10,14 +10,6 @@ import { handleAddToCart, convertFromSlug, getProductIdFromProductName } from ".
 register();
 
 
-/**
- * TODO:
- * - Create JS file to store all product description content
- *     - Use to populate this page
- * - Add switch statement to set current product to account for when users directly navigate to this page
- */
-
-// TODO: Either gray out or remove add to cart button if item is already in cart or notify user that item is already in cart when users click add to cart button
 const PresetDescPage = () => {
     const swiperElRef = useRef(null);
     const [isRehydrated, setIsRehydrated] = useState(false);
@@ -30,29 +22,36 @@ const PresetDescPage = () => {
 
     let { name } = useParams();
 
+
     name = convertFromSlug(name);
     
     
 
     let currentProductId;
     let currentProduct;
+
     
     if (!isRehydrated) {
         currentProduct = {};
         currentProductId = "";
+        document.title = 'The Odyssey | Loading...';
     } else {
         currentProductId = getProductIdFromProductName(name, products);
         currentProduct = products[currentProductId];
+
+        console.log(currentProduct.name);
+        document.title = 'The Odyssey | ' + currentProduct.name;
     }
         
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        document.title = 'Preset Description | GAKUYEN EDUCATION';
 
+        
         if (Object.keys(products).length > 0) {
             setIsRehydrated(true);
         }
+        
 
       }, [products]);
 

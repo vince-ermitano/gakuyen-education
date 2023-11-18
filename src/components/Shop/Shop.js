@@ -21,7 +21,7 @@ const Shop = () => {
     
     useEffect(() => {
         window.scrollTo(0, 0);
-        document.title = "The Shop | GAKUYEN EDUCATION";
+        document.title = "The Odyssey | Shop";
         
         if (!filter) {
             setSearchParams({ filter: "all" });

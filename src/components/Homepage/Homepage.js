@@ -94,7 +94,7 @@ const Homepage = () => {
         };
 
 
-        document.title = "Home | GAKUYEN EDUCATION";
+        document.title = "The Odyssey | Home";
 
         return () => {
             unsubscribe();

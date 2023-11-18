@@ -11,6 +11,8 @@ import CryptoJS from "crypto-js";
 
 const DashboardHome = () => {
 
+    document.title = 'The Odyssey Dashboard | Home'
+
     const navigate = useNavigate();
     const AES = CryptoJS.AES;
 

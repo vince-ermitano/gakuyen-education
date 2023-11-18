@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./PresetLutView.css";
@@ -109,6 +109,8 @@ const PresetLutView = () => {
     let unownedItemsForCurrentPage;
 
     if (currentPath.includes("/dashboard/presets")) {
+        document.title = 'The Odyssey Dashboard | My Presets'
+
         const ownedPresets = filterProducts(userOwnedItems, "Preset", products);
         ownedItemsForCurrentPage = ownedPresets;
 
@@ -119,6 +121,8 @@ const PresetLutView = () => {
         );
         unownedItemsForCurrentPage = unownedPresets;
     } else if (currentPath.includes("/dashboard/luts")) {
+        document.title = 'The Odyssey Dashboard | My LUTs'
+
         const ownedLuts = filterProducts(userOwnedItems, "Lut", products);
         ownedItemsForCurrentPage = ownedLuts;
 
@@ -129,6 +133,8 @@ const PresetLutView = () => {
         );
         unownedItemsForCurrentPage = unownedLuts;
     } else if (currentPath.includes("/dashboard/transitions")) {
+        document.title = 'The Odyssey Dashboard | My Transitions'
+
         const ownedTransitions = filterProducts(
             userOwnedItems,
             "Transition",
@@ -143,12 +149,6 @@ const PresetLutView = () => {
         );
         unownedItemsForCurrentPage = unownedTransitions;
     }
-
-    useEffect(() => {
-        // TODO: change document title to reflect current category
-        document.title = "My Items | Gakuyen Education";
-
-    }, [currentPath]);
 
     return (
         <div id="preset-lut-view">

@@ -8,6 +8,7 @@ import ModulePreview from "./ModulePreview";
 const ModuleView = () => {
 
     // const dispatch = useDispatch();
+    document.title = 'The Odyssey Dashboard | Modules'
 
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
     const [ isRehydrated, setIsRehydrated ] = useState(false);
@@ -15,7 +16,6 @@ const ModuleView = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        document.title = 'Module View | GAKUYEN EDUCATION';
 
         if (Object.keys(theOdyssey).length > 0) {
             setIsRehydrated(true);
