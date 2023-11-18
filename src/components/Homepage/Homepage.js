@@ -13,7 +13,7 @@ import CourseBanner from "../CourseBanner/CourseBanner";
 import TargetAudience from "./TargetAudience/TargetAudience";
 import WhatWeOffer from "./WhatWeOffer/WhatWeOffer";
 import MoneyBackGuarantee from "./MoneyBackGuarantee/MoneyBackGuarantee";
-import CourseOverview from "./CourseOverview/CourseOverview";
+import CourseOverview from "./CourseOverview/CourseOverviewV2";
 import FAQ from "./FAQ/FAQ.js";
 import "./Homepage.css";
 // import { toast } from "react-toastify";

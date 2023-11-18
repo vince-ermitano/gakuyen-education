@@ -3,6 +3,8 @@ import "./CourseBanner.css";
 import Dropdown from "../Dropdown/Dropdown";
 
 const CourseBanner = () => {
+
+
     return (
         <section id="course-banner" className="page-section">
             <div id="course-banner-content">
@@ -15,7 +17,7 @@ const CourseBanner = () => {
                     aliqua.
                 </p>
                 <div id="select-financing-group">
-                    <Dropdown />
+                    <Dropdown type={'finance'} idForInput={'financing-option'} idForDropdown={'financing-dropdown'} />
                     <button>Add to Cart</button>
                 </div>
                 <h3>Claim Your Free Module NOW!</h3>
