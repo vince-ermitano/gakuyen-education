@@ -54,6 +54,21 @@
     display: none;
 }
 
+#socials-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 1rem;
+}
+
+#socials-list li {
+    cursor: pointer;
+}
+
+#socials-list svg {
+    font-size: 1.5rem;
+}
+
 @media screen and (max-width: 768px) {
     #hamburger-menu {
         height: 100vh;

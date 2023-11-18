@@ -9,6 +9,7 @@ import { auth } from "../../config/firebaseConfig";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { toggleLoginSidebar } from "../../features/SidebarSlice";
 import { toast } from "sonner";
+import { BiLogoInstagramAlt, BiLogoYoutube, BiLogoTiktok } from "react-icons/bi";
 
 
 const HamburgerMenu = () => {
@@ -36,6 +37,14 @@ const HamburgerMenu = () => {
 
         toggleHamburger(pathname);
     };
+
+    const openNewWindow = (path) => {
+        const newTab = window.open(path, "_blank");
+
+        if (newTab) {
+            newTab.focus();
+        }
+    }
     
     return (
         <nav id="hamburger-menu">
@@ -110,6 +119,11 @@ const HamburgerMenu = () => {
                             Login
                         </button>
                     )}
+                    <ul id="socials-list">
+                        <li onClick={() => openNewWindow('https://www.instagram.com/gakuyen')}><BiLogoInstagramAlt /></li>
+                        <li onClick={() => openNewWindow('https://www.youtube.com/c/gakulange')}><BiLogoYoutube /></li>
+                        <li onClick={() => openNewWindow('https://www.tiktok.com/@gakulange')}><BiLogoTiktok /></li>
+                    </ul>
                 </div>
             </div>
         </nav>
