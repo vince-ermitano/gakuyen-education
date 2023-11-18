@@ -23,6 +23,10 @@
     margin-bottom: 2rem;
 }
 
+#course-overview .select-container {
+    display: none;
+}
+
 #module-selection h3 {
     font-size: 1.5rem;
 }
@@ -47,6 +51,10 @@
 #module-selection li:hover {
     background-color: #feeb22;
     cursor: pointer;
+}
+
+#module-selection > * {
+    width: 100%;
 }
 
 .course-overview-content {
@@ -86,6 +94,10 @@
 
 @media screen and (max-width: 768px) {
     #course-overview .mobile {
+        display: block;
+    }
+
+    #course-overview .select-container {
         display: block;
     }
 
