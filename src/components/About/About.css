@@ -1,0 +1,63 @@
+#root #about-section {
+    margin: 15rem 5% 5rem 5%;
+    padding: 0;
+    font-family: 'Inconsolata';
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+#about-section img {
+    width: 50%;
+}
+
+#about-section .about-text {
+    padding: 2rem 0;
+}
+#about-section h1 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+#about-section ul {
+    display: flex;
+    color: black;
+    list-style: none;
+    padding: 0;
+    gap: 1rem;
+}
+
+#about-section ul li:hover {
+    color: #666;
+    cursor: pointer;
+}
+
+#about-section ul .divider:hover {
+    color: black;
+    cursor: default;
+}
+
+#about-section .press {
+    flex-direction: column;
+    font-style: italic;
+    gap: 0;
+}
+
+#about-section .heading {
+    margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 1440px) {
+    #about-section img {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #root #about-section {
+        margin: 10rem 5% 0rem 5%;
+    }
+    #about-section img {
+        width: 100%;
+    }
+}

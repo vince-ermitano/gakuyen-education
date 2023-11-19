@@ -9,6 +9,7 @@ import Homepage from "./components/Homepage/Homepage";
 import HamburgerMenu from "./components/Hamburger/HamburgerMenu";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
+import About from "./components/About/About";
 import PresetDescPage from "./components/Presets/PresetDescPage";
 // import Hamburger from './components/Hamburger/Hamburger_v2';
 import MasterclassDesc from "./components/Masterclass/MasterclassDesc";
@@ -388,6 +389,7 @@ function App() {
                     <Route path="settings" element={<Settings />}></Route>
                 </Route>
                 <Route path="/contact" element={<Contact />}></Route>
+                <Route path="/about" element={<About />}></Route>
             </Routes>
 
             <Toaster position="top-center" richColors />

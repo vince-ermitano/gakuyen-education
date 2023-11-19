@@ -2,7 +2,7 @@ import React from "react";
 import "./HamburgerMenu.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { toggleHamburger } from "../../helpers";
+import { toggleHamburger, openNewWindow } from "../../helpers";
 import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebaseConfig";
@@ -38,14 +38,6 @@ const HamburgerMenu = () => {
 
         toggleHamburger(pathname);
     };
-
-    const openNewWindow = (path) => {
-        const newTab = window.open(path, "_blank");
-
-        if (newTab) {
-            newTab.focus();
-        }
-    }
     
     return (
         <nav id="hamburger-menu">
@@ -83,7 +75,7 @@ const HamburgerMenu = () => {
                     <Link className="link1" to="/" onClick={toggleHamburger}>
                         Free Resources
                     </Link>
-                    <Link className="link1" to="/" onClick={toggleHamburger}>
+                    <Link className="link1" to="/about" onClick={toggleHamburger}>
                         About Gaku
                     </Link>
                 </div>

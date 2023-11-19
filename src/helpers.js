@@ -197,3 +197,11 @@ export const checkHeaderColor = (currentPath) => {
         cartSvg.style.color = "white";
     }
 };
+
+export const openNewWindow = (path) => {
+    const newTab = window.open(path, "_blank");
+
+    if (newTab) {
+        newTab.focus();
+    }
+}
