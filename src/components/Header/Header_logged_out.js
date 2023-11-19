@@ -81,7 +81,10 @@ const Header = () => {
                 /> */}
                 <Logo onClick={() => {
                     navigate("/");
-                    toggleHamburger(currentPath);
+
+                    if (document.getElementById("hamburger-menu").classList.contains("is-active")) {
+                        toggleHamburger(currentPath);
+                    }
                 }} />
                 {/* </Link> */}
             </div>
@@ -142,7 +145,9 @@ const Header = () => {
                 /> */}
                 <Logo onClick={() => {
                     navigate("/");
-                    toggleHamburger(currentPath);
+                    if (document.getElementById("hamburger-menu").classList.contains("is-active")) {
+                        toggleHamburger(currentPath);
+                    }
                 }} />
             </div>
             <Hamburger />
