@@ -33,6 +33,7 @@
 }
 
 .header .user-directory svg {
+    transition: color 0.75s ease-out;
     font-size: 2rem;
 }
 
@@ -56,6 +57,13 @@
 
 .header .logo {
     height: 3rem;
+}
+
+.header .logo svg {
+    height: 100%;
+    image-rendering: pixelated;
+    transition: fill 0.75s ease-out;
+    cursor: pointer;
 }
 
 .header .logo img {
@@ -113,6 +121,7 @@
     border-radius: 0.5rem;
     color: white;
     /* background-color: rgba(202, 202, 202, 0.4); */
+    transition: color 0.75s ease-out;
 }
 
 .user-directory span:last-child {

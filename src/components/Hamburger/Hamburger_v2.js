@@ -8,8 +8,6 @@ const Hamburger = () => {
     const location = useLocation();
     const pathname = location.pathname;
 
-    console.log(pathname);
-
     return (
         <div className="hamburger" id="hamburger-6" onClick={() => {toggleHamburger(pathname)}}>
             <span className="line"></span>

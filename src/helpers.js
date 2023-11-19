@@ -149,13 +149,7 @@ export const changeHeaderTextAndLogoToColor = (color) => {
         text.style.color = color;
     });
 
-    const logo = document.querySelector(".header .logo img");
-
-    if (color === "black") {
-        logo.src = "/theodyssey_s.png";
-    } else {
-        logo.src = "/theodysseywhite_s.png";
-    }
+    document.querySelector(".header .logo svg").style.fill = color;
 };
 
 export const scrollIntoView = (id) => {
@@ -163,5 +157,43 @@ export const scrollIntoView = (id) => {
 
     if (element) {
         document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+};
+
+export const checkHeaderColor = (currentPath) => {
+    if (currentPath.includes("/dashboard")) {
+        return;
+    }
+
+    const userDirectoryLinks = document.querySelectorAll(
+        ".user-directory span"
+    );
+    const logo = document.querySelector(".header .logo svg");
+    const cartSvg = document.querySelector(".header .user-directory svg");
+    const hamburgerMenu = document.getElementById("hamburger-menu");
+
+    if (hamburgerMenu.classList.contains("is-active")) {
+        userDirectoryLinks.forEach((link) => {
+            link.style.color = "black";
+        });
+        // logo.src = "/theodyssey_s.png";
+        logo.style.fill = "black";
+        cartSvg.style.color = "black";
+        return;
+    }
+
+    if (currentPath !== "/") {
+        userDirectoryLinks.forEach((link) => {
+            link.style.color = "black";
+        });
+        // logo.src = "/theodyssey_s.png";
+        cartSvg.style.color = "black";
+    } else {
+        userDirectoryLinks.forEach((link) => {
+            link.style.color = "white";
+        });
+        // logo.src = "/theodysseywhite_s.png";
+        logo.style.fill = "white";
+        cartSvg.style.color = "white";
     }
 };

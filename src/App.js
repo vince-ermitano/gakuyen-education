@@ -33,6 +33,7 @@ import {
     setInitialTotalPrice,
 } from "./features/ShopSlice";
 import { setUserInfo } from "./features/UserSlice";
+import { checkHeaderColor } from "./helpers";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
 import { Toaster, toast } from "sonner";
@@ -66,6 +67,34 @@ function App() {
     // * Enable/disable session check for development
     const enableSessionCheck = false;
 
+    // const checkHeaderColor = useCallback(() => {
+        
+    //     if (currentPath.includes(dashboardPath)) {
+    //         return;
+    //     }
+        
+    //     const userDirectoryLinks = document.querySelectorAll(
+    //         ".user-directory span"
+    //     );
+    //     const logo = document.querySelector(".header .logo img");
+    //     const cartSvg = document.querySelector(".header .user-directory svg");
+
+
+    //     if (currentPath !== "/") {
+    //         userDirectoryLinks.forEach((link) => {
+    //             link.style.color = "black";
+    //         });
+    //         logo.src = "/theodyssey_s.png";
+    //         cartSvg.style.color = "black";
+    //     } else {
+    //         userDirectoryLinks.forEach((link) => {
+    //             link.style.color = "white";
+    //         });
+    //         logo.src = "/theodysseywhite_s.png";
+    //         cartSvg.style.color = "white";
+    //     }
+    // }, [currentPath]);
+
     // useEffect(() => {
     // }, [currentPath]);
 
@@ -87,29 +116,31 @@ function App() {
     useEffect(() => {
         if (!authenticated) return;
 
-        const userDirectoryLinks = document.querySelectorAll(
-            ".user-directory span"
-        );
-        const logo = document.querySelector(".header .logo img");
-        const cartSvg = document.querySelector(".header .user-directory svg");
+        // const userDirectoryLinks = document.querySelectorAll(
+        //     ".user-directory span"
+        // );
+        // const logo = document.querySelector(".header .logo img");
+        // const cartSvg = document.querySelector(".header .user-directory svg");
 
-        if (currentPath.includes(dashboardPath)) {
-            return;
-        }
+        // if (currentPath.includes(dashboardPath)) {
+        //     return;
+        // }
 
-        if (currentPath !== "/") {
-            userDirectoryLinks.forEach((link) => {
-                link.style.color = "black";
-            });
-            logo.src = "/theodyssey_s.png";
-            cartSvg.style.color = "black";
-        } else {
-            userDirectoryLinks.forEach((link) => {
-                link.style.color = "white";
-            });
-            logo.src = "/theodysseywhite_s.png";
-            cartSvg.style.color = "white";
-        }
+        // if (currentPath !== "/") {
+        //     userDirectoryLinks.forEach((link) => {
+        //         link.style.color = "black";
+        //     });
+        //     logo.src = "/theodyssey_s.png";
+        //     cartSvg.style.color = "black";
+        // } else {
+        //     userDirectoryLinks.forEach((link) => {
+        //         link.style.color = "white";
+        //     });
+        //     logo.src = "/theodysseywhite_s.png";
+        //     cartSvg.style.color = "white";
+        // }
+
+        checkHeaderColor(currentPath);
     }, [authenticated, currentPath]);
 
     useEffect(() => {
@@ -192,21 +223,22 @@ function App() {
     useEffect(() => {
         if (!authenticated) return;
 
-        const dashboardText = document.querySelector(".user-directory a");
+        // const dashboardText = document.querySelector(".user-directory a");
 
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                if (currentPath !== "/") {
-                    // dashboardText?.style.color = "black";
-                    if (dashboardText) {
-                        dashboardText.style.color = "black";
-                    }
-                } else {
-                    if (dashboardText) {
-                        dashboardText.style.color = "white";
-                    }
-                }
-            }
+            // if (user) {
+            //     if (currentPath !== "/") {
+            //         // dashboardText?.style.color = "black";
+            //         if (dashboardText) {
+            //             dashboardText.style.color = "black";
+            //         }
+            //     } else {
+            //         if (dashboardText) {
+            //             dashboardText.style.color = "white";
+            //         }
+            //     }
+            // }
+            checkHeaderColor(currentPath);
         });
 
         return () => {

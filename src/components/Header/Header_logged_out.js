@@ -1,12 +1,13 @@
 import React from "react";
 import "./Header_logged_out.css";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { ReactComponent as Logo } from '../logo.svg';
 // import Hamburger from "../Hamburger/Hamburger";
 import Hamburger from "../Hamburger/Hamburger_v2";
 // import HamburgerMenu from "../Hamburger/HamburgerMenu";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
-import { NavLink, Link } from "react-router-dom";
 import {
     toggleLoginSidebar,
     toggleCreateSidebar,
@@ -16,11 +17,14 @@ import { BiCartAlt } from "react-icons/bi";
 import { getAuth, signOut } from "firebase/auth";
 // import { ToastContainer, toast } from "react-toastify";
 import { toast } from "sonner";
+import { checkHeaderColor, toggleHamburger } from "../../helpers";
 
 const Header = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
     const navigate = useNavigate();
+    const location = useLocation();
+    const currentPath = location.pathname;
 
     // Firebase
     const auth = getAuth();
@@ -32,6 +36,7 @@ const Header = () => {
                 // Sign-out successful.
                 localStorage.removeItem("sessionToken");
                 dispatch(setLoggedInStatus(false));
+                checkHeaderColor(currentPath);
                 toast.success("Logged out successfully!");
             })
             .catch((error) => {
@@ -40,8 +45,20 @@ const Header = () => {
                 toast.error("Error logging out!");
             });
 
+        // checkHeaderColor(currentPath);
         // hideHamburger();
+
     };
+
+    // useEffect(() => {
+    //     const unsubscribe = onAuthStateChanged(auth, (user) => {
+    //         checkHeaderColor(currentPath);
+    //     });
+
+    //     return () => {
+    //         unsubscribe();
+    //     }
+    // }, [auth, currentPath]);
 
     // const hideHamburger = () => {
     //     document.getElementById("toggle1").checked = false;
@@ -54,11 +71,18 @@ const Header = () => {
                 </div> */}
             <div className="logo img-container">
                 {/* <Link to="/"> */}
-                <img
+                {/* <img
                     src="/theodysseywhite_s.png"
                     alt="Gakuyen Education Logo"
-                    onClick={() => navigate("/")}
-                />
+                    onClick={() => {
+                        navigate("/");
+                        toggleHamburger(currentPath);
+                    }}
+                /> */}
+                <Logo onClick={() => {
+                    navigate("/");
+                    toggleHamburger(currentPath);
+                }} />
                 {/* </Link> */}
             </div>
             <Hamburger />
@@ -105,14 +129,27 @@ const Header = () => {
                     <Link to="/"><span>GAKUYEN EDUCATION</span></Link>
                 </div> */}
             <div className="logo img-container">
-                <Link to="/">
+                {/* <Link to="/" >
                     <img src="/theodysseywhite_s.png" alt="Gakuyen Education Logo" />
-                </Link>
+                </Link> */}
+                {/* <img
+                    src="/theodysseywhite_s.png"
+                    alt="Gakuyen Education Logo"
+                    onClick={() => {
+                        navigate("/");
+                        toggleHamburger(currentPath);
+                    }}
+                /> */}
+                <Logo onClick={() => {
+                    navigate("/");
+                    toggleHamburger(currentPath);
+                }} />
             </div>
             <Hamburger />
             <div className="user-directory">
-                <span className="header-text">
-                    <NavLink to="/dashboard/main">DASHBOARD</NavLink>
+                <span className="header-text" onClick={() => navigate('/dashboard/main')}>
+                    {/* <NavLink to="/dashboard/main">DASHBOARD</NavLink> */}
+                    DASHBOARD
                 </span>
                 <span
                     className="header-text"

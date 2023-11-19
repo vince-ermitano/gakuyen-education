@@ -14,10 +14,14 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "sonner";
 import { BiArrowBack } from "react-icons/bi";
 import { v4 as uuidv4 } from "uuid";
+import { checkHeaderColor } from "../../helpers";
+import { useLocation } from "react-router-dom";
 
 
 const LoginSidebar = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
+    const currentPath = location.pathname;
 
     const emailInputRef = useRef(null);
 
@@ -60,6 +64,7 @@ const LoginSidebar = () => {
                 setPassword("");
 
                 dispatch(toggleLoginSidebar());
+                checkHeaderColor(currentPath);
                 // dispatch(setLoggedInStatus(true));
 
             })

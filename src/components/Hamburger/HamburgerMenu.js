@@ -23,6 +23,7 @@ const HamburgerMenu = () => {
     
 
     const handleLogout = () => {
+        console.log('logging out')
         signOut(auth)
             .then(() => {
                 // Sign-out successful.

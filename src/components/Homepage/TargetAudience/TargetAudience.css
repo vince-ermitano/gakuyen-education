@@ -73,7 +73,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    #target-audience {
+    #target-audience .content-wrapper {
         grid-template-columns: 1fr;
         padding-top: 4rem;
         padding-bottom: 4rem;
