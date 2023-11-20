@@ -166,6 +166,11 @@
         display: block;
     }
 
+    #course-overview h3 {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
     #course-overview .select-container {
         display: block;
     }
