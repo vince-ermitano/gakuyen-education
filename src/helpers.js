@@ -183,6 +183,8 @@ export const checkHeaderColor = (currentPath) => {
     }
 
     if (currentPath !== "/") {
+
+        logo.style.fill = "black";
         userDirectoryLinks.forEach((link) => {
             link.style.color = "black";
         });

@@ -24,6 +24,9 @@ import { setLoginSidebar } from "../../features/SidebarSlice";
 import { scrollIntoView } from "../../helpers";
 
 const Homepage = () => {
+    document.title = "The Odyssey | Home";
+    window.scrollTo(0, 0);
+    
     const dispatch = useDispatch();
 
     const location = useLocation();
@@ -92,9 +95,6 @@ const Homepage = () => {
                     toast.error(e);
                 });
         };
-
-
-        document.title = "The Odyssey | Home";
 
         return () => {
             unsubscribe();

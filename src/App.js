@@ -10,6 +10,7 @@ import HamburgerMenu from "./components/Hamburger/HamburgerMenu";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
+import Receipt from "./components/Receipt/Receipt";
 import PresetDescPage from "./components/Presets/PresetDescPage";
 // import Hamburger from './components/Hamburger/Hamburger_v2';
 import MasterclassDesc from "./components/Masterclass/MasterclassDesc";
@@ -140,6 +141,8 @@ function App() {
         //     logo.src = "/theodysseywhite_s.png";
         //     cartSvg.style.color = "white";
         // }
+
+        console.log('route changed');
 
         checkHeaderColor(currentPath);
     }, [authenticated, currentPath]);
@@ -390,6 +393,7 @@ function App() {
                 </Route>
                 <Route path="/contact" element={<Contact />}></Route>
                 <Route path="/about" element={<About />}></Route>
+                <Route path="/receipt" element={<Receipt />}></Route>
             </Routes>
 
             <Toaster position="top-center" richColors />
