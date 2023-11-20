@@ -1,51 +1,56 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./DashboardHome.css";
-import { BiSlider, BiPalette, BiSupport, BiBook } from "react-icons/bi";
+import {
+    BiSlider,
+    BiPalette,
+    BiSupport,
+    BiBook,
+    BiArrowBack,
+} from "react-icons/bi";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaFilm } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 
-
 const DashboardHome = () => {
-
-    document.title = 'The Odyssey Dashboard | Home'
+    document.title = "The Odyssey Dashboard | Home";
 
     const navigate = useNavigate();
     const AES = CryptoJS.AES;
 
     const goToPresets = () => {
         navigate("/dashboard/presets");
-    }
+    };
 
     const goToLuts = () => {
         navigate("/dashboard/luts");
-    }
+    };
 
     const goToTransitions = () => {
         navigate("/dashboard/transitions");
-    }
+    };
 
     const goToShop = () => {
         navigate("/store");
-    }
+    };
 
     const handleContinueLearning = () => {
         navigate("/dashboard/modules");
-    }
+    };
 
     const goToAccountSettings = () => {
         navigate("/dashboard/settings");
-    }
+    };
 
-    const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
+    const isPurchasedItemsLoaded = useSelector(
+        (state) => state.user.isPurchasedItemsLoaded
+    );
     const isProductsLoading = useSelector((state) => state.shop.isLoading);
     const products = useSelector((state) => state.shop.products);
     const userInfo = useSelector((state) => state.user.userInfo);
     const loaded = isPurchasedItemsLoaded && !isProductsLoading;
-
 
     let purchasedItems;
 
@@ -60,14 +65,19 @@ const DashboardHome = () => {
         purchasedItems = {};
     }
 
-
-
     return (
         <div id="dashboard-home-container">
             {/* TODO: Replace Name with user's name */}
             <h1>
                 <span>Welcome,</span> {userInfo.firstName}
             </h1>
+            <button
+                className="mobile odyssey-home-btn"
+                onClick={() => navigate("/")}
+            >
+                <BiArrowBack />
+                Back to The Odyssey Home
+            </button>
             <div id="dashboard-home-cards-container">
                 <div
                     className="dashboard-home-card"
@@ -80,7 +90,9 @@ const DashboardHome = () => {
                             alt="The Odyssey Thumbnail"
                         />
                     </div>
-                    <button onClick={handleContinueLearning}>Continue Learning</button>
+                    <button onClick={handleContinueLearning}>
+                        Continue Learning
+                    </button>
                 </div>
                 <div className="dashboard-home-card" id="my-items-card">
                     <h2>My Items</h2>
@@ -117,10 +129,7 @@ const DashboardHome = () => {
                         <h2>Account Settings</h2>
                         <VscAccount />
                     </div>
-                    <div
-                        className="dashboard-home-card"
-                        id="contact-us-card"
-                    >
+                    <div className="dashboard-home-card" id="contact-us-card">
                         <BiSupport />
                     </div>
                     <div
@@ -129,21 +138,37 @@ const DashboardHome = () => {
                     >
                         <h2>Order History</h2>
 
-                        { !loaded && <p>Loading...</p>}
-                        { loaded && Object.keys(purchasedItems).length === 0 && <p>You haven't purchased anything yet!</p>}
-                        { loaded && Object.keys(purchasedItems).length > 0 && Object.keys(purchasedItems).map((key) => {
-                            return (
-                                <div className="order-history-item" key={key}>
-                                    {products[key].type === "Masterclass" && <BiBook />}
-                                    {products[key].type === "Preset" && <BiSlider />}
-                                    {products[key].type === "Lut" && <BiPalette />}
-                                    {products[key].type === "Transition" && <FaFilm />}
-                                    <p className="product-name">{products[key].name}</p>
-                                    <p className="purchase-date">{purchasedItems[key]}</p>
-                                </div>
-                            );
-                        })
-                        }
+                        {!loaded && <p>Loading...</p>}
+                        {loaded && Object.keys(purchasedItems).length === 0 && (
+                            <p>You haven't purchased anything yet!</p>
+                        )}
+                        {loaded &&
+                            Object.keys(purchasedItems).length > 0 &&
+                            Object.keys(purchasedItems).map((key) => {
+                                return (
+                                    <div
+                                        className="order-history-item"
+                                        key={key}
+                                    >
+                                        {products[key].type ===
+                                            "Masterclass" && <BiBook />}
+                                        {products[key].type === "Preset" && (
+                                            <BiSlider />
+                                        )}
+                                        {products[key].type === "Lut" && (
+                                            <BiPalette />
+                                        )}
+                                        {products[key].type ===
+                                            "Transition" && <FaFilm />}
+                                        <p className="product-name">
+                                            {products[key].name}
+                                        </p>
+                                        <p className="purchase-date">
+                                            {purchasedItems[key]}
+                                        </p>
+                                    </div>
+                                );
+                            })}
                     </div>
                 </div>
             </div>

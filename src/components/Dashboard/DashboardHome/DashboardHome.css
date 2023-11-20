@@ -7,6 +7,10 @@
     width: 2.5rem;
 }
 
+#dashboard-home-container svg {
+    height: 0.8rem;
+}
+
 #dashboard-home-container h1 {
     font-size: 3rem;
     font-weight: 600;
@@ -240,6 +244,23 @@
 
     #order-history-card p.product-name {
         width: 100%;
+    }
+
+    #dashboard-home-container .odyssey-home-btn {
+        font-size: 0.8rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        gap: 1rem;
+    }
+
+    #dashboard-home-container .odyssey-home-btn svg {
+        width: fit-content;
+    }
+
+    #dashboard-home-container .odyssey-home-btn:hover {
+        background-color: transparent;
     }
 }
 

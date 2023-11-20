@@ -13,7 +13,7 @@ const Receipt = () => {
         <section id="receipt-section">
             <div className="receipt-header">
                 <Logo />
-                <h1>Thank you for your purchase!</h1>
+                <h1>Thank you for your order!</h1>
                 <p>
                     Order ID <span>134098134</span>
                 </p>
