@@ -129,7 +129,7 @@ const DashboardHome = () => {
                         <h2>Account Settings</h2>
                         <VscAccount />
                     </div>
-                    <div className="dashboard-home-card" id="contact-us-card">
+                    <div className="dashboard-home-card" id="contact-us-card" onClick={() => navigate('/contact')}>
                         <BiSupport />
                     </div>
                     <div
