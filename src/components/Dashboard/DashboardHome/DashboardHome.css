@@ -8,6 +8,10 @@
 }
 
 #dashboard-home-container svg {
+    height: 1.5rem;
+}
+
+#dashboard-home-container .odyssey-home-btn svg {
     height: 0.8rem;
 }
 
