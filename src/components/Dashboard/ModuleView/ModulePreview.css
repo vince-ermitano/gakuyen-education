@@ -1,5 +1,6 @@
 .module-preview {
     box-sizing: border-box;
+    position: relative;
     display: grid;
     grid-template-columns: 2fr 3fr;
     width: 100%;
@@ -10,6 +11,33 @@
     grid-gap: 1rem;
     background-color: white;
     margin-bottom: 1.5rem;
+}
+
+.module-preview:hover {
+    cursor: pointer;
+}
+
+.module-preview.disabled .module-preview-img-container, .module-preview.disabled .module-preview-info {
+    opacity: 0.5;
+    filter: blur(1px);
+}
+
+/* .module-preview.disabled {
+    opacity: 0.5;
+    filter: blur(1px);
+} */
+
+.module-preview svg {
+    display: none;
+}
+
+.module-preview.disabled svg {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
 }
 
 .module-preview.active {

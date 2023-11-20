@@ -4,6 +4,9 @@ import { useSelector } from "react-redux";
 import ReactPlayer from "react-player";
 import "./ModuleView.css";
 import ModulePreview from "./ModulePreview";
+import { toast } from "sonner";
+import CryptoJS from "crypto-js";
+
 
 const ModuleView = () => {
 
@@ -11,7 +14,9 @@ const ModuleView = () => {
     document.title = 'The Odyssey Dashboard | Modules'
 
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
+    const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
     const [ isRehydrated, setIsRehydrated ] = useState(false);
+    const AES = CryptoJS.AES;
 
 
     useEffect(() => {
@@ -22,6 +27,30 @@ const ModuleView = () => {
         }
     }, [theOdyssey]);
         
+
+    let userOwnedItems;
+
+    try {
+        if (isPurchasedItemsLoaded) {
+            userOwnedItems = JSON.parse(
+                AES.decrypt(
+                    localStorage.getItem("purchasedItems"),
+                    process.env.REACT_APP_SECRET_KEY
+                ).toString(CryptoJS.enc.Utf8)
+            );
+        } else {
+            userOwnedItems = {};
+        }
+    } catch(err) {
+        console.log(err);
+        toast.error("Error fetching your owned items. Attempting to refetch...");
+
+        setTimeout(() => {
+            window.location.href = "/dashboard";
+        }, 3000);
+    }
+
+    console.log('userOwnedItems: ', userOwnedItems);
 
     // if (Object.keys(theOdyssey).length === 0) {
     //     // fetch theOdyssey from server
@@ -64,28 +93,32 @@ const ModuleView = () => {
                     </div>
                 </div>
                 <div className="modules-container">
-                    { !isRehydrated && <p>Loading...</p> }
+                    { (!isRehydrated || !isPurchasedItemsLoaded) && <p>Loading...</p> }
                     { Object.keys(theOdyssey).length !== 0 && Object.keys(theOdyssey).map((moduleId) => {
-                        return (
-                            <ModulePreview
-                                key={moduleId}
-                                id={moduleId}
-                                title={theOdyssey[moduleId].title}
-                                description={theOdyssey[moduleId].description}
-                                type='module'
-                            />
-                        );
+                        if ('MC-01' in userOwnedItems || moduleId === 'M-05') {
+                            return (
+                                <ModulePreview
+                                    key={moduleId}
+                                    id={moduleId}
+                                    title={theOdyssey[moduleId].title}
+                                    description={theOdyssey[moduleId].description}
+                                    type='module'
+                                    activated={true}
+                                />
+                            );
+                        } else {
+                            return (
+                                <ModulePreview
+                                    key={moduleId}
+                                    id={moduleId}
+                                    title={theOdyssey[moduleId].title}
+                                    description={theOdyssey[moduleId].description}
+                                    type='module'
+                                    activated={false}
+                                />
+                            )
+                        }
                     })}
-                    {/* <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview />
-                    <ModulePreview /> */}
                 </div>
             </div>
             <div className="module-content desktop">

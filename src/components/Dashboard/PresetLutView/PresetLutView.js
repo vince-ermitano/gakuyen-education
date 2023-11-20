@@ -75,36 +75,6 @@ const PresetLutView = () => {
         }, 3000);
     }
 
-    // // Get products from Firestore
-    // const getProducts = async () => {
-    //     dispatch(setLoading(true));
-
-    //     try {
-    //         const querySnapshot = await getDocs(collection(db, "products"));
-
-    //         const productsObject = {};
-    //         querySnapshot.forEach((doc) => {
-    //             [productsObject[doc.id]] = doc.data();
-    //         });
-
-    //         console.log(productsObject);
-    //         localStorage.setItem("products", productsObject);
-
-    //         dispatch(setLoading(false));
-    //     } catch (error) {
-    //         console.log(error);
-    //         toast.error("Error getting products");
-    //     }
-    // };
-
-    // if (localStorage.getItem("products") === null) {
-    //     console.log("products is empty")
-    //     getProducts();
-    // }
-
-    // const products = JSON.parse(localStorage.getItem("products"));
-
-
     let ownedItemsForCurrentPage;
     let unownedItemsForCurrentPage;
 

@@ -3,13 +3,26 @@ import './ModulePreview.css';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCurrentVideo } from "../../../features/CoursesSlice";
+import { HiLockClosed } from "react-icons/hi2";
 
 const ModulePreview = (props) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    let classForPreview;
+
+    if (props.type === 'module' && !props.activated) {
+        classForPreview = 'module-preview disabled';
+    } else if (props.type === 'module' && props.activated) {
+        classForPreview = 'module-preview activated';
+    } else {
+        classForPreview = 'module-preview';
+    }
+
     const handleClick = (e) => {
+        if (props.activated === false) return;
+
         if (props.type === "module") {
             navigate(`/dashboard/modules/${props.id}/videos`);
         } else {
@@ -30,7 +43,8 @@ const ModulePreview = (props) => {
         }
     };
     return (
-        <div className='module-preview' onClick={(e) => handleClick(e)}>
+        <div className={classForPreview} onClick={(e) => handleClick(e)}>
+            <HiLockClosed />
             <div className='module-preview-img-container'>
 
             </div>
