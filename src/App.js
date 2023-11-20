@@ -62,7 +62,7 @@ function App() {
         AOS.init({
             duration: 1000,
             easing: "ease-out",
-            anchorPlacement: 'bottom-bottom',
+            anchorPlacement: 'center-center',
         });
     }, []);
 

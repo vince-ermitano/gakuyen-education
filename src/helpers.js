@@ -156,7 +156,7 @@ export const scrollIntoView = (id) => {
     const element = document.getElementById(id);
 
     if (element) {
-        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+        document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "center" });
     }
 };
 

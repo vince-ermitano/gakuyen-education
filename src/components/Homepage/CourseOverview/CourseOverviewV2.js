@@ -79,7 +79,7 @@ const CourseOverview = () => {
                                 ullamco laboris nisi ut aliquip ex ea commodo
                                 consequat.
                             </p>
-                            <p>
+                            {/* <p>
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut
@@ -93,7 +93,7 @@ const CourseOverview = () => {
                                     src="https://via.placeholder.com/400x300"
                                     alt="placeholder"
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
