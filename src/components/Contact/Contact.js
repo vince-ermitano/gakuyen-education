@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import { toast } from "sonner";
 
 const Contact = () => {
 
@@ -13,10 +14,45 @@ const Contact = () => {
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        await fetch(`${process.env.REACT_APP_SERVER_URL}/contact`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: emailAddress,
+                first_name: firstName,
+                last_name: lastName,
+                subject: subject,
+                message: message,
+            }),
+        }
+        ).then((res) => {
+            if (res.ok) {
+                toast.success('Your message has been sent! We will get back to you as soon as possible.');
+            } else return Promise.reject(res.text());
+        }).catch((e) => {
+            if (!e) return;
+            toast.error(e);
+        })
+
+        toast.success('Your message has been sent! We will get back to you as soon as possible.');
+
+        setFirstName("");
+        setLastName("");
+        setEmailAddress("");
+        setSubject("");
+        setMessage("");
+    }
+
     return (
         <section className="contact">
             <h1>Contact</h1>
-            <form>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <h2>
                     Name・名前&nbsp;<span>(required)</span>
                 </h2>

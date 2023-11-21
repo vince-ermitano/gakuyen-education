@@ -430,17 +430,19 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-app.post("/send-email-test", async (req, res) => {
+app.post("/contact", async (req, res) => {
+
+    let { email, subject, message, first_name, last_name } = req.body;
+
+    message = `Message via The Odyssey Contact Form\n\nFrom: ${first_name} ${last_name} \n\nEmail: ${email}\n\n${message}`;
     const msg = {
-        to: 'vinceermitano@yahoo.com', // Change to your recipient
+        to: 'vinceistestinghiscode@gmail.com', // Change to your recipient
         from: {
             email: 'vinceistestinghiscode@gmail.com',
-            name: 'The Odyssey'
+            name: `${first_name} ${last_name}`,
         }, // Change to your verified sender
-        "dynamic_template_data": {
-            "subject": "Your dynamic subject"
-          },
-        templateId: 'd-458280e880e14f3985e5fbc65a603d70',
+        subject: subject,
+        text: message,
       }
       sgMail
         .send(msg)
@@ -450,7 +452,7 @@ app.post("/send-email-test", async (req, res) => {
         })
         .catch((error) => {
           console.error(error)
-          res.status(500).send(error.message);
+          res.status(500).send('Error sending email.');
         })
 });
 
