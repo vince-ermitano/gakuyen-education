@@ -3,6 +3,10 @@ import './Contact.css';
 
 const Contact = () => {
 
+    document.title = "Contact | The Odyssey";
+
+    window.scrollTo(0, 0);
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [emailAddress, setEmailAddress] = useState("");

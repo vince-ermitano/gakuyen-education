@@ -29,6 +29,7 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     document.title = "The Odyssey | Dashboard";
+    window.scrollTo(0, 0);
 
     // DEV VARIABLES
     // const LOAD_THE_ODYSSEY = true;

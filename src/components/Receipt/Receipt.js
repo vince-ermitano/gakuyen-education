@@ -6,6 +6,8 @@ import { BiArrowBack } from "react-icons/bi";
 
 
 const Receipt = () => {
+    document.title = "Thank You For Your Order! | The Odyssey"
+    window.scrollTo(0, 0);
 
     const navigate = useNavigate();
 
