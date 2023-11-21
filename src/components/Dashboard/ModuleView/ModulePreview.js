@@ -3,7 +3,7 @@ import './ModulePreview.css';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCurrentVideo } from "../../../features/CoursesSlice";
-import { HiLockClosed } from "react-icons/hi2";
+import { HiLockClosed, HiLockOpen } from "react-icons/hi2";
 
 const ModulePreview = (props) => {
 
@@ -21,7 +21,10 @@ const ModulePreview = (props) => {
     }
 
     const handleClick = (e) => {
-        if (props.activated === false) return;
+        if (props.activated === false) {
+            navigate('/?scroll_to=course-banner');
+            return;
+        }
 
         if (props.type === "module") {
             navigate(`/dashboard/modules/${props.id}/videos`);
@@ -44,16 +47,18 @@ const ModulePreview = (props) => {
     };
     return (
         <div className={classForPreview} onClick={(e) => handleClick(e)}>
-            <HiLockClosed />
-            <div className='module-preview-img-container'>
-
+            <div className="purchase-note">
+                <HiLockClosed className="lock-closed" />
+                <HiLockOpen className="lock-open" />
+                <p className="purchase-text">Purchase course to unlock</p>
             </div>
-            <div className='module-preview-info'>
+            <div className="module-preview-img-container"></div>
+            <div className="module-preview-info">
                 <h3>{props.title}</h3>
                 <p>{props.description}</p>
             </div>
         </div>
-    )
+    );
 };
 
 export default ModulePreview;

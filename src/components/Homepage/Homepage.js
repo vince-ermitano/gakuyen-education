@@ -34,6 +34,7 @@ const Homepage = () => {
     const searchParams = new URLSearchParams(location.search);
     const session_id = searchParams.get("session_id");
     const showLogin = searchParams.get("show_login");
+    const scrollTo = searchParams.get("scroll_to");
     const isRoot = currentPath === "/";
 
     const gradientCanvas = document.querySelector(".gradient-container");
@@ -43,6 +44,12 @@ const Homepage = () => {
         gradientCanvas.style.display = "block";
         header.style.display = "block";
     }
+    
+    useEffect(() => {
+        if (scrollTo) {
+            scrollIntoView(scrollTo);
+        }
+    });
     
     useEffect(() => {
 

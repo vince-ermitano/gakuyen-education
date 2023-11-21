@@ -17,6 +17,28 @@
     cursor: pointer;
 }
 
+.module-preview.disabled:hover .purchase-note {
+    opacity: 1;
+}
+
+.module-preview.disabled svg.lock-closed {
+    display: block;
+}
+
+.module-preview.disabled:hover .purchase-note .lock-closed {
+    display: none;
+}
+
+.module-preview.disabled:hover svg.lock-open {
+    display: block;
+    opacity: 1;
+}
+
+.module-preview.disabled .lock-open {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
 .module-preview.disabled .module-preview-img-container, .module-preview.disabled .module-preview-info {
     opacity: 0.5;
     filter: blur(1px);
@@ -31,13 +53,36 @@
     display: none;
 }
 
-.module-preview.disabled svg {
-    display: block;
+.module-preview .purchase-note {
+    display: none;
+}
+
+.module-preview.disabled .purchase-note {
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-family: 'Inconsolata', monospace;
+    font-size: 1.25rem;
+    transition: all 0.3s ease-out;
+}
+
+.module-preview.disabled:hover .purchase-note {
+    background-color: #f2f1f2;
+}
+
+.module-preview.disabled .purchase-text {
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+.module-preview.disabled:hover .purchase-text {
+    opacity: 1;
 }
 
 .module-preview.active {
