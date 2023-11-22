@@ -26,8 +26,6 @@ const CartSidebar = () => {
     const cartItems = cartSidebarIsOpen ? JSON.parse(localStorage.getItem('cart')) || {} : {};
 
 
-    // DOM elements
-    const loginDialog = document.getElementById("login_dialog");
 
     // handle functions
     const createCheckoutSession = useCallback(() => {
@@ -110,6 +108,9 @@ const CartSidebar = () => {
 
     const handleProceedToCheckout = useCallback(() => {
 
+        const loginDialog = document.getElementById("login_dialog");
+
+
         if (localStorage.getItem('cart') === '{}') {
             toast.error("Your cart is empty")
             return;
@@ -133,21 +134,27 @@ const CartSidebar = () => {
 
         createCheckoutSession();
         
-    }, [loginDialog, createCheckoutSession, dispatch]);
+    }, [createCheckoutSession, dispatch]);
 
 
     const handleProceedWithoutLogin = () => {
+        const loginDialog = document.getElementById("login_dialog");
+
         loginDialog.close();
         createCheckoutSession();
     }
 
     const handleLogin = () => {
+        const loginDialog = document.getElementById("login_dialog");
+
         loginDialog.close();
         dispatch(toggleCartSidebar());
         dispatch(toggleLoginSidebar());
     }
 
     const handleClickOutsideDialog = (event) => {
+        const loginDialog = document.getElementById("login_dialog");
+
         if (event.target === loginDialog) {
             loginDialog.close();
         }
@@ -158,6 +165,8 @@ const CartSidebar = () => {
     }
 
     useEffect(() => {
+        const loginDialog = document.getElementById("login_dialog");
+
         dispatch(calculateTotalPrice());
 
         // setup event listeners
@@ -165,14 +174,14 @@ const CartSidebar = () => {
             if (event.target === loginDialog) {
                 loginDialog.close();
             }
-        }
+        };
 
         document.body.addEventListener("click", handleClickOutside);
 
         return () => {
             document.body.removeEventListener("click", handleClickOutside);
         };
-    }, [dispatch, loginDialog, handleProceedToCheckout]);
+    }, [dispatch, handleProceedToCheckout]);
 
 
     return (

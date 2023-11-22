@@ -410,7 +410,6 @@ app.post("/create-checkout-session", async (req, res) => {
         const SESSION_ID = uuidv4();
 
         const session = await stripe.checkout.sessions.create({
-            payment_method_types: ["card"],
             mode: "payment",
             line_items: line_items,
             success_url: `${process.env.CLIENT_URL}/#/success?session_id=${SESSION_ID}`,
