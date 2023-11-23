@@ -52,7 +52,7 @@ const Contact = () => {
     return (
         <section className="contact">
             <h1>Contact</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form method="post" onSubmit={(e) => handleSubmit(e)}>
                 <h2>
                     Name・名前&nbsp;<span>(required)</span>
                 </h2>

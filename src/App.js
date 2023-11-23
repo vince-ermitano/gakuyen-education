@@ -11,6 +11,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
 import Receipt from "./components/Receipt/Receipt";
+import DigitalDownloads from "./components/DigitalDownloads/DigitalDownloads";
 import PresetDescPage from "./components/Presets/PresetDescPage";
 // import Hamburger from './components/Hamburger/Hamburger_v2';
 import MasterclassDesc from "./components/Masterclass/MasterclassDesc";
@@ -394,6 +395,10 @@ function App() {
                 <Route path="/contact" element={<Contact />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/receipt" element={<Receipt />}></Route>
+                <Route
+                    path="/digital-downloads"
+                    element={<DigitalDownloads />}
+                ></Route>
             </Routes>
 
             <Toaster position="top-center" richColors />

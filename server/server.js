@@ -100,6 +100,8 @@ const sendConfirmationEmail = (email, dynamic_data) => {
 
 const computeTotalPrice = (cart) => {};
 
+const setUserPurchasedItems = async(email, items) => {}
+
 // ================================================== functions
 
 // store products on the server side
@@ -140,6 +142,8 @@ const storeItems = new Map([
     [2, { priceInCents: 20000, name: "Learn CSS Today" }],
 ]);
 
+
+
 // EXPRESS ROUTES --------------------------------------------------
 // // Catch-all route: Serve the index.html file for all routes
 // app.get('/*', (req, res) => {
@@ -165,11 +169,11 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
     // Handle the specific event you're interested in (checkout.session.completed)
     if (event.type === "checkout.session.completed") {
         const email = event.data.object.customer_details.email;
+
         console.log("Payment was successful. Email:", email);
 
-        const success_url = event.data.object.success_url;
-        const session_id = success_url.split("=")[1];
-
+        // const success_url = event.data.object.success_url;
+        // const session_id = success_url.split("=")[1];
         
         const session = event.data.object;
         
@@ -179,6 +183,12 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
                 expand: ["line_items"],
             }
         );
+
+        // const session = await stripe.checkout.sessions.retrieve(session.id);
+        const metadata = event.data.object.metadata;
+        const session_id = metadata.session_id;
+        const uid = event.data.object.metadata.uid;
+
 
         const totalPrice = line_items.data.reduce((acc, item) => {
             return acc + item.amount_total / 100;
@@ -211,6 +221,8 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
     } else {
         res.status(200).end();
     }
+
+    // TODO: Remove checkout session from database if payment fails
 });
 
 
@@ -326,6 +338,8 @@ app.use("/create-checkout-session", async (req, res, next) => {
     const decodedToken = await admin.auth().verifyIdToken(token);
     uid = decodedToken.uid;
 
+    req.uid = uid;
+
     // remove duplicates
     const cart = req.body;
     const cartItems = Object.keys(cart);
@@ -377,6 +391,60 @@ app.use("/create-checkout-session", async (req, res, next) => {
     next();
 });
 
+// OG
+// app.post("/create-checkout-session", async (req, res) => {
+//     res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+//     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//     res.setHeader("Access-Control-Allow-Credentials", true);
+
+//     let totalPrice = 0;
+
+//     for (const item in req.body) {
+//         totalPrice += productsObject[item].price * 100 * req.body[item];
+//     }
+
+//     console.log(totalPrice);
+
+//     try {
+//         const cartItems = Object.keys(req.body);
+
+//         const line_items = cartItems.map((item) => {
+//             return {
+//                 price_data: {
+//                     currency: "usd",
+//                     product_data: {
+//                         name: productsObject[item].name,
+//                     },
+//                     unit_amount: productsObject[item].price * 100,
+//                 },
+//                 quantity: 1,
+//             };
+//         });
+
+//         const SESSION_ID = uuidv4();
+
+//         const session = await stripe.checkout.sessions.create({
+//             mode: "payment",
+//             line_items: line_items,
+//             success_url: `${process.env.CLIENT_URL}/#/success?session_id=${SESSION_ID}`,
+//             cancel_url: `${process.env.CLIENT_URL}`,
+//         });
+
+//         // store items in the database so that when user successfully pays, we can update the database
+
+//         await setDoc(doc(db, "checkoutSessions", SESSION_ID), {
+//             items: req.body,
+//             complete: false,
+//         });
+
+//         res.json({ url: session.url });
+//     } catch (e) {
+//         res.status(500).json({ error: e.message });
+//     }
+// });
+
+// V2
 app.post("/create-checkout-session", async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -401,33 +469,54 @@ app.post("/create-checkout-session", async (req, res) => {
                     product_data: {
                         name: productsObject[item].name,
                     },
-                    unit_amount: productsObject[item].price * 100,
+                    unit_amount: Math.floor(productsObject[item].price * 100),
                 },
                 quantity: 1,
             };
         });
 
         const SESSION_ID = uuidv4();
+        const downloadToken = uuidv4();
+        const hasDownloads = cartItems.some((item) => {
+            return item !== "MC-01";
+        });
+
 
         const session = await stripe.checkout.sessions.create({
             mode: "payment",
             line_items: line_items,
-            success_url: `${process.env.CLIENT_URL}/#/success?session_id=${SESSION_ID}`,
+            success_url: `${process.env.CLIENT_URL}/#/receipt?download_token=${downloadToken}&session_id=${SESSION_ID}&has_downloads=${hasDownloads}`,
             cancel_url: `${process.env.CLIENT_URL}`,
+            metadata: {
+                session_id: SESSION_ID,
+                uid: req.uid,
+            },
+            // payment_intent_data: {
+            //     metadata: {
+            //         uid: req.uid,
+            //         session_id: SESSION_ID,
+            //     }
+            // },
         });
 
-        // store items in the database so that when user successfully pays, we can update the database
+        console.log('Session url: ', session.url);
+
+        await setDoc(doc(db, "downloadTokens", downloadToken), {
+            expiresAt: Date.now() + 86400000,
+        });
 
         await setDoc(doc(db, "checkoutSessions", SESSION_ID), {
             items: req.body,
             complete: false,
-        });
+            uid: req.uid,
+        });  
 
         res.json({ url: session.url });
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
 });
+
 
 app.post("/contact", async (req, res) => {
 
@@ -571,6 +660,28 @@ app.put("/user-info", async (req, res) => {
         res.send('User info updated successfully!');
     } catch (error) {
         res.status(500).send('Problem updating user info');
+    }
+});
+
+app.get("/purchased-items", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
+    const sessionId = req.query.session_id;
+
+    console.log(sessionId);
+
+    const docRef = doc(db, "checkoutSessions", sessionId);
+
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        console.log(docSnap.data().items);
+        res.send(docSnap.data().items);
+    } else {
+        res.status(500).send('Session ID does not exist');
     }
 });
 

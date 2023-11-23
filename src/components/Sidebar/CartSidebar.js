@@ -31,7 +31,7 @@ const CartSidebar = () => {
     const createCheckoutSession = useCallback(() => {
         
         if (!auth.currentUser) {
-            fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session?`, {
+            fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -50,6 +50,8 @@ const CartSidebar = () => {
 
             return;
         }
+
+        console.log('createCheckoutSession');
 
         // fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session?`, {
         //     method: 'POST',
@@ -70,7 +72,7 @@ const CartSidebar = () => {
             .getIdToken(true)
             .then((idToken) => {
                 fetch(
-                    `${process.env.REACT_APP_SERVER_URL}/create-checkout-session?`,
+                    `${process.env.REACT_APP_SERVER_URL}/create-checkout-session`,
                     {
                         method: "POST",
                         headers: {
@@ -85,6 +87,7 @@ const CartSidebar = () => {
                         return res.json().then((json) => Promise.reject(json));
                     })
                     .then(({ url }) => {
+                        console.log(url);
                         window.location = url;
                     })
                     .catch((e) => {
