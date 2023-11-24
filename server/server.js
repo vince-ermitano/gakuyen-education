@@ -98,9 +98,83 @@ const sendConfirmationEmail = (email, dynamic_data) => {
     });
 };
 
+// const addItemsToUserInventory = async (session_id, uid) => {
+//     try {
+//         const checkoutSessionDocRef = doc(db, "checkoutSessions", session_id);
+
+//         const checkoutSessionDocSnap = await getDoc(checkoutSessionDocRef);
+
+//         if (checkoutSessionDocSnap.exists()) {
+//             const items = checkoutSessionDocSnap.data().items;
+//             const hasBeenCompleted = checkoutSessionDocSnap.data().complete;
+
+//             if (hasBeenCompleted) {
+//                 throw new Error("Purchase has already been completed.");
+//             }
+
+//             if (uid) {
+//                 // for each key in items, set value to purchase date
+//                 const currentDate = new Date();
+//                 const dateFormatted = currentDate.toLocaleString("en-US", {
+//                     year: "numeric",
+//                     month: "short",
+//                     day: "numeric",
+//                 });
+
+//                 for (const item in items) {
+//                     items[item] = dateFormatted;
+//                 }
+
+//                 // Update the database to reflect the purchase
+//                 const userRef = doc(db, "users", uid);
+
+//                 const userDoc = await getDoc(userRef);
+
+//                 try {
+//                     await updateDoc(userRef, {
+//                         purchasedItems: {
+//                             ...userDoc.data().purchasedItems,
+//                             ...items,
+//                         },
+//                     });
+//                 } catch (error) {
+//                     console.log(error);
+//                     res.status(500).send(error.message);
+//                 }
+//             }
+
+//             // Update the database to reflect that the purchase has been completed
+//             try {
+//                 await setDoc(
+//                     checkoutSessionDocRef,
+//                     {
+//                         complete: true,
+//                         userEmail: req.body.email ? req.body.email : null,
+//                     },
+//                     { merge: true }
+//                 );
+//             } catch (error) {
+//                 console.log(error);
+//                 res.status(500).send(error.message);
+//             }
+
+//             res.send(
+//                 "Purchase successful! Items purchased." +
+//                     JSON.stringify(items)
+//             );
+//         } else {
+//             throw new Error("Successful purchase was not found.");
+//         }
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send(error.message);
+//     }
+// }
+
 const computeTotalPrice = (cart) => {};
 
-const setUserPurchasedItems = async(email, items) => {}
+const setUserPurchasedItems = async(email, items) => {
+}
 
 // ================================================== functions
 
@@ -211,6 +285,78 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
             hasDownloads: metadata.hasDownloads,
             linkToDownloads: linkToDownloads,
         };
+
+        // add items to user inventory
+        try {
+            const checkoutSessionDocRef = doc(db, "checkoutSessions", session_id);
+    
+            const checkoutSessionDocSnap = await getDoc(checkoutSessionDocRef);
+    
+            if (checkoutSessionDocSnap.exists()) {
+                const items = checkoutSessionDocSnap.data().items;
+                const hasBeenCompleted = checkoutSessionDocSnap.data().complete;
+    
+                if (hasBeenCompleted) {
+                    throw new Error("Purchase has already been completed.");
+                }
+    
+                if (uid) {
+                    // for each key in items, set value to purchase date
+                    const currentDate = new Date();
+                    const dateFormatted = currentDate.toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                    });
+    
+                    for (const item in items) {
+                        items[item] = dateFormatted;
+                    }
+    
+                    // Update the database to reflect the purchase
+                    const userRef = doc(db, "users", uid);
+    
+                    const userDoc = await getDoc(userRef);
+    
+                    try {
+                        await updateDoc(userRef, {
+                            purchasedItems: {
+                                ...userDoc.data().purchasedItems,
+                                ...items,
+                            },
+                        });
+                    } catch (error) {
+                        console.log(error);
+                        res.status(500).send(error.message);
+                    }
+                }
+    
+                // Update the database to reflect that the purchase has been completed
+                try {
+                    await setDoc(
+                        checkoutSessionDocRef,
+                        {
+                            complete: true,
+                            userEmail: req.body.email ? req.body.email : null,
+                        },
+                        { merge: true }
+                    );
+                } catch (error) {
+                    console.log(error);
+                    res.status(500).send(error.message);
+                }
+    
+                res.send(
+                    "Purchase successful! Items purchased." +
+                        JSON.stringify(items)
+                );
+            } else {
+                throw new Error("Successful purchase was not found.");
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).send(error.message);
+        }
 
 
         sendConfirmationEmail(email, dynamic_data)
@@ -334,6 +480,7 @@ app.use("/create-checkout-session", async (req, res, next) => {
     // console.log(authorizationHeader);
 
     if (!authorizationHeader) {
+        req.uid = null;
         return next();
     }
 
@@ -394,59 +541,6 @@ app.use("/create-checkout-session", async (req, res, next) => {
 
     next();
 });
-
-// OG
-// app.post("/create-checkout-session", async (req, res) => {
-//     res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-//     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//     res.setHeader("Access-Control-Allow-Credentials", true);
-
-//     let totalPrice = 0;
-
-//     for (const item in req.body) {
-//         totalPrice += productsObject[item].price * 100 * req.body[item];
-//     }
-
-//     console.log(totalPrice);
-
-//     try {
-//         const cartItems = Object.keys(req.body);
-
-//         const line_items = cartItems.map((item) => {
-//             return {
-//                 price_data: {
-//                     currency: "usd",
-//                     product_data: {
-//                         name: productsObject[item].name,
-//                     },
-//                     unit_amount: productsObject[item].price * 100,
-//                 },
-//                 quantity: 1,
-//             };
-//         });
-
-//         const SESSION_ID = uuidv4();
-
-//         const session = await stripe.checkout.sessions.create({
-//             mode: "payment",
-//             line_items: line_items,
-//             success_url: `${process.env.CLIENT_URL}/#/success?session_id=${SESSION_ID}`,
-//             cancel_url: `${process.env.CLIENT_URL}`,
-//         });
-
-//         // store items in the database so that when user successfully pays, we can update the database
-
-//         await setDoc(doc(db, "checkoutSessions", SESSION_ID), {
-//             items: req.body,
-//             complete: false,
-//         });
-
-//         res.json({ url: session.url });
-//     } catch (e) {
-//         res.status(500).json({ error: e.message });
-//     }
-// });
 
 // V2
 app.post("/create-checkout-session", async (req, res) => {
