@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./DigitalDownloads.css";
 import { BsDownload } from "react-icons/bs";
 import { useNavigate, useLocation } from "react-router-dom";
 import { convertToSlug } from "../../helpers";
 import { toast } from "sonner";
+import { setTotalPrice } from "../../features/ShopSlice";
 
 const DigitalDownloads = () => {
     document.title = "Digital Downloads | The Odyssey";
@@ -12,6 +13,7 @@ const DigitalDownloads = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
     const searchParams = new URLSearchParams(location.search);
     const token = searchParams.get("token");
     const [tokenCheckPending, setTokenCheckPending] = useState(true);
@@ -29,6 +31,12 @@ const DigitalDownloads = () => {
         return filteredItems;
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify([]));
+        toast.success("Payment successful! Check your email for your receipt.");
+        dispatch(setTotalPrice(0));
+    }, [dispatch]);
+
     
     useEffect(() => {
         const checkIfTokenIsValid = async () => {
@@ -38,7 +46,6 @@ const DigitalDownloads = () => {
                 );
     
                 if (response.ok) {
-                    console.log('response is ok');
                     const items = await response.json();
                     setPurchasedItems(items);
                     setTokenIsValid(true);
@@ -61,9 +68,6 @@ const DigitalDownloads = () => {
             navigate("/");
             return;
         }
-
-        console.log('tokenIsValid', tokenIsValid);
-        console.log('tokenCheckPending', tokenCheckPending);
 
         if (!tokenCheckPending && !tokenIsValid) {
             setTimeout(() => {

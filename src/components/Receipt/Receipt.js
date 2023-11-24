@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./Receipt.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as Logo } from "../logo.svg";
 import { BiArrowBack } from "react-icons/bi";
 import { toast } from "sonner";
-import { setTotalPrice } from "../../features/ShopSlice";
 
 const Receipt = () => {
     document.title = "Thank You For Your Order! | The Odyssey";
@@ -13,7 +12,6 @@ const Receipt = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const dispatch = useDispatch();
     const searchParams = new URLSearchParams(location.search);
     const session_id = searchParams.get("session_id");
     const downloadToken = searchParams.get("download_token");
@@ -23,13 +21,6 @@ const Receipt = () => {
     const products = useSelector((state) => state.shop.products);
     const productsAreLoading = useSelector((state) => state.shop.isLoading);
     const isLoading = purchasedIsLoading || productsAreLoading;
-
-
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify([]));
-        toast.success("Payment successful! Check your email for your receipt.");
-        dispatch(setTotalPrice(0));
-    }, [dispatch]);
 
 
     const getPurchaseDetails = useCallback(async (sessionId) => {
@@ -105,23 +96,6 @@ const Receipt = () => {
                     <p>Total</p>
                     <p>${calculateTotalPrice()}</p>
                 </div>
-                {/* <div className="order-details-item">
-                    <p>Product Name</p>
-                    <p>$10</p>
-                </div>
-                <div className="order-details-item">
-                    <p>Product Name</p>
-                    <p>$10</p>
-                </div>
-                <div className="order-details-item">
-                    <p>Product Name</p>
-                    <p>$10</p>
-                </div>
-                <hr></hr>
-                <div className="order-details-item total">
-                    <p>Total</p>
-                    <p>$30</p>
-                </div> */}
             </div>
             {hasDownloads === "true" && (
                 <button

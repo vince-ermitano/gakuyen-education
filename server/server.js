@@ -198,14 +198,18 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
             name: item.description,
             price: item.amount_total / 100,
             quantity: 1,
-          }));
+        }));
+
+        const linkToDownloads = `${process.env.CLIENT_URL}/#/digital-downloads?token=${metadata.downloadToken}`;
 
         const dynamic_data = {
             subject: "Your dynamic subject",
             name: event.data.object.customer_details.name,
             confirmationNum: session_id,
             items: formattedItems,
-            total: `${totalPrice} USD`
+            total: `${totalPrice} USD`,
+            hasDownloads: metadata.hasDownloads,
+            linkToDownloads: linkToDownloads,
         };
 
 
@@ -490,6 +494,8 @@ app.post("/create-checkout-session", async (req, res) => {
             metadata: {
                 session_id: SESSION_ID,
                 uid: req.uid,
+                hasDownloads: hasDownloads,
+                downloadToken: downloadToken,
             },
             // payment_intent_data: {
             //     metadata: {
