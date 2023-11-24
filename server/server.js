@@ -610,6 +610,7 @@ app.post("/create-checkout-session", async (req, res) => {
             items: req.body,
             complete: false,
             uid: req.uid,
+            timeStamp: Date.now(),
         });  
 
         res.json({ url: session.url });
