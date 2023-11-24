@@ -503,6 +503,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
         await setDoc(doc(db, "downloadTokens", downloadToken), {
             expiresAt: Date.now() + 86400000,
+            items: cartItems,
         });
 
         await setDoc(doc(db, "checkoutSessions", SESSION_ID), {
@@ -684,6 +685,33 @@ app.get("/purchased-items", async (req, res) => {
         res.status(500).send('Session ID does not exist');
     }
 });
+
+app.get("/check-download-token", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    
+    const downloadToken = req.query.token;
+
+    const docRef = doc(db, "downloadTokens", downloadToken);
+
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        // check expiration
+        const expiresAt = docSnap.data().expiresAt;
+
+        if (Date.now() > expiresAt) {
+            res.status(500).send('Your 24 hour window to download has expired. Redirecting to homepage...' );
+            return;
+        }
+
+        res.status(200).send(docSnap.data().items);
+    } else {
+        res.status(500).send('Invalid download token. Redirecting to homepage...');
+    }
+})
 
 
 
