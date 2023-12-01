@@ -42,7 +42,10 @@ const ModulePreview = (props) => {
             
             newActiveModulePreview.classList.add("active");
             videoView.classList.add("active");
-            dispatch(setCurrentVideo(props.url));
+            dispatch(setCurrentVideo({
+                url: props.url,
+                title: props.title,
+            }));
         }
     };
     return (

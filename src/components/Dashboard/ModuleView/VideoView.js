@@ -110,14 +110,14 @@ const VideoView = () => {
                     <ReactPlayer
                         ref={playerRef}
                         className="react-player"
-                        url={currentVideo}
+                        url={currentVideo?.url}
                         width="100%"
                         height="100%"
                         controls
                         playing={playing}
                     />
                 </div>
-                <h1>Video Title</h1>
+                <h1>{currentVideo?.title}</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
