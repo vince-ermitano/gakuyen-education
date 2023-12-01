@@ -1,8 +1,16 @@
 import React from "react";
 import "./CourseBanner.css";
 import Dropdown from "../Dropdown/Dropdown";
+import { toggleLoginSidebar } from "../../features/SidebarSlice";
+import { useDispatch } from "react-redux";
 
 const CourseBanner = () => {
+
+    const dispatch = useDispatch();
+
+    const claimModule = () => {
+        dispatch(toggleLoginSidebar());
+    }
 
 
     return (
@@ -21,7 +29,7 @@ const CourseBanner = () => {
                     <button>Add to Cart</button>
                 </div>
                 <h3>Claim Your Free Module NOW!</h3>
-                <button className="claim-btn">Claim</button>
+                <button className="claim-btn" onClick={claimModule}>Claim</button>
             </div>
         </section>
     );

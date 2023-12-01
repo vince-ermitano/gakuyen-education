@@ -15,7 +15,8 @@
 }
 
 .course-overview h2 {
-    font-family: 'Inconsolata', monospace;
+    /* font-family: 'Inconsolata', monospace; */
+    font-family: 'Helvetica-w01-light', sans-serif;
     background-color: transparent;
     display: block;
     text-align: center;
@@ -25,6 +26,7 @@
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
+    font-family: 'Helvetica-w01-light', sans-serif;
 }
 
 #course-overview .select-container {
@@ -33,6 +35,7 @@
 
 #module-selection h3 {
     font-size: 1.5rem;
+    font-family: 'Helvetica-w01-light', sans-serif;
 }
 
 #module-selection ul {
