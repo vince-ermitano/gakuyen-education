@@ -9,6 +9,8 @@ import {
     convertFromSlug,
     getProductIdFromProductName,
 } from "../../helpers";
+import { BiArrowBack } from "react-icons/bi";
+
 // import { addProductToCart } from "../../features/ShopSlice";
 
 register();
@@ -16,6 +18,7 @@ register();
 const PresetDescPage = () => {
     const swiperElRef = useRef(null);
     const [isRehydrated, setIsRehydrated] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const products = useSelector((state) => state.shop.products);
 
@@ -52,9 +55,33 @@ const PresetDescPage = () => {
         }
     }, [products]);
 
+    useEffect(() => {
+        // Function to check if the viewport is mobile
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth < 768); // Adjust the threshold as needed
+        };
+
+        // Initial check when the component mounts
+        checkIfMobile();
+
+        // Event listener for window resize
+        const handleResize = () => {
+            checkIfMobile();
+        };
+
+        // Attach the event listener
+        window.addEventListener("resize", handleResize);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+    
     if (!isRehydrated) {
         return <div className="preset-desc-page page-section"></div>;
     }
+
 
     return (
         <div className="preset-desc-page page-section">
@@ -64,6 +91,14 @@ const PresetDescPage = () => {
                 </button>
             </Link>
             <div className="preset-desc-page-content">
+                {isMobile && (
+                    <Link to="/store">
+                        <button className="mobile-back-to-btn">
+                            <BiArrowBack />
+                        </button>
+                    </Link>
+                )}
+
                 <div className="preset-desc-page-img img-container">
                     <img
                         src={products[currentProductId].images[0]}
@@ -104,8 +139,7 @@ const PresetDescPage = () => {
                         <swiper-slide key={i}>
                             <div className="carousel-img-container">
                                 <img
-
-                                    src={currentProduct.images[i+1]}
+                                    src={currentProduct.images[i + 1]}
                                     alt="slider content"
                                 />
                             </div>
@@ -139,7 +173,11 @@ const PresetDescPage = () => {
 
                 <div className="preset-desc-page-img img-container grid-last-item">
                     <img
-                        src={currentProduct.images[currentProduct.images.length - 1]}
+                        src={
+                            currentProduct.images[
+                                currentProduct.images.length - 1
+                            ]
+                        }
                         alt="preset-desc-page-img"
                     />
                 </div>
