@@ -9,7 +9,7 @@ import {
 import { disableScroll, enableScroll } from "../../helpers";
 import { auth, db } from "../../config/firebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 // import { toast } from "react-toastify";
 import { toast } from "sonner";
 import { BiArrowBack } from "react-icons/bi";
@@ -45,6 +45,27 @@ const LoginSidebar = () => {
             console.error(e);
         }
     }
+    const handlePasswordReset = () => {
+        if (emailAddress === "") {
+            const emailInput = document.getElementById("login-email");
+            emailInput.focus();
+            toast.error("Please enter your email address");
+            return;
+        }
+
+
+
+        toast.promise(sendPasswordResetEmail(auth, emailAddress), {
+            loading: "Sending password reset email...",
+            success: "A password reset email has been sent to your email address.",
+            error: () => {
+                const emailInput = document.getElementById("login-email");
+                emailInput.focus();
+                return "This email address is not associated with any account."
+            },
+        });
+    }
+
     const handleLogin = (e) => {
         e.preventDefault();
 
@@ -136,7 +157,7 @@ const LoginSidebar = () => {
                     />
                     <div className="button-group">
                         <button type="submit">Login</button>
-                        <button type="button">Forgot Password?</button>
+                        <button type="button" onClick={handlePasswordReset}>Forgot Password?</button>
                     </div>
                 </form>
                 <div className="create-account call-to-action">
