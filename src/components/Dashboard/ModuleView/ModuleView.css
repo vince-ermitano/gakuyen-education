@@ -23,7 +23,8 @@
 }
 
 .module-view-left-side ul {
-    display: flex;
+    /* display: flex; */
+    display: none;
     list-style: none;
     padding: 0;
     max-height: 100vh;

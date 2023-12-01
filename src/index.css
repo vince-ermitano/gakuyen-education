@@ -109,7 +109,7 @@ button, input[type="submit"], input[type="reset"] {
 .hero-title-container {
   display: none;
   position: relative;
-  z-index: 10;
+  z-index: 4;
 }
 
 .hero-title__overlay {
