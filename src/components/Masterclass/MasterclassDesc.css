@@ -27,6 +27,11 @@
     justify-content: center;
     align-items: center;
 }
+
+.masterclass-desc a {
+    text-decoration: none;
+    color: black;
+}
 /* 
 .react-player {
     position: absolute;
@@ -110,6 +115,18 @@ hr {
     .masterclass-desc-content {
         padding: 2rem 0;
         background-color: transparent;
+    }
+
+    .masterclass-desc-content .grid {
+        row-gap: 4rem;
+    }
+
+    .masterclass-desc-content .masterclass-desc-header {
+        margin-top: 8rem;
+    }
+
+    .masterclass-desc-content section {
+        margin: 4rem 0;
     }
 
     .masterclass-desc .back-to-btn {

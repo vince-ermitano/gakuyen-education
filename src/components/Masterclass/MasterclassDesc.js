@@ -5,22 +5,23 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./MasterclassDesc.css";
 import { handleAddToCart } from "../../helpers";
+import { BiArrowBack } from "react-icons/bi";
 
 const MasterclassDesc = () => {
-
     const dispatch = useDispatch();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const module = queryParams.get("module");
     const [isRehydrated, setIsRehydrated] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const products = useSelector((state) => state.shop.products);
 
     const jumpToReleventSection = (id) => {
         const releventDiv = document.getElementById(id);
         // behavior: "smooth" parameter for smooth movement
-        releventDiv.scrollIntoView({behavior: "smooth"});
-    }
+        releventDiv.scrollIntoView({ behavior: "smooth" });
+    };
 
     let price;
 
@@ -29,11 +30,10 @@ const MasterclassDesc = () => {
     } else {
         price = products["MC-01"].price;
     }
-    
+
     useEffect(() => {
         window.scrollTo(0, 0); // Scroll to the top of the page
-        document.title =
-        "The Odyssey | Creative Masterclass";
+        document.title = "The Odyssey | Creative Masterclass";
 
         if (Object.keys(products).length > 0) {
             setIsRehydrated(true);
@@ -46,21 +46,45 @@ const MasterclassDesc = () => {
         }
     }, [module]);
 
+    useEffect(() => {
+        // Function to check if the viewport is mobile
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth < 768); // Adjust the threshold as needed
+        };
 
+        // Initial check when the component mounts
+        checkIfMobile();
 
+        // Event listener for window resize
+        const handleResize = () => {
+            checkIfMobile();
+        };
+
+        // Attach the event listener
+        window.addEventListener("resize", handleResize);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     return (
         <div className="masterclass-desc page-section">
             <Link to="/store">
-                <button className="back-to-btn">
-                    &lt; Back to Masterclass Shop
-                </button>
+                <button className="back-to-btn">&lt; Back to Shop</button>
             </Link>
 
             <div className="masterclass-desc-content">
-                <section className="masterclass-desc-header grid-two-columns">
+                <section className="masterclass-desc-header grid-two-columns grid">
+                    {isMobile && (
+                        <Link to="/store">
+                            <button className="mobile-back-to-btn">
+                                <BiArrowBack />
+                            </button>
+                        </Link>
+                    )}
                     <div className="img-container">
-
                         <ReactPlayer
                             className="react-player"
                             url="https://www.youtube.com/watch?v=fyNns5amxRk"
@@ -68,21 +92,24 @@ const MasterclassDesc = () => {
                             controls
                             playing
                         />
-
                     </div>
                     <div className="masterclass-intro-text-container item-name-price">
                         <h1>The Odyssey - Creative Masterclass</h1>
                         <p>Loren ipsum dolor sit amet</p>
                         <p>${price}</p>
-                        <button className="darkgray-background" data-item-id="MC-01" onClick={(e) => {
-                            handleAddToCart(e, dispatch);
-                        }}> 
+                        <button
+                            className="darkgray-background"
+                            data-item-id="MC-01"
+                            onClick={(e) => {
+                                handleAddToCart(e, dispatch);
+                            }}
+                        >
                             Add to Cart
                         </button>
                     </div>
                 </section>
                 <hr />
-                <section className="masterclass-what-we-offer grid-two-columns">
+                <section className="masterclass-what-we-offer grid-two-columns grid">
                     <div className="section-text">
                         <h2>What we offer</h2>
                         <ul>
@@ -110,7 +137,7 @@ const MasterclassDesc = () => {
                     </div>
                 </section>
                 <hr />
-                <section className="masterclass-break-it-down grid-two-columns">
+                <section className="masterclass-break-it-down grid-two-columns grid">
                     <h2>Let's break it down</h2>
                     <div className="module-listings" id="module_1">
                         <ol>
@@ -195,7 +222,10 @@ const MasterclassDesc = () => {
                             </li>
                         </ol>
                     </div>
-                    <div className="module-img-container img-container" id="first-masterclass-break-img">
+                    <div
+                        className="module-img-container img-container"
+                        id="first-masterclass-break-img"
+                    >
                         <img src="https://via.placeholder.com/500x500" alt="" />
                     </div>
                     <div className="module-img-container img-container">
@@ -527,7 +557,7 @@ const MasterclassDesc = () => {
                     </div>
                 </section>
                 <hr />
-                <section className="masterclass-who-for">
+                <section className="masterclass-who-for grid">
                     <h2>Who Is This For</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
