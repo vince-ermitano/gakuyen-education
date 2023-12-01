@@ -51,7 +51,7 @@
 }
 
 .select-container.active .option-container {
-    max-height: 240px;
+    max-height: 100vh;
 }
 
 .select-container .option-container::-webkit-scrollbar {

@@ -108,13 +108,13 @@
 
 
 @media screen and (max-width: 1366px) {
-    #course-overview .select-container {
+    /* #course-overview .select-container {
         display: block;
     }
 
     #course-overview ul.desktop {
         display: none;
-    }
+    } */
 
     /* #module-selection {
         height: 100%;
@@ -156,6 +156,14 @@
 @media screen and (max-width: 1024px) {
     #module-description .image-container {
         height: 250px;
+    }
+
+    #course-overview .select-container {
+        display: block;
+    }
+
+    #course-overview ul.desktop {
+        display: none;
     }
 }
 
