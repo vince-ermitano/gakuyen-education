@@ -4,11 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./PresetDescPage.css";
 import { register } from "swiper/element/bundle";
-import { handleAddToCart, convertFromSlug, getProductIdFromProductName } from "../../helpers";
+import {
+    handleAddToCart,
+    convertFromSlug,
+    getProductIdFromProductName,
+} from "../../helpers";
 // import { addProductToCart } from "../../features/ShopSlice";
 
 register();
-
 
 const PresetDescPage = () => {
     const swiperElRef = useRef(null);
@@ -22,38 +25,36 @@ const PresetDescPage = () => {
 
     let { name } = useParams();
 
-
     name = convertFromSlug(name);
-    
-    
 
     let currentProductId;
     let currentProduct;
+    let numCarouselImgs;
 
-    
     if (!isRehydrated) {
         currentProduct = {};
         currentProductId = "";
-        document.title = 'The Odyssey | Loading...';
+        document.title = "The Odyssey | Loading...";
     } else {
         currentProductId = getProductIdFromProductName(name, products);
         currentProduct = products[currentProductId];
+        numCarouselImgs = currentProduct.num_carousel_images;
 
-        console.log(currentProduct.name);
-        document.title = 'The Odyssey | ' + currentProduct.name;
+        console.log(numCarouselImgs);
+        document.title = "The Odyssey | " + currentProduct.name;
     }
-        
 
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        
         if (Object.keys(products).length > 0) {
             setIsRehydrated(true);
         }
-        
+    }, [products]);
 
-      }, [products]);
+    if (!isRehydrated) {
+        return <div className="preset-desc-page page-section"></div>;
+    }
 
     return (
         <div className="preset-desc-page page-section">
@@ -65,7 +66,7 @@ const PresetDescPage = () => {
             <div className="preset-desc-page-content">
                 <div className="preset-desc-page-img img-container">
                     <img
-                        src="https://via.placeholder.com/500x400"
+                        src={products[currentProductId].images[0]}
                         alt="preset-desc-page-img"
                     />
                 </div>
@@ -99,7 +100,18 @@ const PresetDescPage = () => {
                     loop="true"
                     autoplay="true"
                 >
-                    <swiper-slide>
+                    {Array.from(Array(numCarouselImgs).keys()).map((i) => (
+                        <swiper-slide key={i}>
+                            <div className="carousel-img-container">
+                                <img
+
+                                    src={currentProduct.images[i+1]}
+                                    alt="slider content"
+                                />
+                            </div>
+                        </swiper-slide>
+                    ))}
+                    {/* <swiper-slide>
                         <div className="carousel-img-container">
                             <img
                                 src="https://via.placeholder.com/400x300"
@@ -122,20 +134,12 @@ const PresetDescPage = () => {
                                 alt="slider content"
                             />
                         </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div className="carousel-img-container">
-                            <img
-                                src="https://via.placeholder.com/400x300"
-                                alt="slider content"
-                            />
-                        </div>
-                    </swiper-slide>
+                    </swiper-slide> */}
                 </swiper-container>
 
                 <div className="preset-desc-page-img img-container grid-last-item">
                     <img
-                        src="https://via.placeholder.com/400x300"
+                        src={currentProduct.images[currentProduct.images.length - 1]}
                         alt="preset-desc-page-img"
                     />
                 </div>
