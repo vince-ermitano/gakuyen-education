@@ -1,4 +1,11 @@
 
+/* .shop-item {
+    width: 100%;
+}
+
+.shop-item > div {
+    width: 100%;
+} */
 /* To add a glow */
 .shop-item:hover {
     /* fade the div */
@@ -10,6 +17,14 @@
 
 .shop-item .shop-item-info {
     margin-top: 1rem;
+}
+
+.shop-item-img {
+    width: 100%;
+}
+
+.shop-item-img img {
+    width: 100%;
 }
 
 @media screen and (max-width: 768px) {

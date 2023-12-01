@@ -40,6 +40,7 @@ const Shop = () => {
                         key={productId}
                         product={products[productId]}
                         productId={productId}
+                        productMainImg={products[productId].images[0]}
                     />
                 ))}
             </div>

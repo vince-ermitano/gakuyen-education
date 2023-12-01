@@ -5,9 +5,9 @@ import "./ShopItem.css";
 import { convertToSlug } from "../../helpers";
 import { setCurrentProduct } from "../../features/ShopSlice";
 
-const ShopItem = ({ product, productId }) => {
-    const customClass = product ? `shop-item ${product.type}` : "shop-item";
-    const itemImagePath = "https://via.placeholder.com/200x200";
+const ShopItem = ({ product, productId, productMainImg }) => {
+    const customClass = product ? `shop-item-${product.type}` : "shop-item-null";
+    const itemImagePath = productMainImg;
     const itemName = product ? product.name : "Item Name";
     const itemSlug = product ? convertToSlug(product.name) : "item-name";
     const itemPrice = product ? product.price : "Item Price";

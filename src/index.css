@@ -150,7 +150,7 @@ button, input[type="submit"], input[type="reset"] {
   --gradient-color-3: #fa4032;
   --gradient-color-4: #e104ff;
   /* --gradient-color-4: #fdd475; */
-  clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 100%);
+  /* clip-path: polygon(0 0, 100% 0, 100% 30%, 0% 100%); */
   width: 100vw;
   height: 60vh;
   position: absolute;
