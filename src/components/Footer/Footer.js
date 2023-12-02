@@ -61,7 +61,7 @@ const Footer = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
             </form>
-            <p>All Rights Reserved Odyssey Global LLC 2023 </p>
+            <p>Odyssey Global LLC Copyright 2023. All Rights Reserved.</p>
         </div>
     );
 }
