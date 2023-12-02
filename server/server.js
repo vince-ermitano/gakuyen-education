@@ -384,10 +384,10 @@ app.use(express.json());
 
 
 app.post("/success", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
 
     const session_id = req.query.session_id; // Retrieve the session ID from the query parameters
 
@@ -548,10 +548,10 @@ app.use("/create-checkout-session", async (req, res, next) => {
 
 // V2
 app.post("/create-checkout-session", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
 
     let totalPrice = 0;
 
@@ -651,10 +651,10 @@ app.post("/contact", async (req, res) => {
 });
 
 app.post("/newsletter-signup", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
 
     const email = req.body.email;
 
@@ -679,10 +679,10 @@ app.post("/newsletter-signup", async (req, res) => {
 });
 
 app.get("/the-odyssey", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
 
     try {
         const docRef = collection(db, "the-odyssey-modules");
@@ -702,10 +702,10 @@ app.get("/the-odyssey", async (req, res) => {
 });
 
 app.get("/user-info", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
 
     const authorizationHeader = req.headers.authorization;
 
@@ -739,10 +739,10 @@ app.get("/user-info", async (req, res) => {
 );
 
 app.put("/user-info", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
 
     const authorizationHeader = req.headers.authorization;
 
@@ -770,10 +770,10 @@ app.put("/user-info", async (req, res) => {
 });
 
 app.get("/purchased-items", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
 
     const sessionId = req.query.session_id;
 
@@ -792,10 +792,10 @@ app.get("/purchased-items", async (req, res) => {
 });
 
 app.get("/check-download-token", async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", true);
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
     
     const downloadToken = req.query.token;
 
