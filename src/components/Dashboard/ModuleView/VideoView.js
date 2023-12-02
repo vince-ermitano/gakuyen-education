@@ -8,6 +8,7 @@ import "./VideoView.css";
 import ModulePreview from "./ModulePreview";
 import FileButton from "./FileButton";
 import { BiArrowBack } from "react-icons/bi";
+import { videoDescriptions } from "../../../descriptions/descriptions";
 
 
 const VideoView = () => {
@@ -19,10 +20,16 @@ const VideoView = () => {
     const currentVideo = useSelector((state) => state.courses.currentVideo);
     const [ isRehydrated, setIsRehydrated ] = useState(false);
     const [ playing, setPlaying ] = useState(true);
+    const videoIndex = currentVideo === null ? 0 : currentVideo.videoId;
+    const videoDescription = videoDescriptions[moduleId][videoIndex];
 
-    if (Object.keys(theOdyssey).length > 0) {
-        console.log(theOdyssey[moduleId]);
-    }
+    // if (currentVideo === null) {
+
+    // }
+
+    // if (Object.keys(theOdyssey).length > 0) {
+    //     console.log(theOdyssey[moduleId]);
+    // }
 
 
     useEffect(() => {
@@ -52,7 +59,10 @@ const VideoView = () => {
             <div className="module-view-left-side">
                 <div className="headers">
                     <h1>Videos</h1>
-                    <button onClick={handleGoBack}><BiArrowBack />Back to Modules</button>
+                    <button onClick={handleGoBack}>
+                        <BiArrowBack />
+                        Back to Modules
+                    </button>
                     {/* <div className="module-filters">
                         <ul>
                             <li>
@@ -87,6 +97,8 @@ const VideoView = () => {
                                     <ModulePreview
                                         key={videoId}
                                         id={videoId}
+                                        moduleId={moduleId}
+                                        videoId={videoId}
                                         title={
                                             theOdyssey[moduleId].videos[videoId]
                                                 .title
@@ -96,7 +108,10 @@ const VideoView = () => {
                                                 .description
                                         }
                                         type="video"
-                                        url={theOdyssey[moduleId].videos[videoId].url}
+                                        url={
+                                            theOdyssey[moduleId].videos[videoId]
+                                                .url
+                                        }
                                     />
                                 );
                             }
@@ -105,7 +120,10 @@ const VideoView = () => {
                 </div>
             </div>
             <div className="module-content">
-                <button className="back-button mobile" onClick={goBackToVideos}><BiArrowBack />Back to Videos</button>
+                <button className="back-button mobile" onClick={goBackToVideos}>
+                    <BiArrowBack />
+                    Back to Videos
+                </button>
                 <div className="video-player-wrapper">
                     <ReactPlayer
                         ref={playerRef}
@@ -118,16 +136,32 @@ const VideoView = () => {
                     />
                 </div>
                 <h1>{currentVideo?.title}</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                </p>
+                {/* { videoDescription.map((paragraph, index) => {
+
+                    if (typeof paragraph === 'object') {
+                        paragraph.map((subParagraph, index) => {
+                            return (
+                                <p key={index}>{subParagraph[0]}</p>
+                            );
+                        });
+                    } else {
+                        return (
+                            <p key={index}>{paragraph}</p>
+                        );
+                    }
+                })} */}
+                {videoDescription.map((paragraph, index) => {
+                    if (Array.isArray(paragraph)) {
+                        return paragraph.map((subParagraph, subIndex) => (
+                            <div class="link-container" key={subIndex}>
+                                <a href={subParagraph[1]} target="_blank" rel="noopener noreferrer">{subParagraph[0]}</a>
+                                <br />
+                            </div>
+                        ));
+                    } else {
+                        return <p key={index}>{paragraph}</p>;
+                    }
+                })}
                 <h2>Attached Files</h2>
                 <div className="file-links">
                     <FileButton />

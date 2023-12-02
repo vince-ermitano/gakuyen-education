@@ -43,6 +43,8 @@ const ModulePreview = (props) => {
             newActiveModulePreview.classList.add("active");
             videoView.classList.add("active");
             dispatch(setCurrentVideo({
+                moduleId: props.moduleId,
+                videoId: props.videoId,
                 url: props.url,
                 title: props.title,
             }));
@@ -58,7 +60,7 @@ const ModulePreview = (props) => {
             <div className="module-preview-img-container"></div>
             <div className="module-preview-info">
                 <h3>{props.title}</h3>
-                <p>{props.description}</p>
+                {/* <p>{props.description}</p> */}
             </div>
         </div>
     );

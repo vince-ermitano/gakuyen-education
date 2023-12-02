@@ -50,8 +50,6 @@ const ModuleView = () => {
         }, 3000);
     }
 
-    console.log('userOwnedItems: ', userOwnedItems);
-
     // if (Object.keys(theOdyssey).length === 0) {
     //     // fetch theOdyssey from server
     //     fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
