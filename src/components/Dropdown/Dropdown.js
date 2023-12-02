@@ -5,26 +5,36 @@ const Dropdown = (props) => {
     const idForInput = props.idForInput;
     const idForDropdown = props.idForDropdown;
 
-    console.log(idForInput);
-    console.log(idForDropdown);
-
     const info = {
         module: {
             placeholder: "Module Selection",
             options: [
-                "Mindset for Creative Success",
-                "Elevating Your Filmmaking and Photography",
-                "Building Your Personal Brand",
-                "Content Monetization and Revenue Streams",
-                "The Business of Creative Filmmaking and Photography",
-                "Influencer Marketing and Brand Collection",
-                "Editing Efficiency and High-Quality Output",
-                "Client Relations and Professional Etiquette",
-                "AI in Creative Filmmaking and Photography",
-                "Storytelling Beyond the Lens",
-                "Finding Inspiration and Staying Relevant",
-                "Building a Supportive Creative Community",
-                "Creating Impactful Social Media Content",
+                [
+                    "Module 1: Cultivating a Growth Mindset and Balancing Artistry",
+                    "M-01",
+                ],
+                [
+                    "Module 2: Essential Tools for Photography and Filmmaking",
+                    "M-02",
+                ],
+                [
+                    "Module 3: Building Your Brand in the Creative Market",
+                    "M-03",
+                ],
+                ["Module 4: Financial and Legal Acumen for Creatives", "M-04"],
+                ["Module 5: Mastering Client Interaction", "M-05"],
+                ["Module 6: The Art of the Shoot", "M-06"],
+                ["Module 7: Crafting the Story in Post-Production", "M-07"],
+                ["Module 8: Excellence in Client Relations", "M-08"],
+                ["Module 9: Influencer Marketing Mastery", "M-09"],
+                ["Module 10: AI in Creativity", "M-10"],
+                ["Module 11: Staying Inspired and Relevant", "M-11"],
+                ["Module 12: Fostering a Creative Community", "M-12"],
+                ["Module 13: Impactful Social Media Content", "M-13"],
+                [
+                    "Module 14: Balancing Personal and Commercial Projects",
+                    "M-14",
+                ],
             ],
         },
         finance: {
@@ -96,8 +106,25 @@ const Dropdown = (props) => {
                 </div> */}
 
                 {relatedInfo.options.map((option, index) => {
+
+                    if (props.type === "module") {
+                        return (
+                            <div
+                                className="option"
+                                key={index}
+                                data-module={option[1]}
+                                onClick={(e) => props.handleModuleSelection(e)}
+                            >
+                                <label>{option[0]}</label>
+                            </div>
+                        );
+                    }
+
                     return (
-                        <div className="option" key={index}>
+                        <div
+                            className="option"
+                            key={index}
+                        >
                             <label>{option}</label>
                         </div>
                     );

@@ -36,6 +36,7 @@ import {
     setInitialTotalPrice,
 } from "./features/ShopSlice";
 import { setUserInfo } from "./features/UserSlice";
+import { setTheOdyssey, setIsLoading } from "./features/CoursesSlice";
 import { checkHeaderColor } from "./helpers";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
@@ -100,6 +101,25 @@ function App() {
 
     // useEffect(() => {
     // }, [currentPath]);
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return res.text().then((text) => {
+                throw new Error(text);
+            });
+        })
+        .then((data) => {
+            console.log(data);
+            dispatch(setTheOdyssey(data));
+            dispatch(setIsLoading(false));
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, [dispatch])
 
     useEffect(() => {
         // TODO: might need to move this into a useEffect hook
