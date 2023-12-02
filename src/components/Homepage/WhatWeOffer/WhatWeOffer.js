@@ -1,6 +1,7 @@
 import React from "react";
 import "./WhatWeOffer.css";
-import { BsCamera } from "react-icons/bs";
+import { GiMoneyStack, GiLightBulb } from "react-icons/gi";
+import { SiAtom } from "react-icons/si";
 
 const WhatWeOffer = () => {
     return (
@@ -16,13 +17,22 @@ const WhatWeOffer = () => {
                     </div>
                     <div className="text-container">
                         <div className="title-icon-container">
-                            <h3>Offer 1</h3>
-                            <BsCamera />
+                            <h3>
+                                From Concept to Creation: Master High-Quality
+                                Content Production
+                            </h3>
+                            <SiAtom />
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
+                            Embark on a comprehensive journey from the initial
+                            client discovery call to the final stages of
+                            post-production. Through Modules 5-7, gain
+                            step-by-step insights into handling a professional
+                            brief, executing production with finesse, and
+                            polishing your work in post-production. This course
+                            offers you the tools and techniques to create
+                            content that stands out for its quality and
+                            storytelling.
                         </p>
                     </div>
                 </div>
@@ -35,32 +45,48 @@ const WhatWeOffer = () => {
                     </div>
                     <div className="text-container">
                         <div className="title-icon-container">
-                            <h3>Offer 2</h3>
-                            <BsCamera />
+                            <h3>
+                                Monetize Your Art: Navigate the Business of
+                                Creative Entrepreneurship
+                            </h3>
+                            <GiMoneyStack />
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
+                            Learn the secrets of turning your creative passion
+                            into a profitable venture. This course provides
+                            in-depth guidance on monetizing your work and
+                            navigating the complexities of the creative business
+                            landscape. From understanding market dynamics to
+                            setting competitive pricing and managing client
+                            relationships, empower yourself to thrive as a
+                            creative entrepreneur.
                         </p>
                     </div>
                 </div>
                 <div className="offer offer-3">
                     <div className="image-container">
                         <img
-                            src="https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247604182-0PY2E2N98QFQI5ITG1BJ/gak-02567-copy-1.jpeg?format=1500w"
+                            src="https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247517625-0C8S2T577XO1FQJUU1C0/DSC08386-1-1.jpeg?format=1000w"
                             alt="What we offer"
                         ></img>
                     </div>
                     <div className="text-container">
                         <div className="title-icon-container">
-                            <h3>Offer 3</h3>
-                            <BsCamera />
+                            <h3>
+                                Unlock Your Full Potential: Enhance
+                                Productivity, Mindset, and Creativity
+                            </h3>
+                            <GiLightBulb />
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
+                            Elevate your creative career with key strategies in
+                            productivity and mindset enhancement. This course
+                            offers a wealth of knowledge in developing a growth
+                            mindset, adopting effective productivity techniques,
+                            and fostering innovative creative practices. Equip
+                            yourself with the mindset and skills necessary for
+                            long-term success and personal growth in the
+                            competitive world of creativity.
                         </p>
                     </div>
                 </div>
