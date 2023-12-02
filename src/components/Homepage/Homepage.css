@@ -1,7 +1,12 @@
 .homepage {
     /* font-family: 'Inconsolata', monospace; */
     font-family: 'Helvetica-w01-light', sans-serif;
+    /* font-family: 'Foundation Sans', sans-serif; */
 
+}
+
+.homepage h1, h2, h3, h4 {
+    font-family: 'Foundation Sans', sans-serif;
 }
 
 .homepage .page-section {
@@ -11,7 +16,7 @@
 .homepage h2 {
     margin-bottom: 4rem;
     /* font-family: 'Inconsolata', monospace; */
-    font-family: 'Helvetica-w01-light', sans-serif;
+    /* font-family: 'Helvetica-w01-light', sans-serif; */
 
     padding: 0;
 }

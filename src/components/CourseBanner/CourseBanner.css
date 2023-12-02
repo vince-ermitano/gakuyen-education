@@ -38,8 +38,9 @@
     color: white;
     background-color: transparent;
     /* font-family: 'Inconsolata', monospace; */
-    font-family: 'Helvetica-w01-light', sans-serif;
+    /* font-family: 'Helvetica-w01-light', sans-serif; */
     /* font-family: 'Helvetica-Neue', sans-serif; */
+    font-family: 'Foundation Sans', sans-serif;
     padding: 0;
 }
 
