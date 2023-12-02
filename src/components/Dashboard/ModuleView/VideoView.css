@@ -12,3 +12,8 @@
     flex-wrap: wrap;
     gap: 1rem;
 }
+
+.video-player-wrapper iframe {
+    width: 100%;
+    height: 100%;
+}
