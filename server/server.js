@@ -197,10 +197,14 @@ app.use(express.static("public"));
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
+const allowedOrigins = [
+    `${process.env.CLIENT_URL}`,
+    `${process.env.LIVE_URL}`
+]
   
 app.use(
     cors({
-        origin: `${process.env.CLIENT_URL}`,
+        origin: allowedOrigins,
     })
 );
 
