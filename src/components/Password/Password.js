@@ -12,7 +12,8 @@ const Password = (props) => {
     };
     return (
         <form id="password-page" onSubmit={handleSubmit}>
-            <img src="/theodyssey_s.png" alt="The Odyssey" />
+            <img src="/theodyssey.png" alt="The Odyssey" />
+            {/* <Logo /> */}
             <input
                 type="password"
                 placeholder="Enter password"

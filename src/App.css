@@ -62,6 +62,10 @@
   gap: 1rem;
 }
 
+#password-page img {
+  height: 8rem;
+}
+
 @media screen and (max-width: 768px) {
   .page-section {
     margin-bottom: 0;
