@@ -630,9 +630,9 @@ app.post("/contact", async (req, res) => {
 
     message = `Message via The Odyssey Contact Form\n\nFrom: ${first_name} ${last_name} \n\nEmail: ${email}\n\n${message}`;
     const msg = {
-        to: 'vinceistestinghiscode@gmail.com', // Change to your recipient
+        to: 'education@gakuyen.com', // Change to your recipient
         from: {
-            email: 'vinceistestinghiscode@gmail.com',
+            email: 'education@gakuyen.com',
             name: `${first_name} ${last_name}`,
         }, // Change to your verified sender
         subject: subject,
