@@ -130,7 +130,7 @@ const ModuleView = () => {
                         playing={false}
                     />
                 </div>
-                <h1>Module Title</h1>
+                <h1>Course Overview</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
@@ -141,7 +141,6 @@ const ModuleView = () => {
                     occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.
                 </p>
-                <h2>Attached Files</h2>
             </div>
         </div>
     );

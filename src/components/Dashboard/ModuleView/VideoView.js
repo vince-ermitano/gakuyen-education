@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import { setTheOdyssey } from "../../../features/CoursesSlice";
 import ReactPlayer from "react-player/lazy";
@@ -14,6 +14,7 @@ import { videoDescriptions } from "../../../descriptions/descriptions";
 const VideoView = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
     const playerRef = React.createRef();
     const { moduleId } = useParams();
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
@@ -22,14 +23,13 @@ const VideoView = () => {
     const [ playing, setPlaying ] = useState(true);
     const videoIndex = currentVideo === null ? 0 : currentVideo.videoId;
     const videoDescription = videoDescriptions[moduleId][videoIndex];
+    const hasFiles = location.pathname.includes('videos') && currentVideo && theOdyssey[moduleId].videos[currentVideo.videoId].files.length > 0;
 
-    // if (currentVideo === null) {
-
-    // }
-
-    // if (Object.keys(theOdyssey).length > 0) {
-    //     console.log(theOdyssey[moduleId]);
-    // }
+    useEffect(() => {
+        // click on first video
+        const firstVideo = document.querySelector(".module-preview");
+        firstVideo.click();
+    }, []);
 
 
     useEffect(() => {
@@ -149,7 +149,7 @@ const VideoView = () => {
                         return <p key={index}>{paragraph}</p>;
                     }
                 })}
-                <h2>Attached Files</h2>
+                {hasFiles && <h2>Attached Files</h2>}
                 <div className="file-links">
                     { currentVideo && isRehydrated && theOdyssey[moduleId].videos[currentVideo.videoId].files.map((file, index) => {
                         return (
