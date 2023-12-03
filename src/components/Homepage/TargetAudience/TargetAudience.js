@@ -3,6 +3,7 @@ import "./TargetAudience.css";
 import Checkbox from "../../Checkbox/Checkbox";
 
 const TargetAudience = () => {
+    // const swiperElRef = useRef(null);
     const [oneChecked, setOneChecked] = useState(false);
 
     const onClickHandler = () => {
@@ -31,9 +32,7 @@ const TargetAudience = () => {
         <section id="target-audience" className="page-section">
             <div className="content-wrapper" data-aos="fade-up">
                 <div className="left-side">
-                    <h2>
-                        This Course Is FOR
-                    </h2>
+                    <h2>This Course Is FOR</h2>
                     <div className="checklist-container">
                         <div className="checklist">
                             <Checkbox onClickHandler={onClickHandler} />
@@ -122,7 +121,56 @@ const TargetAudience = () => {
                         Enroll Now
                     </button>
                 </div>
-                <div className="right-side"></div>
+                <div className="right-side">
+                    {/* <swiper-container
+                        ref={swiperElRef}
+                        slides-per-view="1"
+                        navigation="true"
+                        loop="true"
+                        autoplay="true"
+                    > */}
+                        {/* <swiper-slide>
+                            <div className="carousel-img-container">
+                                <img
+                                    src="https://i.postimg.cc/FH9S6Mds/1.jpg"
+                                    alt="slider content"
+                                />
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div className="carousel-img-container">
+                                <img
+                                    src="https://i.postimg.cc/PrbZ2XqR/2.jpg"
+                                    alt="slider content"
+                                />
+                            </div>
+                        </swiper-slide> */}
+                        {/* <swiper-slide>
+                            <div className="carousel-img-container">
+                                <img
+                                    src="https://i.postimg.cc/TYvgVLTb/3.jpg"
+                                    alt="slider content"
+                                />
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div className="carousel-img-container">
+                                <img
+                                    src="https://i.postimg.cc/Z5VNzwpP/4.jpg"
+                                    alt="slider content"
+                                />
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div className="carousel-img-container">
+                                <img
+                                    src="https://i.postimg.cc/YS0WrQz5/5.jpg"
+                                    alt="slider content"
+                                />
+                            </div>
+                        </swiper-slide> */}
+                    {/* </swiper-container> */}
+                </div>
             </div>
         </section>
     );

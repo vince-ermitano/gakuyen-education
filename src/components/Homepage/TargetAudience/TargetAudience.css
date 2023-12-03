@@ -19,10 +19,20 @@
 }
 
 #target-audience .right-side {
-    background-image: url("https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645248046833-OM3EL5XT9ZNDQ3EW2RZE/Night3-A.jpeg?format=750w");
+    background-image: url("https://i.postimg.cc/TYvgVLTb/3.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+#target-audience .carousel-img-container {
+    width: 80%;
+    text-align: center;
+}
+
+#target-audience .carousel-img-container img {
+    width: 80%;
+    max-width: 80%;
 }
 
 .checklist-container .checklist {
