@@ -1,6 +1,6 @@
 #course-banner {
     padding: 2rem;
-    background-image: url('../../../public/course_banner_img.png');
+    background-image: url('../../../public/coursebannerimg.png');
     height: 100vh;
     background-size: cover;
     display: flex;
