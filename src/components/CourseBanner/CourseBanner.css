@@ -16,6 +16,10 @@
     width: 90%;
 }
 
+#course-banner-content img {
+    height: 8rem;
+}
+
 #course-banner-content h2 {
     font-size: 6rem;
     font-weight: 700;

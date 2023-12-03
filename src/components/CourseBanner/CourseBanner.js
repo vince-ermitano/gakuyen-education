@@ -14,7 +14,8 @@ const CourseBanner = () => {
     return (
         <section id="course-banner" className="page-section" data-aos="fade-up">
             <div id="course-banner-content" data-aos="fade-up">
-                <h2>The Odyssey</h2>
+                {/* <h2>The Odyssey</h2> */}
+                <img src="/theodysseywhite_no_padding.png" alt="The Odyssey" />
                 <h3>Creative Masterclass</h3>
                 <hr></hr>
                 <p>
