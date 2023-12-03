@@ -157,14 +157,18 @@ const CourseOverview = () => {
                                 <div className="image-container desktop">
                                     <img
                                         className="odd"
-                                        src="https://via.placeholder.com/400x300"
+                                        src={courseOverviewDescriptions[
+                                            currentCourseOverviewModule
+                                        ][4][0]}
                                         alt="placeholder"
                                     />
                                 </div>
                                 <div className="image-container desktop">
                                     <img
                                         className="even"
-                                        src="https://via.placeholder.com/400x300"
+                                        src={courseOverviewDescriptions[
+                                            currentCourseOverviewModule
+                                        ][4][1]}
                                         alt="placeholder"
                                     />
                                 </div>

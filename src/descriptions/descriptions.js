@@ -4,84 +4,140 @@ export const courseOverviewDescriptions = {
         "Dive deep into the transformative concept of a growth mindset.  Learn to shift from a fixed mindset to one of growth and resilience, embracing challenges as pathways to success. Discover practical steps to foster this mindset in the creative fields of film and photography, leading to personal and professional growth.",
         "Artistry Meets Viability: ",
         "Navigate the delicate balance between artistic expression and commercial success. Gain insights into strategies that allow you to honor your creative spirit while achieving financial sustainability. Understand your audience, collaborate with aligned brands, and explore mediums to master both expression and monetization.",
+        [
+            "https://i.postimg.cc/Zn8qVPGg/1-1.png",
+            "https://i.postimg.cc/x1tcwRXV/1-2.jpg"
+        ]
     ],
     "M-02": [
         "Photography Toolkit: ",
         "Explore an array of essential tools for photography, from high-end cameras like Sony A7III/IV and Canon R5 to versatile lenses and filters. Get direct links to these recommended items and learn how each tool can elevate your photography skills.",
         "Filmmaking Arsenal: ",
         "Delve into a comprehensive list of filmmaking equipment, including cameras, lenses, gimbals, and microphones. Understand the significance of each tool in crafting compelling films, complete with links for easy access to these top recommendations.",
+        [
+            "https://i.postimg.cc/Fz5RyCB3/2-1.png",
+            "https://i.postimg.cc/d1T3Tc4J/2-2.png"
+        ]
     ],
     "M-03": [
         "Power of Personal Branding: ",
         "Learn the art of crafting a unique personal brand story to stand out in the competitive creative market. Discover how to connect emotionally with your audience, ensuring increased engagement and loyalty.",
         "Cohesive Identity Across Platforms: ",
         "Master the skill of developing a unified brand identity across digital platforms. From choosing the right platforms to maintaining a consistent visual and narrative style, elevate your brand's presence in the digital landscape.",
+        [
+            "https://i.postimg.cc/HkprvKst/3-1.jpg",
+            "https://i.postimg.cc/TYjy9GGw/3-2.png"
+        ]
     ],
     "M-04": [
         "Financial Management for Creatives: ",
         "Gain essential skills in budgeting and pricing your work to ensure financial sustainability. Learn about detailed project budgeting, expense tracking, and setting specific industry competitive rates. Let’s figure out together how to price your work.",
         "Legal Essentials for Freelancers: ",
         "Navigate the complexities of contracts and legal considerations in freelancing. Understand the importance of clear agreements, intellectual property rights, and staying compliant with copyright laws.",
+        [
+            "https://i.postimg.cc/qMHhyqPS/4-1.png",
+            "https://i.postimg.cc/KcM31BHt/4-2.png"
+        ]
     ],
     "M-05": [
         "The Art of the Client Call: ",
         "Experience a real-life client call scenario to understand the nuances of making a strong first impression. Learn how to conduct effective discovery calls and follow-up questions for project success.",
         "Pre-Production Excellence: ",
         "Dive into the pre-production process with a detailed mock-up and mood board. Gain access to a pre-production board link and learn how to present your vision to clients compellingly.",
+        [
+            "https://i.postimg.cc/4xZckywV/5-1.png",
+            "https://i.postimg.cc/RZRHMmb8/5-2.png"
+        ]
     ],
     "M-06": [
         "Capturing the Essence: ",
         "Delve into the intricacies of shooting a campaign video. Learn a range of shooting techniques, understand the situational use of filmmaking tools, and master the art of manipulating natural light for impactful visuals.",
         "Dynamic Scene Composition: ",
         "Explore the secrets of creating dynamic compositions in your video shoots. Understand the principles of framing, movement, and pacing to enhance the visual storytelling in your projects. Discover how to use camera angles and movement to add depth and emotion to your narrative.",
+        [
+            "https://i.postimg.cc/tg4VJcKg/6-1.png",
+            "https://i.postimg.cc/xCkJyzTD/6-2.png"
+        ]
     ],
     "M-07": [
         "Post-Production Mastery: ",
         "Gain a comprehensive understanding of the post-production process. Learn to use essential templates, master sound design, set the right editing tempo, color-grade effectively, and choose optimal export settings to transform raw footage into a compelling narrative. All templates and settings will be made available to download and follow along.",
         "Advanced Editing Techniques: ",
         "Elevate your editing skills with advanced techniques. Discover the nuances of cutting for emotional impact, using visual effects judiciously, and integrating music and sound to enrich your storytelling. Learn to make editorial decisions that enhance the overall narrative flow of your project.",
+        [
+            "https://i.postimg.cc/KckBtdRk/7-1.png",
+            "https://i.postimg.cc/qBPnwj3m/7-2.png"
+        ]
     ],
     "M-08": [
         "Building Client Relationships: ",
         "Master the art of initiating and nurturing client relationships. Learn effective strategies for reaching out to potential clients, presenting your work compellingly, and understanding client needs to tailor your services.",
         "Professionalism in Practice: ",
         "Understand the importance of professional conduct in client interactions. Learn how to manage expectations, handle challenging situations, and provide exceptional service. Discover the art of turning client feedback into opportunities for growth and refinement.",
+        [
+            "https://i.postimg.cc/j27xC6q2/8-1.png",
+            "https://i.postimg.cc/JtC1Xytq/8-2.png"
+        ]
     ],
     "M-09": [
         "Influencer Insights: ",
         "Dive into the evolving world of influencer marketing. Learn about the integral role influencers play in today's marketing landscape, understand effective collaboration strategies, and master the art of negotiating fair compensation while maintaining your authenticity.",
         "Building Brand Relationships: ",
         "Explore strategies to identify and attract the right brand partnerships. Learn to create proposals that resonate with brands, understand the nuances of influencer contracts, and leverage your influence for mutually beneficial collaborations.",
+        [
+            "https://i.postimg.cc/cCwvPGnF/9-1.png",
+            "https://i.postimg.cc/XJTZ2YpZ/9-2.png",
+        ]
     ],
     "M-10": [
         "AI Revolution in Creativity: ",
         "Discover how AI is reshaping the creative industry, from design and editing to trend analysis. Explore a curated list of AI tools that enhance artistic creativity and streamline complex processes.",
         "Integrating AI in Creative Workflows: ",
         "Learn practical ways to incorporate AI into your creative processes. Understand how AI can augment your creativity, from generating ideas to refining final outputs. Explore case studies where AI has been used effectively in creative projects.",
+        [
+            "https://i.postimg.cc/MHsjtyfz/10-1.png",
+            "https://i.postimg.cc/L6b113MT/10-2.png"
+        ]
     ],
     "M-11": [
         "Inspirational Journeys: ",
         "Embark on a journey of continuous learning and inspiration. Discover various sources of inspiration, learn to overcome creative blocks, and stay informed about the latest trends and innovations in your field.",
         "Future-Proofing Your Creativity: ",
         "Explore the implications of emerging technologies like VR, AR, and MR on content creation. Understand how to adapt to these new mediums, and prepare for the future landscape of creative expression.",
+        [
+            "https://i.postimg.cc/3JRGNbzN/11-1.png",
+            "https://i.postimg.cc/NMkX2hg9/11-2.png"
+        ]
     ],
     "M-12": [
         "Community and Collaboration: ",
         "Master the art of building and nurturing a creative community. Learn effective networking strategies, understand the power of collaboration, and explore ways to give back and inspire others within the creative industry.",
         "Mentorship and Growth: ",
         "Discover the importance of mentorship in your creative journey. Learn how to find mentors, benefit from their guidance, and grow your skills. Understand how to become a mentor yourself and share your knowledge with the next generation of creatives.",
+        [
+            "https://i.postimg.cc/4y49z8d8/12-1.png",
+            "https://i.postimg.cc/R0fK96yT/12-2.png"
+        ]
     ],
     "M-13": [
         "Social Media Strategies: ",
         "Master the art of creating engaging content for platforms like Instagram, TikTok, and YouTube. Learn how to use platform-specific features to your advantage, engage your audience, and create content that resonates and drives engagement.",
         "Analystics and Adaptation: ",
         "Dive into the world of social media analytics. Learn how to interpret data to understand your audience better, adjust your content strategy, and increase your reach and impact on social media platforms.",
+        [
+            "https://i.postimg.cc/DwRLtdjZ/13-1.png",
+            "https://i.postimg.cc/3r9pKHSz/13-2.png"
+        ]
     ],
     "M-14": [
         "Passion Meets Profession: ",
         "Explore strategies to maintain a balance between personal passion projects and commercial work. Learn how to nurture your creative expression while meeting professional demands, and how to integrate personal projects into your commercial portfolio.",
         "Work-Life Harmony: ",
         "Discover effective ways to manage work-life balance as a creative professional. Learn to set boundaries, prioritize projects, and create a schedule that allows you to thrive both personally and professionally.",
+        [
+            "https://i.postimg.cc/Mpn1PrYN/14-1.png",
+            "https://i.postimg.cc/Hxg5LWC1/14-2.png"
+        ]
     ],
 };
 const module2_1_links = [
