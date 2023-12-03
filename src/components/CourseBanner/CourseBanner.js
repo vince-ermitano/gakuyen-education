@@ -39,9 +39,9 @@ const CourseBanner = () => {
                     />
                     <button>Add to Cart</button>
                 </div>
-                <h3>Claim Your Free Module NOW!</h3>
+                <h3 className="claim-heading">Claim Your Free Module NOW!</h3>
                 <button className="claim-btn" onClick={claimModule}>
-                    Claim
+                    CLAIM
                 </button>
             </div>
         </section>

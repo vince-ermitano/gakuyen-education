@@ -100,6 +100,30 @@
     }
 }
 
+@media screen and (max-width: 1200px) {
+    #course-banner-content img {
+        height: 6rem;
+    }
+    
+    #course-banner-content h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+    }
+
+    #course-banner-content .claim-heading {
+        margin-bottom: 1rem;
+    }
+
+    #course-banner-content p {
+        font-size: 1rem;
+    }
+
+    #course-banner-content button, #course-banner-content .claim-btn {
+        font-size: 0.9rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
 
     #course-banner {
@@ -111,11 +135,25 @@
     }
 
     #course-banner-content p {
-        width: 100%;
+        width: 90%;
     }
 
     #select-financing-group {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    #financing-dropdown {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #course-banner-content p {
+        width: 100%;
+    }
+
+    #financing-dropdown {
+        width: 100%;
     }
 }
