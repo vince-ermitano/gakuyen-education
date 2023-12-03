@@ -86,7 +86,7 @@ const DashboardHome = () => {
                     <h2>The Odyssey</h2>
                     <div className="image-container">
                         <img
-                            src="https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645248046833-OM3EL5XT9ZNDQ3EW2RZE/Night3-A.jpeg?format=750w"
+                            src="https://i.postimg.cc/YqpbzWCV/THUMBNAIL.jpg"
                             alt="The Odyssey Thumbnail"
                         />
                     </div>
