@@ -4,7 +4,7 @@ import "./Marquee.css";
 const Marquee = () => {
     return (
         <article className="marquee-wrapper">
-            <h2>Major Clients Include</h2>
+            <h2>MAJOR CLIENTS INCLUDE</h2>
             <div className="marquee">
                 <div className="marquee__group">
                     <img src="/Apple.png" alt="Apple" />
