@@ -126,7 +126,19 @@
     opacity: 0 !important;
   }
 
+
+@media screen and (max-width: 1024px) {
+    #target-audience .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media screen and (max-width: 768px) {
+    #target-audience {
+        padding-left: 0.5rem;
+        padding-right: 1.5rem;
+    }
+
     #target-audience .content-wrapper {
         grid-template-columns: 1fr;
         padding-top: 4rem;
@@ -137,7 +149,7 @@
         font-size: 2.5rem;
     }
 
-    #target-audience .right-side {
+    /* #target-audience .right-side {
         display: none;
-    }
+    } */
 }
