@@ -10,6 +10,7 @@ const ModulePreview = (props) => {
     const thumbnailStyle = {
         backgroundImage: `url('${props.thumbnail}')`,
         backgroundSize: 'cover',
+        backgroundPosition: 'center center',
     }
 
     const navigate = useNavigate();

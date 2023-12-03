@@ -137,21 +137,7 @@ const VideoView = () => {
                     />
                 </div>
                 <h1>{currentVideo?.title}</h1>
-                {/* { videoDescription.map((paragraph, index) => {
-
-                    if (typeof paragraph === 'object') {
-                        paragraph.map((subParagraph, index) => {
-                            return (
-                                <p key={index}>{subParagraph[0]}</p>
-                            );
-                        });
-                    } else {
-                        return (
-                            <p key={index}>{paragraph}</p>
-                        );
-                    }
-                })} */}
-                {videoDescription.map((paragraph, index) => {
+                {videoDescription?.map((paragraph, index) => {
                     if (Array.isArray(paragraph)) {
                         return paragraph.map((subParagraph, subIndex) => (
                             <div className="link-container" key={subIndex}>
@@ -165,7 +151,7 @@ const VideoView = () => {
                 })}
                 <h2>Attached Files</h2>
                 <div className="file-links">
-                    { currentVideo && theOdyssey[moduleId].videos[currentVideo.videoId].files.map((file, index) => {
+                    { currentVideo && isRehydrated && theOdyssey[moduleId].videos[currentVideo.videoId].files.map((file, index) => {
                         return (
                             <FileButton
                                 key={index}
