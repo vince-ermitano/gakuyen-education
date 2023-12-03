@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setTheOdyssey } from "../../features/CoursesSlice";
+// import { setTheOdyssey } from "../../features/CoursesSlice";
 import { setIsPurchasedItemsLoaded } from "../../features/UserSlice";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { NavLink, Link, Outlet } from "react-router-dom";
@@ -77,24 +77,24 @@ const Dashboard = () => {
     //     });
     // }
     
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return res.text().then((text) => {
-                throw new Error(text);
-            });
-        })
-        .then((data) => {
-            console.log(data);
-            dispatch(setTheOdyssey(data));
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }, [dispatch])
+    // useEffect(() => {
+    //     fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
+    //     .then((res) => {
+    //         if (res.ok) {
+    //             return res.json();
+    //         }
+    //         return res.text().then((text) => {
+    //             throw new Error(text);
+    //         });
+    //     })
+    //     .then((data) => {
+    //         console.log(data);
+    //         dispatch(setTheOdyssey(data));
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
+    // }, [dispatch])
     
     
     useEffect(() => {

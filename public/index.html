@@ -49,10 +49,14 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  <script src="%PUBLIC_URL%/Gradient.js"></script>
+  <script src="%PUBLIC_URL%/Gradient.js" defer onload="initializeGradient()"></script>
   <script>
-    var gradient = new Gradient()
-    gradient.initGradient('#gradient-canvas');
+    // var gradient = new Gradient()
+    // gradient.initGradient('#gradient-canvas');
+    function initializeGradient() {
+      var gradient = new Gradient();
+      gradient.initGradient('#gradient-canvas');
+    }
   </script>
 </body>
 
