@@ -1,10 +1,11 @@
 import React from "react";
 import "./PresetLutCard.css";
+import { useNavigate } from "react-router-dom";
 import { BsDownload } from "react-icons/bs";
 
 const PresetLutCard = (props) => {
 
-    // TODO: replace images once we have them
+    const navigate = useNavigate();
 
     const openDetailsSidebar = () => {
 
@@ -42,7 +43,7 @@ const PresetLutCard = (props) => {
                 />
             </div>
             <p>{props.item.name}</p>
-            {props.isOwned === "true" ? <BsDownload /> : <button>Check it out</button>}
+            {props.isOwned === "true" ? <BsDownload onClick={() => props.downloadFile(props.downloadUrl)}/> : <button onClick={() => navigate("/store")}>Check it out</button>}
         </div>
     );
 };

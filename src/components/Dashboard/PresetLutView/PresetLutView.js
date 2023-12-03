@@ -42,10 +42,33 @@ const PresetLutView = () => {
         loadingOrComingSoonMessage = "Coming soon!";
     }
 
+    const downloadFile = (downloadUrl) => {
+        // Create a virtual anchor element
+        const anchor = document.createElement("a");
+        anchor.href = downloadUrl;
 
-    const handleCheckItOut = () => {
+        // // Set the download attribute with the desired filename
+        // anchor.download = props.fileName;
+
+        // Append the anchor to the body
+        document.body.appendChild(anchor);
+
+        // Trigger a click on the anchor to start the download
+        anchor.click();
+
+        // Remove the anchor from the body
+        document.body.removeChild(anchor);
+
+    }
+
+    const handleCheckItOut = (e) => {
         if (!currentItemIsOwned) {
             navigate("/store");
+        } else {
+            const target = e.target.closest("button");
+            const downloadUrl = target.dataset.downloadurl;
+
+            downloadFile(downloadUrl);
         }
     };
 
@@ -144,6 +167,8 @@ const PresetLutView = () => {
                                         setCurrentItemIsOwned={
                                             setCurrentItemIsOwned
                                         }
+                                        downloadFile={downloadFile}
+                                        downloadUrl={products[key].link_to_download}
                                     />
                                 );
                             })
@@ -207,7 +232,7 @@ const PresetLutView = () => {
                         <span>{currentItem.type}</span>
                     </div>
                 </div>
-                <button onClick={handleCheckItOut}>
+                <button onClick={(e) => handleCheckItOut(e)} data-downloadurl={currentItem.link_to_download}>
                     {currentItemIsOwned ? (
                         <pre>
                             Download <BsDownload />
