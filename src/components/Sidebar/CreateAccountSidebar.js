@@ -97,11 +97,14 @@ const CreateAccountSidebar = () => {
                 // log user id
                 console.log(userCredential.user.uid);
 
+                // TODO: REMOVE FREE MODULES WHEN SITE GOES LIVE
                 await setDoc(doc(db, "users", userCredential.user.uid), {
                     firstName: firstName,
                     lastName: lastName,
                     email: emailAddress,
-                    purchasedItems: {},
+                    purchasedItems: {
+                        'MC-01': "Dec 2, 2023"
+                    },
                 })
                     .then((docRef) => {
                         alertMessage("userAddedToDatabase");
