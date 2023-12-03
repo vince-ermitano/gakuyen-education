@@ -132,7 +132,7 @@ function App() {
             header.style.display = "none";
         } else {
             gradientCanvas.style.display = "block";
-            header.style.display = "block";
+            header.style.display = "grid";
         }
     }, [authenticated, currentPath]);
 

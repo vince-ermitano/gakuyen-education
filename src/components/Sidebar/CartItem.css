@@ -22,6 +22,7 @@
 
 .cart-item .image-and-details {
     display: flex;
+    align-items: center;
 }
 
 .cart-item .remove-button svg {

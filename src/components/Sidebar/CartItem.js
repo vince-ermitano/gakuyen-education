@@ -52,7 +52,7 @@ const CartItem = ({ itemId }) => {
             <div className={`cart-item ${remove ? "remove" : ""}`}>
                 <div className="image-and-details">
                     <div className="image-wrapper">
-                        <img src={'/ultimate_preset_pack_1_400x400.jpg'} alt={itemName} />
+                        <img src={products[itemId].images[0]} alt={itemName} />
                     </div>
                     <div className="item-details">
                         <p className="name">{itemName}</p>

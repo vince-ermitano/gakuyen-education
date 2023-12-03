@@ -154,21 +154,25 @@ const CourseOverview = () => {
                                         ][1]
                                     }
                                 </p>
-                                <div className="image-container desktop">
+                                <div className={`image-container desktop`}>
                                     <img
                                         className="odd"
-                                        src={courseOverviewDescriptions[
-                                            currentCourseOverviewModule
-                                        ][4][0]}
+                                        src={
+                                            courseOverviewDescriptions[
+                                                currentCourseOverviewModule
+                                            ][4][0]
+                                        }
                                         alt="placeholder"
                                     />
                                 </div>
-                                <div className="image-container desktop">
+                                <div className={`image-container desktop`}>
                                     <img
                                         className="even"
-                                        src={courseOverviewDescriptions[
-                                            currentCourseOverviewModule
-                                        ][4][1]}
+                                        src={
+                                            courseOverviewDescriptions[
+                                                currentCourseOverviewModule
+                                            ][4][1]
+                                        }
                                         alt="placeholder"
                                     />
                                 </div>
