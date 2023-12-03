@@ -272,8 +272,7 @@ export const videoDescriptions = {
         [
             "Following our Discovery Call, I have gone ahead and mocked up / mood boarded the shoot I plan to present to the client. We review the Pre-Production board which I will link here:",
             [
-                "Pre-Production Board",
-                "https://app.milanote.com/1R3cyy1rgmxV79?p=h0PveOvQjG4",
+                ["Pre-Production Board", "https://app.milanote.com/1R3cyy1rgmxV79?p=h0PveOvQjG4"]
             ],
         ],
     ],
