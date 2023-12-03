@@ -15,6 +15,7 @@ import WhatWeOffer from "./WhatWeOffer/WhatWeOffer";
 import MoneyBackGuarantee from "./MoneyBackGuarantee/MoneyBackGuarantee";
 import CourseOverview from "./CourseOverview/CourseOverviewV2";
 import FAQ from "./FAQ/FAQ.js";
+import Marquee from "../Marquee/Marquee";
 import "./Homepage.css";
 // import { toast } from "react-toastify";
 import { toast } from "sonner";
@@ -132,6 +133,7 @@ const Homepage = () => {
             <MasterclassHP />
             <Testimonials />
             <FAQ />
+            <Marquee />
         </div>
     );
 };
