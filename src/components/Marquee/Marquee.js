@@ -3,10 +3,10 @@ import "./Marquee.css";
 
 const Marquee = () => {
     return (
-        <article class="marquee-wrapper">
+        <article className="marquee-wrapper">
             <h2>Major Clients Include</h2>
-            <div class="marquee">
-                <div class="marquee__group">
+            <div className="marquee">
+                <div className="marquee__group">
                     <img src="/Apple.png" alt="Apple" />
                     <img src="/Nike.png" alt="Nike" />
                     <img src="/Adobe.png" alt="Adobe" />
@@ -29,7 +29,7 @@ const Marquee = () => {
                     <img src="Zara.png" alt="Zara" />
                 </div>
 
-                <div aria-hidden="true" class="marquee__group">
+                <div aria-hidden="true" className="marquee__group">
                     <img src="/Apple.png" alt="Apple" />
                     <img src="/Nike.png" alt="Nike" />
                     <img src="/Adobe.png" alt="Adobe" />

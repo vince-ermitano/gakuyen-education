@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./TargetAudience.css";
 import Checkbox from "../../Checkbox/Checkbox";
+import { register } from "swiper/element/bundle";
+import Swiper from "swiper";
+
+register();
 
 const TargetAudience = () => {
-    // const swiperElRef = useRef(null);
+    const swiperElRef = useRef(null);
     const [oneChecked, setOneChecked] = useState(false);
 
     const onClickHandler = () => {
@@ -27,6 +31,24 @@ const TargetAudience = () => {
         const courseBanner = document.getElementById("course-banner");
         courseBanner.scrollIntoView({ behavior: "smooth" });
     };
+
+    useEffect(() => {
+        new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            effect: "fade",
+            fadeEffect: {
+                crossFade: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    });
 
     return (
         <section id="target-audience" className="page-section">
@@ -122,19 +144,23 @@ const TargetAudience = () => {
                     </button>
                 </div>
                 <div className="right-side">
-                    {/* <swiper-container
+                    <swiper-container
+                        className="mySwiper"
                         ref={swiperElRef}
                         slides-per-view="1"
-                        navigation="true"
+                        navigation="false"
                         loop="true"
                         autoplay="true"
-                    > */}
-                        {/* <swiper-slide>
+                        effect="fade"
+                    >
+                        <swiper-slide>
                             <div className="carousel-img-container">
                                 <img
                                     src="https://i.postimg.cc/FH9S6Mds/1.jpg"
                                     alt="slider content"
+                                    loading="lazy"
                                 />
+                                <div class="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -142,15 +168,19 @@ const TargetAudience = () => {
                                 <img
                                     src="https://i.postimg.cc/PrbZ2XqR/2.jpg"
                                     alt="slider content"
+                                    loading="lazy"
                                 />
+                                <div class="swiper-lazy-preloader"></div>
                             </div>
-                        </swiper-slide> */}
-                        {/* <swiper-slide>
+                        </swiper-slide>
+                        <swiper-slide>
                             <div className="carousel-img-container">
                                 <img
                                     src="https://i.postimg.cc/TYvgVLTb/3.jpg"
                                     alt="slider content"
+                                    loading="lazy"
                                 />
+                                <div class="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -158,7 +188,9 @@ const TargetAudience = () => {
                                 <img
                                     src="https://i.postimg.cc/Z5VNzwpP/4.jpg"
                                     alt="slider content"
+                                    loading="lazy"
                                 />
+                                <div class="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -166,10 +198,32 @@ const TargetAudience = () => {
                                 <img
                                     src="https://i.postimg.cc/YS0WrQz5/5.jpg"
                                     alt="slider content"
+                                    loading="lazy"
                                 />
+                                <div class="swiper-lazy-preloader"></div>
                             </div>
-                        </swiper-slide> */}
-                    {/* </swiper-container> */}
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div className="carousel-img-container">
+                                <img
+                                    src="https://i.postimg.cc/W4yJht9h/6.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <div class="swiper-lazy-preloader"></div>
+                            </div>
+                        </swiper-slide>
+                        <swiper-slide>
+                            <div className="carousel-img-container">
+                                <img
+                                    src="https://i.postimg.cc/XNC9Bc63/7.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <div class="swiper-lazy-preloader"></div>
+                            </div>
+                        </swiper-slide>
+                    </swiper-container>
                 </div>
             </div>
         </section>

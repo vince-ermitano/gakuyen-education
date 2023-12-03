@@ -11,8 +11,6 @@ import {
 } from "../../helpers";
 import { BiArrowBack } from "react-icons/bi";
 
-// import { addProductToCart } from "../../features/ShopSlice";
-
 register();
 
 const PresetDescPage = () => {
@@ -145,30 +143,6 @@ const PresetDescPage = () => {
                             </div>
                         </swiper-slide>
                     ))}
-                    {/* <swiper-slide>
-                        <div className="carousel-img-container">
-                            <img
-                                src="https://via.placeholder.com/400x300"
-                                alt="slider content"
-                            />
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div className="carousel-img-container">
-                            <img
-                                src="https://via.placeholder.com/400x300"
-                                alt="slider content"
-                            />
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div className="carousel-img-container">
-                            <img
-                                src="https://via.placeholder.com/400x300"
-                                alt="slider content"
-                            />
-                        </div>
-                    </swiper-slide> */}
                 </swiper-container>
 
                 <div className="preset-desc-page-img img-container grid-last-item">
