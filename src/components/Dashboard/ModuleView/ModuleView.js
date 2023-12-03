@@ -100,6 +100,7 @@ const ModuleView = () => {
                                     id={moduleId}
                                     title={theOdyssey[moduleId].title}
                                     description={theOdyssey[moduleId].description}
+                                    thumbnail={theOdyssey[moduleId].image}
                                     type='module'
                                     activated={true}
                                 />
@@ -111,6 +112,7 @@ const ModuleView = () => {
                                     id={moduleId}
                                     title={theOdyssey[moduleId].title}
                                     description={theOdyssey[moduleId].description}
+                                    thumbnail={theOdyssey[moduleId].image}
                                     type='module'
                                     activated={false}
                                 />

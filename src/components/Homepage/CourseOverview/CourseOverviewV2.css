@@ -6,9 +6,9 @@
     display: none;
 }
 
-#course-overview .content-wrapper {
+/* #course-overview .content-wrapper {
     height: 100vh;
-}
+} */
 
 .course-overview .content-wrapper > h2 {
     font-size: 3rem;
@@ -136,6 +136,7 @@
 
     #module-selection li {
         padding: 0.5rem;
+        font-size: 0.8rem;
     }
 
     #module-description .content p {
