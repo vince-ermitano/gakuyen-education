@@ -11,7 +11,7 @@ const WhatWeOffer = () => {
                 <div className="offer offer-1">
                     <div className="image-container">
                         <img
-                            src="https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247526671-F8QXSKJO9WXL86EJ8CC6/DSC07768-1-1.jpeg?format=750w"
+                            src="https://i.postimg.cc/26MLbnJJ/JPEG-image.jpg"
                             alt="What we offer"
                         ></img>
                     </div>
@@ -39,7 +39,7 @@ const WhatWeOffer = () => {
                 <div className="offer offer-2">
                     <div className="image-container">
                         <img
-                            src="https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645248050136-SZU0QNE11HSW5HMNKRIH/Night1-A.jpeg?format=750w"
+                            src="https://i.postimg.cc/qRzCv1my/JPEG-image.jpg"
                             alt="What we offer"
                         ></img>
                     </div>
@@ -66,7 +66,7 @@ const WhatWeOffer = () => {
                 <div className="offer offer-3">
                     <div className="image-container">
                         <img
-                            src="https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247517625-0C8S2T577XO1FQJUU1C0/DSC08386-1-1.jpeg?format=1000w"
+                            src="https://i.postimg.cc/sxWQpvC2/Clean-Shot-2023-09-28-at-15-40-36-2x.jpg"
                             alt="What we offer"
                         ></img>
                     </div>

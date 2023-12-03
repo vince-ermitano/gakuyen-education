@@ -99,6 +99,7 @@ const VideoView = () => {
                                         id={videoId}
                                         moduleId={moduleId}
                                         videoId={videoId}
+                                        thumbnail={theOdyssey[moduleId].videos[videoId].image}
                                         title={
                                             theOdyssey[moduleId].videos[videoId]
                                                 .title

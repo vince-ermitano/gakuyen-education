@@ -7,6 +7,11 @@ import { HiLockClosed, HiLockOpen } from "react-icons/hi2";
 
 const ModulePreview = (props) => {
 
+    const thumbnailStyle = {
+        backgroundImage: `url('${props.thumbnail}')`,
+        backgroundSize: 'cover',
+    }
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -57,7 +62,7 @@ const ModulePreview = (props) => {
                 <HiLockOpen className="lock-open" />
                 <p className="purchase-text">Purchase course to unlock</p>
             </div>
-            <div className="module-preview-img-container"></div>
+            <div className="module-preview-img-container" style={thumbnailStyle}></div>
             <div className="module-preview-info">
                 <h3>{props.title}</h3>
                 {/* <p>{props.description}</p> */}

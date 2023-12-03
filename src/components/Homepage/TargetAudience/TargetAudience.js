@@ -32,7 +32,7 @@ const TargetAudience = () => {
             <div className="content-wrapper" data-aos="fade-up">
                 <div className="left-side">
                     <h2>
-                        This Course Is For You IF
+                        This Course Is FOR
                     </h2>
                     <div className="checklist-container">
                         <div className="checklist">
