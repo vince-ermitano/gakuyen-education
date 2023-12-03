@@ -107,6 +107,14 @@
     font-size: 2.5rem;
 }
 
+#what-we-offer .offer .text-container .title-icon-container {
+    opacity: 1;
+}
+
+#what-we-offer .offer:hover .text-container .title-icon-container {
+    opacity: 0;
+}
+
 /* #what-we-offer .offer-1:hover, #what-we-offer .offer-2:hover, #what-we-offer .offer-3:hover  {
     background-image: url("https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247526671-F8QXSKJO9WXL86EJ8CC6/DSC07768-1-1.jpeg?format=750w");
     background-size: cover;
