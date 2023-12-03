@@ -153,7 +153,7 @@ const VideoView = () => {
                 {videoDescription.map((paragraph, index) => {
                     if (Array.isArray(paragraph)) {
                         return paragraph.map((subParagraph, subIndex) => (
-                            <div class="link-container" key={subIndex}>
+                            <div className="link-container" key={subIndex}>
                                 <a href={subParagraph[1]} target="_blank" rel="noopener noreferrer">{subParagraph[0]}</a>
                                 <br />
                             </div>
@@ -164,15 +164,15 @@ const VideoView = () => {
                 })}
                 <h2>Attached Files</h2>
                 <div className="file-links">
-                    <FileButton />
-                    <FileButton />
-                    <FileButton />
-                    <FileButton />
-                    <FileButton />
-                    <FileButton />
-                    <FileButton />
-                    <FileButton />
-                    <FileButton />
+                    { currentVideo && theOdyssey[moduleId].videos[currentVideo.videoId].files.map((file, index) => {
+                        return (
+                            <FileButton
+                                key={index}
+                                file={file.fileUrl}
+                                fileName={file.fileName}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </div>
