@@ -46,9 +46,12 @@ const HamburgerMenu = () => {
                 <hr />
                 <div className="shop-by-category-links ham-menu-links">
                     <Link className="link1" to="/store" onClick={toggleHamburger}>
+                        Shop
+                    </Link>
+                    <Link className="link1" to="/store?filter=preset" onClick={toggleHamburger}>
                         Presets
                     </Link>
-                    <Link className="link1" to="/store" onClick={toggleHamburger}>
+                    <Link className="link1" to="/store?filter=masterclass" onClick={toggleHamburger}>
                         Masterclass
                     </Link>
                     <Link className="link1" to="/" onClick={toggleHamburger}>

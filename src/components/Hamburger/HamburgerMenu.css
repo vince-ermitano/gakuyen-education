@@ -19,9 +19,20 @@
     top: 0;
 }
 
+
+#hamburger-menu #socials-list li:hover {
+    background-color: #feeb22;
+}
+
 #hamburger-menu h3 {
     font-size: 2rem;
     font-family: 'Inconsolata', monospace;
+}
+
+#hamburger-menu a:hover {
+    background-color: #feeb22;
+    display: inline-block;
+    width: fit-content;
 }
 
 #hamburger-menu hr {
