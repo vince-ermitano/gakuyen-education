@@ -4,7 +4,7 @@
     --color-bg-accent: #ecdcc0;
     --size: clamp(10rem, 1rem + 40vmin, 10rem);
     --gap: calc(var(--size) / 14);
-    --duration: 60s;
+    --duration: 120s;
     --scroll-start: 0;
     --scroll-end: calc(-100% - var(--gap));
 }
@@ -46,6 +46,7 @@
     background-color: transparent;
     margin: 0;
     text-align: center;
+    font-size: 1rem;
 }
 
 .marquee img {
