@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
-    row-gap: 8rem;
+    row-gap: 2rem;
     column-gap: 2rem;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .masterclass-desc-content section {
-    margin: 8rem 0;
+    margin: 4rem 0;
 }
 
 hr {
