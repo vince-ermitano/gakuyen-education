@@ -1,6 +1,9 @@
 #faq {
     margin-top: 0;
-    padding-top: 4rem;
+    padding: 2rem;
+    background-color: var(--faq-item-bg-color);
+    width: 100vw;
+    transform: translateX(-5%);
 }
 
 #faq h2 {

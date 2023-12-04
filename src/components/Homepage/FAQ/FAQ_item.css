@@ -1,16 +1,29 @@
 .faq-item {
     margin: 1rem 0;
+    background-color: white;
+    border-radius: 0.5rem;
 }
 
 .faq-item p {
     margin: 0;
 }
 
+.faq-item .faq-item-question,
+.faq-item .faq-item-answer {
+    /* background-color: #feeb22; */
+    background-color: white;
+    /* background: rgb(254,235,34);
+    background: linear-gradient(270deg, rgba(254,235,34,1) 0%, rgba(255,255,255,1) 15%); */
+    /* background: rgb(255,247,162);
+    background: linear-gradient(270deg, rgba(255,247,162,1) 0%, rgba(255,255,255,1) 30%); */
+    border-radius: 0.5rem;
+
+}
+
 .faq-item .faq-item-question {
     display: flex;
     justify-content: space-between;
     z-index: 2;
-    background-color: var(--faq-item-bg-color);
     padding: 1rem;
 }
 
@@ -18,7 +31,6 @@
     max-height: 0;
     padding: 0 1rem;
     overflow: hidden;
-    background-color: var(--faq-item-bg-color);
 
     transition: all 0.3s ease-out;
 }
