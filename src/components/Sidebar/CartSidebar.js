@@ -226,12 +226,14 @@ const CartSidebar = () => {
                         <span>Total USD</span>
                         <span>${cartTotal}</span>
                     </div>
-                    <p>
-                        <b>
-                            Click below to see the available financing options
-                            for you!
-                        </b>
-                    </p>
+                    {cartTotal >= 50 && (
+                        <p>
+                            <b>
+                                Click below to see the available financing
+                                options for you!
+                            </b>
+                        </p>
+                    )}
                     <Elements stripe={stripe}>
                         <PaymentMethodMessagingElement
                             options={{
@@ -261,7 +263,8 @@ const CartSidebar = () => {
                     <h2>Would you like to log in?</h2>
                     <p>
                         <b>Logging in</b> will allow you to maintain access to
-                        your purchases through your dashboard. <br></br><br></br>
+                        your purchases through your dashboard. <br></br>
+                        <br></br>
                         <b>Not logging in </b> will allow you to make a one-time
                         purchase.
                     </p>

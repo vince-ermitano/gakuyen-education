@@ -18,20 +18,22 @@ const CourseBanner = () => {
             <div id="course-banner-content" data-aos="fade-up">
                 {/* <h2>The Odyssey</h2> */}
                 <img src="/theodysseywhite_no_padding.png" alt="The Odyssey" />
-                <h3>Creative Masterclass</h3>
+                <h3>Creative Masterclass ✶ ࣪˖࿐ *</h3>
                 <hr></hr>
                 <p>
-                    Step into the spotlight of your creative career with our
-                    comprehensive Film and Photography Masterclass, where
-                    cutting-edge techniques meet entrepreneurial mastery.
-                    Elevate your art, monetize your passion, and join a
-                    community of innovators shaping the future of digital
-                    storytelling!
+                    <b>Comprehensive</b> wouldn’t do it justice. 14 Modules on{" "}
+                    <b>every aspect</b> of the creative process from mindset and
+                    shooting techniques to building an <b>AUTHENTIC voice</b>{" "}
+                    and <b>monetize</b> your sweat and tears.
                 </p>
                 <p>
-                    You can choose to buy The Odyssey with a one-time payment,
-                    or split the total cost over 4-6 months, completely interest
-                    free.
+                    The Creator Economy is growing. Let’s <b>lead the charge</b>
+                    .{" "}
+                </p>
+                <p>
+                    You can choose to buy The Odyssey with a one-time payment…
+                    or split the total cost over 6 months,{" "}
+                    <b>completely interest-free</b>.
                 </p>
                 <div id="select-financing-group">
                     <Dropdown
@@ -42,13 +44,22 @@ const CourseBanner = () => {
                     <button
                         data-item-id={"MC-01"}
                         onClick={(e) => {
-                            if (document.getElementById("financing-option").value === "") {
+                            if (
+                                document.getElementById("financing-option")
+                                    .value === ""
+                            ) {
                                 toast("Please select a financing option");
                                 return;
                             }
 
-                            if (document.getElementById("financing-option").value.includes("Month")) {
-                                alert("To pay in monthly installments\n 1. Click on 'Proceed to Checkout'\n 2. On the Stripe checkout page, select Klarna as your payment method and follow the instructions on the screen")
+                            if (
+                                document
+                                    .getElementById("financing-option")
+                                    .value.includes("Month")
+                            ) {
+                                alert(
+                                    'To check if you qualify for financing, please click on the Affirm icon at the bottom of your cart.'
+                                );
                             }
 
                             handleAddToCart(e, dispatch);
@@ -57,9 +68,11 @@ const CourseBanner = () => {
                         Add to Cart
                     </button>
                 </div>
-                <h3 className="claim-heading">Claim Your Free Module NOW!</h3>
+                <h3 className="claim-heading">
+                    Want a FREE MODULE to see what it’s like?{" "}
+                </h3>
                 <button className="claim-btn" onClick={claimModule}>
-                    CLAIM
+                    CLAIM HERE ˘͈ᵕ˘͈
                 </button>
             </div>
         </section>

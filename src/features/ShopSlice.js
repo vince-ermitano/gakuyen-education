@@ -25,7 +25,7 @@ const calculateTotalPrice = () => {
             }
         }
 
-        // console.log(totalPrice);
+        totalPrice = totalPrice.toFixed(2);
         
         dispatch({
             type: 'shop/setTotalPrice',

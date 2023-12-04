@@ -38,7 +38,13 @@
     line-height: 1.5;
 }
 
-#course-banner h2, #course-banner h3, #course-banner p {
+#course-banner p {
+    font-family: 'Helvetica-Neue', sans-serif;
+    color: white;
+    padding: 0;
+}
+
+#course-banner h2, #course-banner h3 {
     color: white;
     background-color: transparent;
     /* font-family: 'Inconsolata', monospace; */
