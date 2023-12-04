@@ -5,11 +5,16 @@ import { toggleLoginSidebar } from "../../features/SidebarSlice";
 import { useDispatch } from "react-redux";
 import { handleAddToCart } from "../../helpers";
 import { toast } from "sonner";
+import { auth } from "../../config/firebaseConfig";
 
 const CourseBanner = () => {
     const dispatch = useDispatch();
 
     const claimModule = () => {
+        if (auth.currentUser) {
+            toast.error("You already have access! Go to your dashboard to view the module.");
+            return;
+        }
         dispatch(toggleLoginSidebar());
     };
 
