@@ -8,12 +8,15 @@
 }
 
 .cart-item .image-wrapper {
-    width: 30%;
+    width: 150px;
+    height: 150px;
     margin-right: 1rem;
 }
 
 .cart-item .image-wrapper img {
-    width: 100%;
+    object-fit: contain;
+    width: 150px;
+    height: 150px;
 }
 
 .cart-item .item-details .product-number {
