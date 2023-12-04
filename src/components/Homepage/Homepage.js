@@ -136,6 +136,7 @@ const Homepage = () => {
             <Testimonials />
             <FAQ />
             <Marquee />
+            <div className="dotted-line"></div>
         </div>
     );
 };

@@ -82,6 +82,15 @@
     display: none;
 }
 
+.dotted-line {
+    border-bottom: 3px solid transparent; /* Set the border to a solid color to fallback on non-supporting browsers */
+    border-image: repeating-linear-gradient(45deg, var(--faq-item-bg-color), var(--faq-item-bg-color) 4px, transparent 4px, transparent 8px);
+    border-image-slice: 1;
+
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
 /* mobile viewport */
 @media screen and (max-width: 768px) {
 

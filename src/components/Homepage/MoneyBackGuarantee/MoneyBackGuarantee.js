@@ -40,8 +40,7 @@ const MoneyBackGuarantee = () => {
                 <br></br>
                 <Link to="/">Read More</Link> */}
                 <h2>
-                    Our Unwavering Commitment to Your Satisfaction and Risk-Free
-                    Investment
+                    Money Back Guarantee
                 </h2>
                 <h3>
                     When I sat down and wrote this course - I compiled
