@@ -1,6 +1,5 @@
 #money-back-guarantee {
     width: 100vw;
-    height: 50vh;
     transform: translateX(-5%);
     display: flex;
     justify-content: center;
@@ -14,12 +13,11 @@
 
 .money-back-guarantee-container {
     width: 50%;
-    height: 100%;
     background-color: rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 0 5%;
+    padding: 2rem 5%;
     border-radius: 1rem;
     color: white;
 }
@@ -46,8 +44,43 @@
     border: 2px solid white;
 }
 
-#money-back-guarantee a {
-    color: white;
+#money-back-guarantee button {
+    display: inline-block;
+    width: fit-content;
+    text-decoration: underline;
+}
+
+#money-back-guarantee button:hover {
+    background-color: transparent;
+    color: #999;
+}
+
+#money_back_dialog {
+    width: 55%;
+    padding: 0;
+    /* border-color: var(--faq-item-bg-color); */
+    border-color: #999;
+}
+
+#money_back_dialog svg {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+#money_back_dialog svg:hover {
+    cursor: pointer;
+    color: #999;
+}
+
+#money_back_dialog .dialog__content {
+    padding: 2rem;
+}
+
+#money_back_dialog .more_info{
+    margin-top: 2rem;
+    font-size: 1rem;
 }
 
 @media screen and (max-width: 1366px) {
@@ -72,6 +105,14 @@
 
     .money-back-guarantee-container {
         width: 100%;
+        padding: 1rem;
+    }
+
+    #money_back_dialog {
+        width: 100%;
+    }
+
+    #money_back_dialog .dialog__content {
         padding: 1rem;
     }
     

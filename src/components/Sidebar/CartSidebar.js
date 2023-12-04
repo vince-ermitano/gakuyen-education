@@ -226,15 +226,18 @@ const CartSidebar = () => {
                         <span>Total USD</span>
                         <span>${cartTotal}</span>
                     </div>
-                    <p><b>Click below to see the available financing options for you!</b></p>
+                    <p>
+                        <b>
+                            Click below to see the available financing options
+                            for you!
+                        </b>
+                    </p>
                     <Elements stripe={stripe}>
                         <PaymentMethodMessagingElement
                             options={{
                                 amount: Math.floor(cartTotal) * 100,
                                 currency: "USD",
-                                paymentMethodTypes: [
-                                    "affirm",
-                                ],
+                                paymentMethodTypes: ["affirm"],
                                 countryCode: "US",
                             }}
                         />
@@ -257,9 +260,10 @@ const CartSidebar = () => {
                 <div className="dialog__content">
                     <h2>Would you like to log in?</h2>
                     <p>
-                        Logging in will allow you maintain access to your
-                        purchases through your dashboard. <br></br>Not logging
-                        in will allow you to make a one-time purchase.
+                        <b>Logging in</b> will allow you to maintain access to
+                        your purchases through your dashboard. <br></br><br></br>
+                        <b>Not logging in </b> will allow you to make a one-time
+                        purchase.
                     </p>
                     <div className="selection-buttons">
                         <button

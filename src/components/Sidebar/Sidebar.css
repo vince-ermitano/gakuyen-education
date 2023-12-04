@@ -158,10 +158,14 @@
 #login_dialog {
     box-sizing: border-box;
     text-align: center;
-    padding: 2rem;
+    padding: 0;
     border: none;
     z-index: 11;
     border-radius: 0.5rem;
+}
+
+#login_dialog .dialog__content {
+    padding: 2rem;
 }
 
 #login_dialog h2 {
