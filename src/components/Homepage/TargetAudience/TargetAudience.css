@@ -126,6 +126,30 @@
     opacity: 0 !important;
   }
 
+/* @media screen and (max-width: 1200px) {
+    #target-audience .content-wrapper {
+        grid-template-columns: 2fr 1fr;
+        place-items: flex-start;
+    }
+    #target-audience swiper-container {
+        display: none;
+    }
+
+    #target-audience .multiple-img-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        height: fit-content;
+        gap: 1rem;
+    }
+
+    #target-audience .multiple-img-container img {
+        height: 200px;
+        width: 200px;
+    }
+} */
+
 
 @media screen and (max-width: 1024px) {
     #target-audience .content-wrapper {

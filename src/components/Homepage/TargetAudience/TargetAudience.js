@@ -60,47 +60,18 @@ const TargetAudience = () => {
                             <Checkbox onClickHandler={onClickHandler} />
                             <div className="checklist-text">
                                 <p>
-                                    Aspiring and Professional Creatives in Film
-                                    and Photography:
+                                    The Aspiring and Professional Creator /
+                                    Creative ⋆｡°✩
                                 </p>
                                 <p>
-                                    You're an aspiring or established filmmaker
-                                    or photographer seeking to enhance your
-                                    creative skills, learn advanced techniques
-                                    in shooting and post-production, and stay
-                                    updated with the latest tools and
-                                    technologies in the industry.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="checklist">
-                            <Checkbox onClickHandler={onClickHandler} />
-                            <div className="checklist-text">
-                                <p>
-                                    Individuals Seeking Career Growth in the
-                                    Creative Industry:
-                                </p>
-                                <p>
-                                    You're looking to transition into a creative
-                                    career or elevate your current position in
-                                    the fields of film and photography, and you
-                                    desire a deeper understanding of personal
-                                    branding, client relations, and the business
-                                    aspects of the creative industry.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="checklist">
-                            <Checkbox onClickHandler={onClickHandler} />
-                            <div className="checklist-text">
-                                <p>Creative Entrepreneurs and Freelancers:</p>
-                                <p>
-                                    You're a solo creator, freelancer, or small
-                                    business owner in the creative sector who
-                                    wants to master financial management, legal
-                                    aspects of freelancing, and learn strategies
-                                    for building a sustainable and diversified
-                                    business model.
+                                    There’s a feeling you get from the creation
+                                    process. It’s fulfilling. Exciting.
+                                    Confusing, at times. But there’s always{" "}
+                                    <b>room for growth</b> - whether that be
+                                    technical skills, technological know-how, or
+                                    just a new perspective. Advanced techniques
+                                    on how to approach the <b>ENTIRE creative
+                                    process</b> flow deep throughout the 14 modules.
                                 </p>
                             </div>
                         </div>
@@ -108,20 +79,51 @@ const TargetAudience = () => {
                             <Checkbox onClickHandler={onClickHandler} />
                             <div className="checklist-text">
                                 <p>
-                                    Influencers and Social Media Content
-                                    Creators:
+                                    The “What’s NEXT in my Career”? Individual
+                                    ✮⋆˙
                                 </p>
                                 <p>
-                                    You're an influencer or content creator
-                                    aiming to maximize your impact on platforms
-                                    like Instagram, TikTok, and YouTube, looking
-                                    for insights into effective social media
+                                    You're looking to <b>transition</b> into a creative
+                                    career or <b>elevate</b> your current position.
+                                    This course covers the <b>important aspects</b> of
+                                    personal branding, client relations, and the
+                                    key business elements of the creative
+                                    industry.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="checklist">
+                            <Checkbox onClickHandler={onClickHandler} />
+                            <div className="checklist-text">
+                                <p>
+                                    The Creative Entrepreneur and Freelancer ⋆˙⟡
+                                </p>
+                                <p>
+                                    Solo creators, freelancers, and small
+                                    business owners in the creative sector -
+                                    gather round. Let’s master financial
+                                    management, the <b>legal</b> and <b>squirrely  aspects </b>
+                                    of freelancing, and learn strategies for
+                                    building a <b>sustainable</b> and <b>diversified</b>
+                                    personal business model.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="checklist">
+                            <Checkbox onClickHandler={onClickHandler} />
+                            <div className="checklist-text">
+                                <p>Influencers and Content Creators ⋆.˚—̳͟͞͞✰</p>
+                                <p>
+                                    Let’s <b>MAXIMIZE your impact</b> on platforms like
+                                    Instagram, TikTok, and YouTube. We dissect
+                                    and explain effective social media
                                     strategies, audience engagement, and brand
-                                    collaboration opportunities.
+                                    collaboration opportunities. We all want to
+                                    build and <b>monetize authentically</b>.
                                 </p>
                             </div>
                         </div>
-                        <div className="checklist">
+                        {/* <div className="checklist">
                             <Checkbox onClickHandler={onClickHandler} />
                             <div className="checklist-text">
                                 <p>Innovators and Tech-Savvy Creatives:</p>
@@ -134,7 +136,7 @@ const TargetAudience = () => {
                                     creative workflow.
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <button
                         disabled={!oneChecked}
@@ -160,7 +162,7 @@ const TargetAudience = () => {
                                     alt="slider content"
                                     loading="lazy"
                                 />
-                                <div class="swiper-lazy-preloader"></div>
+                                <div className="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -170,7 +172,7 @@ const TargetAudience = () => {
                                     alt="slider content"
                                     loading="lazy"
                                 />
-                                <div class="swiper-lazy-preloader"></div>
+                                <div className="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -180,27 +182,27 @@ const TargetAudience = () => {
                                     alt="slider content"
                                     loading="lazy"
                                 />
-                                <div class="swiper-lazy-preloader"></div>
+                                <div className="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
                             <div className="carousel-img-container">
                                 <img
-                                    src="https://i.postimg.cc/Z5VNzwpP/4.jpg"
+                                    src="https://i.postimg.cc/MpQw4Wxf/4.jpg"
                                     alt="slider content"
                                     loading="lazy"
                                 />
-                                <div class="swiper-lazy-preloader"></div>
+                                <div className="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
                             <div className="carousel-img-container">
                                 <img
-                                    src="https://i.postimg.cc/YS0WrQz5/5.jpg"
+                                    src="https://i.postimg.cc/6QxKxD5j/5.jpg"
                                     alt="slider content"
                                     loading="lazy"
                                 />
-                                <div class="swiper-lazy-preloader"></div>
+                                <div className="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -210,7 +212,7 @@ const TargetAudience = () => {
                                     alt="slider content"
                                     loading="lazy"
                                 />
-                                <div class="swiper-lazy-preloader"></div>
+                                <div className="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                         <swiper-slide>
@@ -220,10 +222,47 @@ const TargetAudience = () => {
                                     alt="slider content"
                                     loading="lazy"
                                 />
-                                <div class="swiper-lazy-preloader"></div>
+                                <div className="swiper-lazy-preloader"></div>
                             </div>
                         </swiper-slide>
                     </swiper-container>
+                    {/* <div className="multiple-img-container mobile">
+                        <img
+                            src="https://i.postimg.cc/FH9S6Mds/1.jpg"
+                            alt="slider content"
+                            loading="lazy"
+                        />
+                        <img
+                            src="https://i.postimg.cc/PrbZ2XqR/2.jpg"
+                            alt="slider content"
+                            loading="lazy"
+                        />
+                        <img
+                            src="https://i.postimg.cc/TYvgVLTb/3.jpg"
+                            alt="slider content"
+                            loading="lazy"
+                        />
+                        <img
+                            src="https://i.postimg.cc/MpQw4Wxf/4.jpg"
+                            alt="slider content"
+                            loading="lazy"
+                        />
+                        <img
+                            src="https://i.postimg.cc/6QxKxD5j/5.jpg"
+                            alt="slider content"
+                            loading="lazy"
+                        />
+                        <img
+                            src="https://i.postimg.cc/W4yJht9h/6.jpg"
+                            alt="slider content"
+                            loading="lazy"
+                        />
+                        <img
+                            src="https://i.postimg.cc/XNC9Bc63/7.jpg"
+                            alt="slider content"
+                            loading="lazy"
+                        />
+                    </div> */}
                 </div>
             </div>
         </section>
