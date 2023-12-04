@@ -46,6 +46,10 @@
     border: 2px solid white;
 }
 
+#money-back-guarantee a {
+    color: white;
+}
+
 @media screen and (max-width: 1366px) {
     #money-back-guarantee {
         padding: 2rem;
