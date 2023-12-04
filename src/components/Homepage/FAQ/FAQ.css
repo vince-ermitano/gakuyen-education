@@ -1,5 +1,6 @@
 #faq {
     margin-top: 0;
+    margin-bottom: 2rem;
     padding: 2rem;
     background-color: var(--faq-item-bg-color);
     width: 100vw;
