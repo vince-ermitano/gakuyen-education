@@ -65,3 +65,9 @@
         transform: translateX(var(--scroll-end));
     }
 }
+
+@media screen and (max-width: 768px) {
+    .marquee__group {
+        gap: 0;
+    }
+}

@@ -7,11 +7,11 @@ const Marquee = () => {
             <h2>MAJOR CLIENTS INCLUDE</h2>
             <div className="marquee">
                 <div className="marquee__group">
-                    <img src="/Apple.png" alt="Apple" />
                     <img src="/Nike.png" alt="Nike" />
                     <img src="/Adobe.png" alt="Adobe" />
                     <img src="/Adidas.png" alt="Adidas" />
                     <img src="/Bape.png" alt="Bape" />
+                    <img src="/Apple.png" alt="Apple" />
                     <img src="/CalvinKlein.png" alt="Calvin Klein" />
                     <img src="DJI.png" alt="DJI" />
                     <img src="DrMartens.png" alt="Dr. Martens" />
@@ -30,11 +30,11 @@ const Marquee = () => {
                 </div>
 
                 <div aria-hidden="true" className="marquee__group">
-                    <img src="/Apple.png" alt="Apple" />
                     <img src="/Nike.png" alt="Nike" />
                     <img src="/Adobe.png" alt="Adobe" />
                     <img src="/Adidas.png" alt="Adidas" />
                     <img src="/Bape.png" alt="Bape" />
+                    <img src="/Apple.png" alt="Apple" />
                     <img src="/CalvinKlein.png" alt="Calvin Klein" />
                     <img src="DJI.png" alt="DJI" />
                     <img src="DrMartens.png" alt="Dr. Martens" />
