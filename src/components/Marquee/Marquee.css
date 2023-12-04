@@ -70,4 +70,8 @@
     .marquee__group {
         gap: 0;
     }
+
+    /* #logo-marquee {
+        margin-bottom: 0;
+    } */
 }

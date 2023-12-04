@@ -3,7 +3,7 @@ import "./Marquee.css";
 
 const Marquee = () => {
     return (
-        <article className="marquee-wrapper">
+        <article id="logo-marquee" className="marquee-wrapper">
             <h2>MAJOR CLIENTS INCLUDE</h2>
             <div className="marquee">
                 <div className="marquee__group">
