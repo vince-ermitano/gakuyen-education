@@ -3,6 +3,8 @@ import "./CourseBanner.css";
 import Dropdown from "../Dropdown/Dropdown";
 import { toggleLoginSidebar } from "../../features/SidebarSlice";
 import { useDispatch } from "react-redux";
+import { handleAddToCart } from "../../helpers";
+import { toast } from "sonner";
 
 const CourseBanner = () => {
     const dispatch = useDispatch();
@@ -28,7 +30,7 @@ const CourseBanner = () => {
                 </p>
                 <p>
                     You can choose to buy The Odyssey with a one-time payment,
-                    or split the total cost over 6 months, completely interest
+                    or split the total cost over 4-6 months, completely interest
                     free.
                 </p>
                 <div id="select-financing-group">
@@ -37,7 +39,23 @@ const CourseBanner = () => {
                         idForInput={"financing-option"}
                         idForDropdown={"financing-dropdown"}
                     />
-                    <button>Add to Cart</button>
+                    <button
+                        data-item-id={"MC-01"}
+                        onClick={(e) => {
+                            if (document.getElementById("financing-option").value === "") {
+                                toast("Please select a financing option");
+                                return;
+                            }
+
+                            if (document.getElementById("financing-option").value.includes("Month")) {
+                                alert("To pay in monthly installments\n 1. Click on 'Proceed to Checkout'\n 2. On the Stripe checkout page, select Klarna as your payment method and follow the instructions on the screen")
+                            }
+
+                            handleAddToCart(e, dispatch);
+                        }}
+                    >
+                        Add to Cart
+                    </button>
                 </div>
                 <h3 className="claim-heading">Claim Your Free Module NOW!</h3>
                 <button className="claim-btn" onClick={claimModule}>

@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Sidebar.css";
 // import { products } from "../../products/products";
 import CartItem from "./CartItem";
-import { toggleCartSidebar, toggleLoginSidebar } from "../../features/SidebarSlice";
+import {
+    toggleCartSidebar,
+    toggleLoginSidebar,
+} from "../../features/SidebarSlice";
 import { calculateTotalPrice } from "../../features/ShopSlice";
 import { auth } from "../../config/firebaseConfig";
 // import { toast } from "react-toastify";
@@ -11,47 +14,56 @@ import { toast } from "sonner";
 // import { TOAST_POSITION } from "../../helpers";
 import { updateCartAfterRemovalOfDupes } from "../../helpers";
 import { BiArrowBack } from "react-icons/bi";
-
-// TODO: Add ability to add items to cart that are not Presets/Masterclasses
+import {
+    Elements,
+    PaymentMethodMessagingElement,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 const CartSidebar = () => {
+    const stripe = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
     const dispatch = useDispatch();
 
     // redux states
-    const cartSidebarIsOpen = useSelector((state) => state.sidebar.cartSidebarIsOpen);
-    const cartTotal =  useSelector((state) => state.shop.totalPrice);
+    const cartSidebarIsOpen = useSelector(
+        (state) => state.sidebar.cartSidebarIsOpen
+    );
+    const cartTotal = useSelector((state) => state.shop.totalPrice);
 
-
-    const cartItems = cartSidebarIsOpen ? JSON.parse(localStorage.getItem('cart')) || {} : {};
-
-
+    const cartItems = cartSidebarIsOpen
+        ? JSON.parse(localStorage.getItem("cart")) || {}
+        : {};
 
     // handle functions
     const createCheckoutSession = useCallback(() => {
-        
         if (!auth.currentUser) {
-            fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: localStorage.getItem('cart')
-            }).then(res => {
-                if (res.ok) return res.json()
-                return res.json().then(json => Promise.reject(json))
-            }).then(({ url }) => {
-                window.location = url;
-            }).catch(e => {
-                console.error(e.error);
-                toast.error(e.error);
-
-            })
+            fetch(
+                `${process.env.REACT_APP_SERVER_URL}/create-checkout-session`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: localStorage.getItem("cart"),
+                }
+            )
+                .then((res) => {
+                    if (res.ok) return res.json();
+                    return res.json().then((json) => Promise.reject(json));
+                })
+                .then(({ url }) => {
+                    window.location = url;
+                })
+                .catch((e) => {
+                    console.error(e.error);
+                    toast.error(e.error);
+                });
 
             return;
         }
 
-        console.log('createCheckoutSession');
+        console.log("createCheckoutSession");
 
         // fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session?`, {
         //     method: 'POST',
@@ -110,20 +122,25 @@ const CartSidebar = () => {
     }, [dispatch]);
 
     const handleProceedToCheckout = useCallback(() => {
-
         const loginDialog = document.getElementById("login_dialog");
 
-
-        if (localStorage.getItem('cart') === '{}') {
-            toast.error("Your cart is empty")
+        if (localStorage.getItem("cart") === "{}") {
+            toast.error("Your cart is empty");
             return;
         }
 
         // console.log(typeof localStorage.getItem('cart'));
 
-        console.log(Object.keys(JSON.parse(localStorage.getItem('cart'))));
-        if (!auth.currentUser && (Object.keys(JSON.parse(localStorage.getItem('cart'))).includes('MC-01'))) {
-            toast.error("You must be logged in to purchase the Masterclass. Please login.")
+        console.log(Object.keys(JSON.parse(localStorage.getItem("cart"))));
+        if (
+            !auth.currentUser &&
+            Object.keys(JSON.parse(localStorage.getItem("cart"))).includes(
+                "MC-01"
+            )
+        ) {
+            toast.error(
+                "You must be logged in to purchase the Masterclass. Please login."
+            );
             dispatch(toggleCartSidebar());
             dispatch(toggleLoginSidebar());
             return;
@@ -134,18 +151,15 @@ const CartSidebar = () => {
             return;
         }
 
-
         createCheckoutSession();
-        
     }, [createCheckoutSession, dispatch]);
-
 
     const handleProceedWithoutLogin = () => {
         const loginDialog = document.getElementById("login_dialog");
 
         loginDialog.close();
         createCheckoutSession();
-    }
+    };
 
     const handleLogin = () => {
         const loginDialog = document.getElementById("login_dialog");
@@ -153,7 +167,7 @@ const CartSidebar = () => {
         loginDialog.close();
         dispatch(toggleCartSidebar());
         dispatch(toggleLoginSidebar());
-    }
+    };
 
     const handleClickOutsideDialog = (event) => {
         const loginDialog = document.getElementById("login_dialog");
@@ -161,11 +175,11 @@ const CartSidebar = () => {
         if (event.target === loginDialog) {
             loginDialog.close();
         }
-    }
+    };
 
     const handleBackOnCart = () => {
         dispatch(toggleCartSidebar());
-    }
+    };
 
     useEffect(() => {
         const loginDialog = document.getElementById("login_dialog");
@@ -186,14 +200,16 @@ const CartSidebar = () => {
         };
     }, [dispatch, handleProceedToCheckout]);
 
-
     return (
         <div className="cart-sidebar">
             <div
                 className={`right-sidebar ${cartSidebarIsOpen ? "open" : ""} `}
             >
                 <div className="cart-info">
-                    <button onClick={handleBackOnCart}><BiArrowBack />Back</button>
+                    <button onClick={handleBackOnCart}>
+                        <BiArrowBack />
+                        Back
+                    </button>
                     <h2>Cart</h2>
                     {Object.keys(cartItems).length > 0 ? (
                         Object.keys(cartItems).map((itemId) => (
@@ -210,6 +226,21 @@ const CartSidebar = () => {
                         <span>Total USD</span>
                         <span>${cartTotal}</span>
                     </div>
+                    <p><b>Click below to see the available financing options for you!</b></p>
+                    <Elements stripe={stripe}>
+                        <PaymentMethodMessagingElement
+                            options={{
+                                amount: Math.floor(cartTotal) * 100,
+                                currency: "USD",
+                                paymentMethodTypes: [
+                                    "klarna",
+                                    "afterpay_clearpay",
+                                    "affirm",
+                                ],
+                                countryCode: "US",
+                            }}
+                        />
+                    </Elements>
                     <br />
                     <button
                         className="darkgray-background"
@@ -233,8 +264,15 @@ const CartSidebar = () => {
                         in will allow you to make a one-time purchase.
                     </p>
                     <div className="selection-buttons">
-                        <button id='proceed_without_btn' onClick={handleProceedWithoutLogin}>Proceed without logging in</button>
-                        <button id='login_btn' onClick={handleLogin}>Log in</button>
+                        <button
+                            id="proceed_without_btn"
+                            onClick={handleProceedWithoutLogin}
+                        >
+                            Proceed without logging in
+                        </button>
+                        <button id="login_btn" onClick={handleLogin}>
+                            Log in
+                        </button>
                     </div>
                 </div>
             </dialog>
