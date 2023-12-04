@@ -233,8 +233,6 @@ const CartSidebar = () => {
                                 amount: Math.floor(cartTotal) * 100,
                                 currency: "USD",
                                 paymentMethodTypes: [
-                                    "klarna",
-                                    "afterpay_clearpay",
                                     "affirm",
                                 ],
                                 countryCode: "US",
