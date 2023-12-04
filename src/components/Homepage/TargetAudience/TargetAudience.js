@@ -8,6 +8,8 @@ register();
 
 const TargetAudience = () => {
     const swiperElRef = useRef(null);
+    const leftSideRef = useRef(null);
+    const [leftSideHeight, setLeftSideHeight] = useState(0);
     const [oneChecked, setOneChecked] = useState(false);
 
     const onClickHandler = () => {
@@ -33,6 +35,24 @@ const TargetAudience = () => {
     };
 
     useEffect(() => {
+        const updateElementHeight = () => {
+            const newHeight = leftSideRef.current.offsetHeight;
+            setLeftSideHeight(newHeight);
+        };
+
+        // Initial setup
+        updateElementHeight();
+
+        // Event listener for window resize
+        window.addEventListener("resize", updateElementHeight);
+
+        // Cleanup on component unmount
+        return () => {
+            window.removeEventListener("resize", updateElementHeight);
+        };
+    }, []);
+
+    useEffect(() => {
         new Swiper(".mySwiper", {
             spaceBetween: 30,
             effect: "fade",
@@ -53,7 +73,7 @@ const TargetAudience = () => {
     return (
         <section id="target-audience" className="page-section">
             <div className="content-wrapper" data-aos="fade-up">
-                <div className="left-side">
+                <div className="left-side" ref={leftSideRef}>
                     <h2>This Course Is FOR</h2>
                     <div className="checklist-container">
                         <div className="checklist">
@@ -70,8 +90,9 @@ const TargetAudience = () => {
                                     <b>room for growth</b> - whether that be
                                     technical skills, technological know-how, or
                                     just a new perspective. Advanced techniques
-                                    on how to approach the <b>ENTIRE creative
-                                    process</b> flow deep throughout the 14 modules.
+                                    on how to approach the{" "}
+                                    <b>ENTIRE creative process</b> flow deep
+                                    throughout the 14 modules.
                                 </p>
                             </div>
                         </div>
@@ -83,12 +104,12 @@ const TargetAudience = () => {
                                     ✮⋆˙
                                 </p>
                                 <p>
-                                    You're looking to <b>transition</b> into a creative
-                                    career or <b>elevate</b> your current position.
-                                    This course covers the <b>important aspects</b> of
-                                    personal branding, client relations, and the
-                                    key business elements of the creative
-                                    industry.
+                                    You're looking to <b>transition</b> into a
+                                    creative career or <b>elevate</b> your
+                                    current position. This course covers the{" "}
+                                    <b>important aspects</b> of personal
+                                    branding, client relations, and the key
+                                    business elements of the creative industry.
                                 </p>
                             </div>
                         </div>
@@ -102,9 +123,11 @@ const TargetAudience = () => {
                                     Solo creators, freelancers, and small
                                     business owners in the creative sector -
                                     gather round. Let’s master financial
-                                    management, the <b>legal</b> and <b>squirrely  aspects </b>
+                                    management, the <b>legal</b> and{" "}
+                                    <b>squirrely aspects </b>
                                     of freelancing, and learn strategies for
-                                    building a <b>sustainable</b> and <b>diversified</b>
+                                    building a <b>sustainable</b> and{" "}
+                                    <b>diversified</b>
                                     personal business model.
                                 </p>
                             </div>
@@ -114,12 +137,13 @@ const TargetAudience = () => {
                             <div className="checklist-text">
                                 <p>Influencers and Content Creators ⋆.˚—̳͟͞͞✰</p>
                                 <p>
-                                    Let’s <b>MAXIMIZE your impact</b> on platforms like
-                                    Instagram, TikTok, and YouTube. We dissect
-                                    and explain effective social media
-                                    strategies, audience engagement, and brand
-                                    collaboration opportunities. We all want to
-                                    build and <b>monetize authentically</b>.
+                                    Let’s <b>MAXIMIZE your impact</b> on
+                                    platforms like Instagram, TikTok, and
+                                    YouTube. We dissect and explain effective
+                                    social media strategies, audience
+                                    engagement, and brand collaboration
+                                    opportunities. We all want to build and{" "}
+                                    <b>monetize authentically</b>.
                                 </p>
                             </div>
                         </div>
@@ -226,6 +250,91 @@ const TargetAudience = () => {
                             </div>
                         </swiper-slide>
                     </swiper-container>
+                    <article
+                        id="target-audience-marquee"
+                        className="marquee-wrapper marquee--vertical mobile"
+                    >
+                        <div
+                            className="marquee"
+                            style={{ height: leftSideHeight + "px" }}
+                        >
+                            <div className="marquee__group">
+                                <img
+                                    src="https://i.postimg.cc/FH9S6Mds/1.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/PrbZ2XqR/2.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/TYvgVLTb/3.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/MpQw4Wxf/4.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/6QxKxD5j/5.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/W4yJht9h/6.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/XNC9Bc63/7.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                            </div>
+
+                            <div aria-hidden="true" className="marquee__group">
+                            <img
+                                    src="https://i.postimg.cc/FH9S6Mds/1.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/PrbZ2XqR/2.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/TYvgVLTb/3.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/MpQw4Wxf/4.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/6QxKxD5j/5.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/W4yJht9h/6.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                                <img
+                                    src="https://i.postimg.cc/XNC9Bc63/7.jpg"
+                                    alt="slider content"
+                                    loading="lazy"
+                                />
+                            </div>
+                        </div>
+                    </article>
                     {/* <div className="multiple-img-container mobile">
                         <img
                             src="https://i.postimg.cc/FH9S6Mds/1.jpg"
