@@ -18,8 +18,8 @@ const WhatWeOffer = () => {
                     <div className="text-container">
                         <div className="title-icon-container">
                             <h3>
-                                From Concept to Creation: Master High-Quality
-                                Content Production
+                                Concept to Creation: High Quality
+                                Content-Production
                             </h3>
                             <SiAtom />
                         </div>
@@ -29,10 +29,8 @@ const WhatWeOffer = () => {
                             post-production. Through Modules 5-7, gain
                             step-by-step insights into handling a professional
                             brief, executing production with finesse, and
-                            polishing your work in post-production. This course
-                            offers you the tools and techniques to create
-                            content that stands out for its quality and
-                            storytelling.
+                            polishing your work in post-production. Learn to
+                            STAND OUT for your quality and storytelling.
                         </p>
                     </div>
                 </div>
@@ -46,20 +44,18 @@ const WhatWeOffer = () => {
                     <div className="text-container">
                         <div className="title-icon-container">
                             <h3>
-                                Monetize Your Art: Navigate the Business of
-                                Creative Entrepreneurship
+                                Monetize Your Art: Let’s Make This Profitable
                             </h3>
                             <GiMoneyStack />
                         </div>
                         <p>
-                            Learn the secrets of turning your creative passion
-                            into a profitable venture. This course provides
-                            in-depth guidance on monetizing your work and
-                            navigating the complexities of the creative business
-                            landscape. From understanding market dynamics to
-                            setting competitive pricing and managing client
-                            relationships, empower yourself to thrive as a
-                            creative entrepreneur.
+                            Let’s turn your creative passion into a profitable
+                            venture, together. This course provides in-depth
+                            guidance on monetizing your work and navigating the
+                            complexities of the creative business landscape.
+                            From understanding market dynamics to setting
+                            competitive pricing and managing client
+                            relationships - all the hard questions, answered.
                         </p>
                     </div>
                 </div>
@@ -73,20 +69,17 @@ const WhatWeOffer = () => {
                     <div className="text-container">
                         <div className="title-icon-container">
                             <h3>
-                                Unlock Your Full Potential: Enhance
-                                Productivity, Mindset, and Creativity
+                                Effective and Actionable Steps: Mind Matters
                             </h3>
                             <GiLightBulb />
                         </div>
                         <p>
-                            Elevate your creative career with key strategies in
-                            productivity and mindset enhancement. This course
-                            offers a wealth of knowledge in developing a growth
-                            mindset, adopting effective productivity techniques,
-                            and fostering innovative creative practices. Equip
-                            yourself with the mindset and skills necessary for
-                            long-term success and personal growth in the
-                            competitive world of creativity.
+                            It all starts in your mind. Let’s shape and identify
+                            your goals. From there we can examine productivity
+                            techniques and foster new creative practices that
+                            will be the foundation for your long-term success
+                            and personal growth in this dog-eat-dog world of
+                            creative entrepreneurship.
                         </p>
                     </div>
                 </div>
