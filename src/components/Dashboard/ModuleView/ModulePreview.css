@@ -94,6 +94,11 @@
     width: 100%;
 }
 
+.module-preview-info h3 span:nth-of-type(2) {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+}
+
 .module-preview-img-container {
     width: 100%;
     height: 100%;

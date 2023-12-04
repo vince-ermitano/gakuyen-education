@@ -26,6 +26,19 @@ const ModulePreview = (props) => {
         classForPreview = 'module-preview';
     }
 
+    const convertTitleToJSX = (title) => {
+        if (props.type !== "module") return (<span>{title}</span>);
+
+        const titleArray = title.split(":");
+        return (
+            <>
+                <span>{titleArray[0]}:</span>
+                <br></br>
+                <span>{titleArray[1]}</span>
+            </>
+        )
+    }
+
     const handleClick = (e) => {
         if (props.activated === false) {
             navigate('/?scroll_to=course-banner');
@@ -65,7 +78,7 @@ const ModulePreview = (props) => {
             </div>
             <div className="module-preview-img-container" style={thumbnailStyle}></div>
             <div className="module-preview-info">
-                <h3>{props.title}</h3>
+                <h3>{convertTitleToJSX(props.title)}</h3>
                 {/* <p>{props.description}</p> */}
             </div>
         </div>

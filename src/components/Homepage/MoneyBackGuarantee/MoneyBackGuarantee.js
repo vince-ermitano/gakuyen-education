@@ -1,6 +1,5 @@
 import React from "react";
 import "./MoneyBackGuarantee.css";
-import { Link } from "react-router-dom";
 import { VscClose } from "react-icons/vsc";
 
 
@@ -92,6 +91,7 @@ const MoneyBackGuarantee = () => {
                             <a
                                 href="https://stripe.com/docs/refunds#:~:text=Additionally%2C%20Stripe%20doesn't%20return,original%20transaction%20if%20it's%20refunded."
                                 target="_blank"
+                                rel="noreferrer"
                             >
                                 Refund and Cancel Payments | Stripe
                                 Documentation
@@ -101,6 +101,8 @@ const MoneyBackGuarantee = () => {
                             <a
                                 href="https://stripe.com/pricing/local-payment-methods"
                                 target="_blank"
+                                rel="noreferrer"
+
                             >
                                 Processing Fees Breakdown | Stripe Official Site
                             </a>
@@ -109,6 +111,8 @@ const MoneyBackGuarantee = () => {
                             <a
                                 href="https://stripe.com/pricing"
                                 target="_blank"
+                                rel="noreferrer"
+
                             >
                                 Pricing & Fees | Stripe Official Site
                             </a>
@@ -117,6 +121,8 @@ const MoneyBackGuarantee = () => {
                             <a
                                 href="https://support.stripe.com/questions/understanding-fees-for-refunded-payments#:~:text=To%20address%20these%20underlying%20payment%20processing%20costs%20and%20continue%20providing%20these%20services%20as%20part%20of%20our%20standard%20pricing,%20Stripe%20does%20not%20return%20our%20fees%20when%20a%20payment%20is%20refunded."
                                 target="_blank"
+                                rel="noreferrer"
+
                             >
                                 Understanding fees for refunded payments |
                                 Stripe Help & Support
