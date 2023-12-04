@@ -25,7 +25,7 @@ const CourseOverview = () => {
     return (
         <section id="course-overview" className="course-overview">
             <div className="content-wrapper" data-aos="fade-up">
-                <h2>What You Will Learn</h2>
+                <h2 className="mobile">What You Will Learn</h2>
                 <div className="course-overview-content">
                     <div id="module-selection">
                         <h3>Module Selection</h3>
@@ -129,6 +129,8 @@ const CourseOverview = () => {
                     </div>
                     {!isLoading && (
                         <div id="module-description">
+                            <h2>What You Will Learn</h2>
+
                             <h3>
                                 {theOdyssey[currentCourseOverviewModule].title}
                             </h3>
@@ -136,8 +138,12 @@ const CourseOverview = () => {
                                 <div className="image-container mobile">
                                     <img
                                         className="odd"
-                                        src="https://via.placeholder.com/400x300"
-                                        alt="placeholder"
+                                        src={
+                                            courseOverviewDescriptions[
+                                                currentCourseOverviewModule
+                                            ][4][0]
+                                        }
+                                        alt="module"
                                     />
                                 </div>
                                 <p>
@@ -154,6 +160,17 @@ const CourseOverview = () => {
                                         ][1]
                                     }
                                 </p>
+                                <div className="image-container mobile">
+                                    <img
+                                        className="odd"
+                                        src={
+                                            courseOverviewDescriptions[
+                                                currentCourseOverviewModule
+                                            ][4][1]
+                                        }
+                                        alt="module"
+                                    />
+                                </div>
                                 <div className={`image-container desktop`}>
                                     <img
                                         className="odd"
@@ -162,7 +179,7 @@ const CourseOverview = () => {
                                                 currentCourseOverviewModule
                                             ][4][0]
                                         }
-                                        alt="placeholder"
+                                        alt="module"
                                     />
                                 </div>
                                 <div className={`image-container desktop`}>
@@ -173,7 +190,7 @@ const CourseOverview = () => {
                                                 currentCourseOverviewModule
                                             ][4][1]
                                         }
-                                        alt="placeholder"
+                                        alt="module"
                                     />
                                 </div>
                                 <p>

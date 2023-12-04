@@ -72,6 +72,11 @@
     gap: 3rem;
 }
 
+#module-description h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
 #module-description .content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -91,10 +96,12 @@
     /* display: flex; */
 }
 
-
+#module-selection .select-container.active .option-container {
+    max-height: 60vh;
+}
 
 #module-description .content img{
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
 }
@@ -175,6 +182,10 @@
 
 
 @media screen and (max-width: 768px) {
+    #module-selection .select-container.active .option-container {
+        max-height: 90vh;
+    }
+
     #course-overview .mobile {
         display: block;
     }
