@@ -21,7 +21,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 const CartSidebar = () => {
-    const stripe = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+    const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
 
     const dispatch = useDispatch();
 
@@ -234,7 +234,7 @@ const CartSidebar = () => {
                             </b>
                         </p>
                     )}
-                    <Elements stripe={stripe}>
+                    <Elements stripe={stripePromise}>
                         <PaymentMethodMessagingElement
                             options={{
                                 amount: Math.floor(cartTotal) * 100,

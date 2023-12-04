@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./CourseBanner.css";
 import Dropdown from "../Dropdown/Dropdown";
 import { toggleLoginSidebar } from "../../features/SidebarSlice";
@@ -6,9 +6,11 @@ import { useDispatch } from "react-redux";
 import { handleAddToCart } from "../../helpers";
 import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
+import { getTimeUntilSpecificDate } from "../../helpers";
 
 const CourseBanner = () => {
     const dispatch = useDispatch();
+    const [countdown, setCountdown] = useState(getTimeUntilSpecificDate());
 
     const claimModule = () => {
         if (auth.currentUser) {
@@ -17,6 +19,15 @@ const CourseBanner = () => {
         }
         dispatch(toggleLoginSidebar());
     };
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCountdown(getTimeUntilSpecificDate());
+        }, 1000);
+
+        // Clean up the interval when the component unmounts
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <section id="course-banner" className="page-section" data-aos="fade-up">
@@ -29,7 +40,7 @@ const CourseBanner = () => {
                     <b>Comprehensive</b> wouldn’t do it justice. 14 Modules on{" "}
                     <b>every aspect</b> of the creative process from mindset and
                     shooting techniques to building an <b>AUTHENTIC voice</b>{" "}
-                    and <b>monetize</b> your sweat and tears.
+                    and <b>monetizing</b> your sweat and tears.
                 </p>
                 <p>
                     The Creator Economy is growing. Let’s <b>lead the charge</b>
@@ -70,11 +81,11 @@ const CourseBanner = () => {
                             handleAddToCart(e, dispatch);
                         }}
                     >
-                        Add to Cart
+                        {countdown}
                     </button>
                 </div>
                 <h3 className="claim-heading">
-                    Want a FREE MODULE to see what it’s like?{" "}
+                    Want a <b>FREE MODULE</b> to see what it’s like?{" "}
                 </h3>
                 <button className="claim-btn" onClick={claimModule}>
                     CLAIM HERE ˘͈ᵕ˘͈

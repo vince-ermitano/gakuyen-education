@@ -40,89 +40,89 @@ const CourseOverview = () => {
                                 data-module="M-01"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 1: Cultivating a Growth Mindset and
+                                <b>Module 1:</b> Cultivating a Growth Mindset and
                                 Balancing Artistry
                             </li>
                             <li
                                 data-module="M-02"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 2: Essential Tools for Photography and
+                                <b>Module 2:</b> Essential Tools for Photography and
                                 Filmmaking
                             </li>
                             <li
                                 data-module="M-03"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 3: Building Your Brand in the Creative
+                                <b>Module 3:</b> Building Your Brand in the Creative
                                 Market
                             </li>
                             <li
                                 data-module="M-04"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 4: Financial and Legal Acumen for
+                                <b>Module 4:</b> Financial and Legal Acumen for
                                 Creatives
                             </li>
                             <li
                                 data-module="M-05"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 5: Mastering Client Interaction
+                                <b>Module 5:</b> Mastering Client Interaction
                             </li>
                             <li
                                 data-module="M-06"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 6: The Art of the Shoot
+                                <b>Module 6:</b> The Art of the Shoot
                             </li>
                             <li
                                 data-module="M-07"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 7: Crafting the Story in Post-Production
+                                <b>Module 7:</b> Crafting the Story in Post-Production
                             </li>
                             <li
                                 data-module="M-08"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 8: Excellence in Client Relations
+                                <b>Module 8:</b> Excellence in Client Relations
                             </li>
                             <li
                                 data-module="M-09"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 9: Influencer Marketing Mastery
+                                <b>Module 9:</b> Influencer Marketing Mastery
                             </li>
                             <li
                                 data-module="M-10"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 10: AI in Creativity
+                                <b>Module 10:</b> AI in Creativity
                             </li>
                             <li
                                 data-module="M-11"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 11: Staying Inspired and Relevant
+                                <b>Module 11:</b> Staying Inspired and Relevant
                             </li>
                             <li
                                 data-module="M-12"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 12: Fostering a Creative Community
+                                <b>Module 12:</b> Fostering a Creative Community
                             </li>
                             <li
                                 data-module="M-13"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 13: Impactful Social Media Content
+                                <b>Module 13:</b> Impactful Social Media Content
                             </li>
                             <li
                                 data-module="M-14"
                                 onClick={(e) => handleModuleSelection(e)}
                             >
-                                Module 14: Balancing Personal and Commercial
+                                <b>Module 14:</b> Balancing Personal and Commercial
                                 Projects
                             </li>
                         </ul>

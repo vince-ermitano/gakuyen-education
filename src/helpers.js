@@ -5,6 +5,8 @@ import CryptoJS from "crypto-js";
 // import { auth } from "./config/firebaseConfig";
 
 const AES = CryptoJS.AES;
+const LAUNCH_DATE = new Date("2023-12-06T03:00:00Z");
+
 
 export const disableScroll = () => {
     document.body.style.overflow = "hidden";
@@ -22,6 +24,25 @@ export const TOAST_POSITION = {
     pauseOnHover: true,
     progress: undefined,
 };
+
+export function getTimeUntilSpecificDate() {
+
+    const currentTime = new Date().getTime();
+
+    const distance = LAUNCH_DATE - currentTime;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, "0");
+
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    ).toString().padStart(2, "0");
+
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, "0");
+
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, "0");
+
+    return `${days}:${hours}:${minutes}:${seconds} ✶ ࣪˖࿐`;
+}
 
 export function convertToSlug(input) {
     return input

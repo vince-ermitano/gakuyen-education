@@ -28,8 +28,15 @@
 
 #course-banner-content h3 {
     font-size: 2rem;
-    font-weight: 700;
     margin-bottom: 2rem;
+    font-family: 'Helvetica-Neue', sans-serif;
+    color: white;
+    padding: 0;
+}
+
+#course-banner-content h3:nth-of-type(2) {
+    font-size: 1.75rem;
+    font-weight: 400;
 }
 
 #course-banner-content p {
@@ -44,7 +51,7 @@
     padding: 0;
 }
 
-#course-banner h2, #course-banner h3 {
+#course-banner h2 {
     color: white;
     background-color: transparent;
     /* font-family: 'Inconsolata', monospace; */
