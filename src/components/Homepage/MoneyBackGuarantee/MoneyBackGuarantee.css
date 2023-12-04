@@ -9,6 +9,7 @@
     padding: 4rem 0;
     background: rgb(247, 157, 42);
     background: linear-gradient(63deg, rgba(247, 157, 42, 1) 28%, rgba(225, 4, 255, 1) 100%);
+    margin-top: 0;
 }
 
 .money-back-guarantee-container {

@@ -1,12 +1,14 @@
 #what-we-offer {
+    width: 100vw;
+    transform: translateX(-5%);
     background-color: var(--faq-item-bg-color);
     padding: 4rem 2rem;
-    border-radius: 2rem;
 }
 
 #what-we-offer .offer-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 2rem;
 }
 
 #what-we-offer h2 {
@@ -17,8 +19,8 @@
 }
 
 #what-we-offer .offer {
-    height: 60vh;
-    width: 25vw;
+    height: 650px;
+    width: 450px;
     transition: all 1s ease-out;
     position: relative;
 }
@@ -128,10 +130,47 @@
     background-image: url("https://images.squarespace-cdn.com/content/v1/61a46cc601b4c521a42206d3/1645247526671-F8QXSKJO9WXL86EJ8CC6/DSC07768-1-1.jpeg?format=750w");
 } */
 
+@media screen and (orientation: portrait) {
+    #what-we-offer .offer-container {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+}
+
+/* @media screen and (orientation: portrait) and (max-width: 1025px) {
+    #what-we-offer .offer {
+        width: 45vw;
+        height: 50vh;
+    }
+} */
+
 @media screen and (max-width: 1366px) {
     #what-we-offer .offer .text-container p {
         font-size: 1.25rem;
         padding: 1rem;
+    }
+
+    /* #what-we-offer .offer {
+        width: 30vw;
+    } */
+}
+
+@media screen and (max-width: 1150px) {
+    /* #what-we-offer .offer {
+        width: 45vw;
+    } */
+
+    #what-we-offer .offer-container {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #what-we-offer .offer-container {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
     }
 }
 
@@ -142,8 +181,20 @@
         transform: translateX(-1rem);
     }
 
+    #what-we-offer h2 {
+        font-size: 2rem;
+    }
+
+    #what-we-offer .text-container h3 {
+        font-size: 1.5rem;
+    }
+
+    #what-we-offer .offer .text-container p {
+        font-size: 1rem;
+    }
+
     #what-we-offer .offer {
-        height: 300px;
+        height: 80vh;
         width: 100%;
     }
 
