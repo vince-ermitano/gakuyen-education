@@ -68,9 +68,7 @@ const FAQ = () => {
                     <FaqItem
                         question={
                             <>
-                                What <b>Support</b> and <b>Resources</b> Are
-                                Available to Students During and After the
-                                Course?
+                                How is the course <b>structured</b>? Are there <b>live sessions</b>, or is it <b>self-paced</b>?
                             </>
                         }
                         answer="There are no live sessions, allowing you the flexibility to progress through the modules at your own pace and according to your own schedule. This format is ideal for those who have other commitments or prefer to learn in a more flexible environment. You can revisit the course materials as often as needed, ensuring a learning experience that is tailored to your individual needs and pace."
