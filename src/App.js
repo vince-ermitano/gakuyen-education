@@ -257,31 +257,29 @@ function App() {
     }, [authenticated, dispatch, currentPath, enableSessionCheck]);
 
     useEffect(() => {
-        if (!authenticated) return;
-
-        // const dashboardText = document.querySelector(".user-directory a");
-
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            // if (user) {
-            //     if (currentPath !== "/") {
-            //         // dashboardText?.style.color = "black";
-            //         if (dashboardText) {
-            //             dashboardText.style.color = "black";
-            //         }
-            //     } else {
-            //         if (dashboardText) {
-            //             dashboardText.style.color = "white";
-            //         }
-            //     }
-            // }
             if (user) {
                 setAuthenticated(true);
                 if (checkIfAuthorized(user.email)) {
                     setHasPermissions(true);
                 }
             }
+        });
+
+        return () => {
+            unsubscribe();
+        }
+    })
+
+    useEffect(() => {
+        
+        if (!authenticated) return;
+        
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+
             checkHeaderColor(currentPath);
         });
+
 
         return () => {
             unsubscribe();

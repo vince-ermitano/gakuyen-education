@@ -151,8 +151,16 @@
 } */
 
 #target-audience-marquee img {
-    height: 300px;
-    width: 300px;
+    padding: 0;
+}
+
+#target-audience swiper-container {
+    display: none;
+}
+
+#target-audience-marquee {
+    display: flex;
+    transform: translateX(0);
 }
 
 @media screen and (max-width: 1350px) {
