@@ -96,18 +96,21 @@ input[type="reset"] {
 
 .hero {
   position: relative;
-  padding: 18rem 8rem 2rem 8rem;
+  padding: 5% 0rem 2rem 8rem;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  align-items: center;
 }
 
 .hero .video-container {
   position: relative;
   overflow: hidden;
-  padding-bottom: 43.75%;
+  width: 50vw;
   z-index: 4;
   display: none;
+  height: 600px;
 }
 
 .hero .video-container iframe {

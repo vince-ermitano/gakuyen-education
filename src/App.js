@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import Header from "./components/Header/Header_logged_out";
 import Shop from "./components/Shop/Shop";
 import store from "./store/store";
@@ -127,6 +127,7 @@ function App() {
         // TODO: might need to move this into a useEffect hook
         const gradientCanvas = document.getElementById("gradient-canvas");
         const header = document.querySelector(".hero");
+        const heroVideo = header.querySelector(".video-container");
 
         // if the current path is not the homepage, hide the gradient canvas
         if (currentPath !== "/" || !authenticated) {
@@ -135,9 +136,10 @@ function App() {
         } else {
             gradientCanvas.style.display = "block";
             header.style.display = "grid";
-            const div = document.createElement("div");
-            ReactDOM.render(<CountdownTimer />, div);
-            header.appendChild(div);
+            heroVideo.style.display = "block";
+            const div = document.createElement("div")
+            const root = createRoot(div);
+            root.render(<CountdownTimer />);
         }
     }, [authenticated, currentPath]);
 
