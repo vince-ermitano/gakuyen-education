@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Header_logged_out.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -7,7 +7,6 @@ import { ReactComponent as Logo } from '../logo.svg';
 import Hamburger from "../Hamburger/Hamburger_v2";
 // import HamburgerMenu from "../Hamburger/HamburgerMenu";
 import { useSelector, useDispatch } from "react-redux";
-import { checkIfPassedMainLaunchDate } from "../../helpers";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import {
     toggleLoginSidebar,
@@ -16,15 +15,14 @@ import {
 } from "../../features/SidebarSlice";
 import { BiCartAlt } from "react-icons/bi";
 import { getAuth, signOut } from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
 // import { ToastContainer, toast } from "react-toastify";
 import { toast } from "sonner";
-import { checkHeaderColor, toggleHamburger, checkIfAuthorized } from "../../helpers";
+import { checkHeaderColor, toggleHamburger } from "../../helpers";
 
 const Header = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
-    const [authorized, setAuthorized] = useState(checkIfPassedMainLaunchDate());
+    const authorized = useSelector((state) => state.user.authorized);
     const navigate = useNavigate();
     const location = useLocation();
     const currentPath = location.pathname;
@@ -52,14 +50,6 @@ const Header = () => {
         // hideHamburger();
 
     };
-
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user && checkIfAuthorized(user.email)) {
-                setAuthorized(true);
-            }
-        });
-    })
 
     const headerLoggedOut = (
         <div className="header" >

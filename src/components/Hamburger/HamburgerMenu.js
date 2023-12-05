@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./HamburgerMenu.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { toggleHamburger, openNewWindow, checkIfAuthorized } from "../../helpers";
+import { toggleHamburger, openNewWindow } from "../../helpers";
 import { useSelector, useDispatch } from "react-redux";
-import { signOut, onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebaseConfig";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { toggleLoginSidebar } from "../../features/SidebarSlice";
 import { scrollIntoView } from "../../helpers";
-import { checkIfPassedMainLaunchDate } from "../../helpers";
 import { toast } from "sonner";
 import { BiLogoInstagramAlt, BiLogoYoutube, BiLogoTiktok } from "react-icons/bi";
 
@@ -17,7 +16,7 @@ import { BiLogoInstagramAlt, BiLogoYoutube, BiLogoTiktok } from "react-icons/bi"
 const HamburgerMenu = () => {
 
     const loggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
-    const [linksEnabled, setLinksEnabled] = useState(checkIfPassedMainLaunchDate());
+    const linksEnabled = useSelector((state) => state.user.authorized);
     const location = useLocation();
     const pathname = location.pathname;
     const dispatch = useDispatch();
@@ -42,7 +41,6 @@ const HamburgerMenu = () => {
     };
 
     const handleLinkClick = (e) => {
-        console.log(linksEnabled);
         if (!linksEnabled) {
             e.preventDefault();
             toggleHamburger('/');
@@ -50,14 +48,6 @@ const HamburgerMenu = () => {
             toggleHamburger();
         }
     }
-
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user && checkIfAuthorized(user.email)) {
-                setLinksEnabled(true);
-            }
-        });
-    }, [])
     
     return (
         <nav id="hamburger-menu">

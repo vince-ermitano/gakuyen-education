@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CourseBanner.css";
 import Dropdown from "../Dropdown/Dropdown";
 import { toggleLoginSidebar } from "../../features/SidebarSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleAddToCart } from "../../helpers";
 import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
@@ -11,6 +11,7 @@ import { getTimeUntilSpecificDate } from "../../helpers";
 const CourseBanner = () => {
     const dispatch = useDispatch();
     const [countdown, setCountdown] = useState(getTimeUntilSpecificDate());
+    const authorized = useSelector((state) => state.user.authorized);
 
     const claimModule = () => {
         if (auth.currentUser) {
@@ -60,6 +61,10 @@ const CourseBanner = () => {
                     <button
                         data-item-id={"MC-01"}
                         onClick={(e) => {
+                            if (!authorized) {
+                                toast('The course will be available soon!');
+                                return;
+                            }
                             if (
                                 document.getElementById("financing-option")
                                     .value === ""

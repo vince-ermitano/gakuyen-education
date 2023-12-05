@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import Header from "./components/Header/Header_logged_out";
 import Shop from "./components/Shop/Shop";
 import store from "./store/store";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import Password from "./components/Password/Password";
 import Homepage from "./components/Homepage/Homepage";
 import HamburgerMenu from "./components/Hamburger/HamburgerMenu";
@@ -37,13 +37,13 @@ import {
     setLoading,
     setInitialTotalPrice,
 } from "./features/ShopSlice";
-import { setUserInfo } from "./features/UserSlice";
+import { setUserInfo, setAuthorized } from "./features/UserSlice";
 import { setTheOdyssey, setIsLoading } from "./features/CoursesSlice";
 import { checkHeaderColor, checkIfAuthorized } from "./helpers";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
 import { Toaster, toast } from "sonner";
-import { checkIfPassedLaunchDate, checkIfPassedMainLaunchDate } from "./helpers";
+import { checkIfPassedLaunchDate } from "./helpers";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 
@@ -65,7 +65,7 @@ function App() {
         false || auth.currentUser || checkIfPassedLaunchDate()
     );
 
-    const [hasPermissions, setHasPermissions] = useState(checkIfPassedMainLaunchDate());
+    const authorized = useSelector((state) => state.user.authorized);
 
     useEffect(() => {
         AOS.init({
@@ -261,8 +261,11 @@ function App() {
             if (user) {
                 setAuthenticated(true);
                 if (checkIfAuthorized(user.email)) {
-                    setHasPermissions(true);
+                    dispatch(setAuthorized(true));
+
                 }
+            } else {
+                dispatch(setAuthorized(false));
             }
         });
 
@@ -389,7 +392,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Homepage />}></Route>
 
-                {hasPermissions && (
+                {authorized && (
                     <>
                         <Route path="/success" element={<Homepage />}></Route>
                         <Route
