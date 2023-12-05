@@ -102,9 +102,7 @@ const CreateAccountSidebar = () => {
                     firstName: firstName,
                     lastName: lastName,
                     email: emailAddress,
-                    purchasedItems: {
-                        'MC-01': "Dec 2, 2023"
-                    },
+                    purchasedItems: {},
                 })
                     .then((docRef) => {
                         alertMessage("userAddedToDatabase");
