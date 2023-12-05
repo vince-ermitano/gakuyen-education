@@ -24,7 +24,7 @@ import { checkHeaderColor, toggleHamburger, checkIfAuthorized } from "../../help
 const Header = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
-    const [authorized, setAuthorized] = useState(checkIfPassedLaunchDate());
+    const [authorized, setAuthorized] = useState(checkIfPassedMainLaunchDate());
     const navigate = useNavigate();
     const location = useLocation();
     const currentPath = location.pathname;
