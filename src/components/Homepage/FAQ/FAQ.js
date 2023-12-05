@@ -73,7 +73,7 @@ const FAQ = () => {
                                 Course?
                             </>
                         }
-                        answer="During the course, students have access to a range of resources including community forums, expert mentorship, and comprehensive learning materials. Post-course, we offer networking opportunities and continued access to course updates and alumni groups."
+                        answer="There are no live sessions, allowing you the flexibility to progress through the modules at your own pace and according to your own schedule. This format is ideal for those who have other commitments or prefer to learn in a more flexible environment. You can revisit the course materials as often as needed, ensuring a learning experience that is tailored to your individual needs and pace."
                     />
                     <FaqItem
                         question={
