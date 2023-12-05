@@ -41,7 +41,7 @@ export function getTimeUntilSpecificDate() {
 
     const currentTime = new Date().getTime();
 
-    const distance = LAUNCH_DATE - currentTime;
+    const distance = MAIN_LAUNCH_DATE - currentTime;
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, "0");
 
@@ -53,7 +53,7 @@ export function getTimeUntilSpecificDate() {
 
     const seconds = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, "0");
 
-    return `${days}:${hours}:${minutes}:${seconds} ✶ ࣪˖࿐`;
+    return `${days}:${hours}:${minutes}:${seconds}`;
 }
 
 export function convertToSlug(input) {

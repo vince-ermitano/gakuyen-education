@@ -15,7 +15,7 @@ const CountdownTimer = () => {
 
     return (
         <div className="countdown-timer">
-            <p>{countdown}</p>
+            <p><b>Launching</b> in {countdown}</p>
         </div>
     );
 };

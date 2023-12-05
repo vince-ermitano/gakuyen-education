@@ -132,6 +132,7 @@ function App() {
         const gradientCanvas = document.getElementById("gradient-canvas");
         const header = document.querySelector(".hero");
         const heroVideo = header.querySelector(".video-container");
+        const heroTitleContainer = header.querySelector(".hero-title-container");
 
         // if the current path is not the homepage, hide the gradient canvas
         if (currentPath !== "/" || !authenticated) {
@@ -144,7 +145,7 @@ function App() {
             const div = document.createElement("div");
             const root = createRoot(div);
             root.render(<CountdownTimer />);
-            header.appendChild(div);
+            heroTitleContainer.appendChild(div);
         }
     }, [authenticated, currentPath]);
 

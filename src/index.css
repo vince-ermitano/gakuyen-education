@@ -111,13 +111,12 @@ input[type="reset"] {
   z-index: 4;
   display: none;
   height: 600px;
+  filter: drop-shadow(18px 16px 30px #555);
 }
 
 .hero .video-container iframe {
   width: 100%;
-  height: 100%;
   border-radius: 1rem;
-  filter: drop-shadow(60px 15px 30px #555);
 }
 
 .hero-title {
