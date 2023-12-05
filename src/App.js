@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import Header from "./components/Header/Header_logged_out";
 import Shop from "./components/Shop/Shop";
 import store from "./store/store";
@@ -30,6 +31,7 @@ import { auth } from "./config/firebaseConfig";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { db } from "./config/firebaseConfig";
 import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import CountdownTimer from "./components/CountdownTimer/CountdownTimer";
 import {
     setProducts,
     setLoading,
@@ -133,6 +135,9 @@ function App() {
         } else {
             gradientCanvas.style.display = "block";
             header.style.display = "grid";
+            const div = document.createElement("div");
+            ReactDOM.render(<CountdownTimer />, div);
+            header.appendChild(div);
         }
     }, [authenticated, currentPath]);
 

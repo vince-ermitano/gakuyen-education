@@ -14,7 +14,7 @@ import TargetAudience from "./TargetAudience/TargetAudience";
 import WhatWeOffer from "./WhatWeOffer/WhatWeOffer";
 import MoneyBackGuarantee from "./MoneyBackGuarantee/MoneyBackGuarantee";
 import CourseOverview from "./CourseOverview/CourseOverviewV2";
-import CountdownTimer from "../CountdownTimer/CountdownTimer";
+// import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import FAQ from "./FAQ/FAQ.js";
 import Marquee from "../Marquee/Marquee";
 import "./Homepage.css";
@@ -112,7 +112,7 @@ const Homepage = () => {
 
     return (
         <div className="homepage">
-            <CountdownTimer />
+            {/* <CountdownTimer /> */}
             {/* <HeroBanner /> */}
             {/* <ShopNav /> */}
             {/* <ShopNavV2 /> */}
