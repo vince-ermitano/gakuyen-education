@@ -155,19 +155,30 @@ export const setUserOwnedItemsIfNull = () => {
 export const toggleHamburger = (path) => {
     const hamburger = document.querySelector(".hamburger");
     const hamburgerMenu = document.getElementById("hamburger-menu");
+    const userDirectory = document.querySelectorAll(".user-directory > *");
     hamburger.classList.toggle("is-active");
 
     if (hamburger.classList.contains("is-active")) {
         hamburgerMenu.classList.add("is-active");
         changeHeaderTextAndLogoToColor("black");
+
+        for (const link of userDirectory) {
+            link.style.backgroundColor = "transparent";
+        }
         disableScroll();
     } else {
         hamburgerMenu.classList.remove("is-active");
 
         if (path === "/") {
             changeHeaderTextAndLogoToColor("white");
+            for (const link of userDirectory) {
+                link.style.backgroundColor = "#282c34";
+            }
         } else {
             changeHeaderTextAndLogoToColor("black");
+            for (const link of userDirectory) {
+                link.style.backgroundColor = "transparent";
+            }
         }
         enableScroll();
     }
@@ -199,11 +210,15 @@ export const checkHeaderColor = (currentPath) => {
     const userDirectoryLinks = document.querySelectorAll(
         ".user-directory span"
     );
+    const userDirectory = document.querySelectorAll(".user-directory > *");
     const logo = document.querySelector(".header .logo svg");
     const cartSvg = document.querySelector(".header .user-directory svg");
     const hamburgerMenu = document.getElementById("hamburger-menu");
 
     if (hamburgerMenu.classList.contains("is-active")) {
+        userDirectory.forEach((link) => {
+            link.style.backgroundColor = "transparent";
+        });
         userDirectoryLinks.forEach((link) => {
             link.style.color = "black";
         });
@@ -216,14 +231,20 @@ export const checkHeaderColor = (currentPath) => {
     if (currentPath !== "/") {
 
         logo.style.fill = "black";
+        userDirectory.forEach((link) => {
+            link.style.backgroundColor = "transparent";
+        });
         userDirectoryLinks.forEach((link) => {
-            link.style.color = "black";
+            link.style.backgroundColor = "transparent";
         });
         // logo.src = "/theodyssey_s.png";
         cartSvg.style.color = "black";
     } else {
         userDirectoryLinks.forEach((link) => {
             link.style.color = "white";
+        });
+        userDirectory.forEach((link) => {
+            link.style.backgroundColor = "#282c34";
         });
         // logo.src = "/theodysseywhite_s.png";
         logo.style.fill = "white";

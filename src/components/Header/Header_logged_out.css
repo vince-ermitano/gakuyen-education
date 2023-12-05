@@ -99,6 +99,11 @@
     font-size: 1.25rem;
 }
 
+.header .user-directory > * {
+    background-color: #282c34;
+    transition: background-color 0.75s ease-out;
+}
+
 .user-directory a {
     color: white;
 }
