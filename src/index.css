@@ -96,17 +96,18 @@ input[type="reset"] {
 
 .hero {
   position: relative;
-  padding: 5% 0rem 2rem 8rem;
+  /* padding: 5% 0rem 2rem 8rem; */
+  padding: 4rem 0 4rem 8rem;
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 3fr;
   overflow: hidden;
   align-items: center;
 }
 
 .hero .video-container {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 50vw;
   z-index: 4;
   display: none;
@@ -114,8 +115,131 @@ input[type="reset"] {
   filter: drop-shadow(18px 16px 30px #555);
 }
 
+.hero img {
+  position: absolute;
+  /* top: -100px; */
+  right: 0;
+  /* object-fit: cover; */
+  /* object-position: center; */
+  z-index: 10;
+  /* filter: blur(10px); */
+  /* transform: scale(1.1); */
+  pointer-events: none;
+
+}
+
+.hero .film-image {
+  height: 334px;
+  top: -141px;
+  right: -37px;
+  z-index: 12;
+}
+
+.hero .skeleton-image {
+  height: 150px;
+  top: 50px;
+  left: -100px;
+}
+
+.hero .filmbox-image {
+  height: 1109px;
+  bottom: -700px;
+  right: -536px;
+}
+
+.hero .sourmo-image {
+  height: 500px;
+  bottom: -331px;
+  left: -9px;
+}
+
+.hero .brainwave-image {
+  top: -554px;
+  right: -801px;
+}
+
+.hero .modern-image {
+  height: 336px;
+  right: -100px;
+  top: 72px;
+  z-index: 12;
+}
+
+.hero .twitter-image {
+  height: 250px;
+  bottom: -245px;
+  right: 299px;
+}
+
+.hero .eventho-image {
+  right: -120px;
+  top: 293px;
+}
+
+.hero .text-image {
+  height: 300px;
+  bottom: -374px;
+  right: 266px;
+}
+
+.hero .can-image {
+  top: -148px;
+  z-index: 1;
+  right: 100px;
+}
+
+.hero .photo-image {
+  width: 900px;
+  z-index: 0;
+  top: -232px;
+  left: -50px;
+}
+
+.hero .welcome-image {
+  width: 400px;
+  left: -71px;
+  top: -172px;
+}
+
+.hero .spongebob-image {
+  width: 100px;
+  bottom: -253px;
+  left: 196px;
+}
+
+.hero .oatsman-image {
+  left: -100px;
+  bottom: -115px;
+  width: 200px;
+}
+
+.hero .lines-image {
+  left: -416px;
+  bottom: -528px;
+  z-index: 11;
+}
+
+.hero .oats-image {
+  bottom: -461px;
+  left: -228px;
+}
+
+
+iframe {
+  border: none;
+  /* Remove default iframe border */
+  border-radius: 10px;
+  /* Adjust the border radius as needed */
+  overflow: hidden;
+  /* Ensure the content stays within the rounded corners */
+  display: block;
+  /* Avoid any inline spacing issues */
+  position: relative;
+  z-index: 4;
+}
+
 .hero .video-container iframe {
-  width: 100%;
+  width: 900px;
   border-radius: 1rem;
 }
 
@@ -133,7 +257,8 @@ input[type="reset"] {
 .hero-title-container {
   display: none;
   position: relative;
-  z-index: 4;
+  z-index: 5;
+  padding: 4rem;
 }
 
 .hero-title__overlay {
@@ -164,6 +289,12 @@ input[type="reset"] {
   --max-width: 50rem;
   width: min(100% - 2rem, var(--max-width));
   margin-left: 15%;
+}
+
+.hero-video {
+  position: relative;
+  width: 900px;
+  z-index: 4;
 }
 
 .gradient-container {
@@ -205,10 +336,412 @@ input[type="reset"] {
   display: none;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1600px) {
+  .hero {
+    padding-left: 4rem;
+  }
+
+}
+
+/* @media screen and (max-width: 1440px) {
   .hero {
     padding-left: 8rem;
   }
+} */
+
+@media screen and (orientation: landscape) and (max-height: 1000px) {
+  .hero {
+    padding-top: 4rem;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+    place-items: center;
+  }
+
+  /* .hero .video-container {
+  } */
+
+  .hero .film-image {
+    height: 334px;
+    top: -141px;
+    right: -222px;
+    z-index: 12;
+  }
+
+  .hero .text-image {
+    height: 244px;
+    bottom: -167px;
+    right: 124px;
+  }
+
+  .hero .twitter-image {
+    height: 226px;
+    bottom: -83px;
+    right: 94px;
+  }
+
+  .hero .eventho-image {
+    right: -231px;
+    top: 203px;
+  }
+
+  .hero .spongebob-image {
+    width: 100px;
+    bottom: -83px;
+    left: 196px;
+  }
+
+  .hero .can-image {
+    top: -148px;
+    z-index: 1;
+    right: 5px;
+  }
+
+  .hero .nature-image {
+    right: -323px;
+    top: 132px;
+  }
+
+  .hero .modern-image {
+    height: 336px;
+    right: -229px;
+    top: 72px;
+    z-index: 12;
+  }
+
+  .hero .lines-image {
+    left: -416px;
+    bottom: -341px;
+    z-index: 11;
+  }
+
+  .hero .oatsman-image {
+    left: -86px;
+    bottom: 24px;
+    width: 161px;
+  }
+
+  .hero .sourmo-image {
+    height: 500px;
+    bottom: -179px;
+    left: -9px;
+  }
+
+  .hero .filmbox-image {
+    height: 1109px;
+    bottom: -571px;
+    right: -645px;
+  }
+
+  .hero .brainwave-image {
+    top: -554px;
+    right: -774px;
+  }
+
+  .hero-title-container {
+    padding-left: 8rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    place-self: flex-start;
+  }
+
+  .hero-video {
+    width: 700px;
+  }
+}
+
+@media screen and (orientation: portrait) and (max-width: 768px) {
+  .hero {
+    width: 100vw;
+    gap: 1rem;
+  }
+
+  .hero .video-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-video {
+    width: 80%;
+  }
+
+  .hero .photo-image {
+    width: 579px;
+    z-index: 0;
+    top: -56px;
+    left: 37px;
+  }
+
+  .hero .film-image {
+    height: 268px;
+    top: -31px;
+    right: -33px;
+    z-index: 12;
+  }
+
+  .hero .sourmo-image {
+    height: 369px;
+    bottom: -99px;
+    left: 52px;
+  }
+
+  .hero .filmbox-image {
+    height: 938px;
+    bottom: -485px;
+    right: -414px;
+  }
+
+  .hero .twitter-image {
+    height: 192px;
+    bottom: -60px;
+    right: 252px;
+  }
+
+  .hero .skeleton-image {
+    height: 108px;
+    top: 146px;
+    left: -7px;
+  }
+
+  .hero .oatsman-image {
+    left: -9px;
+    bottom: 24px;
+    width: 161px;
+  }
+
+  .hero .can-image {
+    top: -16px;
+    z-index: 1;
+    right: 136px;
+    height: 300px;
+  }
+
+  .hero .welcome-image {
+    width: 333px;
+    left: -41px;
+    top: -79px;
+  }
+
+  .hero .brainwave-image {
+    height: 700px;
+    top: -270px;
+    right: -459px;
+  }
+
+  .hero-title-container {
+    padding: 0;
+    width: 100%;
+  }
+
+  .hero-title-container div {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+}
+
+@media screen and (orientation: landscape) and (max-width: 1366px) {
+  .hero-video {
+    width: 700px;
+  }
+
+  .hero {
+    padding-left: 4rem;
+  }
+
+  .hero-title-container {
+    padding: 0;
+  }
+
+  .hero .brainwave-image {
+    top: -500px;
+    right: -792px;
+  }
+
+  .hero .modern-image {
+    height: 336px;
+    right: -183px;
+    top: 72px;
+    z-index: 12;
+  }
+
+  .hero .filmbox-image {
+    height: 1109px;
+    bottom: -624px;
+    right: -536px;
+  }
+
+  .hero .twitter-image {
+    height: 182px;
+    bottom: -86px;
+    right: 133px;
+  }
+
+  .hero .skeleton-image {
+    height: 125px;
+    top: 50px;
+    left: -71px;
+  }
+
+  .hero .nature-image {
+    top: 136px;
+    right: -188px;
+  }
+
+  .hero .oatsman-image {
+    left: -86px;
+    bottom: 24px;
+    width: 165px;
+  }
+
+  .hero .welcome-image {
+    width: 305px;
+    left: -48px;
+    top: -148px;
+  }
+
+  .hero .film-image {
+    height: 300px;
+    top: -138px;
+    right: -50px;
+    z-index: 12;
+  }
+
+  .hero .text-image {
+    height: 300px;
+    bottom: -234px;
+    right: 72px;
+  }
+
+  .hero .spongebob-image {
+    width: 100px;
+    bottom: -109px;
+    left: 196px;
+  }
+
+  .hero .lines-image {
+    left: -413px;
+    bottom: -398px;
+    z-index: 11;
+  }
+
+  .hero .oats-image {
+    bottom: -326px;
+    left: -228px;
+  }
+
+  .hero .sourmo-image {
+    height: 500px;
+    bottom: -185px;
+    left: -9px;
+  }
+}
+
+@media screen and (max-width: 768px) and (max-height: 896px) {
+  .hero video {
+    height: fit-content;
+  }
+
+  .hero .video-container {
+    height: fit-content;
+  }
+
+  .hero img {
+    display: none;
+  }
+  .hero .brainwave-image {
+    height: 535px;
+    top: -148px;
+    right: -401px;
+}
+.hero .film-image {
+  height: 151px;
+  top: 122px;
+  right: -33px;
+  z-index: 12;
+}
+
+.hero .skeleton-image {
+  height: 72px;
+  top: 200px;
+  left: -7px;
+}
+
+.hero .oatsman-image {
+  left: -9px;
+  bottom: 146px;
+  width: 95px;
+}
+
+.hero .sourmo-image {
+  height: 184px;
+  bottom: 88px;
+  left: 31px;
+}
+
+.hero .can-image {
+  top: 128px;
+  z-index: 1;
+  right: 92px;
+  height: 175px;
+}
+
+.hero .text-image {
+  height: 131px;
+  bottom: 39px;
+  right: 124px;
+}
+
+.hero .modern-image {
+  height: 227px;
+  right: -57px;
+  top: 165px;
+  z-index: 12;
+}
+
+.hero .spongebob-image {
+  width: 55px;
+  bottom: 97px;
+  left: 98px;
+}
+
+.hero .twitter-image {
+  height: 114px;
+  bottom: 93px;
+  right: 135px;
+}
+
+.hero .lines-image {
+  left: -140px;
+  bottom: -69px;
+  height: 500px;
+  z-index: 11;
+}
+
+.hero .photo-image {
+  width: 313px;
+  z-index: 0;
+  top: 101px;
+  left: 23px;
+}
+
+.hero .filmbox-image {
+  height: 602px;
+  bottom: -206px;
+  right: -265px;
+}
+
+.hero .welcome-image {
+  width: 191px;
+  left: -17px;
+  top: 105px;
+}
 }
 
 /* mobile viewport */

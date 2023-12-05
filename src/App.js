@@ -141,7 +141,7 @@ function App() {
         } else {
             gradientCanvas.style.display = "block";
             header.style.display = "grid";
-            heroVideo.style.display = "block";
+            heroVideo.style.display = "flex";
             
             if (document.querySelector('.countdown-timer')) return;
             const div = document.createElement("div");
