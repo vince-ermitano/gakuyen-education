@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header_logged_out.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -7,6 +7,7 @@ import { ReactComponent as Logo } from '../logo.svg';
 import Hamburger from "../Hamburger/Hamburger_v2";
 // import HamburgerMenu from "../Hamburger/HamburgerMenu";
 import { useSelector, useDispatch } from "react-redux";
+import { checkIfPassedLaunchDate } from "../../helpers";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import {
     toggleLoginSidebar,
@@ -15,13 +16,15 @@ import {
 } from "../../features/SidebarSlice";
 import { BiCartAlt } from "react-icons/bi";
 import { getAuth, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 // import { ToastContainer, toast } from "react-toastify";
 import { toast } from "sonner";
-import { checkHeaderColor, toggleHamburger } from "../../helpers";
+import { checkHeaderColor, toggleHamburger, checkIfAuthorized } from "../../helpers";
 
 const Header = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
+    const [authorized, setAuthorized] = useState(checkIfPassedLaunchDate());
     const navigate = useNavigate();
     const location = useLocation();
     const currentPath = location.pathname;
@@ -50,19 +53,13 @@ const Header = () => {
 
     };
 
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (user) => {
-    //         checkHeaderColor(currentPath);
-    //     });
-
-    //     return () => {
-    //         unsubscribe();
-    //     }
-    // }, [auth, currentPath]);
-
-    // const hideHamburger = () => {
-    //     document.getElementById("toggle1").checked = false;
-    // }
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user && checkIfAuthorized(user.email)) {
+                setAuthorized(true);
+            }
+        });
+    })
 
     const headerLoggedOut = (
         <div className="header" >
@@ -152,7 +149,10 @@ const Header = () => {
             </div>
             <Hamburger />
             <div className="user-directory">
-                <span className="header-text" onClick={() => navigate('/dashboard/main')}>
+                <span className="header-text" onClick={() => {
+                    if (!authorized) return;
+                    navigate('/dashboard/main');
+                    }}>
                     {/* <NavLink to="/dashboard/main">DASHBOARD</NavLink> */}
                     DASHBOARD
                 </span>

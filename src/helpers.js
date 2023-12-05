@@ -6,8 +6,8 @@ import CryptoJS from "crypto-js";
 
 const AES = CryptoJS.AES;
 const LAUNCH_DATE = new Date("2023-12-06T03:00:00Z");
-// const MAIN_LAUNCH_DATE = new Date("2023-12-08T03:00:00Z");
-const MAIN_LAUNCH_DATE = new Date("2023-12-03T03:00:00Z");
+const MAIN_LAUNCH_DATE = new Date("2023-12-08T03:00:00Z");
+// const MAIN_LAUNCH_DATE = new Date("2023-12-03T03:00:00Z");
 
 
 export const disableScroll = () => {
@@ -242,7 +242,6 @@ export const openNewWindow = (path) => {
 const authorized = [
     "kailange07@gmail.com",
     "peace.k.gates@gmail.com",
-    "vinceermitano@yahoo.com",
     "gakuyen@yahoo.com",
     "vincexermitano@gmail.com",
     "christianly23@gmail.com",

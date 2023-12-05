@@ -17,7 +17,6 @@ import { BiLogoInstagramAlt, BiLogoYoutube, BiLogoTiktok } from "react-icons/bi"
 const HamburgerMenu = () => {
 
     const loggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
-    console.log(checkIfPassedMainLaunchDate());
     const [linksEnabled, setLinksEnabled] = useState(checkIfPassedMainLaunchDate());
     const location = useLocation();
     const pathname = location.pathname;
