@@ -87,7 +87,10 @@
 #module-description .content p {
     font-size: 1.2rem;
     line-height: 1.5;
+}
 
+#module-description .content p span {
+    font-weight: bold;
 }
 
 #module-description .image-container {

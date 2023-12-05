@@ -22,6 +22,7 @@ const CourseOverview = () => {
         const module = target.dataset.module;
         dispatch(setCurrentCourseOverviewModule(module));
     };
+
     return (
         <section id="course-overview" className="course-overview">
             <div className="content-wrapper" data-aos="fade-up">
