@@ -138,6 +138,7 @@ function App() {
         if (currentPath !== "/" || !authenticated) {
             gradientCanvas.style.display = "none";
             header.style.display = "none";
+            document.querySelector(".hero-video").pause();
         } else {
             gradientCanvas.style.display = "block";
             header.style.display = "grid";
