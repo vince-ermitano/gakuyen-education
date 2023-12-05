@@ -35,6 +35,17 @@
     width: fit-content;
 }
 
+#hamburger-menu a.disabled {
+    color: #999;
+    pointer-events: none;
+    cursor: default;
+}
+
+#hamburger-menu a.disabled span {
+    font-style: italic;
+    font-size: 0.85rem;
+} 
+
 #hamburger-menu hr {
     width: 100%;
     justify-self: left;

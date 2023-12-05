@@ -51,20 +51,14 @@ const HamburgerMenu = () => {
                     <Link className="link1" to="/store?filter=preset" onClick={toggleHamburger}>
                         Presets
                     </Link>
-                    <Link className="link1" to="/store?filter=masterclass" onClick={toggleHamburger}>
-                        Masterclass
+                    <Link className="link1" to="/store" onClick={toggleHamburger}>
+                        LUTs
                     </Link>
-                    <Link className="link1" to="/" onClick={toggleHamburger}>
+                    <Link className="link1" to="/store" onClick={toggleHamburger}>
                         Editing
                     </Link>
-                    <Link className="link1" to="/" onClick={toggleHamburger}>
-                        Workflow
-                    </Link>
-                    <Link className="link1" to="/" onClick={toggleHamburger}>
-                        Connection
-                    </Link>
-                    <Link className="link1" to="/" onClick={toggleHamburger}>
-                        Gaku's Favorites
+                    <Link className="link1 disabled" to="/" onClick={toggleHamburger}>
+                        Gaku's Favorites <span>soon...</span>
                     </Link>
                 </div>
             </div>
@@ -75,8 +69,8 @@ const HamburgerMenu = () => {
                     <Link className="link1" to="/" onClick={() => toggleHamburger('/')}>
                         Home
                     </Link>
-                    <Link className="link1" to="/" onClick={toggleHamburger}>
-                        Free Resources
+                    <Link className="link1 disabled" to="/" onClick={toggleHamburger}>
+                        Free Resources <span>soon...</span>
                     </Link>
                     <Link className="link1" to="/about" onClick={toggleHamburger}>
                         About Gaku
