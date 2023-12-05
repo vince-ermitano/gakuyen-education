@@ -7,7 +7,7 @@ import { ReactComponent as Logo } from '../logo.svg';
 import Hamburger from "../Hamburger/Hamburger_v2";
 // import HamburgerMenu from "../Hamburger/HamburgerMenu";
 import { useSelector, useDispatch } from "react-redux";
-import { checkIfPassedLaunchDate } from "../../helpers";
+import { checkIfPassedMainLaunchDate } from "../../helpers";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import {
     toggleLoginSidebar,

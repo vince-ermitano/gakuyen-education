@@ -43,7 +43,7 @@ import { checkHeaderColor, checkIfAuthorized } from "./helpers";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
 import { Toaster, toast } from "sonner";
-import { checkIfPassedLaunchDate } from "./helpers";
+import { checkIfPassedLaunchDate, checkIfPassedMainLaunchDate } from "./helpers";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 
@@ -65,7 +65,7 @@ function App() {
         false || auth.currentUser || checkIfPassedLaunchDate()
     );
 
-    const [hasPermissions, setHasPermissions] = useState(checkIfPassedLaunchDate());
+    const [hasPermissions, setHasPermissions] = useState(checkIfPassedMainLaunchDate());
 
     useEffect(() => {
         AOS.init({
