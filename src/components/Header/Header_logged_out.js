@@ -94,7 +94,7 @@ const Header = () => {
                     LOGIN
                 </span>
                 <span
-                    className="header-text"
+                    className="header-text header-get-started-text"
                     onClick={() => dispatch(toggleCreateSidebar())}
                 >
                     GET STARTED
@@ -157,7 +157,7 @@ const Header = () => {
                     DASHBOARD
                 </span>
                 <span
-                    className="header-text"
+                    className="header-text header-logout-text"
                     onClick={() => handleLogout()}
                 >
                     LOGOUT
