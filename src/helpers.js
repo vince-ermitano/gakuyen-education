@@ -6,6 +6,8 @@ import CryptoJS from "crypto-js";
 
 const AES = CryptoJS.AES;
 const LAUNCH_DATE = new Date("2023-12-06T03:00:00Z");
+// const MAIN_LAUNCH_DATE = new Date("2023-12-08T03:00:00Z");
+const MAIN_LAUNCH_DATE = new Date("2023-12-03T03:00:00Z");
 
 
 export const disableScroll = () => {
@@ -23,6 +25,16 @@ export const TOAST_POSITION = {
     closeOnClick: true,
     pauseOnHover: true,
     progress: undefined,
+};
+
+export const checkIfPassedMainLaunchDate = () => {
+    const currentTime = new Date().getTime();
+    return currentTime > MAIN_LAUNCH_DATE;
+}
+
+export const checkIfPassedLaunchDate = () => {
+    const currentTime = new Date().getTime();
+    return currentTime > LAUNCH_DATE;
 };
 
 export function getTimeUntilSpecificDate() {
@@ -145,8 +157,6 @@ export const toggleHamburger = (path) => {
     const hamburgerMenu = document.getElementById("hamburger-menu");
     hamburger.classList.toggle("is-active");
 
-    console.log(path);
-
     if (hamburger.classList.contains("is-active")) {
         hamburgerMenu.classList.add("is-active");
         changeHeaderTextAndLogoToColor("black");
@@ -228,3 +238,21 @@ export const openNewWindow = (path) => {
         newTab.focus();
     }
 }
+
+const authorized = [
+    "kailange07@gmail.com",
+    "peace.k.gates@gmail.com",
+    "vinceermitano@yahoo.com",
+    "gakuyen@yahoo.com",
+    "vincexermitano@gmail.com",
+    "christianly23@gmail.com",
+    "Monicakrystal@icloud.com",
+    "hello@josephsb.com",
+    "vermitan@ucsd.edu",
+    "hello@gmail.com",
+    "michellencreates@gmail.com",
+];
+
+export const checkIfAuthorized = (email) => {
+    return authorized.includes(email);
+};

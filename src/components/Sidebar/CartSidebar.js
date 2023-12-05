@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Sidebar.css";
 // import { products } from "../../products/products";
@@ -21,7 +21,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 const CartSidebar = () => {
-    const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+    const stripePromise = useState(loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY))[0];
 
     const dispatch = useDispatch();
 

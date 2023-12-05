@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 import Header from "./components/Header/Header_logged_out";
 import Shop from "./components/Shop/Shop";
 import store from "./store/store";
@@ -39,10 +39,11 @@ import {
 } from "./features/ShopSlice";
 import { setUserInfo } from "./features/UserSlice";
 import { setTheOdyssey, setIsLoading } from "./features/CoursesSlice";
-import { checkHeaderColor } from "./helpers";
+import { checkHeaderColor, checkIfAuthorized } from "./helpers";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
 import { Toaster, toast } from "sonner";
+import { checkIfPassedLaunchDate } from "./helpers";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 
@@ -60,13 +61,17 @@ function App() {
     const shouldHideComponents = currentPath.includes(dashboardPath);
 
     const dispatch = useDispatch();
-    const [authenticated, setAuthenticated] = useState(false);
+    const [authenticated, setAuthenticated] = useState(
+        false || auth.currentUser || checkIfPassedLaunchDate()
+    );
+
+    const [hasPermissions, setHasPermissions] = useState(checkIfPassedLaunchDate());
 
     useEffect(() => {
         AOS.init({
             duration: 1000,
             easing: "ease-out",
-            anchorPlacement: 'bottom-bottom',
+            anchorPlacement: "bottom-bottom",
         });
     }, []);
 
@@ -74,17 +79,16 @@ function App() {
     const enableSessionCheck = false;
 
     // const checkHeaderColor = useCallback(() => {
-        
+
     //     if (currentPath.includes(dashboardPath)) {
     //         return;
     //     }
-        
+
     //     const userDirectoryLinks = document.querySelectorAll(
     //         ".user-directory span"
     //     );
     //     const logo = document.querySelector(".header .logo img");
     //     const cartSvg = document.querySelector(".header .user-directory svg");
-
 
     //     if (currentPath !== "/") {
     //         userDirectoryLinks.forEach((link) => {
@@ -105,23 +109,23 @@ function App() {
     // }, [currentPath]);
     useEffect(() => {
         fetch(`${process.env.REACT_APP_SERVER_URL}/the-odyssey`)
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return res.text().then((text) => {
-                throw new Error(text);
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return res.text().then((text) => {
+                    throw new Error(text);
+                });
+            })
+            .then((data) => {
+                console.log(data);
+                dispatch(setTheOdyssey(data));
+                dispatch(setIsLoading(false));
+            })
+            .catch((err) => {
+                console.log(err);
             });
-        })
-        .then((data) => {
-            console.log(data);
-            dispatch(setTheOdyssey(data));
-            dispatch(setIsLoading(false));
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }, [dispatch])
+    }, [dispatch]);
 
     useEffect(() => {
         // TODO: might need to move this into a useEffect hook
@@ -137,7 +141,7 @@ function App() {
             gradientCanvas.style.display = "block";
             header.style.display = "grid";
             heroVideo.style.display = "block";
-            const div = document.createElement("div")
+            const div = document.createElement("div");
             const root = createRoot(div);
             root.render(<CountdownTimer />);
         }
@@ -170,7 +174,7 @@ function App() {
         //     cartSvg.style.color = "white";
         // }
 
-        console.log('route changed');
+        console.log("route changed");
 
         checkHeaderColor(currentPath);
     }, [authenticated, currentPath]);
@@ -270,6 +274,12 @@ function App() {
             //         }
             //     }
             // }
+            if (user) {
+                setAuthenticated(true);
+                if (checkIfAuthorized(user.email)) {
+                    setHasPermissions(true);
+                }
+            }
             checkHeaderColor(currentPath);
         });
 
@@ -380,52 +390,75 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<Homepage />}></Route>
-                <Route path="/success" element={<Homepage />}></Route>
-                <Route
-                    path="/store/presets/:name"
-                    element={<PresetDescPage />}
-                ></Route>
-                <Route
-                    path="store/luts/:name"
-                    element={<PresetDescPage />}
-                ></Route>
-                <Route
-                    path="store/transitions/:name"
-                    element={<PresetDescPage />}
-                ></Route>
-                <Route
-                    path="/store/masterclass/:masterclassName"
-                    element={<MasterclassDesc />}
-                ></Route>
-                {/* <Route path="/store/:filter" element={<Shop />}></Route> */}
-                <Route path="/store" element={<Shop />}></Route>
-                <Route path="/preset-desc" element={<PresetDescPage />}></Route>
-                <Route
-                    path="/the-odyssey-creative-masterclass"
-                    element={<MasterclassDesc />}
-                ></Route>
-                <Route path="/dashboard" element={<Dashboard />}>
-                    <Route path="main" element={<DashboardHome />}></Route>
-                    <Route
-                        path="modules/:moduleId/videos"
-                        element={<VideoView />}
-                    ></Route>
-                    <Route path="modules" element={<ModuleView />}></Route>
-                    <Route path="presets" element={<PresetLutView />}></Route>
-                    <Route path="luts" element={<PresetLutView />}></Route>
-                    <Route
-                        path="transitions"
-                        element={<PresetLutView />}
-                    ></Route>
-                    <Route path="settings" element={<Settings />}></Route>
-                </Route>
-                <Route path="/contact" element={<Contact />}></Route>
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/receipt" element={<Receipt />}></Route>
-                <Route
-                    path="/digital-downloads"
-                    element={<DigitalDownloads />}
-                ></Route>
+
+                {hasPermissions && (
+                    <>
+                        <Route path="/success" element={<Homepage />}></Route>
+                        <Route
+                            path="/store/presets/:name"
+                            element={<PresetDescPage />}
+                        ></Route>
+                        <Route
+                            path="store/luts/:name"
+                            element={<PresetDescPage />}
+                        ></Route>
+                        <Route
+                            path="store/transitions/:name"
+                            element={<PresetDescPage />}
+                        ></Route>
+                        <Route
+                            path="/store/masterclass/:masterclassName"
+                            element={<MasterclassDesc />}
+                        ></Route>
+                        {/* <Route path="/store/:filter" element={<Shop />}></Route> */}
+                        <Route path="/store" element={<Shop />}></Route>
+                        <Route
+                            path="/preset-desc"
+                            element={<PresetDescPage />}
+                        ></Route>
+                        <Route
+                            path="/the-odyssey-creative-masterclass"
+                            element={<MasterclassDesc />}
+                        ></Route>
+                        <Route path="/dashboard" element={<Dashboard />}>
+                            <Route
+                                path="main"
+                                element={<DashboardHome />}
+                            ></Route>
+                            <Route
+                                path="modules/:moduleId/videos"
+                                element={<VideoView />}
+                            ></Route>
+                            <Route
+                                path="modules"
+                                element={<ModuleView />}
+                            ></Route>
+                            <Route
+                                path="presets"
+                                element={<PresetLutView />}
+                            ></Route>
+                            <Route
+                                path="luts"
+                                element={<PresetLutView />}
+                            ></Route>
+                            <Route
+                                path="transitions"
+                                element={<PresetLutView />}
+                            ></Route>
+                            <Route
+                                path="settings"
+                                element={<Settings />}
+                            ></Route>
+                        </Route>
+                        <Route path="/contact" element={<Contact />}></Route>
+                        <Route path="/about" element={<About />}></Route>
+                        <Route path="/receipt" element={<Receipt />}></Route>
+                        <Route
+                            path="/digital-downloads"
+                            element={<DigitalDownloads />}
+                        ></Route>
+                    </>
+                )}
             </Routes>
 
             <Toaster position="top-center" richColors />
