@@ -149,7 +149,7 @@ input[type="reset"] {
 
 .hero .sourmo-image {
   height: 500px;
-  bottom: -331px;
+  bottom: -260px;
   left: -9px;
 }
 
@@ -167,8 +167,8 @@ input[type="reset"] {
 
 .hero .twitter-image {
   height: 250px;
-  bottom: -245px;
-  right: 299px;
+  bottom: -179px;
+  right: 250px;
 }
 
 .hero .eventho-image {
@@ -178,8 +178,8 @@ input[type="reset"] {
 
 .hero .text-image {
   height: 300px;
-  bottom: -374px;
-  right: 266px;
+  bottom: -299px;
+  right: 229px;
 }
 
 .hero .can-image {
@@ -203,8 +203,13 @@ input[type="reset"] {
 
 .hero .spongebob-image {
   width: 100px;
-  bottom: -253px;
+  bottom: -172px;
   left: 196px;
+}
+
+.hero .nature-image {
+  right: -201px;
+  top: 140px;
 }
 
 .hero .oatsman-image {
