@@ -653,17 +653,30 @@ iframe {
     height: fit-content;
   }
 
-  .hero .video-container {
-    height: fit-content;
-  }
+  .hero .can-image {
+    top: -52px;
+    z-index: 1;
+    right: 92px;
+    height: 175px;
+}
 
-  .hero img {
+  .hero .photo-image {
     display: none;
   }
+
+  /* .hero img {
+    display: none;
+  } */
   .hero .brainwave-image {
-    height: 535px;
-    top: -148px;
-    right: -401px;
+    height: 449px;
+    top: -274px;
+    right: -325px;
+}
+
+.hero .filmbox-image {
+  height: 562px;
+  bottom: -351px;
+  right: -285px;
 }
 .hero .film-image {
   height: 151px;
@@ -674,27 +687,37 @@ iframe {
 
 .hero .skeleton-image {
   height: 72px;
-  top: 200px;
+  top: 35px;
   left: -7px;
+}
+
+.hero .nature-image {
+  display: none;
+}
+
+.hero .text-image {
+  display: none;
+}
+
+.hero .eventho-image {
+  display: none;
+}
+
+.hero .film-image {
+  height: 151px;
+  top: -49px;
+  right: -33px;
+  z-index: 12;
 }
 
 .hero .oatsman-image {
   left: -9px;
-  bottom: 146px;
+  bottom: -23px;
   width: 95px;
 }
 
 .hero .sourmo-image {
-  height: 184px;
-  bottom: 88px;
-  left: 31px;
-}
-
-.hero .can-image {
-  top: 128px;
-  z-index: 1;
-  right: 92px;
-  height: 175px;
+  display: none;
 }
 
 .hero .text-image {
@@ -705,18 +728,20 @@ iframe {
 
 .hero .modern-image {
   height: 227px;
-  right: -57px;
-  top: 165px;
+  right: -87px;
+  top: -2px;
   z-index: 12;
 }
 
 .hero .spongebob-image {
+  display: none;
   width: 55px;
   bottom: 97px;
   left: 98px;
 }
 
 .hero .twitter-image {
+  display: none;
   height: 114px;
   bottom: 93px;
   right: 135px;
@@ -724,7 +749,7 @@ iframe {
 
 .hero .lines-image {
   left: -140px;
-  bottom: -69px;
+  bottom: -197px;
   height: 500px;
   z-index: 11;
 }
@@ -745,12 +770,20 @@ iframe {
 .hero .welcome-image {
   width: 191px;
   left: -17px;
-  top: 105px;
+  top: -84px;
 }
 }
 
 /* mobile viewport */
 @media screen and (max-width: 768px) {
+
+  .hero .video-container {
+    height: fit-content;
+  }
+
+  .hero .hero-video {
+    height: 60%;
+  }
 
   #root>* {
     padding: 0;

@@ -4,6 +4,14 @@
 
 }
 
+#target-audience h2 {
+    margin-bottom: 0;
+}
+
+#target-audience .select-all {
+    margin-bottom: 2rem;
+}
+
 #target-audience .content-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;

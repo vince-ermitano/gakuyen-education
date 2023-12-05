@@ -89,6 +89,7 @@ const TargetAudience = () => {
                 <div className="left-side">
                     <div className="left-side" ref={leftSideRef}>
                         <h2>This Course Is FOR</h2>
+                        <p className="select-all">(Select ALL that Apply)</p>
                         <div className="checklist-container">
                             <div className="checklist">
                                 <Checkbox onClickHandler={onClickHandler} />
