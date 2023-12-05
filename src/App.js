@@ -142,6 +142,8 @@ function App() {
             gradientCanvas.style.display = "block";
             header.style.display = "grid";
             heroVideo.style.display = "block";
+            
+            if (document.querySelector('.countdown-timer')) return;
             const div = document.createElement("div");
             const root = createRoot(div);
             root.render(<CountdownTimer />);
