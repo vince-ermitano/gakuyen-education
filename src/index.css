@@ -129,8 +129,8 @@ input[type="reset"] {
 }
 
 .hero .film-image {
-  height: 334px;
-  top: -141px;
+  height: 297px;
+  top: -108px;
   right: -37px;
   z-index: 12;
 }
@@ -155,7 +155,7 @@ input[type="reset"] {
 
 .hero .brainwave-image {
   top: -554px;
-  right: -801px;
+  right: -860px;
 }
 
 .hero .modern-image {
@@ -183,9 +183,10 @@ input[type="reset"] {
 }
 
 .hero .can-image {
-  top: -148px;
+  top: -91px;
   z-index: 1;
-  right: 100px;
+  right: 179px;
+  height: 372px;
 }
 
 .hero .photo-image {
@@ -499,6 +500,7 @@ iframe {
     height: 938px;
     bottom: -485px;
     right: -414px;
+    display: none;
   }
 
   .hero .twitter-image {
