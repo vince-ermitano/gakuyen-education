@@ -208,8 +208,6 @@ app.use(
     })
 );
 
-console.log(process.env.CLIENT_URL);
-
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
 console.log(endpointSecret);
@@ -278,7 +276,7 @@ app.post("/webhook", express.raw({ type: "application/json" }), async (req, res)
             quantity: 1,
         }));
 
-        const linkToDownloads = `${process.env.CLIENT_URL}/#/digital-downloads?token=${metadata.downloadToken}`;
+        const linkToDownloads = `${process.env.LIVE_URL}/#/digital-downloads?token=${metadata.downloadToken}`;
 
         const dynamic_data = {
             subject: "Your dynamic subject",
@@ -587,8 +585,8 @@ app.post("/create-checkout-session", async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             mode: "payment",
             line_items: line_items,
-            success_url: `${process.env.CLIENT_URL}/#/receipt?download_token=${downloadToken}&session_id=${SESSION_ID}&has_downloads=${hasDownloads}`,
-            cancel_url: `${process.env.CLIENT_URL}`,
+            success_url: `${process.env.LIVE_URL}/#/receipt?download_token=${downloadToken}&session_id=${SESSION_ID}&has_downloads=${hasDownloads}`,
+            cancel_url: `${process.env.LIVE_URL}`,
             metadata: {
                 session_id: SESSION_ID,
                 uid: req.uid,
