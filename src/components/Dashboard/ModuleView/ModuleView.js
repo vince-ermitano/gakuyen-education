@@ -26,6 +26,7 @@ const ModuleView = () => {
         }
     }, [theOdyssey]);
 
+
     let userOwnedItems;
 
     try {
@@ -134,11 +135,11 @@ const ModuleView = () => {
                 <div className="video-player-wrapper">
                     <ReactPlayer
                         className="react-player"
-                        url="https://vimeo.com/891428690?share=copy"
+                        url={"https://vimeo.com/891428690?share=copy"}
                         width="100%"
                         height="100%"
                         controls
-                        playing={false}
+                        playing={true}
                     />
                 </div>
                 <h1>Welcome to The Odyssey</h1>

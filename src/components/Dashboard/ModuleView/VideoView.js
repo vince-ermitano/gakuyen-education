@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import { setTheOdyssey } from "../../../features/CoursesSlice";
@@ -11,21 +11,22 @@ import { BiArrowBack } from "react-icons/bi";
 import { videoDescriptions } from "../../../descriptions/descriptions";
 import { AES } from "crypto-js";
 import CryptoJS from "crypto-js";
+import _debounce from "lodash.debounce";
 
 
 const VideoView = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const playerRef = React.createRef();
+    const playerRef = useRef(null);
     const { moduleId } = useParams();
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
     let userOwnedItems;
     const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
     const currentVideo = useSelector((state) => state.courses.currentVideo);
-    const videoId = currentVideo.videoId;
+    const videoId = currentVideo?.videoId;
     const [ isRehydrated, setIsRehydrated ] = useState(false);
-    const [ playing, setPlaying ] = useState(true);
+    // const [ playing, setPlaying ] = useState(true);
     // let videoIndex = currentVideo === null ? 0 : currentVideo.videoId;
 
     // const videoDescription = videoDescriptions[moduleId][videoIndex];
@@ -38,6 +39,10 @@ const VideoView = () => {
         ).toString(CryptoJS.enc.Utf8)
     ) : {};
 
+    const [url, setUrl] = useState(currentVideo?.url);
+    const delayedSetUrl = _debounce(setUrl, 1000);
+    const [playing, setPlaying] = useState(true);
+
     // useEffect(() => {
     //     // click on first video
     //     const firstVideo = document.querySelector(".module-preview.activated");
@@ -45,12 +50,19 @@ const VideoView = () => {
     //     firstVideo.click();
     // }, []);
 
-    const [url, setUrl] = useState("initial-video-url");
+    // useEffect(() => {
+    //     if (!currentVideo) return;
+    //     playerRef.current = new Vimeo("vimeo-player", {
+    //         url: currentVideo?.url,
+    //     })
+    // }, [currentVideo]);
 
-    const handleReady = () => {
-        // Player is ready, set the new URL
-        setUrl(currentVideo?.url);
-    };
+    useEffect(() => {
+        if (!currentVideo) return;
+        delayedSetUrl(currentVideo.url);
+
+    }, [currentVideo, delayedSetUrl]);
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -149,6 +161,8 @@ const VideoView = () => {
                     Back to Videos
                 </button>
                 <div className="video-player-wrapper">
+
+                    { currentVideo && (
                     <ReactPlayer
                         ref={playerRef}
                         className="react-player"
@@ -157,8 +171,9 @@ const VideoView = () => {
                         height="100%"
                         controls
                         playing={playing}
-                        onReady={handleReady}
                     />
+                    )}
+                    <div id="vimeo-player"></div>
                 </div>
                 <h1>{currentVideo?.title}</h1>
                 {videoDescriptions[moduleId][videoId]?.map((paragraph, index) => {
