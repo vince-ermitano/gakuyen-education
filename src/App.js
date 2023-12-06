@@ -43,7 +43,7 @@ import { checkHeaderColor, checkIfAuthorized } from "./helpers";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
 import { Toaster, toast } from "sonner";
-import { checkIfPassedLaunchDate, updateBackgroundColorBasedOnWindowSize } from "./helpers";
+import { updateBackgroundColorBasedOnWindowSize } from "./helpers";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 
