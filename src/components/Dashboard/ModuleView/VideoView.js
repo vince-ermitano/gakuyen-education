@@ -165,6 +165,7 @@ const VideoView = () => {
                     { currentVideo && (
                     <ReactPlayer
                         ref={playerRef}
+                        key={url}
                         className="react-player"
                         url={url}
                         width="100%"
