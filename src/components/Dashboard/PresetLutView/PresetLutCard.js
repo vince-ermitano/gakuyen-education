@@ -38,6 +38,11 @@ const PresetLutCard = (props) => {
         props.setCurrentItem(props.item);
     };
 
+    const handleGoToStore = () => {
+        if (!authorized) return;
+        navigate("/store");
+    }
+
     return (
         <div className='preset-lut-card' onClick={openDetailsSidebar}>
             <div className="preset-lut-card-image">
@@ -47,7 +52,8 @@ const PresetLutCard = (props) => {
                 />
             </div>
             <p>{props.item.name}</p>
-            {props.isOwned === "true" ? <BsDownload onClick={() => props.downloadFile(props.downloadUrl)}/> : <button onClick={() => navigate("/store")}>Check it out</button>}
+            {props.isOwned === "true" ? <BsDownload onClick={() => props.downloadFile(props.downloadUrl)}/> : <button onClick={handleGoToStore}>Check it out</button>}
+                
         </div>
     );
 };
