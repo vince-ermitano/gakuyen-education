@@ -7,17 +7,16 @@ import ModulePreview from "./ModulePreview";
 import { toast } from "sonner";
 import CryptoJS from "crypto-js";
 
-
 const ModuleView = () => {
-
     // const dispatch = useDispatch();
-    document.title = 'The Odyssey Dashboard | Modules'
+    document.title = "The Odyssey Dashboard | Modules";
 
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
-    const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
-    const [ isRehydrated, setIsRehydrated ] = useState(false);
+    const isPurchasedItemsLoaded = useSelector(
+        (state) => state.user.isPurchasedItemsLoaded
+    );
+    const [isRehydrated, setIsRehydrated] = useState(false);
     const AES = CryptoJS.AES;
-
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -26,7 +25,6 @@ const ModuleView = () => {
             setIsRehydrated(true);
         }
     }, [theOdyssey]);
-        
 
     let userOwnedItems;
 
@@ -41,9 +39,11 @@ const ModuleView = () => {
         } else {
             userOwnedItems = {};
         }
-    } catch(err) {
+    } catch (err) {
         console.log(err);
-        toast.error("Error fetching your owned items. Attempting to refetch...");
+        toast.error(
+            "Error fetching your owned items. Attempting to refetch..."
+        );
 
         setTimeout(() => {
             window.location.href = "/dashboard";
@@ -70,7 +70,6 @@ const ModuleView = () => {
     //     });
     // }
 
-
     return (
         <div className="module-view">
             <div className="module-view-left-side">
@@ -91,57 +90,67 @@ const ModuleView = () => {
                     </div>
                 </div>
                 <div className="modules-container">
-                    { (!isRehydrated || !isPurchasedItemsLoaded) && <p>Loading...</p> }
-                    { Object.keys(theOdyssey).length !== 0 && Object.keys(theOdyssey).map((moduleId) => {
-                        if ('MC-01' in userOwnedItems || moduleId === 'M-05') {
-                            return (
-                                <ModulePreview
-                                    key={moduleId}
-                                    id={moduleId}
-                                    title={theOdyssey[moduleId].title}
-                                    description={theOdyssey[moduleId].description}
-                                    thumbnail={theOdyssey[moduleId].image}
-                                    type='module'
-                                    activated={true}
-                                />
-                            );
-                        } else {
-                            return (
-                                <ModulePreview
-                                    key={moduleId}
-                                    id={moduleId}
-                                    title={theOdyssey[moduleId].title}
-                                    description={theOdyssey[moduleId].description}
-                                    thumbnail={theOdyssey[moduleId].image}
-                                    type='module'
-                                    activated={false}
-                                />
-                            )
-                        }
-                    })}
+                    {(!isRehydrated || !isPurchasedItemsLoaded) && (
+                        <p>Loading...</p>
+                    )}
+                    {Object.keys(theOdyssey).length !== 0 &&
+                        Object.keys(theOdyssey).map((moduleId) => {
+                            if (
+                                "MC-01" in userOwnedItems ||
+                                moduleId === "M-05"
+                            ) {
+                                return (
+                                    <ModulePreview
+                                        key={moduleId}
+                                        id={moduleId}
+                                        title={theOdyssey[moduleId].title}
+                                        description={
+                                            theOdyssey[moduleId].description
+                                        }
+                                        thumbnail={theOdyssey[moduleId].image}
+                                        type="module"
+                                        activated={true}
+                                    />
+                                );
+                            } else {
+                                return (
+                                    <ModulePreview
+                                        key={moduleId}
+                                        id={moduleId}
+                                        title={theOdyssey[moduleId].title}
+                                        description={
+                                            theOdyssey[moduleId].description
+                                        }
+                                        thumbnail={theOdyssey[moduleId].image}
+                                        type="module"
+                                        activated={false}
+                                    />
+                                );
+                            }
+                        })}
                 </div>
             </div>
             <div className="module-content desktop">
                 <div className="video-player-wrapper">
                     <ReactPlayer
                         className="react-player"
-                        url="https://www.youtube.com/watch?v=fyNns5amxRk"
+                        url="https://vimeo.com/891428690?share=copy"
                         width="100%"
                         height="100%"
                         controls
                         playing={false}
                     />
                 </div>
-                <h1>Course Overview</h1>
+                <h1>Welcome to The Odyssey</h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    We’re excited to have you here! Each module on the left side
+                    of your screen is broken into sub-sections for easy
+                    navigation. When I mention a specific file or link - it will
+                    be located beneath the description of each applicable video.
+                    We designed the course to be viewed in sequential order -
+                    but there are no rules! Feel free to skip around and find
+                    the information that might be most applicable to your
+                    situation.
                 </p>
             </div>
         </div>

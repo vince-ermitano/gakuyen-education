@@ -23,7 +23,7 @@ const VideoView = () => {
     const [ playing, setPlaying ] = useState(true);
     const videoIndex = currentVideo === null ? 0 : currentVideo.videoId;
     const videoDescription = videoDescriptions[moduleId][videoIndex];
-    const hasFiles = location.pathname.includes('videos') && currentVideo;
+    let hasFiles = location.pathname.includes('videos') && currentVideo;
     hasFiles = hasFiles && isRehydrated && theOdyssey[moduleId].videos[currentVideo.videoId].files.length > 0
 
     useEffect(() => {
