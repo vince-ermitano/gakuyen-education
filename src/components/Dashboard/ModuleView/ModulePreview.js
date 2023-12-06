@@ -18,9 +18,9 @@ const ModulePreview = (props) => {
 
     let classForPreview;
 
-    if (props.type === 'module' && !props.activated) {
+    if (!props.activated) {
         classForPreview = 'module-preview disabled';
-    } else if (props.type === 'module' && props.activated) {
+    } else if (props.activated) {
         classForPreview = 'module-preview activated';
     } else {
         classForPreview = 'module-preview';
@@ -70,7 +70,7 @@ const ModulePreview = (props) => {
         }
     };
     return (
-        <div className={classForPreview} onClick={(e) => handleClick(e)}>
+        <div className={classForPreview} onClick={(e) => handleClick(e)} data-key={props.id}>
             <div className="purchase-note">
                 <HiLockClosed className="lock-closed" />
                 <HiLockOpen className="lock-open" />

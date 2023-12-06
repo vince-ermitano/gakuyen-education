@@ -22,7 +22,6 @@ import { checkHeaderColor, toggleHamburger } from "../../helpers";
 const Header = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
-    const authorized = useSelector((state) => state.user.authorized);
     const navigate = useNavigate();
     const location = useLocation();
     const currentPath = location.pathname;
@@ -140,7 +139,6 @@ const Header = () => {
             <Hamburger />
             <div className="user-directory">
                 <span className="header-text" onClick={() => {
-                    if (!authorized) return;
                     navigate('/dashboard/main');
                     }}>
                     {/* <NavLink to="/dashboard/main">DASHBOARD</NavLink> */}

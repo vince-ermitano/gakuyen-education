@@ -97,7 +97,7 @@ const ModuleView = () => {
                         Object.keys(theOdyssey).map((moduleId) => {
                             if (
                                 "MC-01" in userOwnedItems ||
-                                moduleId === "M-05"
+                                moduleId === "M-03"
                             ) {
                                 return (
                                     <ModulePreview

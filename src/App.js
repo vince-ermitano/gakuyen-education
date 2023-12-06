@@ -132,7 +132,9 @@ function App() {
         const gradientCanvas = document.getElementById("gradient-canvas");
         const header = document.querySelector(".hero");
         const heroVideo = header.querySelector(".video-container");
-        const heroTitleContainer = header.querySelector(".hero-title-container");
+        const heroTitleContainer = header.querySelector(
+            ".hero-title-container"
+        );
 
         // if the current path is not the homepage, hide the gradient canvas
         if (currentPath !== "/" || !authenticated) {
@@ -143,8 +145,8 @@ function App() {
             gradientCanvas.style.display = "block";
             header.style.display = "grid";
             heroVideo.style.display = "flex";
-            
-            if (document.querySelector('.countdown-timer')) return;
+
+            if (document.querySelector(".countdown-timer")) return;
             const div = document.createElement("div");
             const root = createRoot(div);
             root.render(<CountdownTimer />);
@@ -267,7 +269,6 @@ function App() {
                 setAuthenticated(true);
                 if (checkIfAuthorized(user.email)) {
                     dispatch(setAuthorized(true));
-
                 }
             } else {
                 dispatch(setAuthorized(false));
@@ -276,18 +277,15 @@ function App() {
 
         return () => {
             unsubscribe();
-        }
-    })
+        };
+    });
 
     useEffect(() => {
-        
         if (!authenticated) return;
-        
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
 
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             checkHeaderColor(currentPath);
         });
-
 
         return () => {
             unsubscribe();
@@ -426,36 +424,6 @@ function App() {
                             path="/the-odyssey-creative-masterclass"
                             element={<MasterclassDesc />}
                         ></Route>
-                        <Route path="/dashboard" element={<Dashboard />}>
-                            <Route
-                                path="main"
-                                element={<DashboardHome />}
-                            ></Route>
-                            <Route
-                                path="modules/:moduleId/videos"
-                                element={<VideoView />}
-                            ></Route>
-                            <Route
-                                path="modules"
-                                element={<ModuleView />}
-                            ></Route>
-                            <Route
-                                path="presets"
-                                element={<PresetLutView />}
-                            ></Route>
-                            <Route
-                                path="luts"
-                                element={<PresetLutView />}
-                            ></Route>
-                            <Route
-                                path="transitions"
-                                element={<PresetLutView />}
-                            ></Route>
-                            <Route
-                                path="settings"
-                                element={<Settings />}
-                            ></Route>
-                        </Route>
                         <Route path="/contact" element={<Contact />}></Route>
                         <Route path="/about" element={<About />}></Route>
                         <Route path="/receipt" element={<Receipt />}></Route>
@@ -465,6 +433,21 @@ function App() {
                         ></Route>
                     </>
                 )}
+                <Route path="/dashboard" element={<Dashboard />}>
+                    <Route path="main" element={<DashboardHome />}></Route>
+                    <Route
+                        path="modules/:moduleId/videos"
+                        element={<VideoView />}
+                    ></Route>
+                    <Route path="modules" element={<ModuleView />}></Route>
+                    <Route path="presets" element={<PresetLutView />}></Route>
+                    <Route path="luts" element={<PresetLutView />}></Route>
+                    <Route
+                        path="transitions"
+                        element={<PresetLutView />}
+                    ></Route>
+                    <Route path="settings" element={<Settings />}></Route>
+                </Route>
             </Routes>
 
             <Toaster position="top-center" richColors />

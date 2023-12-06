@@ -9,6 +9,8 @@ import ModulePreview from "./ModulePreview";
 import FileButton from "./FileButton";
 import { BiArrowBack } from "react-icons/bi";
 import { videoDescriptions } from "../../../descriptions/descriptions";
+import { AES } from "crypto-js";
+import CryptoJS from "crypto-js";
 
 
 const VideoView = () => {
@@ -18,19 +20,30 @@ const VideoView = () => {
     const playerRef = React.createRef();
     const { moduleId } = useParams();
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
+    let userOwnedItems;
+    const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
     const currentVideo = useSelector((state) => state.courses.currentVideo);
+    const videoId = currentVideo.videoId;
     const [ isRehydrated, setIsRehydrated ] = useState(false);
     const [ playing, setPlaying ] = useState(true);
-    const videoIndex = currentVideo === null ? 0 : currentVideo.videoId;
-    const videoDescription = videoDescriptions[moduleId][videoIndex];
-    let hasFiles = location.pathname.includes('videos') && currentVideo;
-    hasFiles = hasFiles && isRehydrated && theOdyssey[moduleId].videos[currentVideo.videoId].files.length > 0
+    // let videoIndex = currentVideo === null ? 0 : currentVideo.videoId;
 
-    useEffect(() => {
-        // click on first video
-        const firstVideo = document.querySelector(".module-preview");
-        firstVideo.click();
-    }, []);
+    // const videoDescription = videoDescriptions[moduleId][videoIndex];
+    let hasFiles = location.pathname.includes('videos') && currentVideo;
+    hasFiles = hasFiles && isRehydrated && theOdyssey[moduleId].videos[currentVideo.videoId].files.length > 0;
+    userOwnedItems = isPurchasedItemsLoaded ? userOwnedItems = JSON.parse(
+        AES.decrypt(
+            localStorage.getItem("purchasedItems"),
+            process.env.REACT_APP_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8)
+    ) : {};
+
+    // useEffect(() => {
+    //     // click on first video
+    //     const firstVideo = document.querySelector(".module-preview.activated");
+    //     setVideoDescription(videoDescriptions[moduleId][firstVideo.dataset.videoId]);
+    //     firstVideo.click();
+    // }, []);
 
 
     useEffect(() => {
@@ -94,6 +107,8 @@ const VideoView = () => {
                     {Object.keys(theOdyssey).length > 0 &&
                         Object.keys(theOdyssey[moduleId].videos).map(
                             (videoId) => {
+                                const isActivated = ('MC-01' in userOwnedItems) || (moduleId === "M-03" && [0, 3].includes(parseInt(videoId)));
+                                console.log('ModuleId: ', moduleId, 'VideoId: ', videoId, 'isActivated: ', isActivated);
                                 return (
                                     <ModulePreview
                                         key={videoId}
@@ -114,6 +129,7 @@ const VideoView = () => {
                                             theOdyssey[moduleId].videos[videoId]
                                                 .url
                                         }
+                                        activated={isActivated}
                                     />
                                 );
                             }
@@ -138,7 +154,7 @@ const VideoView = () => {
                     />
                 </div>
                 <h1>{currentVideo?.title}</h1>
-                {videoDescription?.map((paragraph, index) => {
+                {videoDescriptions[moduleId][videoId]?.map((paragraph, index) => {
                     if (Array.isArray(paragraph)) {
                         return paragraph.map((subParagraph, subIndex) => (
                             <div className="link-container" key={subIndex}>
