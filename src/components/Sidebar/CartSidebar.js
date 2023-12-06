@@ -152,7 +152,7 @@ const CartSidebar = () => {
         }
 
         createCheckoutSession();
-    }, [createCheckoutSession, dispatch]);
+    }, [createCheckoutSession, dispatch, authorized]);
 
     const handleProceedWithoutLogin = () => {
         const loginDialog = document.getElementById("login_dialog");
