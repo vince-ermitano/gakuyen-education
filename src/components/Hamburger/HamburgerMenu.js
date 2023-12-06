@@ -106,7 +106,7 @@ const HamburgerMenu = () => {
                         to="/dashboard/main"
                         onClick={(e) => handleLinkClick(e)}
                     >
-                        My Account
+                        Dashboard
                     </Link>
                     {loggedIn ? (
                         <button className="link1" onClick={handleLogout}>
