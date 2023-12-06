@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 // import { setTheOdyssey } from "../../../features/CoursesSlice";
 import ReactPlayer from "react-player/lazy";
 import "./ModuleView.css";
@@ -12,13 +12,14 @@ import { videoDescriptions } from "../../../descriptions/descriptions";
 import { AES } from "crypto-js";
 import CryptoJS from "crypto-js";
 import _debounce from "lodash.debounce";
+import { setCurrentVideo } from "../../../features/CoursesSlice";
 
 
 const VideoView = () => {
 
     const navigate = useNavigate();
-    const location = useLocation();
     const playerRef = useRef(null);
+    const dispatch = useDispatch();
     const { moduleId } = useParams();
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
     let userOwnedItems;
@@ -30,8 +31,7 @@ const VideoView = () => {
     // let videoIndex = currentVideo === null ? 0 : currentVideo.videoId;
 
     // const videoDescription = videoDescriptions[moduleId][videoIndex];
-    let hasFiles = location.pathname.includes('videos') && currentVideo;
-    hasFiles = hasFiles && isRehydrated && theOdyssey[moduleId].videos[currentVideo.videoId].files.length > 0;
+    const hasFiles = isRehydrated && currentVideo && theOdyssey[currentVideo.moduleId].videos[currentVideo.videoId].files.length > 0;
     userOwnedItems = isPurchasedItemsLoaded ? userOwnedItems = JSON.parse(
         AES.decrypt(
             localStorage.getItem("purchasedItems"),
@@ -56,7 +56,6 @@ const VideoView = () => {
     //         url: currentVideo?.url,
     //     })
     // }, [currentVideo]);
-
     useEffect(() => {
         if (!currentVideo) return;
         delayedSetUrl(currentVideo.url);
@@ -81,7 +80,6 @@ const VideoView = () => {
     const goBackToVideos = () => {
 
         setPlaying(false);
-
         const videoView = document.querySelector(".module-content");
         videoView.classList.remove("active");
     }
@@ -91,7 +89,10 @@ const VideoView = () => {
             <div className="module-view-left-side">
                 <div className="headers">
                     <h1>Videos</h1>
-                    <button onClick={handleGoBack}>
+                    <button onClick={() => {
+                        dispatch(setCurrentVideo(null));
+                        handleGoBack();
+                        }}>
                         <BiArrowBack />
                         Back to Modules
                     </button>
@@ -189,9 +190,10 @@ const VideoView = () => {
                         return <p key={index}>{paragraph}</p>;
                     }
                 })}
-                {hasFiles && <h2>Attached Files</h2>}
+                { hasFiles && <h2>Attached Files</h2>}
                 <div className="file-links">
-                    { currentVideo && isRehydrated && theOdyssey[moduleId].videos[currentVideo.videoId].files.map((file, index) => {
+                    { currentVideo && isRehydrated && theOdyssey[currentVideo.moduleId].videos[currentVideo.videoId].files.map((file, index) => {
+
                         return (
                             <FileButton
                                 key={index}
