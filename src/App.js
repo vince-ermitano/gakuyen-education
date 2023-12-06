@@ -43,7 +43,7 @@ import { checkHeaderColor, checkIfAuthorized } from "./helpers";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
 import { Toaster, toast } from "sonner";
-import { checkIfPassedLaunchDate } from "./helpers";
+import { checkIfPassedLaunchDate, updateBackgroundColorBasedOnWindowSize } from "./helpers";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 
@@ -74,6 +74,16 @@ function App() {
             anchorPlacement: "bottom-bottom",
         });
     }, []);
+
+    useEffect(() => {
+        if (!authenticated) return;
+
+        window.addEventListener("resize", updateBackgroundColorBasedOnWindowSize);
+
+        return () => {
+            window.removeEventListener("resize", updateBackgroundColorBasedOnWindowSize);
+        }
+    })
 
     // * Enable/disable session check for development
     const enableSessionCheck = false;
@@ -128,6 +138,11 @@ function App() {
     }, [dispatch]);
 
     useEffect(() => {
+        if (!authenticated) return;
+
+    })
+
+    useEffect(() => {
         // TODO: might need to move this into a useEffect hook
         const gradientCanvas = document.getElementById("gradient-canvas");
         const header = document.querySelector(".hero");
@@ -151,6 +166,8 @@ function App() {
             const root = createRoot(div);
             root.render(<CountdownTimer />);
             heroTitleContainer.appendChild(div);
+
+            console.log(document.querySelectorAll(".countdown-timer"));
         }
     }, [authenticated, currentPath]);
 

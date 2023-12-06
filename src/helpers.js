@@ -5,8 +5,9 @@ import CryptoJS from "crypto-js";
 // import { auth } from "./config/firebaseConfig";
 
 const AES = CryptoJS.AES;
-const LAUNCH_DATE = new Date("2023-12-06T03:00:00Z");
 const MAIN_LAUNCH_DATE = new Date("2023-12-08T03:00:00Z");
+const LAUNCH_DATE = new Date("2023-12-08T03:00:00Z");
+// const LAUNCH_DATE = new Date("2023-12-06T03:00:00Z");
 // const MAIN_LAUNCH_DATE = new Date("2023-12-03T03:00:00Z");
 
 
@@ -202,6 +203,20 @@ export const scrollIntoView = (id) => {
     }
 };
 
+export const updateBackgroundColorBasedOnWindowSize = () => {
+    const userDirectory = document.querySelectorAll(".user-directory > *");
+
+    if (window.innerWidth < 768) {
+        for (const link of userDirectory) {
+            link.style.backgroundColor = "transparent";
+        }
+    } else {
+        for (const link of userDirectory) {
+            link.style.backgroundColor = "#282c34";
+        }
+    }
+};
+
 export const checkHeaderColor = (currentPath) => {
     if (currentPath.includes("/dashboard")) {
         return;
@@ -250,6 +265,7 @@ export const checkHeaderColor = (currentPath) => {
         logo.style.fill = "white";
         cartSvg.style.color = "white";
     }
+    updateBackgroundColorBasedOnWindowSize();
 };
 
 export const openNewWindow = (path) => {
