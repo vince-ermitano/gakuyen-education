@@ -104,7 +104,7 @@ const HamburgerMenu = () => {
                     <Link
                         className="link1"
                         to="/dashboard/main"
-                        onClick={(e) => handleLinkClick(e)}
+                        onClick={toggleHamburger}
                     >
                         Dashboard
                     </Link>

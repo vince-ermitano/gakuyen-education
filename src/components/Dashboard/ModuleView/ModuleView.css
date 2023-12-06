@@ -50,7 +50,6 @@
 }
 
 .module-content .video-player-wrapper {
-    border-radius: 30px;
     overflow: hidden;
     height: 450px;
     width: 100%;
@@ -78,9 +77,25 @@
     gap: 0.5rem;
 }
 
+@media screen and (max-width: 1366px) {
+    .module-content .video-player-wrapper {
+        height: 400px;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-width: 769px) and (max-width: 1024px) {
+    .module-view > * {
+        padding: 3rem 1rem 0 1rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .module-view {
         display: block;
+    }
+
+    .module-content .video-player-wrapper {
+        height: 300px;
     }
 
     .module-view > *{
@@ -98,6 +113,7 @@
 
     .module-content {
         position: fixed;
+        z-index: 100;
         width: 100vw;
         top: 0;
         right: -100%;
