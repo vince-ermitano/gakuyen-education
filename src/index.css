@@ -719,7 +719,9 @@ iframe {
 }
 
 .hero .sourmo-image {
-  display: none;
+  height: 250px;
+  bottom: -132px;
+  left: 145px;
 }
 
 .hero .text-image {

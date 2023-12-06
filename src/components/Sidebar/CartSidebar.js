@@ -30,6 +30,7 @@ const CartSidebar = () => {
         (state) => state.sidebar.cartSidebarIsOpen
     );
     const cartTotal = useSelector((state) => state.shop.totalPrice);
+    const authorized = useSelector((state) => state.user.authorized);
 
     const cartItems = cartSidebarIsOpen
         ? JSON.parse(localStorage.getItem("cart")) || {}
@@ -62,8 +63,6 @@ const CartSidebar = () => {
 
             return;
         }
-
-        console.log("createCheckoutSession");
 
         // fetch(`${process.env.REACT_APP_SERVER_URL}/create-checkout-session?`, {
         //     method: 'POST',
@@ -122,6 +121,7 @@ const CartSidebar = () => {
     }, [dispatch]);
 
     const handleProceedToCheckout = useCallback(() => {
+        if (!authorized) return;
         const loginDialog = document.getElementById("login_dialog");
 
         if (localStorage.getItem("cart") === "{}") {
