@@ -368,6 +368,12 @@ iframe {
     place-items: center;
   }
 
+  .hero .video-container {
+    width: fit-content;
+    height: fit-content;
+    align-self: flex-start;
+  }
+
   /* .hero .video-container {
   } */
 
@@ -380,26 +386,33 @@ iframe {
 
   .hero .text-image {
     height: 244px;
-    bottom: -167px;
-    right: 124px;
-  }
+    bottom: -248px;
+    right: 18px;
+}
 
-  .hero .twitter-image {
-    height: 226px;
-    bottom: -83px;
-    right: 94px;
-  }
+  .hero .photo-image {
+    width: 637px;
+    z-index: 0;
+    top: -159px;
+    left: -39px;
+}
 
-  .hero .eventho-image {
-    right: -231px;
-    top: 203px;
-  }
+.hero .twitter-image {
+  height: 206px;
+  bottom: -144px;
+  right: 24px;
+}
+
+.hero .eventho-image {
+  left: -194px;
+  top: 282px;
+}
 
   .hero .spongebob-image {
     width: 100px;
-    bottom: -83px;
-    left: 196px;
-  }
+    bottom: -155px;
+    left: 115px;
+}
 
   .hero .can-image {
     top: -148px;
@@ -408,9 +421,9 @@ iframe {
   }
 
   .hero .nature-image {
-    right: -323px;
-    top: 132px;
-  }
+    right: -345px;
+    top: 141px;
+}
 
   .hero .modern-image {
     height: 336px;
@@ -421,9 +434,9 @@ iframe {
 
   .hero .lines-image {
     left: -416px;
-    bottom: -341px;
+    bottom: -463px;
     z-index: 11;
-  }
+}
 
   .hero .oatsman-image {
     left: -86px;
@@ -432,21 +445,26 @@ iframe {
   }
 
   .hero .sourmo-image {
-    height: 500px;
-    bottom: -179px;
-    left: -9px;
-  }
+    height: 381px;
+    bottom: -203px;
+    left: -42px;
+}
 
-  .hero .filmbox-image {
-    height: 1109px;
-    bottom: -571px;
-    right: -645px;
-  }
+.hero .filmbox-image {
+  height: 944px;
+  bottom: -571px;
+  right: -645px;
+}
 
-  .hero .brainwave-image {
-    top: -554px;
-    right: -774px;
-  }
+.hero .brainwave-image {
+  top: -554px;
+  right: -848px;
+}
+
+  .hero .oats-image {
+    bottom: -392px;
+    left: -228px;
+}
 
   .hero-title-container {
     padding-left: 8rem;
@@ -456,7 +474,7 @@ iframe {
   }
 
   .hero-video {
-    width: 700px;
+    width: 550px;
   }
 }
 
@@ -470,6 +488,7 @@ iframe {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-self: center;
   }
 
   .hero-video {

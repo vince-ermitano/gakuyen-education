@@ -172,8 +172,14 @@ export const toggleHamburger = (path) => {
 
         if (path === "/") {
             changeHeaderTextAndLogoToColor("white");
+
+
             for (const link of userDirectory) {
-                link.style.backgroundColor = "#282c34";
+                if (window.innerWidth < 768) {
+                    link.style.backgroundColor = "transparent";
+                } else {
+                    link.style.backgroundColor = "#282c34";
+                }
             }
         } else {
             changeHeaderTextAndLogoToColor("black");
@@ -184,7 +190,7 @@ export const toggleHamburger = (path) => {
         enableScroll();
     }
 
-    updateBackgroundColorBasedOnWindowSize();
+    // updateBackgroundColorBasedOnWindowSize();
 };
 
 export const changeHeaderTextAndLogoToColor = (color) => {
@@ -207,16 +213,13 @@ export const scrollIntoView = (id) => {
 
 export const updateBackgroundColorBasedOnWindowSize = () => {
     const userDirectory = document.querySelectorAll(".user-directory > *");
-
+    
     if (window.innerWidth < 768) {
         for (const link of userDirectory) {
             link.style.backgroundColor = "transparent";
         }
-    } else {
-        for (const link of userDirectory) {
-            link.style.backgroundColor = "#282c34";
-        }
     }
+
 };
 
 export const checkHeaderColor = (currentPath) => {
@@ -267,7 +270,7 @@ export const checkHeaderColor = (currentPath) => {
         logo.style.fill = "white";
         cartSvg.style.color = "white";
     }
-    updateBackgroundColorBasedOnWindowSize();
+    // updateBackgroundColorBasedOnWindowSize();
 };
 
 export const openNewWindow = (path) => {
