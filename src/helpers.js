@@ -183,6 +183,8 @@ export const toggleHamburger = (path) => {
         }
         enableScroll();
     }
+
+    updateBackgroundColorBasedOnWindowSize();
 };
 
 export const changeHeaderTextAndLogoToColor = (color) => {
