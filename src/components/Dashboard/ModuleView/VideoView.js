@@ -45,6 +45,12 @@ const VideoView = () => {
     //     firstVideo.click();
     // }, []);
 
+    const [url, setUrl] = useState("initial-video-url");
+
+    const handleReady = () => {
+        // Player is ready, set the new URL
+        setUrl(currentVideo?.url);
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -146,11 +152,12 @@ const VideoView = () => {
                     <ReactPlayer
                         ref={playerRef}
                         className="react-player"
-                        url={currentVideo?.url}
+                        url={url}
                         width="100%"
                         height="100%"
                         controls
                         playing={playing}
+                        onReady={handleReady}
                     />
                 </div>
                 <h1>{currentVideo?.title}</h1>
