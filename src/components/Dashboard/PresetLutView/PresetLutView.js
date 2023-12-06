@@ -225,7 +225,7 @@ const PresetLutView = () => {
                     <h3>Info</h3>
                     <div id="preset-lut-size-info">
                         <span>Size</span>
-                        <span>200 MB</span>
+                        <span>{currentItem.size}</span>
                     </div>
                     <div id="preset-lut-type-info">
                         <span>Type</span>

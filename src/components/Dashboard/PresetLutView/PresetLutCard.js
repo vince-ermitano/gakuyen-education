@@ -2,12 +2,16 @@ import React from "react";
 import "./PresetLutCard.css";
 import { useNavigate } from "react-router-dom";
 import { BsDownload } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const PresetLutCard = (props) => {
 
     const navigate = useNavigate();
+    const authorized = useSelector((state) => state.user.authorized);
 
     const openDetailsSidebar = () => {
+
+        if (!authorized) return;
 
         const detailsImageContainer = document.querySelector(".preset-lut-image-container");
 
