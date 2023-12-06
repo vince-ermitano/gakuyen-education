@@ -30,6 +30,7 @@
     justify-content: right;
     align-items: center;
     font-family: 'Foundation Sans', sans-serif;
+    text-align: left;
 }
 
 .header .user-directory svg {

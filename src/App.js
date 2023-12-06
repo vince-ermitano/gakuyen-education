@@ -152,7 +152,7 @@ function App() {
         );
 
         // if the current path is not the homepage, hide the gradient canvas
-        if (currentPath !== "/" || !authenticated) {
+        if (currentPath !== "/" || document.getElementById('password-page') !== null) {
             gradientCanvas.style.display = "none";
             header.style.display = "none";
             document.querySelector(".hero-video").pause();
@@ -166,8 +166,6 @@ function App() {
             const root = createRoot(div);
             root.render(<CountdownTimer />);
             heroTitleContainer.appendChild(div);
-
-            console.log(document.querySelectorAll(".countdown-timer"));
         }
     }, [authenticated, currentPath]);
 
