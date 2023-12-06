@@ -61,9 +61,7 @@ function App() {
     const shouldHideComponents = currentPath.includes(dashboardPath);
 
     const dispatch = useDispatch();
-    const [authenticated, setAuthenticated] = useState(
-        false || auth.currentUser || checkIfPassedLaunchDate()
-    );
+    const [authenticated, setAuthenticated] = useState(true);
 
     const authorized = useSelector((state) => state.user.authorized);
 

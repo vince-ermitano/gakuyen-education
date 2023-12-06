@@ -816,6 +816,26 @@ app.get("/check-download-token", async (req, res) => {
     }
 })
 
+app.get("/send-test-email", async (req, res) => {
+    const msg = {
+        to: 'hello@gakuyen.com',
+        from: {
+            email: process.env.SENDGRID_SENDER_EMAIL,
+            name: "The Odyssey",
+        },
+        templateId: "d-03c123e2533249069dfc1d0e6430c644",
+    };
+
+    sgMail
+        .send(msg)
+        .then(() => {
+            console.log("Email sent");
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    });
+
 
 
 
