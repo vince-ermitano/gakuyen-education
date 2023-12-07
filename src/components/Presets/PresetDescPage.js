@@ -105,7 +105,6 @@ const PresetDescPage = () => {
                 </div>
                 <div className="preset-desc-page-info preset-name-price item-name-price">
                     <h1>{currentProduct.name}</h1>
-                    <p>Lorem ipsum dolor sit amet</p>
                     <p>${currentProduct.price}</p>
                     <button
                         className="darkgray-background"
@@ -118,11 +117,9 @@ const PresetDescPage = () => {
                     </button>
                 </div>
                 <div className="second-row-desc">
-                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <h4>What's Included</h4>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
+                        {currentProduct.description.description_1}
                     </p>
                 </div>
 
@@ -145,7 +142,7 @@ const PresetDescPage = () => {
                     ))}
                 </swiper-container>
 
-                <div className="preset-desc-page-img img-container grid-last-item">
+                <div className="preset-desc-page-img img-container grid-last-item" style={{display: 'none'}}>
                     <img
                         src={
                             currentProduct.images[
@@ -156,7 +153,7 @@ const PresetDescPage = () => {
                     />
                 </div>
 
-                <div className="preset-desc-page-info whats-included">
+                <div className="preset-desc-page-info whats-included" style={{display: 'none'}}>
                     <h4>What's Included</h4>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
