@@ -16,6 +16,11 @@ if (!localStorage.getItem("cart")) {
     localStorage.setItem("cart", JSON.stringify([]));
 }
 
+const script = document.createElement('script');
+script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}`;
+script.async = true;
+document.head.appendChild(script);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>

@@ -17,6 +17,7 @@ const Receipt = () => {
     const dispatch = useDispatch();
     const searchParams = new URLSearchParams(location.search);
     const session_id = searchParams.get("session_id");
+    const paypal_id = searchParams.get("paypal_id");
     const downloadToken = searchParams.get("download_token");
     const hasDownloads = searchParams.get("has_downloads");
     const [purchasedIsLoading, setPurchasedIsLoading] = useState(true);
@@ -56,6 +57,37 @@ const Receipt = () => {
         setPurchasedIsLoading(false);
     }, [navigate]);
 
+    const getPayPalPurchaseDetails = useCallback(async (sessionId) => {
+        await fetch(
+            `${process.env.REACT_APP_SERVER_URL}/paypal-purchased-items?session_id=${sessionId}`
+        )
+            .then((res) => {
+                if (res.ok) return res.json();
+                return res.text().then((text) => Promise.reject(text));
+            })
+            .then((items) => {
+                console.log(items);
+
+                let itemsObject = {};
+
+                items.forEach((item) => {
+                    itemsObject[item] = 1;
+                });
+
+                setPurchasedItems(itemsObject);
+            })
+            .catch((e) => {
+                console.error(e);
+                toast.error(e + " Redirecting to home page...");
+
+                setTimeout(() => {
+                    navigate("/");
+                }, 3000);
+            });
+
+        setPurchasedIsLoading(false);
+    }, [navigate]);
+
     const calculateTotalPrice = () => {
         let total = 0;
         Object.keys(purchasedItems).forEach((item) => {
@@ -65,15 +97,19 @@ const Receipt = () => {
     };
 
     useEffect(() => {
-        if (!session_id) {
+        if (!session_id && !paypal_id) {
             navigate("/");
             return;
         }
 
-        getPurchaseDetails(session_id);
-    }, [session_id, navigate, getPurchaseDetails]);
+        if (session_id) {
+            getPurchaseDetails(session_id);
+        } else {
+            getPayPalPurchaseDetails(paypal_id);
+        }
+    }, [session_id, navigate, getPurchaseDetails, getPayPalPurchaseDetails, paypal_id]);
 
-    if (!session_id || isLoading) {
+    if ((!session_id && !paypal_id) || isLoading) {
         return (
             <section id="receipt-section">
                 <p>Loading...</p>

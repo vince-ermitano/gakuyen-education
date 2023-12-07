@@ -14,6 +14,7 @@ import { toast } from "sonner";
 // import { TOAST_POSITION } from "../../helpers";
 import { updateCartAfterRemovalOfDupes } from "../../helpers";
 import { BiArrowBack } from "react-icons/bi";
+import Checkout from "../PayPalCheckout/PayPalCheckout";
 import {
     Elements,
     PaymentMethodMessagingElement,
@@ -21,7 +22,9 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 const CartSidebar = () => {
-    const stripePromise = useState(loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY))[0];
+    const stripePromise = useState(
+        loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+    )[0];
 
     const dispatch = useDispatch();
 
@@ -35,6 +38,7 @@ const CartSidebar = () => {
     const cartItems = cartSidebarIsOpen
         ? JSON.parse(localStorage.getItem("cart")) || {}
         : {};
+
 
     // handle functions
     const createCheckoutSession = useCallback(() => {
@@ -251,6 +255,8 @@ const CartSidebar = () => {
                     >
                         Proceed to Checkout
                     </button>
+                    <Checkout />
+                    <div id="paypal-button-container"></div>
                 </div>
             </div>
             <div

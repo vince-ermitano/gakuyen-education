@@ -439,13 +439,13 @@ function App() {
                         ></Route>
                         <Route path="/contact" element={<Contact />}></Route>
                         <Route path="/about" element={<About />}></Route>
-                        <Route path="/receipt" element={<Receipt />}></Route>
-                        <Route
-                            path="/digital-downloads"
-                            element={<DigitalDownloads />}
-                        ></Route>
                     </>
                 )}
+                <Route path="/receipt" element={<Receipt />}></Route>
+                <Route
+                    path="/digital-downloads"
+                    element={<DigitalDownloads />}
+                ></Route>
                 <Route path="/dashboard" element={<Dashboard />}>
                     <Route path="main" element={<DashboardHome />}></Route>
                     <Route

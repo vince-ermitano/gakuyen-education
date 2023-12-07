@@ -14,8 +14,8 @@ const {
 const { v4: uuidv4 } = require("uuid");
 
 // sendgrid --------------------------------------------------
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 // -------------------------------------------------- sendgrid
 
 // crypto js
@@ -47,12 +47,12 @@ const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
 // Initialize Firebase Admin SDK (for server-side and administrative tasks)
-const admin = require('firebase-admin');
+const admin = require("firebase-admin");
 // const serviceAccount = require('../secret/serviceAccountKey.json'); // Your service account key
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(serviceAccount),
 });
 
 // functions ==================================================
@@ -173,8 +173,7 @@ const sendConfirmationEmail = (email, dynamic_data) => {
 
 const computeTotalPrice = (cart) => {};
 
-const setUserPurchasedItems = async(email, items) => {
-}
+const setUserPurchasedItems = async (email, items) => {};
 
 // ================================================== functions
 
@@ -197,11 +196,8 @@ app.use(express.static("public"));
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
-const allowedOrigins = [
-    `${process.env.CLIENT_URL}`,
-    `${process.env.LIVE_URL}`
-]
-  
+const allowedOrigins = [`${process.env.CLIENT_URL}`, `${process.env.LIVE_URL}`];
+
 app.use(
     cors({
         origin: allowedOrigins,
@@ -218,168 +214,418 @@ const storeItems = new Map([
     [2, { priceInCents: 20000, name: "Learn CSS Today" }],
 ]);
 
-
-
 // EXPRESS ROUTES --------------------------------------------------
 // // Catch-all route: Serve the index.html file for all routes
 // app.get('/*', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 //   });
 
-app.post("/webhook", express.raw({ type: "application/json" }), async (req, res) => {
-    console.log("Made it to webhook");
-    const sig = req.headers["stripe-signature"];
+app.post(
+    "/webhook",
+    express.raw({ type: "application/json" }),
+    async (req, res) => {
+        console.log("Made it to webhook");
+        const sig = req.headers["stripe-signature"];
 
-    let event;
+        let event;
 
-    try {
-        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-        console.log("try");
-    } catch (err) {
-        console.error("Error constructing webhook event:", err);
-        res.status(400).send(`Webhook Error: ${err.message}`);
-        console.log("catch");
-        return;
-    }
-
-    // Handle the specific event you're interested in (checkout.session.completed)
-    if (event.type === "checkout.session.completed") {
-        const email = event.data.object.customer_details.email;
-
-        console.log("Payment was successful. Email:", email);
-
-        // const success_url = event.data.object.success_url;
-        // const session_id = success_url.split("=")[1];
-        
-        const session = event.data.object;
-        
-        const { line_items } = await stripe.checkout.sessions.retrieve(
-            session.id,
-            {
-                expand: ["line_items"],
-            }
-        );
-
-        // const session = await stripe.checkout.sessions.retrieve(session.id);
-        const metadata = event.data.object.metadata;
-        const session_id = metadata.session_id;
-        const uid = event.data.object.metadata.uid;
-
-
-        const totalPrice = line_items.data.reduce((acc, item) => {
-            return acc + item.amount_total / 100;
-        }, 0);
-
-        const formattedItems = line_items.data.map((item) => ({
-            name: item.description,
-            price: item.amount_total / 100,
-            quantity: 1,
-        }));
-
-        const linkToDownloads = `${process.env.LIVE_URL}/#/digital-downloads?token=${metadata.downloadToken}`;
-
-        const dynamic_data = {
-            subject: "Your dynamic subject",
-            name: event.data.object.customer_details.name,
-            confirmationNum: session_id,
-            items: formattedItems,
-            total: `${totalPrice} USD`,
-            hasDownloads: metadata.hasDownloads,
-            linkToDownloads: linkToDownloads,
-        };
-
-        // add items to user inventory
         try {
-            const checkoutSessionDocRef = doc(db, "checkoutSessions", session_id);
-    
-            const checkoutSessionDocSnap = await getDoc(checkoutSessionDocRef);
-    
-            if (checkoutSessionDocSnap.exists()) {
-                const items = checkoutSessionDocSnap.data().items;
-                const hasBeenCompleted = checkoutSessionDocSnap.data().complete;
-    
-                if (hasBeenCompleted) {
-                    throw new Error("Purchase has already been completed.");
+            event = stripe.webhooks.constructEvent(
+                req.body,
+                sig,
+                endpointSecret
+            );
+            console.log("try");
+        } catch (err) {
+            console.error("Error constructing webhook event:", err);
+            res.status(400).send(`Webhook Error: ${err.message}`);
+            console.log("catch");
+            return;
+        }
+
+        // Handle the specific event you're interested in (checkout.session.completed)
+        if (event.type === "checkout.session.completed") {
+            const email = event.data.object.customer_details.email;
+
+            console.log("Payment was successful. Email:", email);
+
+            // const success_url = event.data.object.success_url;
+            // const session_id = success_url.split("=")[1];
+
+            const session = event.data.object;
+
+            const { line_items } = await stripe.checkout.sessions.retrieve(
+                session.id,
+                {
+                    expand: ["line_items"],
                 }
-    
-                if (uid) {
-                    // for each key in items, set value to purchase date
-                    const currentDate = new Date();
-                    const dateFormatted = currentDate.toLocaleString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                    });
-    
-                    for (const item in items) {
-                        items[item] = dateFormatted;
+            );
+
+            // const session = await stripe.checkout.sessions.retrieve(session.id);
+            const metadata = event.data.object.metadata;
+            const session_id = metadata.session_id;
+            const uid = event.data.object.metadata.uid;
+
+            const totalPrice = line_items.data.reduce((acc, item) => {
+                return acc + item.amount_total / 100;
+            }, 0);
+
+            const formattedItems = line_items.data.map((item) => ({
+                name: item.description,
+                price: item.amount_total / 100,
+                quantity: 1,
+            }));
+
+            const linkToDownloads = `${process.env.LIVE_URL}/#/digital-downloads?token=${metadata.downloadToken}`;
+
+            const dynamic_data = {
+                subject: "Your dynamic subject",
+                name: event.data.object.customer_details.name,
+                confirmationNum: session_id,
+                items: formattedItems,
+                total: `${totalPrice} USD`,
+                hasDownloads: metadata.hasDownloads,
+                linkToDownloads: linkToDownloads,
+            };
+
+            // add items to user inventory
+            try {
+                const checkoutSessionDocRef = doc(
+                    db,
+                    "checkoutSessions",
+                    session_id
+                );
+
+                const checkoutSessionDocSnap = await getDoc(
+                    checkoutSessionDocRef
+                );
+
+                if (checkoutSessionDocSnap.exists()) {
+                    const items = checkoutSessionDocSnap.data().items;
+                    const hasBeenCompleted =
+                        checkoutSessionDocSnap.data().complete;
+
+                    if (hasBeenCompleted) {
+                        throw new Error("Purchase has already been completed.");
                     }
-    
-                    // Update the database to reflect the purchase
-                    const userRef = doc(db, "users", uid);
-    
-                    const userDoc = await getDoc(userRef);
-    
+
+                    if (uid) {
+                        // for each key in items, set value to purchase date
+                        const currentDate = new Date();
+                        const dateFormatted = currentDate.toLocaleString(
+                            "en-US",
+                            {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                            }
+                        );
+
+                        for (const item in items) {
+                            items[item] = dateFormatted;
+                        }
+
+                        // Update the database to reflect the purchase
+                        const userRef = doc(db, "users", uid);
+
+                        const userDoc = await getDoc(userRef);
+
+                        try {
+                            await updateDoc(userRef, {
+                                purchasedItems: {
+                                    ...userDoc.data().purchasedItems,
+                                    ...items,
+                                },
+                            });
+                        } catch (error) {
+                            console.log(error);
+                            res.status(500).send(error.message);
+                        }
+                    }
+
+                    // Update the database to reflect that the purchase has been completed
                     try {
-                        await updateDoc(userRef, {
-                            purchasedItems: {
-                                ...userDoc.data().purchasedItems,
-                                ...items,
+                        await setDoc(
+                            checkoutSessionDocRef,
+                            {
+                                complete: true,
+                                userEmail: req.body.email
+                                    ? req.body.email
+                                    : null,
                             },
-                        });
+                            { merge: true }
+                        );
                     } catch (error) {
                         console.log(error);
                         res.status(500).send(error.message);
                     }
-                }
-    
-                // Update the database to reflect that the purchase has been completed
-                try {
-                    await setDoc(
-                        checkoutSessionDocRef,
-                        {
-                            complete: true,
-                            userEmail: req.body.email ? req.body.email : null,
-                        },
-                        { merge: true }
+
+                    res.send(
+                        "Purchase successful! Items purchased." +
+                            JSON.stringify(items)
                     );
+                } else {
+                    throw new Error("Successful purchase was not found.");
+                }
+            } catch (error) {
+                console.error(error);
+                res.status(500).send(error.message);
+            }
+
+            sendConfirmationEmail(email, dynamic_data)
+                .then((message) => {
+                    console.log(message);
+                    return res.status(200).end();
+                })
+                .catch((error) => {
+                    console.log(error);
+                    return res.status(500).end();
+                });
+        } else {
+            res.status(200).end();
+        }
+
+        // TODO: Remove checkout session from database if payment fails
+    }
+);
+
+// app.post('/paypal-webhook', async (req, res) => {
+//     try {
+//     //   const webhookId = '9FD53654G3823781F'; // Retrieve from the PayPal Developer Dashboard
+//     //   const headers = req.headers;
+//     //   const body = JSON.stringify(req.body);
+//     //   const signature = headers['paypal-auth-algo'] + ' ' + headers['paypal-cert-url'] + ' ' + headers['paypal-transmission-id'] + ' ' + headers['paypal-transmission-sig'] + ' ' + headers['paypal-transmission-time'] + ' ' + body;
+
+//     //   // Verify webhook signature
+//     //   const verified = crypto.createVerify('sha256').update(signature).verify(publicKey, headers['paypal-transmission-sig'], 'base64');
+//     //   if (!verified) {
+//     //     return res.status(400).send('Webhook signature verification failed');
+//     //   }
+
+//     //   Process the webhook event
+//       const event = req.body;
+//       if (event.event_type === 'PAYMENT.CAPTURE.COMPLETED') {
+//         // Handle completed payment event
+//         const captureId = event.resource.id;
+//         await capturePayment(captureId);
+//       }
+
+//       console.log('Webhook received successfully');
+//       res.status(200).send('Webhook received successfully');
+//     } catch (error) {
+//       console.error('Error processing webhook:', error);
+//       res.status(500).send('Internal Server Error');
+//     }
+
+//     console.log(req.body);
+//     res.status(200).send('Webhook received successfully');
+//   });
+
+app.use(express.json());
+
+const paypal = require("@paypal/checkout-server-sdk");
+const Environment =
+    process.env.NODE_ENV === "production"
+        ? paypal.core.LiveEnvironment
+        : paypal.core.SandboxEnvironment;
+const paypalClient = new paypal.core.PayPalHttpClient(
+    new Environment(
+        process.env.REACT_APP_PAYPAL_CLIENT_ID,
+        process.env.PAYPAL_CLIENT_SECRET
+    )
+);
+
+// app.use("/create-paypal-order", async (req, res, next) => {
+// });
+
+app.post("/create-paypal-order", async (req, res) => {
+
+    req.body.items = JSON.parse(req.body.items);
+
+    try {
+        const request = new paypal.orders.OrdersCreateRequest();
+        let totalPrice = 0;
+
+        for (const item in req.body.items) {
+            totalPrice += productsObject[item].price;
+        }
+
+        totalPrice = totalPrice.toFixed(2);
+        console.log(totalPrice);
+
+        const cartItems = Object.keys(req.body.items);
+
+        console.log(totalPrice);
+
+        request.prefer("return=representation");
+        request.requestBody({
+            intent: "CAPTURE",
+            purchase_units: [
+                {
+                    amount: {
+                        currency_code: "USD",
+                        value: totalPrice,
+                        breakdown: {
+                            item_total: {
+                                currency_code: "USD",
+                                value: totalPrice,
+                            },
+                        },
+                    },
+                    items: cartItems.map((item) => {
+                        return {
+                            name: productsObject[item].name,
+                            unit_amount: {
+                                currency_code: "USD",
+                                value: productsObject[item].price,
+                            },
+                            quantity: 1,
+                        };
+                    }),
+                },
+            ],
+        });
+
+        const order = await paypalClient.execute(request);
+        console.log(order.result.id);
+
+        await setDoc(doc(db, "paypalCheckoutSessions", order.result.id), {
+            expiresAt: Date.now() + 86400000,
+            items: cartItems,
+            complete: false,
+            timeStamp: Date.now(),
+            uid: req.body.uid,
+        });
+
+        // const formattedItems = cartItems.map((item) => ({
+        //     name: productsObject[item].name,
+        //     price: productsObject[item].price / 100,
+        //     quantity: 1,
+        // }));
+
+        // const linkToDownloads = `${process.env.LIVE_URL}/#/digital-downloads?token=${metadata.downloadToken}`;
+
+        // const dynamic_data = {
+        //     subject: "The Odyssey Order Confirmation",
+        //     name: event.data.object.customer_details.name,
+        //     confirmationNum: session_id,
+        //     items: formattedItems,
+        //     total: `${totalPrice} USD`,
+        //     hasDownloads: metadata.hasDownloads,
+        //     linkToDownloads: linkToDownloads,
+        // };
+
+
+        res.send({ orderID: order.result.id });
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({ error: e.message });
+    }
+});
+
+app.post("/capture-paypal-transaction", async (req, res) => {
+    const orderID = req.body.orderID;
+
+    
+    try {
+        const orderDetails = await getDoc(doc(db, "paypalCheckoutSessions", orderID));
+        
+        if (!orderDetails.exists()) {
+            throw new Error("Order does not exist");
+        }
+
+        if (orderDetails.exists()) {
+            const items = orderDetails.data().items;
+
+            let itemsObject = {};
+
+            items.forEach((item) => {
+                itemsObject[item] = 1;
+            });
+
+            const hasBeenCompleted =
+                orderDetails.data().complete;
+
+            if (hasBeenCompleted) {
+                throw new Error("Purchase has already been completed.");
+            }
+
+            if (orderDetails.data().uid) {
+                // for each key in items, set value to purchase date
+                const currentDate = new Date();
+                const dateFormatted = currentDate.toLocaleString(
+                    "en-US",
+                    {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                    }
+                );
+
+                for (const item in itemsObject) {
+                    itemsObject[item] = dateFormatted;
+                }
+
+                // Update the database to reflect the purchase
+                const userRef = doc(db, "users", orderDetails.data().uid);
+
+                const userDoc = await getDoc(userRef);
+
+                try {
+                    await updateDoc(userRef, {
+                        purchasedItems: {
+                            ...userDoc.data().purchasedItems,
+                            ...itemsObject,
+                        },
+                    });
                 } catch (error) {
                     console.log(error);
                     res.status(500).send(error.message);
                 }
-    
-                res.send(
-                    "Purchase successful! Items purchased." +
-                        JSON.stringify(items)
-                );
-            } else {
-                throw new Error("Successful purchase was not found.");
             }
-        } catch (error) {
-            console.error(error);
-            res.status(500).send(error.message);
+
+            // Update the database to reflect that the purchase has been completed
+            const orderDetailsRef = doc(db, "paypalCheckoutSessions", orderID);
+            try {
+                await setDoc(
+                    orderDetailsRef,
+                    {
+                        complete: true,
+                        userEmail: req.body.payerEmail
+                            ? req.body.payerEmail
+                            : null,
+                    },
+                    { merge: true }
+                );
+
+            } catch (error) {
+                console.log(error);
+                res.status(500).send(error.message);
+            }
+            
+            const downloadToken = uuidv4();
+            const hasDownloads = items.some((item) => {
+                return item !== "MC-01";
+            });
+            
+            await setDoc(doc(db, "downloadTokens", downloadToken), {
+                expiresAt: Date.now() + 86400000,
+                items: items,
+            });
+
+            res.send({
+                downloadToken: downloadToken,
+                hasDownloads: hasDownloads,
+                orderID: orderID,
+            });
+        } else {
+            throw new Error("Successful purchase was not found.");
         }
-
-
-        sendConfirmationEmail(email, dynamic_data)
-        .then((message) => {
-            console.log(message);
-            return res.status(200).end();
-        })
-        .catch((error) => {
-            console.log(error);
-            return res.status(500).end();
-        });
-    } else {
-        res.status(200).end();
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
     }
-
-    // TODO: Remove checkout session from database if payment fails
 });
-
-
-app.use(express.json());
-
 
 app.post("/success", async (req, res) => {
     // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
@@ -463,8 +709,7 @@ app.post("/success", async (req, res) => {
             }
 
             res.send(
-                "Purchase successful! Items purchased." +
-                    JSON.stringify(items)
+                "Purchase successful! Items purchased." + JSON.stringify(items)
             );
         } else {
             throw new Error("Successful purchase was not found.");
@@ -476,7 +721,6 @@ app.post("/success", async (req, res) => {
 });
 
 app.use("/create-checkout-session", async (req, res, next) => {
-
     const authorizationHeader = req.headers.authorization;
 
     // console.log(authorizationHeader);
@@ -581,7 +825,6 @@ app.post("/create-checkout-session", async (req, res) => {
             return item !== "MC-01";
         });
 
-
         const session = await stripe.checkout.sessions.create({
             mode: "payment",
             line_items: line_items,
@@ -601,7 +844,7 @@ app.post("/create-checkout-session", async (req, res) => {
             // },
         });
 
-        console.log('Session url: ', session.url);
+        console.log("Session url: ", session.url);
 
         await setDoc(doc(db, "downloadTokens", downloadToken), {
             expiresAt: Date.now() + 86400000,
@@ -613,7 +856,7 @@ app.post("/create-checkout-session", async (req, res) => {
             complete: false,
             uid: req.uid,
             timeStamp: Date.now(),
-        });  
+        });
 
         res.json({ url: session.url });
     } catch (e) {
@@ -621,31 +864,29 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-
 app.post("/contact", async (req, res) => {
-
     let { email, subject, message, first_name, last_name } = req.body;
 
     message = `Message via The Odyssey Contact Form\n\nFrom: ${first_name} ${last_name} \n\nEmail: ${email}\n\n${message}`;
     const msg = {
-        to: 'education@gakuyen.com', // Change to your recipient
+        to: "education@gakuyen.com", // Change to your recipient
         from: {
-            email: 'education@gakuyen.com',
+            email: "education@gakuyen.com",
             name: `${first_name} ${last_name}`,
         }, // Change to your verified sender
         subject: subject,
         text: message,
-      }
-      sgMail
+    };
+    sgMail
         .send(msg)
         .then(() => {
-          console.log('Email sent')
-          res.send('Email sent');
+            console.log("Email sent");
+            res.send("Email sent");
         })
         .catch((error) => {
-          console.error(error)
-          res.status(500).send('Error sending email.');
-        })
+            console.error(error);
+            res.status(500).send("Error sending email.");
+        });
 });
 
 app.post("/newsletter-signup", async (req, res) => {
@@ -695,7 +936,7 @@ app.get("/the-odyssey", async (req, res) => {
 
         res.send(modules);
     } catch (error) {
-        res.status(500).send('Error getting modules');
+        res.status(500).send("Error getting modules");
     }
 });
 
@@ -708,7 +949,7 @@ app.get("/user-info", async (req, res) => {
     const authorizationHeader = req.headers.authorization;
 
     if (!authorizationHeader) {
-        res.status(500).send('No authorization header');
+        res.status(500).send("No authorization header");
         return;
     }
 
@@ -725,16 +966,15 @@ app.get("/user-info", async (req, res) => {
             const info = {
                 firstName: docSnap.data().firstName,
                 lastName: docSnap.data().lastName,
-            }
+            };
             res.send(JSON.stringify(info));
         } else {
-            res.status(500).send('User does not exist');
+            res.status(500).send("User does not exist");
         }
     } catch (error) {
-        res.status(500).send('Problem fetching user info');
+        res.status(500).send("Problem fetching user info");
     }
-}
-);
+});
 
 app.put("/user-info", async (req, res) => {
     // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
@@ -745,7 +985,7 @@ app.put("/user-info", async (req, res) => {
     const authorizationHeader = req.headers.authorization;
 
     if (!authorizationHeader) {
-        res.status(500).send('No authorization header');
+        res.status(500).send("No authorization header");
         return;
     }
 
@@ -760,10 +1000,10 @@ app.put("/user-info", async (req, res) => {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
         });
-        
-        res.send('User info updated successfully!');
+
+        res.send("User info updated successfully!");
     } catch (error) {
-        res.status(500).send('Problem updating user info');
+        res.status(500).send("Problem updating user info");
     }
 });
 
@@ -785,7 +1025,29 @@ app.get("/purchased-items", async (req, res) => {
         console.log(docSnap.data().items);
         res.send(docSnap.data().items);
     } else {
-        res.status(500).send('Session ID does not exist');
+        res.status(500).send("Session ID does not exist");
+    }
+});
+
+app.get("/paypal-purchased-items", async (req, res) => {
+    // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+    // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    // res.setHeader("Access-Control-Allow-Credentials", true);
+
+    const sessionId = req.query.session_id;
+
+    console.log(sessionId);
+
+    const docRef = doc(db, "paypalCheckoutSessions", sessionId);
+
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        console.log(docSnap.data().items);
+        res.send(docSnap.data().items);
+    } else {
+        res.status(500).send("Session ID does not exist");
     }
 });
 
@@ -794,7 +1056,7 @@ app.get("/check-download-token", async (req, res) => {
     // res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     // res.setHeader("Access-Control-Allow-Credentials", true);
-    
+
     const downloadToken = req.query.token;
 
     const docRef = doc(db, "downloadTokens", downloadToken);
@@ -806,19 +1068,65 @@ app.get("/check-download-token", async (req, res) => {
         const expiresAt = docSnap.data().expiresAt;
 
         if (Date.now() > expiresAt) {
-            res.status(500).send('Your 24 hour window to download has expired. Redirecting to homepage...' );
+            res.status(500).send(
+                "Your 24 hour window to download has expired. Redirecting to homepage..."
+            );
             return;
         }
 
         res.status(200).send(docSnap.data().items);
     } else {
-        res.status(500).send('Invalid download token. Redirecting to homepage...');
+        res.status(500).send(
+            "Invalid download token. Redirecting to homepage..."
+        );
     }
-})
+});
+
+app.post("/send-receipt", async (req, res) => {
+    const { orderID, payerEmail, payerName, downloadToken, hasDownloads } = req.body;
+
+    const docRef = doc(db, "paypalCheckoutSessions", orderID);
+
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        const items = docSnap.data().items;
+
+        const formattedItems = items.map((item) => ({
+            name: productsObject[item].name,
+            price: productsObject[item].price / 100,
+            quantity: 1,
+        }));
+
+        const linkToDownloads = `${process.env.LIVE_URL}/#/digital-downloads?token=${downloadToken}`;
+
+        const dynamic_data = {
+            subject: "The Odyssey Order Confirmation",
+            name: payerName,
+            confirmationNum: orderID,
+            items: formattedItems,
+            total: `${totalPrice} USD`,
+            hasDownloads: hasDownloads,
+            linkToDownloads: linkToDownloads,
+        };
+
+        sendConfirmationEmail(payerEmail, dynamic_data)
+            .then((message) => {
+                console.log(message);
+                return res.status(200).end();
+            })
+            .catch((error) => {
+                console.log(error);
+                return res.status(500).end();
+            });
+    } else {
+        res.status(500).send("Invalid order ID");
+    }
+});
 
 app.get("/send-test-email", async (req, res) => {
     const msg = {
-        to: 'hello@gakuyen.com',
+        to: "vinceermitano@yahoo.com",
         from: {
             email: process.env.SENDGRID_SENDER_EMAIL,
             name: "The Odyssey",
@@ -833,11 +1141,11 @@ app.get("/send-test-email", async (req, res) => {
         })
         .catch((error) => {
             console.error(error);
+            res.status(500).send(error.message);
         });
-    });
 
-
-
+    res.status(200).send("Email sent");
+});
 
 // -------------------------------------------------- EXPRESS ROUTES
 
