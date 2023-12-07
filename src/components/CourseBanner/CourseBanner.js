@@ -65,6 +65,11 @@ const CourseBanner = () => {
                                 toast('The course will be available soon!');
                                 return;
                             }
+
+                            if (!auth.currentUser) {
+                                toast('You must be logged in to purchase the course!');
+                                return;
+                            }
                             if (
                                 document.getElementById("financing-option")
                                     .value === ""

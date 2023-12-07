@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import "./MasterclassDesc.css";
 import { handleAddToCart } from "../../helpers";
 import { BiArrowBack } from "react-icons/bi";
+import { auth } from "../../config/firebaseConfig";
+import { toast } from 'sonner';
 
 const MasterclassDesc = () => {
     const dispatch = useDispatch();
@@ -101,6 +103,10 @@ const MasterclassDesc = () => {
                             className="darkgray-background"
                             data-item-id="MC-01"
                             onClick={(e) => {
+                                if (!auth.currentUser) {
+                                    toast.error('You must be logged in to purchase the masterclass!');
+                                    return;
+                                }
                                 handleAddToCart(e, dispatch);
                             }}
                         >
