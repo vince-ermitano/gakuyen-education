@@ -1,14 +1,14 @@
 import React from "react";
 import "./HamburgerMenu.css";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toggleHamburger, openNewWindow } from "../../helpers";
 import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebaseConfig";
 import { setLoggedInStatus } from "../../features/LoggedInStatusSlice";
 import { toggleLoginSidebar } from "../../features/SidebarSlice";
-import { scrollIntoView } from "../../helpers";
+// import { scrollIntoView } from "../../helpers";
 import { toast } from "sonner";
 import { BiLogoInstagramAlt, BiLogoYoutube, BiLogoTiktok } from "react-icons/bi";
 
@@ -20,6 +20,7 @@ const HamburgerMenu = () => {
     const location = useLocation();
     const pathname = location.pathname;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     
 
@@ -97,7 +98,7 @@ const HamburgerMenu = () => {
                     <Link className="link1" to="/" onClick={(e) => {
                         e.preventDefault();
                         toggleHamburger('/');
-                        scrollIntoView("faq");
+                        navigate("/?scroll_to=faq")
                     }}>
                         Frequent Questions
                     </Link>

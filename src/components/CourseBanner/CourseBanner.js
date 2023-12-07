@@ -84,7 +84,7 @@ const CourseBanner = () => {
                                     .value.includes("Month")
                             ) {
                                 alert(
-                                    'To check if you qualify for financing, after adding the course to your cart. Please click on the Affirm icon at the bottom of your cart.'
+                                    'To check if you qualify for financing, after adding the course to your cart, please click on the Affirm icon at the bottom of your cart.\n Use the non-PayPal checkout option to proceed.'
                                 );
                             }
 
