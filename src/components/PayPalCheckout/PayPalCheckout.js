@@ -53,7 +53,7 @@ const Checkout = () => {
                     return actions.order.capture().then((details) => {
                         toast("Payment completed:");
 
-                        fetch(`process.env.${REACT_APP_SERVER_URL}/capture-paypal-transaction`, {
+                        fetch(`${process.env.REACT_APP_SERVER_URL}/capture-paypal-transaction`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
