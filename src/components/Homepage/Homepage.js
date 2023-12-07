@@ -24,6 +24,7 @@ import { auth } from "../../config/firebaseConfig";
 import { setTotalPrice } from "../../features/ShopSlice";
 import { setLoginSidebar } from "../../features/SidebarSlice";
 import { scrollIntoView } from "../../helpers";
+import { VscClose } from "react-icons/vsc";
 
 const Homepage = () => {
     document.title = "The Odyssey | Home";
@@ -119,11 +120,19 @@ const Homepage = () => {
             <CourseBanner />
             <nav id="homepage-nav">
                 <ul>
-                    <li onClick={() => scrollIntoView('target-audience')}>Who Is This For</li>
-                    <li onClick={() => scrollIntoView('what-we-offer')}>What We Offer</li>
-                    <li onClick={() => scrollIntoView('money-back-guarantee')}>Money-Back Guarantee</li>
-                    <li onClick={() => scrollIntoView('course-overview')}>Course Overview</li>
-                    <li onClick={() => scrollIntoView('faq')}>FAQ</li>
+                    <li onClick={() => scrollIntoView("target-audience")}>
+                        Who Is This For
+                    </li>
+                    <li onClick={() => scrollIntoView("what-we-offer")}>
+                        What We Offer
+                    </li>
+                    <li onClick={() => scrollIntoView("money-back-guarantee")}>
+                        Money-Back Guarantee
+                    </li>
+                    <li onClick={() => scrollIntoView("course-overview")}>
+                        Course Overview
+                    </li>
+                    <li onClick={() => scrollIntoView("faq")}>FAQ</li>
                 </ul>
             </nav>
             <TargetAudience />
@@ -136,6 +145,14 @@ const Homepage = () => {
             <Testimonials />
             <FAQ />
             <Marquee />
+            <div className="pop-up">
+                <img
+                    src="/ODYSSEYREPORTCARD.png"
+                    alt="report card"
+                    className="popup"
+                />
+                <VscClose onClick={() => document.querySelector('.pop-up').style.display = 'none'}/>
+            </div>
             <div className="dotted-line"></div>
         </div>
     );
