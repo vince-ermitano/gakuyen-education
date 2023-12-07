@@ -13,6 +13,8 @@ const ModuleView = () => {
     // const dispatch = useDispatch();
     document.title = "The Odyssey Dashboard | Modules";
 
+    
+
     const theOdyssey = useSelector((state) => state.courses.theOdyssey);
     const isPurchasedItemsLoaded = useSelector(
         (state) => state.user.isPurchasedItemsLoaded

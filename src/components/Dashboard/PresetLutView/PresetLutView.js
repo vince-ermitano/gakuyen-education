@@ -27,6 +27,7 @@ const PresetLutView = () => {
     const [currentItemIsOwned, setCurrentItemIsOwned] = useState(false);
     const isPurchasedItemsLoaded = useSelector((state) => state.user.isPurchasedItemsLoaded);
     const isProductsLoading = useSelector((state) => state.shop.isLoading);
+    const authorized = useSelector((state) => state.user.authorized);
     const products = useSelector((state) => state.shop.products);
     let loadingOrComingSoonMessage;
 
@@ -62,6 +63,8 @@ const PresetLutView = () => {
     }
 
     const handleCheckItOut = (e) => {
+        if (!authorized) return;
+
         if (!currentItemIsOwned) {
             navigate("/store");
         } else {
