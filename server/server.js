@@ -1102,6 +1102,10 @@ app.post("/send-receipt", async (req, res) => {
             quantity: 1,
         }));
 
+        const totalPrice = formattedItems.reduce((acc, item) => {
+            return acc + item.price;
+        });
+
         const linkToDownloads = `${process.env.LIVE_URL}/#/digital-downloads?token=${downloadToken}`;
 
         const dynamic_data = {
