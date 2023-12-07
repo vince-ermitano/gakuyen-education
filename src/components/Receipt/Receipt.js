@@ -7,7 +7,6 @@ import { BiArrowBack } from "react-icons/bi";
 import { toast } from "sonner";
 import { setTotalPrice } from "../../features/ShopSlice";
 import { FIRST48 } from "../../helpers";
-import { VscClose } from "react-icons/vsc";
 
 
 const Receipt = () => {
