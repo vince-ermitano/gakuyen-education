@@ -1151,6 +1151,32 @@ app.get("/send-test-email", async (req, res) => {
     res.status(200).send("Email sent");
 });
 
+app.post("/report-card", async (req, res) => {
+    const {socialAccount, questions} = req.body;
+
+    const msg = {
+        to: process.env.SENDGRID_SENDER_EMAIL,
+        from: {
+            email: process.env.SENDGRID_SENDER_EMAIL,
+            name: "The Odyssey",
+        },
+        subject: 'Report Card Submission',
+        text: `Social Account: ${socialAccount}\n\nQuestions: ${questions}`
+    }
+
+    sgMail
+        .send(msg)
+        .then(() => {
+            console.log("Email sent");
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).send('Error sending email');
+        });
+
+    res.status(200).send("Email sent");
+})
+
 // -------------------------------------------------- EXPRESS ROUTES
 
 const PORT = process.env.PORT || 3001;
