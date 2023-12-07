@@ -87,7 +87,7 @@ const MasterclassDesc = () => {
                     <div className="img-container">
                         <ReactPlayer
                             className="react-player"
-                            url="https://www.youtube.com/watch?v=fyNns5amxRk"
+                            url="https://vimeo.com/890699022?share=copy"
                             width="100%"
                             controls
                             playing
@@ -108,8 +108,11 @@ const MasterclassDesc = () => {
                         </button>
                     </div>
                 </section>
-                <hr />
-                <section className="masterclass-what-we-offer grid-two-columns grid">
+                {/* <hr /> */}
+                <section
+                    className="masterclass-what-we-offer grid-two-columns grid"
+                    style={{ display: "none" }}
+                >
                     <div className="section-text">
                         <h2>What we offer</h2>
                         <ul>
@@ -142,7 +145,7 @@ const MasterclassDesc = () => {
                     <div className="module-listings" id="module_1">
                         <ol>
                             <li>
-                                <p>Mindset for Creative Success</p>
+                                <p>Module 1: Cultivating a Growth Mindset and Balancing Artistry</p>
                                 <ul>
                                     <li>
                                         Cultivating a Growth Mindset in the
@@ -167,44 +170,24 @@ const MasterclassDesc = () => {
                                 </ul>
                             </li>
                             <li>
-                                <p>Elevating Your Filmmaking and Photography</p>
+                                <p>Module 2: Essential Tools for Photography and Filmmaking</p>
                                 <ul>
                                     <li>
-                                        Advanced Camera Techniques and Equipment
-                                        for High-Quality Productions
+                                    Photography Tools
                                     </li>
                                     <li>
-                                        Cinematic Lighting and Composition for
-                                        Impactful Visuals
-                                    </li>
-                                    <li>
-                                        Storytelling Strategies to Engage and
-                                        Connect with Audiences
-                                    </li>
-                                    <li>
-                                        Creating Captivating Brand Stories and
-                                        Campaigns
-                                    </li>
-                                    <li>
-                                        Collaborating with Brands and Nurturing
-                                        Long-Term Partnerships
-                                    </li>
-                                    <li>
-                                        Leveraging Your Unique Perspective for
-                                        Creative Success
+                                    Filmmaking Tools
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <p>Building Your Personal Brand</p>
+                                <p>Module 3: Building Your Brand in the Creative Market</p>
                                 <ul>
                                     <li>
-                                        Crafting Your Personal Brand Story and
-                                        Message
+                                    The Power of Personal Branding in the Creative Market
                                     </li>
                                     <li>
-                                        Developing a Cohesive Brand Identity
-                                        Across Platforms
+                                    Developing a Cohesive Brand Identity Across Platforms
                                     </li>
                                     <li>
                                         Growing and Engaging Your Social Media
@@ -214,10 +197,6 @@ const MasterclassDesc = () => {
                                         Strategies for Brand Collaborations and
                                         Sponsorships
                                     </li>
-                                    <li>
-                                        Monetizing Your Influence: Sponsorships,
-                                        Affiliate Marketing, and More
-                                    </li>
                                 </ul>
                             </li>
                         </ol>
@@ -226,88 +205,51 @@ const MasterclassDesc = () => {
                         className="module-img-container img-container"
                         id="first-masterclass-break-img"
                     >
-                        <img src="https://via.placeholder.com/500x500" alt="" />
+                        <img src="https://i.postimg.cc/FH9S6Mds/1.jpg" alt="" />
                     </div>
                     <div className="module-img-container img-container">
-                        <img src="https://via.placeholder.com/500x500" alt="" />
+                        <img src="https://i.postimg.cc/PrbZ2XqR/2.jpg" alt="" />
                     </div>
                     <div className="module-listings">
                         <ol start={4}>
                             <li>
-                                <p>Content Monetization and Revenue Streams</p>
+                                <p>Module 4: Financial and Legal Acumen for Creatives</p>
                                 <ul>
                                     <li>
-                                        Diversifying Income Streams in the
-                                        Creative Industry
+                                    Financial Management for Solo Creators: Budgeting and Pricing Your Work
                                     </li>
                                     <li>
-                                        Creating and Selling Online Courses and
-                                        Workshops
+                                    Contracts and Legal Considerations for Freelancers
                                     </li>
                                     <li>
-                                        Licensing Your Creative Work for
-                                        Commercial Use
+                                    Navigating Taxes and Accounting for Creatives
                                     </li>
                                     <li>
-                                        Exploring Print Sales and Art
-                                        Exhibitions
-                                    </li>
-                                    <li>
-                                        Strategies for Successful Crowdfunding
-                                        and Patronage
+                                    Building a Sustainable Business Model as a Solo Creator
                                     </li>
                                 </ul>
                             </li>
                             <li>
                                 <p>
-                                    The Business of Creative Filmmaking and
-                                    Photography
+                                Module 5: Mastering Client Interaction
                                 </p>
                                 <ul>
                                     <li>
-                                        Financial Management for Solo Creators:
-                                        Budgeting and Pricing Your Work
+                                    The Client Call
                                     </li>
                                     <li>
-                                        Contracts and Legal Considerations for
-                                        Freelancers
+                                    The Call: Brainwave Cap Campaign
                                     </li>
                                     <li>
-                                        Navigating Taxes and Accounting for
-                                        Creatives
-                                    </li>
-                                    <li>
-                                        Building a Sustainable Business Model as
-                                        a Solo Creator
-                                    </li>
-                                    <li>
-                                        Balancing Creative Freedom with
-                                        Commercial Projects
+                                    Pre-Production 
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <p>Influencer Marketing and Brand Collection</p>
+                                <p>Module 6: The Art of the Shoot</p>
                                 <ul>
                                     <li>
-                                        Understanding the Role of Influencers in
-                                        the Marketing World
-                                    </li>
-                                    <li>
-                                        Strategies for Collaborating with Brands
-                                        as an Influencer
-                                    </li>
-                                    <li>
-                                        Negotiating Fair Compensation and
-                                        Deliverables
-                                    </li>
-                                    <li>
-                                        Maintaining Authenticity and Long-Term
-                                        Partnerships
-                                    </li>
-                                    <li>
-                                        Leveraging Social Media Platforms for
-                                        Brand Growth
+                                    The Shoot
                                     </li>
                                 </ul>
                             </li>
@@ -317,46 +259,22 @@ const MasterclassDesc = () => {
                         <ol start={7}>
                             <li>
                                 <p>
-                                    Editing Efficiency and High-Quality Output
+                                Module 7: Crafting the Story in Post-Production
                                 </p>
                                 <ul>
                                     <li>
-                                        Your Editing Process: Start to Finish
-                                    </li>
-                                    <li>
-                                        Utilizing Old Clips to Create Fresh
-                                        Content
-                                    </li>
-                                    <li>
-                                        Content Rollout Strategies and
-                                        Scheduling
-                                    </li>
-                                    <li>
-                                        Organizing Your Media for Efficiency and
-                                        Easy Access
-                                    </li>
-                                    <li>
-                                        Maintaining High-Quality Standards in
-                                        Your Edits
-                                    </li>
-                                    <li>
-                                        Time-Saving Tips and Keyboard Shortcuts
-                                        for Faster Editing
+                                    The Edit
                                     </li>
                                 </ul>
                             </li>
                             <li>
                                 <p>
-                                    Client Relations and Professional Etiquette
+                                Module 8: Excellence in Client Relations
                                 </p>
                                 <ul>
                                     <li>
                                         Best Practices for Reaching Out to
                                         Potential Clients
-                                    </li>
-                                    <li>
-                                        Effective Communication and Email
-                                        Etiquette
                                     </li>
                                     <li>
                                         Conducting Yourself Professionally
@@ -375,55 +293,30 @@ const MasterclassDesc = () => {
                         </ol>
                     </div>
                     <div className="module-img-container img-container">
-                        <img src="https://via.placeholder.com/500x400" alt="" />
+                        <img src="https://i.postimg.cc/TYvgVLTb/3.jpg" alt="" />
                     </div>
                     <div className="module-img-container img-container">
-                        <img src="https://via.placeholder.com/500x400" alt="" />
+                        <img src="https://i.postimg.cc/Z5VNzwpP/4.jpg" alt="" />
                     </div>
                     <div className="module-listings">
                         <ol start={9}>
                             <li>
-                                <p>AI in Creative Filmmaking and Photography</p>
+                                <p>Module 9: Influencer Marketing Mastery</p>
                                 <ul>
                                     <li>
-                                        Understanding the Basics of Artificial
-                                        Intelligence (AI) and Machine Learning
-                                        (ML)
+                                    Understanding the Role of Influencers in the Marketing World
                                     </li>
                                     <li>
-                                        How AI is Transforming the Creative
-                                        Industries
+                                    Strategies for Collaborating with Brands as an Influencer
                                     </li>
                                     <li>
-                                        AI-Based Video Editing Tools and
-                                        Software
+                                    Negotiating Fair Compensation and Deliverables
                                     </li>
                                     <li>
-                                        Automating Repetitive Tasks with AI for
-                                        Increased Efficiency
+                                    Maintaining Authenticity and Long-Term Partnerships
                                     </li>
                                     <li>
-                                        AI-Driven Image and Video Enhancement
-                                        Techniques
-                                    </li>
-                                    <li>
-                                        AI-Generated Music and Sound Design for
-                                        Filmmaking
-                                    </li>
-                                    <li>
-                                        AI-Powered Voiceovers and Narrations
-                                    </li>
-                                    <li>
-                                        AI-Driven Storyboarding and Script
-                                        Analysis
-                                    </li>
-                                    <li>
-                                        The Role of AI in Customizing Content
-                                        for Target Audiences
-                                    </li>
-                                    <li>
-                                        Ethical Considerations and Challenges in
-                                        AI-Driven Creative Processes
+                                    Leveraging Social Media Platforms for Brand Growth
                                     </li>
                                 </ul>
                             </li>
@@ -432,53 +325,36 @@ const MasterclassDesc = () => {
                     <div className="module-listings">
                         <ol start={10}>
                             <li>
-                                <p>Storytelling Beyond the Lens</p>
+                                <p>Module 10: AI in Creativity</p>
                                 <ul>
                                     <li>
-                                        Understanding the Role of Influencers in
-                                        the Marketing World
+                                    AI in the Creative Industry
                                     </li>
                                     <li>
-                                        Strategies for Collaborating with Brands
-                                        as an Influencer
-                                    </li>
-                                    <li>
-                                        Negotiating Fair Compensation and
-                                        Deliverables
-                                    </li>
-                                    <li>
-                                        Maintaining Authenticity and Long-Term
-                                        Partnerships
-                                    </li>
-                                    <li>
-                                        Leveraging Social Media Platforms for
-                                        Brand Growth
+                                    Favorite AI Tools for Creatives
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <p>Finding Inspiration and Staying Relevant</p>
+                                <p>Module 11: Staying Inspired and Relevant</p>
                                 <ul>
                                     <li>
-                                        Continuous Learning and Skill
-                                        Development in the Creative Field
+                                    Continuous Learning and Skill Development in the Creative Field
                                     </li>
                                     <li>
-                                        Staying Inspired and Overcoming Creative
-                                        Block
+                                    Forms of Inspiration
                                     </li>
                                     <li>
-                                        Trends and Innovations in Filmmaking and
-                                        Photography
+                                    Staying Inspired and Overcoming Creative Block
                                     </li>
                                     <li>
-                                        The Future of Content Creation: Virtual
-                                        Reality, Augmented Reality, and More
+                                    Trends and Innovations in Filmmaking and Photography
                                     </li>
+                                    <li>The Future of Content Creation: Virtual Reality, Augmented Reality, and More</li>
                                 </ul>
                             </li>
                             <li>
-                                <p>Building a Supportive Creative Community</p>
+                                <p>Module 12: Fostering a Creative Community</p>
                                 <ul>
                                     <li>
                                         Networking and Collaborating with Other
@@ -501,15 +377,15 @@ const MasterclassDesc = () => {
                         </ol>
                     </div>
                     <div className="module-img-container img-container">
-                        <img src="https://via.placeholder.com/500x400" alt="" />
+                        <img src="https://i.postimg.cc/YS0WrQz5/5.jpg" alt="" />
                     </div>
                     <div className="module-img-container img-container">
-                        <img src="https://via.placeholder.com/500x400" alt="" />
+                        <img src="https://i.postimg.cc/W4yJht9h/6.jpg" alt="" />
                     </div>
                     <div className="module-listings">
                         <ol start={13}>
                             <li>
-                                <p>Creating Impactful Social Media Content</p>
+                                <p>Module 13: Creating Impactful Social Media Content</p>
                                 <ul>
                                     <li>
                                         Strategies for Engaging Content on
@@ -531,8 +407,7 @@ const MasterclassDesc = () => {
                             </li>
                             <li>
                                 <p>
-                                    Balancing Personal Project and Commercial
-                                    Work
+                                Module 14: Balancing Personal and Commercial Projects
                                 </p>
                                 <ul>
                                     <li>
@@ -556,8 +431,11 @@ const MasterclassDesc = () => {
                         </ol>
                     </div>
                 </section>
-                <hr />
-                <section className="masterclass-who-for grid">
+                {/* <hr /> */}
+                <section
+                    className="masterclass-who-for grid"
+                    style={{ display: "none" }}
+                >
                     <h2>Who Is This For</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
