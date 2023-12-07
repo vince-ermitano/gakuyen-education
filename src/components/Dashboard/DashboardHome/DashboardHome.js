@@ -17,6 +17,8 @@ import CryptoJS from "crypto-js";
 const DashboardHome = () => {
     document.title = "The Odyssey Dashboard | Home";
 
+    const authorized = useSelector((state) => state.user.authorized);
+
     const navigate = useNavigate();
     const AES = CryptoJS.AES;
 
@@ -33,6 +35,7 @@ const DashboardHome = () => {
     };
 
     const goToShop = () => {
+        if (!authorized) return;
         navigate("/store");
     };
 

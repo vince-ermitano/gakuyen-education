@@ -6,6 +6,8 @@ import "./ModuleView.css";
 import ModulePreview from "./ModulePreview";
 import { toast } from "sonner";
 import CryptoJS from "crypto-js";
+import { BiArrowBack } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const ModuleView = () => {
     // const dispatch = useDispatch();
@@ -15,6 +17,7 @@ const ModuleView = () => {
     const isPurchasedItemsLoaded = useSelector(
         (state) => state.user.isPurchasedItemsLoaded
     );
+    const navigate = useNavigate();
     const [isRehydrated, setIsRehydrated] = useState(false);
     const AES = CryptoJS.AES;
 
@@ -25,7 +28,6 @@ const ModuleView = () => {
             setIsRehydrated(true);
         }
     }, [theOdyssey]);
-
 
     let userOwnedItems;
 
@@ -74,6 +76,14 @@ const ModuleView = () => {
     return (
         <div className="module-view">
             <div className="module-view-left-side">
+                <button
+                    className="mobile back-to-dashboard-home-btn"
+                    onClick={() => navigate("/dashboard/main")}
+                >
+                    <BiArrowBack />
+                    Back
+                </button>
+
                 <div className="headers">
                     <h1>Modules</h1>
                     <div className="module-filters">

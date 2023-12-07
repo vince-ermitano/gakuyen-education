@@ -147,6 +147,16 @@
         display: block;
     }
 
+    #dashboard .back-to-dashboard-home-btn {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    #dashboard .back-to-dashboard-home-btn svg {
+        margin-right: 1rem;
+    }
+
     #user-owned-presets-luts {
         margin-bottom: 3rem;
     }

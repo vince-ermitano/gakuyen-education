@@ -146,6 +146,7 @@ const PresetLutView = () => {
     return (
         <div id="preset-lut-view">
             <section id="preset-lut-view-left">
+                <button className="mobile back-to-dashboard-home-btn" onClick={() => navigate("/dashboard/main")}><BiArrowBack />Back</button>
                 <section id="user-owned-presets-luts">
                     <h2>My Presets</h2>
                     <div

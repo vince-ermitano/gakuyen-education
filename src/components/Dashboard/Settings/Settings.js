@@ -6,9 +6,10 @@ import { VscAccount } from "react-icons/vsc";
 import { AiOutlineEdit } from "react-icons/ai";
 import { auth } from "../../../config/firebaseConfig";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 
 const Settings = () => {
-
     document.title = "The Odyssey Dashboard | Settings";
 
     const dispatch = useDispatch();
@@ -16,8 +17,8 @@ const Settings = () => {
     const userInfo = useSelector((state) => state.user.userInfo);
     const [firstName, setFirstName] = useState(userInfo.firstName);
     const [lastName, setLastName] = useState(userInfo.lastName);
+    const navigate = useNavigate();
 
-    
     const onClickEdit = () => {
         const settings = document.querySelector(".personal-info");
         const inputsInEdit = settings.querySelectorAll("input");
@@ -35,10 +36,9 @@ const Settings = () => {
 
         editBtn.style.display = "none";
         saveBtn.style.display = "flex";
-    }
+    };
 
     const onClickSave = () => {
-
         const settings = document.querySelector(".personal-info");
         const inputsInEdit = settings.querySelectorAll("input");
         const saveBtn = settings.querySelector(".save-button");
@@ -46,15 +46,18 @@ const Settings = () => {
         const hideOnEdit = settings.querySelectorAll(".hide-on-edit");
 
         //check if name is the same as before
-        if (firstName === userInfo.firstName && lastName === userInfo.lastName) {
+        if (
+            firstName === userInfo.firstName &&
+            lastName === userInfo.lastName
+        ) {
             inputsInEdit.forEach((input) => {
                 input.style.display = "none";
             });
-    
+
             hideOnEdit.forEach((element) => {
                 element.style.display = "block";
             });
-    
+
             editBtn.style.display = "flex";
             saveBtn.style.display = "none";
 
@@ -63,11 +66,9 @@ const Settings = () => {
 
         const updateUserInfo = async () => {
             auth.currentUser
-            .getIdToken(true)
-            .then((idToken) => {
-                fetch(
-                    `${process.env.REACT_APP_SERVER_URL}/user-info`,
-                    {
+                .getIdToken(true)
+                .then((idToken) => {
+                    fetch(`${process.env.REACT_APP_SERVER_URL}/user-info`, {
                         method: "PUT",
                         headers: {
                             Authorization: `Bearer ${idToken}`,
@@ -77,47 +78,57 @@ const Settings = () => {
                             firstName: firstName,
                             lastName: lastName,
                         }),
-                    }
-                )
-                    .then((res) => {
-                        if (res.ok) return res.text();
-                        return res.text().then((error) => Promise.reject(error));
                     })
-                    .then((res) => {
-                        toast.success(res);
+                        .then((res) => {
+                            if (res.ok) return res.text();
+                            return res
+                                .text()
+                                .then((error) => Promise.reject(error));
+                        })
+                        .then((res) => {
+                            toast.success(res);
 
-                        inputsInEdit.forEach((input) => {
-                            input.style.display = "none";
-                        });
-                
-                        hideOnEdit.forEach((element) => {
-                            element.style.display = "block";
-                        });
-                
-                        editBtn.style.display = "flex";
-                        saveBtn.style.display = "none";
+                            inputsInEdit.forEach((input) => {
+                                input.style.display = "none";
+                            });
 
-                        dispatch(setUserInfo({
-                            firstName: firstName,
-                            lastName: lastName,
-                        }));
-                    })
-                    .catch((e) => {
-                        console.error(e);
-                        toast.error(e);
-                    });
-            })
-            .catch((e) => {
-                console.error(e.error);
-            });
-        }
+                            hideOnEdit.forEach((element) => {
+                                element.style.display = "block";
+                            });
+
+                            editBtn.style.display = "flex";
+                            saveBtn.style.display = "none";
+
+                            dispatch(
+                                setUserInfo({
+                                    firstName: firstName,
+                                    lastName: lastName,
+                                })
+                            );
+                        })
+                        .catch((e) => {
+                            console.error(e);
+                            toast.error(e);
+                        });
+                })
+                .catch((e) => {
+                    console.error(e.error);
+                });
+        };
 
         updateUserInfo();
-
     };
 
     return (
         <div className="my-profile-view">
+            <button
+                className="mobile back-to-dashboard-home-btn"
+                onClick={() => navigate("/dashboard/main")}
+            >
+                <BiArrowBack />
+                Back
+            </button>
+
             <h1>My Profile</h1>
             <div className="name-and-email">
                 <VscAccount />
