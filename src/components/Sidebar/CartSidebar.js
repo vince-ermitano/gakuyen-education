@@ -27,6 +27,9 @@ const CartSidebar = () => {
     )[0];
 
     const dispatch = useDispatch();
+    // const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
+    
+    // const showPayPal = localStorage.getItem("cart")["MC-01"] === undefined || isLoggedIn;
 
     // redux states
     const cartSidebarIsOpen = useSelector(
@@ -38,6 +41,8 @@ const CartSidebar = () => {
     const cartItems = cartSidebarIsOpen
         ? JSON.parse(localStorage.getItem("cart")) || {}
         : {};
+
+
 
 
     // handle functions
