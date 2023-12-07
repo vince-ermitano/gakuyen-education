@@ -88,19 +88,19 @@ const Checkout = () => {
                                     }),
                                 })
                                     .then((res) => {
-                                        if (res.ok) return res.json();
+                                        if (res.ok) return res.text();
                                         return res
-                                            .json()
-                                            .then((json) =>
-                                                Promise.reject(json)
+                                            .text()
+                                            .then((text) =>
+                                                Promise.reject(text)
                                             );
                                     })
-                                    .then((receipt) => {
-                                        console.log(receipt);
+                                    .then((text) => {
+                                        console.log(text);
                                     })
                                     .catch((err) => {
                                         toast.error("Error sending receipt");
-                                        console.error(err.message);
+                                        console.error(err);
                                     });
                                 navigate(
                                     `/receipt?download_token=${downloadToken}&paypal_id=${orderID}&has_downloads=${hasDownloads}`

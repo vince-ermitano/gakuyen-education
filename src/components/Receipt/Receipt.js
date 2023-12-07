@@ -201,7 +201,7 @@ const Receipt = () => {
                 <Logo />
                 <h1>Thank you for your order!</h1>
                 <p>
-                    Order ID <span>{session_id}</span>
+                    Order ID <span>{session_id}</span><span>{paypal_id}</span>
                 </p>
             </div>
             <div className="order-details">

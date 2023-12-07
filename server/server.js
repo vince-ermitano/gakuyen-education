@@ -1121,11 +1121,11 @@ app.post("/send-receipt", async (req, res) => {
         sendConfirmationEmail(payerEmail, dynamic_data)
             .then((message) => {
                 console.log(message);
-                return res.status(200).end();
+                return res.status(200).send(message);
             })
             .catch((error) => {
                 console.log(error);
-                return res.status(500).end();
+                return res.status(500).send('Error sending email');
             });
     } else {
         res.status(500).send("Invalid order ID");
