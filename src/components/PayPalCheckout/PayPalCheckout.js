@@ -19,11 +19,10 @@ const Checkout = () => {
         >
             <PayPalButtons
                 createOrder={(data, actions) => {
-                    console.log(localStorage.getItem("cart"));
                     // Customize createOrder logic as needed
                     return new Promise((resolve, reject) => {
                         // Customize createOrder logic as needed
-                        fetch("/create-paypal-order", {
+                        fetch(`${process.env.REACT_APP_SERVER_URL}/create-paypal-order`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",

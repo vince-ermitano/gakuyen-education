@@ -238,6 +238,7 @@ const CartSidebar = () => {
                             </b>
                         </p>
                     )}
+                    
                     <Elements stripe={stripePromise}>
                         <PaymentMethodMessagingElement
                             options={{
@@ -255,7 +256,7 @@ const CartSidebar = () => {
                     >
                         Proceed to Checkout
                     </button>
-                    <Checkout />
+                    { cartTotal > 0 && <Checkout />}
                     <div id="paypal-button-container"></div>
                 </div>
             </div>
