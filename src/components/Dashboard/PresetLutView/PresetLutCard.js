@@ -11,8 +11,6 @@ const PresetLutCard = (props) => {
 
     const openDetailsSidebar = () => {
 
-        if (!authorized) return;
-
         const detailsImageContainer = document.querySelector(".preset-lut-image-container");
 
         setTimeout(() => {
