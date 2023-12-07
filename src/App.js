@@ -85,7 +85,7 @@ function App() {
     })
 
     // * Enable/disable session check for development
-    const enableSessionCheck = true;
+    const enableSessionCheck = false;
 
     // const checkHeaderColor = useCallback(() => {
 
