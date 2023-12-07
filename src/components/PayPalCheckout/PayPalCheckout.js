@@ -74,7 +74,7 @@ const Checkout = () => {
                                 const { downloadToken, orderID, hasDownloads } =
                                     transaction;
 
-                                fetch("/send-receipt", {
+                                fetch(`${process.env.REACT_APP_SERVER_URL}/send-receipt`, {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json",
