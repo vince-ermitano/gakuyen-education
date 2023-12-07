@@ -97,7 +97,7 @@ const MasterclassDesc = () => {
                     </div>
                     <div className="masterclass-intro-text-container item-name-price">
                         <h1>The Odyssey - Creative Masterclass</h1>
-                        <p>Loren ipsum dolor sit amet</p>
+                        <p>14 Module In-Depth Course</p>
                         <p>${price}</p>
                         <button
                             className="darkgray-background"
