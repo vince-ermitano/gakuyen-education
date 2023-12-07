@@ -55,6 +55,8 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
 });
 
+const FIRST_48 = new Date("2023-12-10T03:00:00Z");
+
 // functions ==================================================
 // Get products from Firestore
 const getProducts = async () => {
@@ -495,6 +497,7 @@ app.post("/create-paypal-order", async (req, res) => {
             complete: false,
             timeStamp: Date.now(),
             uid: req.body.uid,
+            first48: Date.now() < FIRST_48,
         });
 
         // const formattedItems = cartItems.map((item) => ({
@@ -856,6 +859,7 @@ app.post("/create-checkout-session", async (req, res) => {
             complete: false,
             uid: req.uid,
             timeStamp: Date.now(),
+            first48: Date.now() < FIRST_48,
         });
 
         res.json({ url: session.url });
