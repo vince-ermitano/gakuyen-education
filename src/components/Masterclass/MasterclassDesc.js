@@ -104,7 +104,7 @@ const MasterclassDesc = () => {
                             data-item-id="MC-01"
                             onClick={(e) => {
                                 if (!auth.currentUser) {
-                                    toast.error('You must be logged in to purchase the masterclass!');
+                                    toast('You must be logged in to purchase the masterclass!');
                                     return;
                                 }
                                 handleAddToCart(e, dispatch);

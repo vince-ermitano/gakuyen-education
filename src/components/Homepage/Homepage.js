@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import HeroBanner from "../HeroBanner/HeroBanner";
 // import ShopNav from "../ShopNav/ShopNav";
 // import ShopNavV2 from "../ShopNav/ShopNavV2";
@@ -23,6 +23,7 @@ import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
 import { setTotalPrice } from "../../features/ShopSlice";
 import { setLoginSidebar } from "../../features/SidebarSlice";
+import { setClosedPopup } from "../../features/UserSlice";
 import { scrollIntoView } from "../../helpers";
 import { VscClose } from "react-icons/vsc";
 
@@ -39,6 +40,8 @@ const Homepage = () => {
     const showLogin = searchParams.get("show_login");
     const scrollTo = searchParams.get("scroll_to");
     const isRoot = currentPath === "/";
+    const authorized = useSelector((state) => state.user.authorized);
+    const closedPopup = useSelector((state) => state.user.closedPopup);
 
     const gradientCanvas = document.querySelector(".gradient-container");
     const header = document.querySelector(".hero-title-container");
@@ -145,14 +148,22 @@ const Homepage = () => {
             <Testimonials />
             <FAQ />
             <Marquee />
-            <div className="pop-up">
-                <img
-                    src="/ODYSSEYREPORTCARD.png"
-                    alt="report card"
-                    className="popup"
-                />
-                <VscClose onClick={() => document.querySelector('.pop-up').style.display = 'none'}/>
-            </div>
+            {authorized && !closedPopup && (
+                <div className="pop-up">
+                    <img
+                        src="/ODYSSEYREPORTCARD.png"
+                        alt="report card"
+                        className="popup"
+                    />
+                    <VscClose
+                        onClick={() => {
+                            document.querySelector(".pop-up").style.display = "none";
+                            dispatch(setClosedPopup(true));
+                        }
+                        }
+                    />
+                </div>
+            )}
             <div className="dotted-line"></div>
         </div>
     );

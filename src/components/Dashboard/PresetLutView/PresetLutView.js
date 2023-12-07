@@ -212,24 +212,24 @@ const PresetLutView = () => {
             >
                 <button onClick={() => setDetailsSidebarIsOpen(false)}><BiArrowBack />Back</button>
                 <div className="preset-lut-image-container"></div>
-                <h1>{currentItem.name}</h1>
-                <p>{currentItem?.type.toLowerCase()}</p>
+                <h1>{currentItem?.name}</h1>
+                <p>{currentItem?.type}</p>
                 <h2>Description</h2>
                 <p>
-                    {currentItem.description.description_1}
+                    {currentItem?.description?.description_1}
                 </p>
                 <div id="preset-info">
                     <h3>Info</h3>
                     <div id="preset-lut-size-info">
                         <span>Size</span>
-                        <span>{currentItem.size}</span>
+                        <span>{currentItem?.size}</span>
                     </div>
                     <div id="preset-lut-type-info">
                         <span>Type</span>
-                        <span>{currentItem.type}</span>
+                        <span>{currentItem?.type}</span>
                     </div>
                 </div>
-                <button onClick={(e) => handleCheckItOut(e)} data-downloadurl={currentItem.link_to_download}>
+                <button onClick={(e) => handleCheckItOut(e)} data-downloadurl={currentItem?.link_to_download}>
                     {currentItemIsOwned ? (
                         <pre>
                             Download <BsDownload />

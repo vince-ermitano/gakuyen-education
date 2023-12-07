@@ -159,13 +159,15 @@ function App() {
             header.style.display = "grid";
             heroVideo.style.display = "flex";
 
+            if (authorized) return;
+
             if (document.querySelector(".countdown-timer")) return;
             const div = document.createElement("div");
             const root = createRoot(div);
             root.render(<CountdownTimer />);
             heroTitleContainer.appendChild(div);
         }
-    }, [authenticated, currentPath]);
+    }, [authenticated, currentPath, authorized]);
 
     useEffect(() => {
         if (!authenticated) return;
@@ -283,8 +285,6 @@ function App() {
                 if (checkIfAuthorized(user.email)) {
                     dispatch(setAuthorized(true));
                 }
-            } else {
-                dispatch(setAuthorized(false));
             }
         });
 

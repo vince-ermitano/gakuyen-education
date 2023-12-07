@@ -91,7 +91,7 @@ const CourseBanner = () => {
                             handleAddToCart(e, dispatch);
                         }}
                     >
-                        {countdown}
+                        {authorized ? 'Add to Cart' : countdown}
                     </button>
                 </div>
                 <h3 className="claim-heading">
