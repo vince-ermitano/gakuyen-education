@@ -213,13 +213,10 @@ const PresetLutView = () => {
                 <button onClick={() => setDetailsSidebarIsOpen(false)}><BiArrowBack />Back</button>
                 <div className="preset-lut-image-container"></div>
                 <h1>{currentItem.name}</h1>
-                <p>preset</p>
+                <p>{currentItem?.type.toLowerCase()}</p>
                 <h2>Description</h2>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    {currentItem.description.description_1}
                 </p>
                 <div id="preset-info">
                     <h3>Info</h3>
