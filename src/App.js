@@ -252,7 +252,7 @@ function App() {
                                 localStorage.removeItem("sessionToken");
 
                                 dispatch(setLoggedInStatus(false));
-                                toast.success(
+                                toast(
                                     "You have been logged out due to being logged in on another device."
                                 );
                             })
