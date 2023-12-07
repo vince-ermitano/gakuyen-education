@@ -25,7 +25,6 @@ const CartSidebar = () => {
     const stripePromise = useState(
         loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
     )[0];
-
     const dispatch = useDispatch();
     // const isLoggedIn = useSelector((state) => state.loggedInStatus.isLoggedIn);
     
