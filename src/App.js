@@ -62,6 +62,7 @@ function App() {
 
     const dispatch = useDispatch();
     const [authenticated, setAuthenticated] = useState(true);
+    const [routeChangeCount, setRouteChangeCount] = useState(0);
 
     const authorized = useSelector((state) => state.user.authorized);
 
@@ -84,7 +85,7 @@ function App() {
     })
 
     // * Enable/disable session check for development
-    const enableSessionCheck = false;
+    const enableSessionCheck = true;
 
     // const checkHeaderColor = useCallback(() => {
 
@@ -271,10 +272,12 @@ function App() {
             }
         };
 
-        if (enableSessionCheck) {
+        if (enableSessionCheck && routeChangeCount % 5 === 0) {
             checkSession();
         }
-    }, [authenticated, dispatch, currentPath, enableSessionCheck]);
+
+        setRouteChangeCount((prev) => prev + 1);
+    }, [authenticated, dispatch, currentPath, enableSessionCheck, routeChangeCount]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
