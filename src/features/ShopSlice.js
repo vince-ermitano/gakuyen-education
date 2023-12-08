@@ -8,7 +8,7 @@ const initialState = {
     loginDialogVisibility: false,
 };
 
-const calculateTotalPrice = () => {
+const calculateTotalPrice = (discount) => {
     return (dispatch, getState) => {
 
         const cartItems = JSON.parse(localStorage.getItem('cart')) || {};
@@ -25,6 +25,9 @@ const calculateTotalPrice = () => {
             }
         }
 
+        if (discount) {
+            totalPrice -= totalPrice * discount / 100;
+        }
         totalPrice = totalPrice.toFixed(2);
         
         dispatch({

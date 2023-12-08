@@ -7,6 +7,7 @@ const initialState = {
     userInfo: {},
     authorized: checkIfPassedMainLaunchDate(),
     closedPopup: false,
+    promoCode: null,
 }
 
 const userSlice = createSlice({
@@ -27,9 +28,12 @@ const userSlice = createSlice({
         },
         setClosedPopup: (state, action) => {
             state.closedPopup = action.payload;
+        },
+        setPromoCode: (state, action) => {
+            state.promoCode = action.payload;
         }
     }
 });
 
-export const { setPurchasedItems, setIsPurchasedItemsLoaded, setUserInfo, setAuthorized, setClosedPopup } = userSlice.actions;
+export const { setPurchasedItems, setIsPurchasedItemsLoaded, setUserInfo, setAuthorized, setClosedPopup, setPromoCode } = userSlice.actions;
 export default userSlice.reducer;

@@ -34,21 +34,94 @@ const CartSidebar = () => {
     const cartSidebarIsOpen = useSelector(
         (state) => state.sidebar.cartSidebarIsOpen
     );
+    const products = useSelector((state) => state.shop.products);
     const cartTotal = useSelector((state) => state.shop.totalPrice);
     const authorized = useSelector((state) => state.user.authorized);
+    // const promoCode = useSelector((state) => state.user.promoCode);
+    // const [promoCodeApplied, setPromoCodeApplied] = useState(false);
+    const [promoCode, setPromoCode] = useState('');
+    const [appliedPromoCode, setAppliedPromoCode] = useState('');
 
     const cartItems = cartSidebarIsOpen
         ? JSON.parse(localStorage.getItem("cart")) || {}
         : {};
 
+    const handlePromoCode = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/check-promo-code`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    promoCode: promoCode,
+                }),
+            });
+
+            if (response.ok) {
+                const json = await response.json();
+                
+                // apply discount to cart
+                console.log(json);
+
+                document.getElementById('promo-code-info').style.display = 'block';
+
+                document.querySelector('.total span:last-child').style.textDecoration = 'line-through';
+                document.getElementById('applied-promo-code').innerText = promoCode;
+                document.getElementById('applied-discount').innerText = `${json.discount}%`;
+                document.getElementById('discounted-total').innerText = `$${calculateTotalWithDiscount(json.discount)}`;
+
+                toast.success('Promo code applied!');
+
+                setAppliedPromoCode(promoCode);
+                setPromoCode('');
+            } else {
+                const json = await response.json();
+                toast.error(json.error);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const calculateTotalWithDiscount = (discount) => {
+
+        if (Object.keys(products).length === 0) {
+            return 0;
+        }
+
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || {};
+
+        let totalPrice = 0;
+
+        for (const itemId in cartItems) {
+            if (
+                cartItems.hasOwnProperty(itemId) &&
+                products.hasOwnProperty(itemId)
+            ) {
+                totalPrice += cartItems[itemId] * products[itemId].price;
+            }
+        }
+
+        if (discount) {
+            totalPrice -= totalPrice * discount / 100;
+        }
+        totalPrice = totalPrice.toFixed(2);
+
+        return totalPrice;
+    }
 
 
 
     // handle functions
     const createCheckoutSession = useCallback(() => {
         if (!auth.currentUser) {
+            const appliedPromoCode = document.getElementById('applied-promo-code').innerText;
+
             fetch(
-                `${process.env.REACT_APP_SERVER_URL}/create-checkout-session`,
+                `${process.env.REACT_APP_SERVER_URL}/create-checkout-session?promoCode=${appliedPromoCode}`,
                 {
                     method: "POST",
                     headers: {
@@ -90,8 +163,10 @@ const CartSidebar = () => {
         auth.currentUser
             .getIdToken(true)
             .then((idToken) => {
+                const appliedPromoCode = document.getElementById('applied-promo-code').innerText;
+
                 fetch(
-                    `${process.env.REACT_APP_SERVER_URL}/create-checkout-session`,
+                    `${process.env.REACT_APP_SERVER_URL}/create-checkout-session?promoCode=${appliedPromoCode}`,
                     {
                         method: "POST",
                         headers: {
@@ -242,7 +317,7 @@ const CartSidebar = () => {
                             </b>
                         </p>
                     )}
-                    
+
                     <Elements stripe={stripePromise}>
                         <PaymentMethodMessagingElement
                             options={{
@@ -254,13 +329,37 @@ const CartSidebar = () => {
                         />
                     </Elements>
                     <br />
+                    <div id="promo-code-info" style={{display: 'none'}}>
+                        <p>
+                            <span>Promo Code:</span>
+                            <b id="applied-promo-code"></b>
+                        </p>
+                        <p>
+                            <span>Discount: </span>
+                            <b id="applied-discount"></b>
+                        </p>
+                        <p>
+                            <span>Total:</span>
+                            <b id="discounted-total"></b>
+                        </p>
+                    </div>
+                    <form id="promo-code-form" onSubmit={handlePromoCode}>
+                        <input
+                            type="text"
+                            placeholder="Promo Code"
+                            name="promo-code"
+                            value={promoCode}
+                            onChange={(e) => setPromoCode(e.target.value)}
+                        />
+                        <button type="submit">Apply</button>
+                    </form>
                     <button
                         className="darkgray-background"
                         onClick={handleProceedToCheckout}
                     >
                         Proceed to Checkout
                     </button>
-                    { cartTotal > 0 && <Checkout />}
+                    {cartTotal > 0 && <Checkout promoCode={appliedPromoCode} />}
                     <div id="paypal-button-container"></div>
                 </div>
             </div>

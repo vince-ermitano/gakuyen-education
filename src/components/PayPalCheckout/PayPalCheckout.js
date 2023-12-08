@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 // import './Checkout.css';
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { toast } from "sonner";
@@ -6,10 +6,19 @@ import { auth } from "../../config/firebaseConfig.js"
 import { useNavigate } from "react-router-dom";
 
 
-const Checkout = () => {
+const Checkout = ( { promoCode }) => {
+    console.log(promoCode + 'from paypal');
     const navigate = useNavigate();
     // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
     // This is the main reason to wrap the PayPalButtons in a new component
+
+    const promoCodeRef = useRef(promoCode);
+
+    useEffect(() => {
+        console.log(promoCode + ' updated');
+        promoCodeRef.current = promoCode;
+    }, [promoCode]);
+
     return (
         <PayPalScriptProvider
             options={{
@@ -18,18 +27,21 @@ const Checkout = () => {
             }}
         >
             <PayPalButtons
+
                 createOrder={(data, actions) => {
                     // Customize createOrder logic as needed
                     return new Promise((resolve, reject) => {
+
+                        console.log(promoCodeRef.current + 'in create order')
                         // Customize createOrder logic as needed
-                        fetch(`${process.env.REACT_APP_SERVER_URL}/create-paypal-order`, {
+                        fetch(`${process.env.REACT_APP_SERVER_URL}/create-paypal-order?promoCode=${promoCodeRef.current}`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
                             },
                             body: JSON.stringify({
                                 items: localStorage.getItem("cart"),
-                                uid: auth.currentUser.uid,
+                                uid: auth.currentUser?.uid ?? null,
                             }),
                         })
                             .then((res) => {

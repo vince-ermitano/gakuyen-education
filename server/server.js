@@ -75,6 +75,10 @@ const getProducts = async () => {
     return productsObject;
 };
 
+const applyDiscount = (discount, totalPrice) => {
+    return totalPrice - totalPrice * discount / 100;
+}
+
 const sendConfirmationEmail = (email, dynamic_data) => {
     return new Promise((resolve, reject) => {
         const msg = {
@@ -443,21 +447,27 @@ const paypalClient = new paypal.core.PayPalHttpClient(
 app.post("/create-paypal-order", async (req, res) => {
 
     req.body.items = JSON.parse(req.body.items);
+    const promoCode = req.query.promoCode;
+
+    console.log(promoCode);
+
+    let discount = 0;
+
+    if (promoCode === process.env.PROMO_CODE_10) {
+        discount = 10;
+    }
 
     try {
         const request = new paypal.orders.OrdersCreateRequest();
         let totalPrice = 0;
 
         for (const item in req.body.items) {
-            totalPrice += productsObject[item].price;
+            totalPrice += Number(applyDiscount(discount, productsObject[item].price).toFixed(2));
         }
 
-        totalPrice = totalPrice.toFixed(2);
         console.log(totalPrice);
 
         const cartItems = Object.keys(req.body.items);
-
-        console.log(totalPrice);
 
         request.prefer("return=representation");
         request.requestBody({
@@ -479,7 +489,7 @@ app.post("/create-paypal-order", async (req, res) => {
                             name: productsObject[item].name,
                             unit_amount: {
                                 currency_code: "USD",
-                                value: productsObject[item].price,
+                                value: applyDiscount(discount, productsObject[item].price).toFixed(2),
                             },
                             quantity: 1,
                         };
@@ -806,6 +816,17 @@ app.post("/create-checkout-session", async (req, res) => {
 
     console.log(totalPrice);
 
+    const promoCode = req.query.promoCode;
+    console.log(promoCode);
+    let discount = 0;
+
+    if (promoCode === process.env.PROMO_CODE_10) {
+        discount = 10;
+    }
+
+
+    console.log(applyDiscount(discount, totalPrice));
+
     try {
         const cartItems = Object.keys(req.body);
 
@@ -816,7 +837,7 @@ app.post("/create-checkout-session", async (req, res) => {
                     product_data: {
                         name: productsObject[item].name,
                     },
-                    unit_amount: Math.floor(productsObject[item].price * 100),
+                    unit_amount: Math.floor(applyDiscount(discount, productsObject[item].price * 100)),
                 },
                 quantity: 1,
             };
@@ -1176,10 +1197,20 @@ app.post("/report-card", async (req, res) => {
         })
         .catch((error) => {
             console.error(error);
-            res.status(500).send('Error sending email');
+            return res.status(500).send('Error sending email');
         });
 
-    res.status(200).send("Email sent");
+    return res.status(200).send("Email sent");
+});
+
+app.post("/check-promo-code", (req, res) => {
+    const promoCode = req.body.promoCode;
+
+    if (promoCode === process.env.PROMO_CODE_10) {
+        return res.status(200).send({discount: 10});
+    }
+
+    return res.status(500).send({error: 'Invalid promo code'});
 })
 
 // -------------------------------------------------- EXPRESS ROUTES
