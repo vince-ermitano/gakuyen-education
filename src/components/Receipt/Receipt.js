@@ -203,6 +203,7 @@ const Receipt = () => {
                 <p>
                     Order ID <span>{session_id}</span><span>{paypal_id}</span>
                 </p>
+                <p>Note: If you used a promo code, don't worry. Your discount still got applied. This receipt doesn't show the updated prices with the applied discount. </p>
             </div>
             <div className="order-details">
                 <h2>Order Details</h2>
