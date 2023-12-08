@@ -204,6 +204,11 @@
     color: red;
 }
 
+#promo-code-form input {
+    height: 2rem;
+    margin-right: 1rem;
+}
+
 @media screen and (max-width: 1500px) {
     .right-sidebar {
         width: 45%;
