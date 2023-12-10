@@ -7,7 +7,7 @@ import CryptoJS from "crypto-js";
 const AES = CryptoJS.AES;
 const MAIN_LAUNCH_DATE = new Date("2023-12-08T03:00:00Z");
 const LAUNCH_DATE = new Date("2023-12-08T03:00:00Z");
-export const FIRST48 = new Date("2023-12-010T03:00:00Z");
+export const FIRST48 = new Date("2023-12-10T03:00:00Z");
 // const LAUNCH_DATE = new Date("2023-12-06T03:00:00Z");
 // const MAIN_LAUNCH_DATE = new Date("2023-12-03T03:00:00Z");
 

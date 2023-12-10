@@ -24,7 +24,7 @@ import { auth } from "../../config/firebaseConfig";
 import { setTotalPrice } from "../../features/ShopSlice";
 import { setLoginSidebar } from "../../features/SidebarSlice";
 import { setClosedPopup } from "../../features/UserSlice";
-import { scrollIntoView } from "../../helpers";
+import { FIRST48, scrollIntoView } from "../../helpers";
 import { VscClose } from "react-icons/vsc";
 
 const Homepage = () => {
@@ -148,7 +148,7 @@ const Homepage = () => {
             <Testimonials />
             <FAQ />
             <Marquee />
-            {authorized && !closedPopup && (
+            {authorized && !closedPopup && (Date.now() < FIRST48) && (
                 <div className="pop-up">
                     <img
                         src="/ODYSSEYREPORTCARD.png"

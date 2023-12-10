@@ -105,7 +105,7 @@ const PresetDescPage = () => {
                 </div>
                 <div className="preset-desc-page-info preset-name-price item-name-price">
                     <h1>{currentProduct.name}</h1>
-                    <p>${currentProduct.price}</p>
+                    <p>${currentProduct.price.toFixed(2)}</p>
                     <button
                         className="darkgray-background"
                         data-item-id={currentProductId}

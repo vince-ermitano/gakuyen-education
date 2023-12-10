@@ -50,7 +50,7 @@ const ShopItem = ({ product, productId, productMainImg }) => {
                     </div>
                     <div className="shop-item-info">
                         <h3>{itemName}</h3>
-                        <p>{itemPrice}</p>
+                        <p>${itemPrice.toFixed(2)}</p>
                     </div>
                 </div>
             {/* </Link> */}
