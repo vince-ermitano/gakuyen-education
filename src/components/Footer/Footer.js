@@ -66,7 +66,7 @@ const Footer = () => {
         }
     }
     return (
-        <div className="footer page-section">
+        <div className="footer page-section" id="footer">
             {/* <FaCode style={{ fontSize: 32 }}/> */}
             <div className="footer-logo">
                 <img src="/theodyssey_s.png" alt="Gakuyen Education Logo" />
