@@ -12,6 +12,8 @@ const {
     updateDoc,
 } = require("firebase/firestore");
 const { v4: uuidv4 } = require("uuid");
+const fetch = require('node-fetch'); // Import the 'node-fetch' library
+const validator = require('validator');
 
 // sendgrid --------------------------------------------------
 const sgMail = require("@sendgrid/mail");
@@ -941,6 +943,47 @@ app.post("/newsletter-signup", async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
+app.post("/add-email-contact", async (req, res) => {
+    const email = req.body.email;
+
+    if (!validator.isEmail(email)) return res.status(500).send({ error: 'Send a valid email address.'});
+
+    // Example URL to the HubSpot API for updating a contact
+    const apiUrl = 'https://api.hubapi.com/contacts/v1/contact/';
+
+    // Example data to send in the request body
+    const data = {
+        properties: [
+            {
+                "property": "email",
+                "value": email
+            }
+        ]
+    };
+
+    // Example headers for a JSON request
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.HUBSPOT_TOKEN}`
+    };
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        // Handle the response and send a response to the client
+        res.status(response.status).json({ message: 'Added to mailing list ★彡'});
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Failed to add to mailing list :(' });
+    }
+})
 
 app.get("/the-odyssey", async (req, res) => {
     // res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
