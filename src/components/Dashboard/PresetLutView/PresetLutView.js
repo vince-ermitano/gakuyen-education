@@ -30,6 +30,7 @@ const PresetLutView = () => {
     const authorized = useSelector((state) => state.user.authorized);
     const products = useSelector((state) => state.shop.products);
     let loadingOrComingSoonMessage;
+    let title;
 
     const loadingOrComingSoonStyle = {
         height: '300px',
@@ -106,6 +107,7 @@ const PresetLutView = () => {
 
     if (currentPath.includes("/dashboard/presets")) {
         document.title = 'The Odyssey Dashboard | My Presets'
+        title = 'My Presets'
 
         const ownedPresets = filterProducts(userOwnedItems, "Preset", products);
         ownedItemsForCurrentPage = ownedPresets;
@@ -118,6 +120,7 @@ const PresetLutView = () => {
         unownedItemsForCurrentPage = unownedPresets;
     } else if (currentPath.includes("/dashboard/luts")) {
         document.title = 'The Odyssey Dashboard | My LUTs'
+        title = 'My LUTs'
 
         const ownedLuts = filterProducts(userOwnedItems, "Lut", products);
         ownedItemsForCurrentPage = ownedLuts;
@@ -130,6 +133,7 @@ const PresetLutView = () => {
         unownedItemsForCurrentPage = unownedLuts;
     } else if (currentPath.includes("/dashboard/transitions")) {
         document.title = 'The Odyssey Dashboard | My Transitions'
+        title = 'My Transitions'
 
         const ownedTransitions = filterProducts(
             userOwnedItems,
@@ -151,7 +155,7 @@ const PresetLutView = () => {
             <section id="preset-lut-view-left">
                 <button className="mobile back-to-dashboard-home-btn" onClick={() => navigate("/dashboard/main")}><BiArrowBack />Back</button>
                 <section id="user-owned-presets-luts">
-                    <h2>My Presets</h2>
+                    <h2>{title}</h2>
                     <div
                         id="user-owned-presets-luts-container"
                         className="presets-luts-container"
