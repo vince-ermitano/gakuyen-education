@@ -2,7 +2,6 @@ import React from "react";
 import "./MoneyBackGuarantee.css";
 import { VscClose } from "react-icons/vsc";
 
-
 const MoneyBackGuarantee = () => {
     const handleClickOutsideDialog = (event) => {
         const moneyBackDialog = document.getElementById("money_back_dialog");
@@ -39,9 +38,7 @@ const MoneyBackGuarantee = () => {
                 </p>
                 <br></br>
                 <Link to="/">Read More</Link> */}
-                <h2>
-                    Money Back Guarantee
-                </h2>
+                <h2>Money Back Guarantee</h2>
                 <h3>
                     When I sat down and wrote this course - I compiled
                     everything I wish I had known years ago. How to create
@@ -55,9 +52,14 @@ const MoneyBackGuarantee = () => {
                 </p>
                 <p>
                     If you’ve completed the course and, for any reason, you find
-                    yourself dissatisfied, we’re here to help. Send us an email
-                    within the first 30 days after your purchase, and we’ll
-                    ensure you get a full refund.*
+                    yourself dissatisfied, we’re here to help. To
+                    process your refund, we ask that you provide a brief but
+                    specific explanation of what didn't meet your expectations.
+                    This helps us understand your needs better and improve our
+                    course for future learners. Please send us an email within
+                    the first 14 days after your purchase detailing your reasons
+                    for dissatisfaction, and we’ll ensure you get a full
+                    refund.*
                 </p>
                 <br></br>
                 <button
@@ -70,8 +72,15 @@ const MoneyBackGuarantee = () => {
             </div>
             <dialog id="money_back_dialog" onClick={handleClickOutsideDialog}>
                 <div className="dialog__content">
-                    <VscClose onClick={() => document.getElementById('money_back_dialog').close()}/>
+                    <VscClose
+                        onClick={() =>
+                            document.getElementById("money_back_dialog").close()
+                        }
+                    />
                     <h2>Refund Information</h2>
+                    <p>
+                    Note: Refund requests without a specified reason may not be eligible for a full refund.
+                    </p>
                     <p>
                         Following the approval of a refund request, you will
                         receive a reimbursement equivalent to the entire course
@@ -101,7 +110,6 @@ const MoneyBackGuarantee = () => {
                                 href="https://stripe.com/pricing/local-payment-methods"
                                 target="_blank"
                                 rel="noreferrer"
-
                             >
                                 Processing Fees Breakdown | Stripe Official Site
                             </a>
@@ -111,7 +119,6 @@ const MoneyBackGuarantee = () => {
                                 href="https://stripe.com/pricing"
                                 target="_blank"
                                 rel="noreferrer"
-
                             >
                                 Pricing & Fees | Stripe Official Site
                             </a>
@@ -121,7 +128,6 @@ const MoneyBackGuarantee = () => {
                                 href="https://support.stripe.com/questions/understanding-fees-for-refunded-payments#:~:text=To%20address%20these%20underlying%20payment%20processing%20costs%20and%20continue%20providing%20these%20services%20as%20part%20of%20our%20standard%20pricing,%20Stripe%20does%20not%20return%20our%20fees%20when%20a%20payment%20is%20refunded."
                                 target="_blank"
                                 rel="noreferrer"
-
                             >
                                 Understanding fees for refunded payments |
                                 Stripe Help & Support
