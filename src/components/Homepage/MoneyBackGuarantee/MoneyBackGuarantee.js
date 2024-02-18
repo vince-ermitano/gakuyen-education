@@ -57,7 +57,7 @@ const MoneyBackGuarantee = () => {
                     specific explanation of what didn't meet your expectations.
                     This helps us understand your needs better and improve our
                     course for future learners. Please send us an email within
-                    the first 14 days after your purchase detailing your reasons
+                    the first 7 days after your purchase detailing your reasons
                     for dissatisfaction, and we’ll ensure you get a full
                     refund.*
                 </p>
