@@ -95,6 +95,10 @@
     padding: 0.5rem 1rem;
 }
 
+#course-banner-content #interest-free {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1366px) {
     #course-banner-content h2 {
         font-size: 4rem;

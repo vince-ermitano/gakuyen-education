@@ -54,6 +54,16 @@ const FAQ = () => {
                         }
                         answer="Unlike many other courses, we provide hands-on experience with real-world briefs, from initial concept through to final production. Our unique modules on AI and technology in creativity, along with expert industry insights, set our course apart."
                     />
+                    <FaqItem
+                        question={
+                            <>
+                                Do I Need to be Located in a{" "}
+                                <b>Certain Region(s)</b> to Utilize{" "}
+                                <b>Installment Financing</b> for This Course?
+                            </>
+                        }
+                        answer="Yes. Unfortunately, installment financing is only available under Affirm which only supports the 'Buy Now Pay Later' option for customers in the United States and Canada. Because of the price point of the course, the course is not eligible to be financed through other financial institutions such as Klarna and Afterpay who offer wider international support. We appreciate your understanding and apologize for any inconvenience this may cause."
+                    />
                 </section>
                 <section className="faq-group">
                     <FaqItem
@@ -68,7 +78,9 @@ const FAQ = () => {
                     <FaqItem
                         question={
                             <>
-                                How is the course <b>structured</b>? Are there <b>live sessions</b>, or is it <b>self-paced</b>?
+                                How is the course <b>structured</b>? Are there{" "}
+                                <b>live sessions</b>, or is it <b>self-paced</b>
+                                ?
                             </>
                         }
                         answer="There are no live sessions, allowing you the flexibility to progress through the modules at your own pace and according to your own schedule. This format is ideal for those who have other commitments or prefer to learn in a more flexible environment. You can revisit the course materials as often as needed, ensuring a learning experience that is tailored to your individual needs and pace."

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleAddToCart } from "../../helpers";
 import { toast } from "sonner";
 import { auth } from "../../config/firebaseConfig";
-import { getTimeUntilSpecificDate } from "../../helpers";
+import { getTimeUntilSpecificDate, scrollIntoView } from "../../helpers";
 
 const CourseBanner = () => {
     const dispatch = useDispatch();
@@ -50,7 +50,9 @@ const CourseBanner = () => {
                 <p>
                     You can choose to buy The Odyssey with a one-time payment…
                     or split the total cost over 6 months,{" "}
-                    <b>completely interest-free</b>.
+                    <b id="interest-free" onClick={() => {
+                        scrollIntoView("faq");
+                    }}>completely interest-free*</b>.
                 </p>
                 <div id="select-financing-group">
                     <Dropdown
