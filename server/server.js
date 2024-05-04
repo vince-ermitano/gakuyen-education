@@ -459,6 +459,8 @@ app.post("/create-paypal-order", async (req, res) => {
         discount = 10;
     } else if (promoCode === process.env.PROMO_CODE_25) {
         discount = 25;
+    } else if (promoCode === process.env.PROMO_CODE_30) {
+        discount = 30;
     }
 
     try {
@@ -828,6 +830,8 @@ app.post("/create-checkout-session", async (req, res) => {
         discount = 10;
     } else if (promoCode === process.env.PROMO_CODE_25) {
         discount = 25;
+    } else if (promoCode === process.env.PROMO_CODE_30) {
+        discount = 30;
     }
 
 
@@ -1259,6 +1263,10 @@ app.post("/check-promo-code", (req, res) => {
 
     if (promoCode === process.env.PROMO_CODE_25) {
         return res.status(200).send({discount: 25});
+    }
+
+    if (promoCode === process.env.PROMO_CODE_30) {
+        return res.status(200).send({discount: 30});
     }
 
     return res.status(500).send({error: 'Invalid promo code'});
