@@ -8,7 +8,7 @@ import { Provider, useDispatch} from "react-redux";
 import Password from "./components/Password/Password";
 import Homepage from "./components/Homepage/Homepage";
 import HamburgerMenu from "./components/Hamburger/HamburgerMenu";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Maintenance from "./components/Maintenance/Maintenance";
 import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
@@ -410,7 +410,7 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<Maintenance />}></Route>
-
+                <Route path="*" element={<Navigate to="/" />} />
                 {authorized && (
                     <>
                         <Route path="/success" element={<Homepage />}></Route>
