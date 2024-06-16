@@ -130,7 +130,7 @@ const PresetDescPage = () => {
                     loop="true"
                     autoplay="true"
                 >
-                    {Array.from(Array(numCarouselImgs).keys()).map((i) => (
+                    {numCarouselImgs > 1 && Array.from(Array(numCarouselImgs).keys()).map((i) => (
                         <swiper-slide key={i}>
                             <div className="carousel-img-container">
                                 <img
