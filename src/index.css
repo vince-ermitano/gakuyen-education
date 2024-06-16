@@ -99,7 +99,7 @@ input[type="reset"] {
   /* padding: 5% 0rem 2rem 8rem; */
   padding: 4rem 0 4rem 8rem;
   height: 100vh;
-  display: grid;
+  display: none !important;
   grid-template-columns: 2fr 3fr;
   overflow: hidden;
   align-items: center;

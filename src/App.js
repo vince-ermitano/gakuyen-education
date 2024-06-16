@@ -4,11 +4,12 @@ import { createRoot } from "react-dom/client";
 import Header from "./components/Header/Header_logged_out";
 import Shop from "./components/Shop/Shop";
 import store from "./store/store";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch} from "react-redux";
 import Password from "./components/Password/Password";
 import Homepage from "./components/Homepage/Homepage";
 import HamburgerMenu from "./components/Hamburger/HamburgerMenu";
 import { Routes, Route, useLocation } from "react-router-dom";
+import Maintenance from "./components/Maintenance/Maintenance";
 import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
 import Receipt from "./components/Receipt/Receipt";
@@ -39,7 +40,7 @@ import {
 } from "./features/ShopSlice";
 import { setUserInfo, setAuthorized } from "./features/UserSlice";
 import { setTheOdyssey, setIsLoading } from "./features/CoursesSlice";
-import { checkHeaderColor, checkIfAuthorized } from "./helpers";
+import {checkIfAuthorized } from "./helpers";
 // import { ToastContainer, toast } from "react-toastify";
 import DashboardHome from "./components/Dashboard/DashboardHome/DashboardHome";
 import { Toaster, toast } from "sonner";
@@ -56,14 +57,16 @@ function App() {
 
     const currentPath = location.pathname;
 
-    const dashboardPath = "/dashboard";
+    // const dashboardPath = "/dashboard";
 
-    const shouldHideComponents = currentPath.includes(dashboardPath);
+    // const shouldHideComponents = currentPath.includes(dashboardPath);
+    const shouldHideComponents = true;
 
     const dispatch = useDispatch();
     const [authenticated, setAuthenticated] = useState(true);
 
-    const authorized = useSelector((state) => state.user.authorized);
+    // const authorized = useSelector((state) => state.user.authorized);
+    const authorized = false;
 
     useEffect(() => {
         AOS.init({
@@ -198,7 +201,7 @@ function App() {
 
         console.log("route changed");
 
-        checkHeaderColor(currentPath);
+        // checkHeaderColor(currentPath);
     }, [authenticated, currentPath]);
 
     useEffect(() => {
@@ -293,17 +296,17 @@ function App() {
         };
     });
 
-    useEffect(() => {
-        if (!authenticated) return;
+    // useEffect(() => {
+    //     if (!authenticated) return;
 
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            checkHeaderColor(currentPath);
-        });
+    //     const unsubscribe = onAuthStateChanged(auth, (user) => {
+    //         checkHeaderColor(currentPath);
+    //     });
 
-        return () => {
-            unsubscribe();
-        };
-    }, [authenticated, currentPath]);
+    //     return () => {
+    //         unsubscribe();
+    //     };
+    // }, [authenticated, currentPath]);
 
     useEffect(() => {
         // Listen for authentication state changes
@@ -406,7 +409,7 @@ function App() {
             )}
 
             <Routes>
-                <Route path="/" element={<Homepage />}></Route>
+                <Route path="/" element={<Maintenance />}></Route>
 
                 {authorized && (
                     <>
