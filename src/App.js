@@ -424,6 +424,10 @@ function App() {
                             element={<PresetDescPage />}
                         ></Route>
                         <Route
+                            path="store/soundfx/:name"
+                            element={<PresetDescPage />}
+                        ></Route>
+                        <Route
                             path="/store/masterclass/:masterclassName"
                             element={<MasterclassDesc />}
                         ></Route>
@@ -455,6 +459,7 @@ function App() {
                     <Route path="modules" element={<ModuleView />}></Route>
                     <Route path="presets" element={<PresetLutView />}></Route>
                     <Route path="luts" element={<PresetLutView />}></Route>
+                    <Route path="soundfx" element={<PresetLutView />}></Route>
                     <Route
                         path="transitions"
                         element={<PresetLutView />}

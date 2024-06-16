@@ -285,6 +285,7 @@ app.post(
             }));
 
             const linkToDownloads = `${process.env.LIVE_URL}/#/digital-downloads?token=${metadata.downloadToken}`;
+            // const linkToDownloads = `${process.env.CLIENT_URL}/#/digital-downloads?token=${metadata.downloadToken}`;
 
             const dynamic_data = {
                 subject: "Your dynamic subject",
@@ -862,8 +863,10 @@ app.post("/create-checkout-session", async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             mode: "payment",
             line_items: line_items,
+            // success_url: `${process.env.CLIENT_URL}/#/receipt?download_token=${downloadToken}&session_id=${SESSION_ID}&has_downloads=${hasDownloads}`,
             success_url: `${process.env.LIVE_URL}/#/receipt?download_token=${downloadToken}&session_id=${SESSION_ID}&has_downloads=${hasDownloads}`,
             cancel_url: `${process.env.LIVE_URL}`,
+            // cancel_url: `${process.env.CLIENT_URL}/`,
             metadata: {
                 session_id: SESSION_ID,
                 uid: req.uid,
@@ -1179,6 +1182,7 @@ app.post("/send-receipt", async (req, res) => {
         });
 
         const linkToDownloads = `${process.env.LIVE_URL}/#/digital-downloads?token=${downloadToken}`;
+        // const linkToDownloads = `${process.env.CLIENT_URL}/#/digital-downloads?token=${downloadToken}`;
 
         const dynamic_data = {
             subject: "The Odyssey Order Confirmation",

@@ -34,6 +34,10 @@ const DashboardHome = () => {
         navigate("/dashboard/transitions");
     };
 
+    const goToSoundFX = () => {
+        navigate("/dashboard/soundfx");
+    };
+
     const goToShop = () => {
         if (!authorized) return;
         navigate("/store");
@@ -118,6 +122,13 @@ const DashboardHome = () => {
                         <div className="icon_w_text">
                             <FaFilm />
                             <span>Transitions</span>
+                        </div>
+                        <BsArrowRightShort />
+                    </div>
+                    <div className="go-to-items-btn" onClick={goToSoundFX}>
+                        <div className="icon_w_text">
+                            <FaFilm />
+                            <span>Sound FX</span>
                         </div>
                         <BsArrowRightShort />
                     </div>

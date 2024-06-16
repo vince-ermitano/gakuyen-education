@@ -15,6 +15,7 @@ const ShopNav = ({setSearchParams}) => {
                 <li onClick={() => setSearchParams( { filter: 'lut' })}>LUTS</li>
                 <li onClick={() => setSearchParams( { filter: 'preset' })}>PRESETS</li>
                 <li onClick={() => setSearchParams( { filter: 'transition' })}>TRANSITIONS</li>
+                <li onClick={() => setSearchParams( { filter: 'soundfx' })}>SOUND FX</li>
                 {/* <li>BUSINESS</li>
                 <li>WORKFLOW</li>
                 <li>EDITING</li>

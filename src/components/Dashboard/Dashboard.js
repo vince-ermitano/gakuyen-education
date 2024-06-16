@@ -213,6 +213,12 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li className="dashboard-sidebar-menu-item">
+                                <NavLink to="/dashboard/soundfx">
+                                    <FaFilm />
+                                    <p>Sound FX</p>
+                                </NavLink>
+                            </li>
+                            <li className="dashboard-sidebar-menu-item">
                                 <NavLink to="/dashboard/settings">
                                     <BsGear />
                                     <p>Settings</p>

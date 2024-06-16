@@ -33,6 +33,9 @@ const ShopItem = ({ product, productId, productMainImg }) => {
             case "Masterclass":
                 navigate(`masterclass/${itemSlug}`);
                 break;
+            case "SoundFX":
+                navigate(`soundfx/${itemSlug}`);
+                break;
             default:
                 break;
         }

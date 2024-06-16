@@ -148,6 +148,19 @@ const PresetLutView = () => {
             products
         );
         unownedItemsForCurrentPage = unownedTransitions;
+    } else if (currentPath.includes("/dashboard/soundfx")) {
+        document.title = 'The Odyssey Dashboard | My Sound FX'
+        title = 'My Sound FX'
+
+        const ownedSoundFX = filterProducts(userOwnedItems, "SoundFX", products);
+        ownedItemsForCurrentPage = ownedSoundFX;
+
+        const unownedSoundFX = filterProductsNotOwned(
+            userOwnedItems,
+            "SoundFX",
+            products
+        );
+        unownedItemsForCurrentPage = unownedSoundFX;
     }
 
     return (
@@ -161,7 +174,7 @@ const PresetLutView = () => {
                         className="presets-luts-container"
                     >
                         {Object.keys(ownedItemsForCurrentPage).length === 0 ? (
-                            <p style={loadingOrComingSoonStyle}>You don't own any presets yet!</p>
+                            <p style={loadingOrComingSoonStyle}>You don't own any yet!</p>
                         ) : (
                             Object.keys(ownedItemsForCurrentPage).map((key) => {
                                 return (
