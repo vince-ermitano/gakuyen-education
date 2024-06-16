@@ -449,7 +449,7 @@ const paypalClient = new paypal.core.PayPalHttpClient(
 app.post("/create-paypal-order", async (req, res) => {
 
     req.body.items = JSON.parse(req.body.items);
-    const promoCode = req.query.promoCode;
+    const promoCode = req.query.promoCode.toUpperCase();
 
     console.log(promoCode);
 
@@ -822,7 +822,7 @@ app.post("/create-checkout-session", async (req, res) => {
 
     console.log(totalPrice);
 
-    const promoCode = req.query.promoCode;
+    const promoCode = req.query.promoCode.toUpperCase();
     console.log(promoCode);
     let discount = 0;
 
@@ -1255,7 +1255,7 @@ app.post("/report-card", async (req, res) => {
 });
 
 app.post("/check-promo-code", (req, res) => {
-    const promoCode = req.body.promoCode;
+    const promoCode = req.body.promoCode.toUpperCase();
 
     if (promoCode === process.env.PROMO_CODE_10) {
         return res.status(200).send({discount: 10});
