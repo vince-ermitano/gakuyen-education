@@ -142,9 +142,10 @@ input[type="reset"] {
 }
 
 .hero .filmbox-image {
-  height: 1109px;
-  bottom: -700px;
-  right: -536px;
+  height: 745px;
+  bottom: -500px;
+  right: -367px;
+  rotate: -90deg;
 }
 
 .hero .sourmo-image {
@@ -450,10 +451,16 @@ iframe {
     left: -42px;
 }
 
-.hero .filmbox-image {
+/* .hero .filmbox-image {
   height: 944px;
   bottom: -571px;
-  right: -645px;
+  left: 0px;
+} */
+
+.hero .filmbox-image {
+  height: 618px;
+  bottom: -400px;
+  right: -438px;
 }
 
 .hero .brainwave-image {
@@ -598,9 +605,9 @@ iframe {
   }
 
   .hero .filmbox-image {
-    height: 1109px;
-    bottom: -624px;
-    right: -536px;
+    height: 700px;
+    bottom: -400px;
+    right: -404px;
   }
 
   .hero .twitter-image {
