@@ -462,6 +462,8 @@ app.post("/create-paypal-order", async (req, res) => {
         discount = 25;
     } else if (promoCode === process.env.PROMO_CODE_30) {
         discount = 30;
+    } else if (promoCode === process.env.PROMO_CODE_33) {
+        discount = 33;
     }
 
     try {
@@ -833,6 +835,8 @@ app.post("/create-checkout-session", async (req, res) => {
         discount = 25;
     } else if (promoCode === process.env.PROMO_CODE_30) {
         discount = 30;
+    } else if (promoCode === process.env.PROMO_CODE_33) {
+        discount = 33;
     }
 
 
