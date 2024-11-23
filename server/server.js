@@ -1277,6 +1277,12 @@ app.post("/check-promo-code", (req, res) => {
         return res.status(200).send({discount: 30});
     }
 
+    if (promoCode === process.env.PROMO_CODE_33) {
+        return res.status(200).send({discount: 33});
+    }
+
+
+
     return res.status(500).send({error: 'Invalid promo code'});
 })
 
