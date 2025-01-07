@@ -26,3 +26,4 @@ yarn-error.log*
 /scripts
 /secret
 /public/modules
+debug.log

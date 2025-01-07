@@ -14,6 +14,7 @@ import About from "./components/About/About";
 import Receipt from "./components/Receipt/Receipt";
 import DigitalDownloads from "./components/DigitalDownloads/DigitalDownloads";
 import PresetDescPage from "./components/Presets/PresetDescPage";
+import LUTDescPage from "./components/LUTs/LUTDescPage";
 // import Hamburger from './components/Hamburger/Hamburger_v2';
 import MasterclassDesc from "./components/Masterclass/MasterclassDesc";
 import LoginSidebar from "./components/Sidebar/LoginSidebar";
@@ -417,7 +418,7 @@ function App() {
                         ></Route>
                         <Route
                             path="store/luts/:name"
-                            element={<PresetDescPage />}
+                            element={<LUTDescPage />}
                         ></Route>
                         <Route
                             path="store/transitions/:name"
