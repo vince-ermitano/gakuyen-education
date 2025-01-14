@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./components/Header/Header_logged_out";
-import Shop from "./components/Shop/Shop";
+// import Shop from "./components/Shop/Shop";
 import store from "./store/store";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Password from "./components/Password/Password";
@@ -13,8 +13,8 @@ import Footer from "./components/Footer/Footer";
 import About from "./components/About/About";
 import Receipt from "./components/Receipt/Receipt";
 import DigitalDownloads from "./components/DigitalDownloads/DigitalDownloads";
-import PresetDescPage from "./components/Presets/PresetDescPage";
-import LUTDescPage from "./components/LUTs/LUTDescPage";
+// import PresetDescPage from "./components/Presets/PresetDescPage";
+// import LUTDescPage from "./components/LUTs/LUTDescPage";
 // import Hamburger from './components/Hamburger/Hamburger_v2';
 import MasterclassDesc from "./components/Masterclass/MasterclassDesc";
 import LoginSidebar from "./components/Sidebar/LoginSidebar";
@@ -412,7 +412,7 @@ function App() {
                 {authorized && (
                     <>
                         <Route path="/success" element={<Homepage />}></Route>
-                        <Route
+                        {/* <Route
                             path="/store/presets/:name"
                             element={<PresetDescPage />}
                         ></Route>
@@ -427,17 +427,17 @@ function App() {
                         <Route
                             path="store/soundfx/:name"
                             element={<PresetDescPage />}
-                        ></Route>
+                        ></Route> */}
                         <Route
                             path="/store/masterclass/:masterclassName"
                             element={<MasterclassDesc />}
                         ></Route>
                         {/* <Route path="/store/:filter" element={<Shop />}></Route> */}
-                        <Route path="/store" element={<Shop />}></Route>
+                        {/* <Route path="/store" element={<Shop />}></Route>
                         <Route
                             path="/preset-desc"
                             element={<PresetDescPage />}
-                        ></Route>
+                        ></Route> */}
                         <Route
                             path="/the-odyssey-creative-masterclass"
                             element={<MasterclassDesc />}

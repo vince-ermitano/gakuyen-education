@@ -56,16 +56,37 @@ const HamburgerMenu = () => {
                 <h3>Shop By</h3>
                 <hr />
                 <div className="shop-by-category-links ham-menu-links">
-                    <Link className="link1" to="/store" onClick={(e) => handleLinkClick(e)}>
+
+                    {/* Having products stored on education.gakuyen.com site */}
+
+                    {/* <Link className="link1" to="/store" onClick={(e) => handleLinkClick(e)}>
                         Shop
-                    </Link>
-                    <Link className="link1" to="/store?filter=preset" onClick={(e) => handleLinkClick(e)}>
+                    </Link> */}
+                    {/* <Link className="link1" to="/store?filter=preset" onClick={(e) => handleLinkClick(e)}>
                         Presets
                     </Link>
                     <Link className="link1" to="/store" onClick={(e) => handleLinkClick(e)}>
                         LUTs
                     </Link>
                     <Link className="link1" to="/store" onClick={(e) => handleLinkClick(e)}>
+                        Editing
+                    </Link> */}
+
+
+                    {/* Redirecting all product links to gakuyen.com */}
+                    <Link className="link1" to="https://www.gakuyen.com/store" target="_blank" onClick={(e) => handleLinkClick(e)}>
+                        Shop
+                    </Link>
+                    <Link className="link1" to="/store/masterclass/the-odyssey-creative-masterclass" onClick={(e) => handleLinkClick(e)}>
+                        Masterclass
+                    </Link>
+                    <Link className="link1" to="https://www.gakuyen.com/store?category=presets" target="_blank" onClick={(e) => handleLinkClick(e)}>
+                        Presets
+                    </Link>
+                    <Link className="link1" to="https://www.gakuyen.com/store?category=presets" target="_blank" onClick={(e) => handleLinkClick(e)}>
+                        LUTs
+                    </Link>
+                    <Link className="link1" to="https://www.gakuyen.com/store?category=presets" target="_blank" onClick={(e) => handleLinkClick(e)}>
                         Editing
                     </Link>
                     <Link className="link1 disabled" to="/" onClick={(e) => handleLinkClick(e)}>

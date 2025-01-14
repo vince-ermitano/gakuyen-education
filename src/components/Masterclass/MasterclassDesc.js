@@ -73,8 +73,8 @@ const MasterclassDesc = () => {
 
     return (
         <div className="masterclass-desc page-section">
-            <Link to="/store">
-                <button className="back-to-btn">&lt; Back to Shop</button>
+            <Link to="/">
+                <button className="back-to-btn">&lt; Back to Home</button>
             </Link>
 
             <div className="masterclass-desc-content">
