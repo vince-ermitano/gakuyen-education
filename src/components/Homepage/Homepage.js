@@ -140,7 +140,7 @@ const Homepage = () => {
             </nav>
             <TargetAudience />
             <WhatWeOffer />
-            <MoneyBackGuarantee />
+            {/* <MoneyBackGuarantee /> */}
             <CourseOverview />
             <BestSellers />
             <PresetsHP />
