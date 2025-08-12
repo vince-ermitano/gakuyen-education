@@ -12,7 +12,7 @@ import MasterclassHP from "../Masterclass/MasterclassHP";
 import CourseBanner from "../CourseBanner/CourseBanner";
 import TargetAudience from "./TargetAudience/TargetAudience";
 import WhatWeOffer from "./WhatWeOffer/WhatWeOffer";
-import MoneyBackGuarantee from "./MoneyBackGuarantee/MoneyBackGuarantee";
+// import MoneyBackGuarantee from "./MoneyBackGuarantee/MoneyBackGuarantee";
 import CourseOverview from "./CourseOverview/CourseOverviewV2";
 // import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import FAQ from "./FAQ/FAQ.js";
